@@ -19,7 +19,7 @@ public class WpDaoImpl implements WpDao{
     @Override
     public List<Wp> listWp(){
         Session session = sessionFactory.getCurrentSession();
-        List wpList = session.createQuery("from Wp_summ_view").list();
+        List wpList = session.createQuery("from Wp").list();
         /*ArrayList<Book> bookList = new ArrayList<Book>();
         bookList.add(new Book("aa", "aa", 1));*/
         return wpList;

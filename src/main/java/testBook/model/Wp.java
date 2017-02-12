@@ -15,27 +15,27 @@ public class Wp {
 
     @Id
     @Column(name = "id_workplace")
-    private long idWorkplace;
+    private Long idWorkplace;
     @Column(name = "id_computer")
-    private long idComputer;
+    private Long idComputer;
     @Column(name = "id_monitor")
-    private long idMonitor;
+    private Long idMonitor;
     @Column(name = "id_user")
-    private long idUser;
+    private Long idUser;
     @Column(name = "id_printer")
-    private long idPrinter;
+    private Long idPrinter;
     @Column(name = "id_ups")
-    private long idUps;
+    private Long idUps;
     @Column(name = "id_os")
-    private long idOs;
+    private Long idOs;
     @Column(name = "description")
     private String description;
     @Column(name = "c_inv_number")
-    private long cInvNumber;
+    private Long cInvNumber;
     @Column(name = "c_buh_name")
     private String cBuhName;
     @Column(name = "mon_inb_number")
-    private long monInvNumber;
+    private Long monInvNumber;
     @Column(name = "mon_model")
     private String monModel;
     @Column(name = "user_name")
@@ -61,31 +61,123 @@ public class Wp {
     @Column(name = "os_name")
     private String os;
 
-    public long getIdWorkplace() {
+    public void setIdWorkplace(long idWorkplace) {
+        this.idWorkplace = idWorkplace;
+    }
+
+    public void setIdComputer(long idComputer) {
+        this.idComputer = idComputer;
+    }
+
+    public void setIdMonitor(long idMonitor) {
+        this.idMonitor = idMonitor;
+    }
+
+    public void setIdUser(long idUser) {
+        this.idUser = idUser;
+    }
+
+    public void setIdPrinter(long idPrinter) {
+        this.idPrinter = idPrinter;
+    }
+
+    public void setIdUps(long idUps) {
+        this.idUps = idUps;
+    }
+
+    public void setIdOs(long idOs) {
+        this.idOs = idOs;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setcInvNumber(long cInvNumber) {
+        this.cInvNumber = cInvNumber;
+    }
+
+    public void setcBuhName(String cBuhName) {
+        this.cBuhName = cBuhName;
+    }
+
+    public void setMonInvNumber(long monInvNumber) {
+        this.monInvNumber = monInvNumber;
+    }
+
+    public void setMonModel(String monModel) {
+        this.monModel = monModel;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setUserLogin(String userLogin) {
+        this.userLogin = userLogin;
+    }
+
+    public void setcDomainName(String cDomainName) {
+        this.cDomainName = cDomainName;
+    }
+
+    public void setProcessor(String processor) {
+        this.processor = processor;
+    }
+
+    public void setIdCompRam(Long idCompRam) {
+        this.idCompRam = idCompRam;
+    }
+
+    public void setRamCount(Long ramCount) {
+        this.ramCount = ramCount;
+    }
+
+    public void setRamAll(String ramAll) {
+        this.ramAll = ramAll;
+    }
+
+    public void setIdCompHdd(Long idCompHdd) {
+        this.idCompHdd = idCompHdd;
+    }
+
+    public void setHddCount(Long hddCount) {
+        this.hddCount = hddCount;
+    }
+
+    public void setHddAll(String hddAll) {
+        this.hddAll = hddAll;
+    }
+
+    public void setOs(String os) {
+        this.os = os;
+    }
+
+    public Long getIdWorkplace() {
         return idWorkplace;
     }
 
-    public long getIdComputer() {
+    public Long getIdComputer() {
         return idComputer;
     }
 
-    public long getIdMonitor() {
+    public Long getIdMonitor() {
         return idMonitor;
     }
 
-    public long getIdUser() {
+    public Long getIdUser() {
         return idUser;
     }
 
-    public long getIdPrinter() {
+    public Long getIdPrinter() {
         return idPrinter;
     }
 
-    public long getIdUps() {
+    public Long getIdUps() {
         return idUps;
     }
 
-    public long getIdOs() {
+    public Long getIdOs() {
         return idOs;
     }
 
@@ -93,7 +185,7 @@ public class Wp {
         return description;
     }
 
-    public long getcInvNumber() {
+    public Long getcInvNumber() {
         return cInvNumber;
     }
 
@@ -101,7 +193,7 @@ public class Wp {
         return cBuhName;
     }
 
-    public long getMonInvNumber() {
+    public Long getMonInvNumber() {
         return monInvNumber;
     }
 
@@ -125,11 +217,11 @@ public class Wp {
         return processor;
     }
 
-    public long getIdCompRam() {
+    public Long getIdCompRam() {
         return idCompRam;
     }
 
-    public long getRamCount() {
+    public Long getRamCount() {
         return ramCount;
     }
 
@@ -137,11 +229,11 @@ public class Wp {
         return ramAll;
     }
 
-    public long getIdCompHdd() {
+    public Long getIdCompHdd() {
         return idCompHdd;
     }
 
-    public long getHddCount() {
+    public Long getHddCount() {
         return hddCount;
     }
 
