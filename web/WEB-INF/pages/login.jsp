@@ -1,11 +1,42 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="<c:url value="/resources/css/bootstrap.css" />" rel="stylesheet">
     <title>Title Login Page</title>
 </head>
+
+<body>
+<div class ="container">
+    <h2> Hello bro, please Sign in </h2>
+    <div>
+        <br>
+        <br>
+        <br>
+        <div class ="container">
+            <form>
+                <div class="form-group">
+                    <label for="login"> Login</label>
+                    <input type="text" name="login" id="login" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="password"> Password</label>
+                    <input type="password" name= "password" class="form-control">
+                </div>
+                <button type="submit"class="btn btn-primary">Send</button>
+            </form>
+
+
+            <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+            <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
+            <!-- Include all compiled plugins (below), or include individual files as needed -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<%--
 <body>
 <h1>Login page</h1>
 <p>Valid users:
@@ -37,3 +68,4 @@
 </body>
 
 </html>
+--%>
