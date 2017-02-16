@@ -14,11 +14,62 @@
 <html>
 <head>
     <title>MNT workplace</title>
+    <link href="<c:url value="/css/bootstrap.css" />" rel="stylesheet">
 </head>
 <body>
-<table border="1" width="100%">
-    <tr>
-        <td align="center"><b>ID</b></td>
+<div class ="container">
+    <h1>MNT computer workplace </h1>
+    <table class="table table-condensed table-striped table-bordered">
+        <thead>
+    <tr class="success">
+        <th>
+            id_workplace
+        </th>
+
+        <th>
+            comp_inv_#
+        </th>
+        <th>
+            comp_buh_name
+        </th>
+        <th>
+            monitor_inv_#
+        </th>
+        <th>
+            monitor_model
+        </th>
+        <th>
+            user_name
+        </th>
+        <th>
+            user_login
+        </th>
+        <th>
+            computer_domain_name
+        </th>
+        <th>
+            processor
+        </th>
+        <th>
+          ram_count
+        </th>
+        <th>
+            ram_capacity
+        </th>
+
+        <th>
+            hdd_count
+        </th>
+        <th>
+            hdd_capacity
+        </th>
+        <th>
+            os_name
+        </th>
+        <th>
+            description
+        </th>
+        </thead>
         <%-- <td align="center"><b>Book Name</b></td>
          <td align="center"><b>ISDN</b></td>
          <td align="center"><b>AutorId</b></td>
@@ -27,13 +78,23 @@
     </tr>
     <c:forEach items="${listWp}" var="wp">
         <tr>
+            <td>${wp.idWorkplace}</td>
+            <td>${wp.cInvNumber}</td>
+            <td>${wp.cBuhName}</td>
+            <td>${wp.monInvNumber}</td>
+            <td>${wp.monModel}</td>
             <td>${wp.userName}</td>
-                <%--<td>${book.name}</td>
-                <td>${book.isdn}</td>
-                <td>${book.autor_id}</td>
-        --%><%--
-        <td><a href="<c:url value='/edit/${book.id}'/>">edit</a></td>
-        <td><a href="<c:url value='/remove/${book.id}'/>">delete</a></td>--%>
+            <td>${wp.userLogin}</td>
+            <td>${wp.cDomainName}</td>
+            <td>${wp.processor}</td>
+            <td>${wp.ramCount}</td>
+            <td>${wp.ramAll}</td>
+            <td>${wp.hddCount}</td>
+            <td>${wp.hddAll}</td>
+            <td>${wp.os}</td>
+            <td>${wp.description}</td>
+
+               
         </tr>
     </c:forEach>
 </table>
