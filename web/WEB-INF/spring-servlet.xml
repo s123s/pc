@@ -23,8 +23,6 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="annotatedClasses">
             <list>
-                <value>testBook.model.Book</value>
-                <value>testBook.model.Autor</value>
                 <value>testBook.model.Wp</value>
             </list>
         </property>
@@ -54,21 +52,6 @@
         <property name="wpDao" ref="wpDao" />
     </bean>
 
-    <bean id="bookDao" class="testBook.dao.BookDaoImpl">
-        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
-    </bean>
-
-    <bean id="bookService" class="testBook.service.BookServiceImpl">
-        <property name="bookDao" ref="bookDao"/>
-    </bean>
-
-    <bean id="autorDao" class="testBook.dao.AutorDaoImpl">
-        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
-    </bean>
-
-    <bean id="autorService" class="testBook.service.AutorServiceImpl">
-        <property name="autorDao" ref="autorDao"/>
-    </bean>
 
     <context:component-scan base-package="testBook"/>
 

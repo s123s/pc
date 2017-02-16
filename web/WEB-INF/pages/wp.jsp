@@ -94,7 +94,7 @@
             <td>${wp.os}</td>
             <td>${wp.description}</td>
 
-               
+
         </tr>
     </c:forEach>
 </table>
