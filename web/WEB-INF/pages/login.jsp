@@ -1,10 +1,13 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link href="<c:url value="/resources/css/bootstrap.css" />" rel="stylesheet">
-    <title>Title Login Page</title>
+
+        <link href="<c:url value="/css/bootstrap.css" />" rel="stylesheet">
+
+    <title>Login Page</title>
+
 </head>
 
 <body>
@@ -15,16 +18,17 @@
         <br>
         <br>
         <div class ="container">
-            <form>
+            <form name="frm" action="/login" method="post">
                 <div class="form-group">
                     <label for="login"> Login</label>
-                    <input type="text" name="login" id="login" class="form-control">
+                    <input type="text" name="username" id="login" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="password"> Password</label>
                     <input type="password" name= "password" class="form-control">
                 </div>
                 <button type="submit"class="btn btn-primary">Send</button>
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             </form>
 
 
