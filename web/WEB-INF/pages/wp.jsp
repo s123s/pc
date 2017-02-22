@@ -19,6 +19,10 @@
 <body>
 <div class ="container">
     <h1>MNT computer workplace </h1>
+
+    </br>
+    <a href="<c:url value='/computer'/>">Computer</a>
+    </br>
     <table class="table table-condensed table-striped table-bordered">
         <thead>
     <tr class="success">
@@ -98,5 +102,6 @@
         </tr>
     </c:forEach>
 </table>
+    </div>
 </body>
 </html>

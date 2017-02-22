@@ -24,6 +24,7 @@
         <property name="annotatedClasses">
             <list>
                 <value>testBook.model.Wp</value>
+                <value>testBook.model.Computer</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -42,6 +43,14 @@
                   value="jdbc:mysql://localhost:3306/pc"/>
         <property name="username" value="root"/>
         <property name="password" value="root"/>
+    </bean>
+
+    <bean id="computerDao" class="testBook.dao.ComputerDaoImpl">
+        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="computerService" class="testBook.service.ComputerServiceImpl">
+        <property name="computerDao" ref="computerDao"/>
     </bean>
 
     <bean id="wpDao" class="testBook.dao.WpDaoImpl">
