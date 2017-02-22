@@ -25,6 +25,8 @@
             <list>
                 <value>testBook.model.Wp</value>
                 <value>testBook.model.Computer</value>
+                <value>testBook.model.User</value>
+                <value>testBook.model.Monitor</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -51,6 +53,22 @@
 
     <bean id="computerService" class="testBook.service.ComputerServiceImpl">
         <property name="computerDao" ref="computerDao"/>
+    </bean>
+
+    <bean id="monitorDao" class="testBook.dao.MonitorDaoImpl">
+    <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="monitorService" class="testBook.service.MonitorServiceImpl">
+        <property name="monitorDao" ref="monitorDao"/>
+    </bean>
+
+    <bean id="userDao" class="testBook.dao.UserDaoImpl">
+        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="userService" class="testBook.service.UserServiceImpl">
+        <property name="userDao" ref="userDao"/>
     </bean>
 
     <bean id="wpDao" class="testBook.dao.WpDaoImpl">

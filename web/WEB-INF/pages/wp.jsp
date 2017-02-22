@@ -22,6 +22,8 @@
 
     </br>
     <a href="<c:url value='/computer'/>">Computer</a>
+    <a href="<c:url value='/user'/>">User</a>
+    <a href="<c:url value='/monitor'/>">Monitor</a>
     </br>
     <table class="table table-condensed table-striped table-bordered">
         <thead>

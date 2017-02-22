@@ -17,6 +17,7 @@
 <body>
 </br>
 </br>
+
 <div class ="container">
     <form name="add" action="/addComputer">
         <div class="form-group">
@@ -59,7 +60,9 @@
     </form>
 </div>--%>
 <div class="container">
-<a href="<c:url value='/wp'/>">Workplace</a>
+    <a href="<c:url value='/wp'/>">Workplace</a>
+    <a href="<c:url value='/user'/>">User</a>
+    <a href="<c:url value='/monitor'/>">Monitor</a>
     </div>
 <div class="container">
 <table class="table table-condensed table-striped table-bordered">
