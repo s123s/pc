@@ -27,6 +27,9 @@
                 <value>testBook.model.Computer</value>
                 <value>testBook.model.User</value>
                 <value>testBook.model.Monitor</value>
+                <value>testBook.model.Printer</value>
+                <value>testBook.model.Ups</value>
+                <value>testBook.model.Os</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -69,6 +72,30 @@
 
     <bean id="userService" class="testBook.service.UserServiceImpl">
         <property name="userDao" ref="userDao"/>
+    </bean>
+
+    <bean id="printerDao" class="testBook.dao.PrinterDaoImpl">
+        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="printerService" class="testBook.service.PrinterServiceImpl">
+        <property name="printerDao" ref="printerDao"/>
+    </bean>
+
+    <bean id="upsDao" class="testBook.dao.UpsDaoImpl">
+        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="upsService" class="testBook.service.UpsServiceImpl">
+        <property name="upsDao" ref="upsDao"/>
+    </bean>
+
+    <bean id="osDao" class="testBook.dao.OsDaoImpl">
+        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="osService" class="testBook.service.OsServiceImpl">
+        <property name="osDao" ref="osDao"/>
     </bean>
 
     <bean id="wpDao" class="testBook.dao.WpDaoImpl">

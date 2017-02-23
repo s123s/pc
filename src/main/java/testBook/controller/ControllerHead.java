@@ -11,10 +11,7 @@ import testBook.model.Computer;
 import testBook.model.Monitor;
 import testBook.model.User;
 import testBook.model.Wp;
-import testBook.service.ComputerService;
-import testBook.service.MonitorService;
-import testBook.service.UserService;
-import testBook.service.WpService;
+import testBook.service.*;
 
 /**
  * Created by yasha on 04.12.2016.
@@ -26,6 +23,28 @@ public class ControllerHead {
     private ComputerService computerService;
     private UserService userService;
     private MonitorService monitorService;
+    private PrinterService printerService;
+    private UpsService upsService;
+    private OsService osService;
+
+    @Autowired
+    @Qualifier(value="printerService")
+    public void setPrinterService(PrinterService printerService){
+        this.printerService = printerService;
+    }
+
+    @Autowired
+    @Qualifier(value="upsService")
+    public void setUpsService(UpsService upsService){
+        this.upsService = upsService;
+    }
+
+    @Autowired
+    @Qualifier(value="osService")
+    public void setOSService(OsService osService){
+        this.osService = osService;
+    }
+
 
     @Autowired
     @Qualifier(value = "monitorService")
