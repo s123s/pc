@@ -26,6 +26,34 @@ public class ControllerHead {
     private PrinterService printerService;
     private UpsService upsService;
     private OsService osService;
+    private ThddService thddService;
+    private TramService tramService;
+    private TprocService tprocService;
+    private TmotherService tmotherService;
+
+    @Autowired
+    @Qualifier(value="tmotherService")
+    public void setTmotherService(TmotherService tmotherService){
+        this.tmotherService = tmotherService;
+    }
+
+    @Autowired
+    @Qualifier(value="tprocService")
+    public void setTprocService(TprocService tprocService){
+        this.tprocService = tprocService;
+    }
+
+    @Autowired
+    @Qualifier(value="tramService")
+    public void setTramService(TramService tramService){
+        this.tramService = tramService;
+    }
+
+    @Autowired
+    @Qualifier(value="thddService")
+    public void setThddService(ThddService thddService){
+        this.thddService = thddService;
+    }
 
     @Autowired
     @Qualifier(value="printerService")

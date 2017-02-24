@@ -30,6 +30,10 @@
                 <value>testBook.model.Printer</value>
                 <value>testBook.model.Ups</value>
                 <value>testBook.model.Os</value>
+                <value>testBook.model.Tram</value>
+                <value>testBook.model.Tproc</value>
+                <value>testBook.model.Thdd</value>
+                <value>testBook.model.Tmother</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -48,6 +52,36 @@
                   value="jdbc:mysql://localhost:3306/pc"/>
         <property name="username" value="root"/>
         <property name="password" value="root"/>
+    </bean>
+    <bean id="thddDao" class="testBook.dao.ThddDaoImpl">
+        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="thddService" class="testBook.service.ThddServiceImpl">
+        <property name="thddDao" ref="thddDao"/>
+    </bean>
+    <bean id="tramDao" class="testBook.dao.TramDaoImpl">
+        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="tramService" class="testBook.service.TramServiceImpl">
+        <property name="tramDao" ref="tramDao"/>
+    </bean>
+
+    <bean id="tprocDao" class="testBook.dao.TprocDaoImpl">
+        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="tprocService" class="testBook.service.TprocServiceImpl">
+        <property name="tprocDao" ref="tprocDao"/>
+    </bean>
+
+    <bean id="tmotherDao" class="testBook.dao.TmotherDaoImpl">
+        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="tmotherService" class="testBook.service.TmotherServiceImpl">
+        <property name="tmotherDao" ref="tmotherDao"/>
     </bean>
 
     <bean id="computerDao" class="testBook.dao.ComputerDaoImpl">
