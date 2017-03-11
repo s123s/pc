@@ -21,9 +21,12 @@
     <h1>MNT computer workplace </h1>
 
     </br>
+    <a href="<c:url value='/wptable'/>">WP</a>
     <a href="<c:url value='/computer'/>">Computer</a>
     <a href="<c:url value='/user'/>">User</a>
     <a href="<c:url value='/monitor'/>">Monitor</a>
+    <a href="<c:url value='/printer'/>">Printer</a>
+    <a href="<c:url value='/ups'/>">Ups</a>
     </br>
     <table class="table table-condensed table-striped table-bordered">
         <thead>

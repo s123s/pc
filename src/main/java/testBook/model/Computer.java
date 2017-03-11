@@ -1,6 +1,8 @@
 package testBook.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by yasha on 21.02.2017.
@@ -8,6 +10,58 @@ import javax.persistence.*;
 @Entity
 @Table(name="computer")
 public class Computer {
+
+
+
+    @OneToOne(targetEntity = Tproc.class, cascade = {CascadeType.REFRESH}, fetch=FetchType.EAGER)
+    @JoinTable(name="processor")@JoinColumn(name = "type_proc")
+    private Tproc tProc;
+
+
+    public Tproc gettProc() {
+        return tProc;
+    }
+
+    public void settProc(Tproc tProc) {
+        this.tProc = tProc;
+    }
+
+    @OneToOne(targetEntity = Tmother.class, cascade = {CascadeType.REFRESH}, fetch=FetchType.EAGER)
+    @JoinTable(name="mother")@JoinColumn(name = "type_mother")
+    private Tmother tMother;
+
+    public Tmother gettMother() {
+        return tMother;
+    }
+
+    public void settMother(Tmother tMother) {
+        this.tMother = tMother;
+    }
+
+    @ManyToOne(targetEntity = Thdd.class, cascade = {CascadeType.REFRESH}, fetch=FetchType.EAGER)
+    @JoinTable(name="hdd")@JoinColumn(name = "type_hdd")
+    private Thdd thdd;
+
+    public Thdd getThdd() {
+        return thdd;
+    }
+
+    public void setThdd(Thdd thdd) {
+        this.thdd = thdd;
+    }
+
+
+    @ManyToOne(targetEntity = Tram.class, cascade = {CascadeType.REFRESH}, fetch=FetchType.EAGER)
+    @JoinTable(name="ram")@JoinColumn(name = "type_ram")
+    private Tram tRam;
+
+    public Tram gettRam() {
+        return tRam;
+    }
+
+    public void settRam(Tram tRam) {
+        this.tRam = tRam;
+    }
 
     @Id
     @Column(name = "id_computer")
@@ -62,5 +116,8 @@ public class Computer {
     public void setDomainName(String domainName) {
         this.domainName = domainName;
     }
+
+
+
 }
 

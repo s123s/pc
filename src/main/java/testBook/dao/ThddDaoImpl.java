@@ -46,7 +46,7 @@ public class ThddDaoImpl implements ThddDao {
     @Override
     public List<Thdd> listThdd() {
         Session session = sessionFactory.getCurrentSession();
-        List thddList = session.createQuery("from Tram").list();
+        List thddList = session.createQuery("from Thdd").list();
         return thddList;
     }
 }

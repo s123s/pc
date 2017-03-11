@@ -18,7 +18,7 @@
 </br>
 </br>
 
-<div class ="container">
+<div class ="container" <%--hidden="false"--%>>
     <form name="add" action="/addComputer">
         <div class="form-group">
             <label for="invNumber"> Інв Номер №</label>
@@ -81,6 +81,25 @@
         <th>
             domain Name
         </th>
+        <th>
+            Motherboard
+        </th>
+        <th>
+            Processor
+        </th>
+        <th>
+            Hdd Model
+        </th>
+        <th>
+            Hdd Capacity
+        </th>
+        <th>
+            Ram Type
+        </th>
+        <th>
+            Ram Capacity
+        </th>
+
        <%-- <th>
             Edit
         </th>--%>
@@ -95,6 +114,15 @@
     <td>${computer.invNumber}</td>
     <td>${computer.buhName}</td>
     <td>${computer.domainName}</td>
+    <td>${computer.tMother.model}</td>
+    <td>${computer.tProc.model}</td>
+    <td>${computer.thdd.model}</td>
+    <td>${computer.thdd.capacity}</td>
+    <td>${computer.tRam.type}</td>
+    <td>${computer.tRam.capacity}</td>
+   <%--<td><c:forEach items="${computer.tRams}" var="ram">${ram.capacity}</c:forEach></td>--%>
+
+
         <%--<td><a href="<c:url value='/edit/${computer.id}'/>">edit</a></td>--%>
         <td><a href="<c:url value='/remove/${computer.id}'/>">delete</a></td>
     </tr>

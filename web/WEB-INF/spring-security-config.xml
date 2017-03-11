@@ -12,16 +12,13 @@
 
             <http  use-expressions="false">
 
-
                 <intercept-url pattern="/login" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-
                 <intercept-url pattern="/**" access="ROLE_USER" />
                 <intercept-url pattern="/wp/**" access="ROLE_USER" />
                 <intercept-url pattern="/computer/**" access="ROLE_USER" />
                 <intercept-url pattern="/addComputer**" access="ROLE_USER" />
                 <!--<intercept-url pattern="/edit**" access="ROLE_USER" />
                 <intercept-url pattern="/update**" access="ROLE_USER" />-->
-
 
                 <form-login login-page="/login"
             authentication-failure-url="/login-failure" authentication-success-forward-url="/wp" default-target-url="/wp" />

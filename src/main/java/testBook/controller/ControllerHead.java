@@ -150,6 +150,7 @@ public class ControllerHead {
         this.computerService.removeComputer(id);
         return "redirect:/computer";
     }
+
     /* @RequestMapping(value="edit/{id}")
     public String editComputer(@PathVariable("id") Long id, Model model){
         model.addAttribute("computer", this.computerService.getComputerById(id));
