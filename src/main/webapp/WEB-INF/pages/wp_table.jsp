@@ -14,6 +14,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+
 <title>Insert title here</title>
 <style type="text/css">
 .tg {
@@ -39,8 +44,105 @@
 	color: #333;
 }
 </style>
+
+
+
+
+<style>
+html, body {
+    height: 100%;
+}
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background-color: moccasin;
+}
+.wrapper {
+    position:absolute;
+    top: 21px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: fuchsia;
+}
+.inner-wrapper,
+.center.pane .inner {
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+.pane {
+    display: table-cell;
+}
+.left.pane {
+   background-color: olivedrab;
+   width: 110px;
+}
+.center.pane {
+    background-color: lightblue;
+}
+.center.pane .inner .top,
+.center.pane .inner .bottom{
+    display: table-row;
+}
+.center.pane .inner .top {
+    background-color: lightcoral;
+}
+.center.pane .inner .bottom {
+    background-color: orange;
+    height: 100%;
+    width: 100%;
+}
+.right.pane {
+    background-color: #999;
+}
+
+#menu1
+{
+   padding-left: 5px;
+   padding-right: 5px;
+}
+
+</style>
+
+<script>
+$(function () {
+    $(".left.pane").resizable({
+        handles: "e, w"
+    });
+    $(".right.pane").resizable({
+        handles: "e, w"
+    });
+    $(".center.pane .inner .bottom").resizable({
+        handles: "n, s"
+    });
+});
+
+</script>
+
 </head>
+
 <body>
+
+
+<div class="header">
+  Fixed header
+</div>
+<div class="wrapper">
+   <div class="inner-wrapper">
+       <div class="left pane">
+ <%@include file="include/left_menu.jsp"%>	
+
+       </div>
+       <div class="center pane">
+           <div class="inner">
+               <div class="top">Center top</div>
+               <div class="bottom">Center bottom
+
+
 
 	<FORM method="post" name="theForm" action="wp">
 		<input type="hidden" name="func" id="func">
@@ -110,5 +212,14 @@
 			onclick="document.theForm.func.value='new_wp'; document.theForm.submit();">
 		<br>
 	</FORM>
+	
+	
+	
+</div>
+           </div>
+       </div>
+       <!--div class="right pane">Right</div-->
+   </div>
+</div>
 </body>
 </html>
