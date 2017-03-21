@@ -18,10 +18,102 @@
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 
+<title>Insert title here</title>
+<style type="text/css">
+.tg {
+	border-collapse: collapse;
+	border-spacing: 0;
+	border-color: #ccc;
+}
 
-<link href="css/main.css" rel="stylesheet" type="text/css"/>
+.tg td {
+	padding: 10px 5px;
+	border-style: solid;
+	border-width: 1px;
+	overflow: hidden;
+	border-color: #ccc;
+}
 
-<title>Рабочее место</title>
+.tg th {
+	padding: 10px 5px;
+	border-style: solid;
+	border-width: 1px;
+	overflow: hidden;
+	border-color: #ccc;
+	color: #333;
+}
+</style>
+
+
+
+
+<style>
+html, body {
+    height: 100%;
+}
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background-color: moccasin;
+}
+.wrapper {
+    position:absolute;
+    top: 21px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: fuchsia;
+}
+.inner-wrapper,
+.center.pane .inner {
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+.pane {
+    display: table-cell;
+}
+.left.pane {
+   background-color: olivedrab;
+   width: 110px;
+    height: 100%;
+}
+.center.pane {
+    background-color: lightblue;
+    height: 100%;
+}
+.center.pane .inner .top,
+.center.pane .inner .bottom{
+    display: table-row;
+}
+.center.pane .inner .top {
+    background-color: lightcoral;
+}
+.center.pane .inner .bottom {
+    background-color: orange;
+    height: 100%;
+    width: 100%;
+}
+.right.pane {
+    background-color: #999;
+}
+
+#menu1 a:link,
+#menu1 a:visited 
+{
+	color: blue;
+}
+
+#menu1
+{
+   padding-left: 5px;
+   padding-right: 5px;
+}
+
+</style>
 
 <script>
 $(function () {
