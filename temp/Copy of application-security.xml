@@ -9,22 +9,27 @@
                     http://www.springframework.org/schema/security 
                     http://www.springframework.org/schema/security/spring-security-4.2.xsd">
 
- 	<context:component-scan base-package="pc.security" />
+	<context:component-scan base-package="pc.security" />
 
-	<http auto-config="true">
-		<intercept-url pattern="/**" access="permitAll" />
-	</http>	
+<!-- 	<http pattern="/css/**" security="none" /> -->
 
-<!-- 	<http pattern="**/css/**" security="none" />
+	<http pattern="**/css/**" security="none" />
 	<http auto-config="true">
+		<!-- <csrf disabled="true"/> -->
 	
 		<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/books" access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" />
 		<intercept-url pattern="/book/**" access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" />
+		
+<!-- 		<intercept-url pattern="/login" access="permitAll" /> -->
 		<intercept-url pattern="/*" access="permitAll" />
 
+
+<!-- login-processing-url="/login" -->
+			<!--  authentication-success-forward-url="/books" --> 
 		<form-login login-page="/signin"
 			authentication-failure-url="/signin-failure"
 			default-target-url="/books" />
-	</http> -->
+
+	</http>
 </beans:beans>   

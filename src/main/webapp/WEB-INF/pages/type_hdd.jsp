@@ -163,60 +163,30 @@ $(function () {
 <br><br><br><br><br><br><br>
 		<table class="tg">
 			<tr>
-				<th nowrap rowspan="2">N п/п</th>
-				<th colspan="3">Системный блок</th>
-				<th colspan="2">Монитор(если по бух. монитор числится)</th>
-				<th colspan="2">Информация по пользователю</th>
-				<th colspan="6">Информация по мат. обеспечению</th>
-				<th colspan="3"></th>		
+				<th nowrap>N п/п</th>
+				<th>ID</th>
+				<th>Модель</th>
+				<th>Емкость</th>
 			</tr>
 		
-			<tr>
-				<th width="80">Инв. номер</th>
-				<th width="120">Бухг. название</th>
-				<th width="120">Тип компьютера</th>
-				<th width="60">Инв. номер монитора</th>
-				<th width="60">Название монитора</th>
-				<th width="60">ФИО пользователя</th>
-				<th>Логин пользователя.</th>
-				<th>Имя ПК в сети</th>
-				<th>Марка процессора</th>
-				<th>Кол-во планок памяти</th>
-				<th>Память</th>
-				<th>Кол-во винчестеров</th>
-				<th>Винчестера</th>
-				<th>Операционная с-ма</th>
-				
-			</tr>
-			<c:forEach items="${wps}" var="wp" varStatus="st">
+			<c:forEach items="${typeHdds}" var="typeHdd" varStatus="st">
 
 				<tr>
 					<td>${st.getIndex()+1}</td>
-					<td>${wp.cInvNumber}</td>
-					<td>${wp.cBuhName}</td>
-					<td>${wp.cTypeComputer}</td>
-					<td>${wp.monInvNumber}</td>
-					<td>${wp.monName}</td>
-					<td>${wp.userName}</td>
-					<td>${wp.userLogin}</td>
-					<td>${wp.cDomainName}</td>
-					<td>${wp.model}</td>
-					<td>${wp.ramCount}</td>
-					<td>${wp.ramCapacityAll}</td>
-					<td>${wp.hddCount}</td>
-					<td>${wp.hddCapacityAll}</td>
-					<td>${wp.osName}</td>
+					<td>${typeHdd.idTypeHdd}</td>
+					<td>${typeHdd.model}</td>
+					<td>${typeHdd.capacity}</td>
 
-					<td><a href="<c:url value='/wp/edit/${wp.idWorkplace}'/>">EDIT</a></td>
-					<td><a href="<c:url value='/wp/delete/${wp.idWorkplace}'/>">DELETE</a></td>
+					<td><a href="<c:url value='/type_hdd/edit/${typeHdd.idTypeHdd}'/>">EDIT</a></td>
+					<td><a href="<c:url value='/type_hdd/delete/${typeHdd.idTypeHdd}'/>">DELETE</a></td>
 				</tr>
 
 			</c:forEach>
 
 		</table>
-		<BR>Операции с рабочим местом <INPUT type="button" value="Новая"
+<!-- 		<BR>Операции с типом винчестера <INPUT type="button" value="Новая"
 			onclick="document.theForm.func.value='new_wp'; document.theForm.submit();">
-		<br>
+		<br> -->
 	</FORM>
 	
 	

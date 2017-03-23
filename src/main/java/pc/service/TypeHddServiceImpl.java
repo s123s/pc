@@ -23,19 +23,18 @@ public class TypeHddServiceImpl implements TypeHddService {
 
 
 	public void update(TypeHdd o) {
-		getWpDao().update(o);
+		typeHddDao.update(o);
 	}
 
 	public int markDeleted(Integer k) {
-		return getWpDao().markDeleted(k);
+		return typeHddDao.markDeleted(k);
 	}
 
-	public TypeHddDao getWpDao() {
+	public TypeHddDao getTypeHddDao() {
 		return typeHddDao;
 	}
 
-	public void setWpDao(TypeHddDao wpDao) {
-		this.typeHddDao = wpDao;
+	public void setTypeHddDao(TypeHddDao typeHddDao) {
+		this.typeHddDao = typeHddDao;
 	}
-
 }

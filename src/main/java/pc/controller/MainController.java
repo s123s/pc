@@ -25,7 +25,7 @@ public class MainController {
 
 	@RequestMapping(value = "type_hdd")
 	public String listTypeHdd(ModelMap model) {
-		model.addAttribute("typeHddService", typeHddService.readAll());
+		model.addAttribute("typeHdds", typeHddService.readAll());
 		return "type_hdd";
 	}
 
@@ -34,5 +34,10 @@ public void setWpSummViewService(WpService wpService) {
 	this.wpService = wpService;
 }
 
+
+@Autowired(required = true)
+public void setTypeHddService(TypeHddService typeHddService) {
+	this.typeHddService = typeHddService;
+}
 
 }

@@ -49,6 +49,7 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>pc.model.WpSummView</value>
+				<value>pc.model.TypeHdd</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -68,6 +69,13 @@
 	</bean>
 	<bean id="wpService" class="pc.service.WpServiceImpl">
 		<property name="wpDao" ref="wpDao" />
+	</bean>
+	
+	<bean id="typeHddDao" class="pc.dao.hibernate.MysqlTypeHddDaoHibernate">
+		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
+	</bean>
+	<bean id="typeHddService" class="pc.service.TypeHddServiceImpl">
+		<property name="typeHddDao" ref="typeHddDao" />
 	</bean>
 
 	<tx:annotation-driven transaction-manager="transactionManager" />
