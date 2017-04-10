@@ -14,9 +14,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+<link
+	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"
+	rel="stylesheet" type="text/css" />
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 
 <title>Insert title here</title>
 <style type="text/css">
@@ -49,85 +53,88 @@
 
 <style>
 html, body {
-    height: 100%;
-}
-.header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 20px;
-    background-color: moccasin;
-}
-.wrapper {
-    position:absolute;
-    top: 21px;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: fuchsia;
-}
-.inner-wrapper,
-.center.pane .inner {
-    display: table;
-    width: 100%;
-    height: 100%;
-}
-.pane {
-    display: table-cell;
-}
-.left.pane {
-   background-color: olivedrab;
-   width: 110px;
-    height: 100%;
-}
-.center.pane {
-    background-color: lightblue;
-    height: 100%;
-}
-.center.pane .inner .top,
-.center.pane .inner .bottom{
-    display: table-row;
-}
-.center.pane .inner .top {
-    background-color: lightcoral;
-}
-.center.pane .inner .bottom {
-    background-color: orange;
-    height: 100%;
-    width: 100%;
-}
-.right.pane {
-    background-color: #999;
+	height: 100%;
 }
 
-#menu1 a:link,
-#menu1 a:visited 
-{
+.header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 20px;
+	background-color: moccasin;
+}
+
+.wrapper {
+	position: absolute;
+	top: 21px;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: fuchsia;
+}
+
+.inner-wrapper, .center.pane .inner {
+	display: table;
+	width: 100%;
+	height: 100%;
+}
+
+.pane {
+	display: table-cell;
+}
+
+.left.pane {
+	background-color: olivedrab;
+	width: 110px;
+	height: 100%;
+}
+
+.center.pane {
+	background-color: lightblue;
+	height: 100%;
+}
+
+.center.pane .inner .top, .center.pane .inner .bottom {
+	display: table-row;
+}
+
+.center.pane .inner .top {
+	background-color: lightcoral;
+}
+
+.center.pane .inner .bottom {
+	background-color: orange;
+	height: 100%;
+	width: 100%;
+}
+
+.right.pane {
+	background-color: #999;
+}
+
+#menu1 a:link, #menu1 a:visited {
 	color: blue;
 }
 
-#menu1
-{
-   padding-left: 5px;
-   padding-right: 5px;
+#menu1 {
+	padding-left: 5px;
+	padding-right: 5px;
 }
-
 </style>
 
 <script>
-$(function () {
-    $(".left.pane").resizable({
-        handles: "e, w"
-    });
-    $(".right.pane").resizable({
-        handles: "e, w"
-    });
-    $(".center.pane .inner .bottom").resizable({
-        handles: "n, s"
-    });
-});
-
+	$(function() {
+		$(".left.pane").resizable({
+			handles : "e, w"
+		});
+		$(".right.pane").resizable({
+			handles : "e, w"
+		});
+		$(".center.pane .inner .bottom").resizable({
+			handles : "n, s"
+		});
+	});
 </script>
 
 </head>
@@ -135,67 +142,54 @@ $(function () {
 <body>
 
 
-<div class="header">
-  Fixed header
-</div>
-<div class="wrapper">
-   <div class="inner-wrapper">
-       <div class="left pane">
- 			<%@include file="include/left_menu.jsp"%>
-       </div>
-       <div class="center pane">
-           <div class="inner">
-               <div class="top">Center top</div>
-               <div class="bottom">Center bottom
+	<div class="header">Fixed header</div>
+	<div class="wrapper">
+		<div class="inner-wrapper">
+			<div class="left pane">
+				<%@include file="include/left_menu.jsp"%>
+			</div>
+			<div class="center pane">
+				<div class="inner">
+					<div class="top">
+						Center top<br>
+						<a href="<c:url value='/logout'/>">Logout</a>
+						<h3>Тип винчестера</h3>
 
+					</div>
+					<div class="bottom">
+						Center bottom<br>
 
+							<table class="tg">
+								<tr>
+									<th nowrap>N п/п</th>
+									<th>ID</th>
+									<th>Модель</th>
+									<th>Емкость</th>
+								</tr>
 
-	<FORM method="post" name="theForm" action="wp">
-		<input type="hidden" name="func" id="func">
+								<c:forEach items="${typeHdds}" var="typeHdd" varStatus="st">
 
-		<%
-			/* 			wpServiceService.initConnection();
-			 */
-		%>
-		<a href="<c:url value='/logout'/>">Logout</a>
-		<h3>Наявнiсть та розстановка ПК</h3>
+									<tr>
+										<td>${st.getIndex()+1}</td>
+										<td>${typeHdd.idTypeHdd}</td>
+										<td>${typeHdd.model}</td>
+										<td>${typeHdd.capacity}</td>
 
-<br><br><br><br><br><br><br>
-		<table class="tg">
-			<tr>
-				<th nowrap>N п/п</th>
-				<th>ID</th>
-				<th>Модель</th>
-				<th>Емкость</th>
-			</tr>
-		
-			<c:forEach items="${typeHdds}" var="typeHdd" varStatus="st">
+										<td><a
+											href="<c:url value='/type_hdd/edit/${typeHdd.idTypeHdd}'/>">EDIT</a></td>
+										<td><a
+											href="<c:url value='/type_hdd/delete/${typeHdd.idTypeHdd}'/>">DELETE</a></td>
+									</tr>
 
-				<tr>
-					<td>${st.getIndex()+1}</td>
-					<td>${typeHdd.idTypeHdd}</td>
-					<td>${typeHdd.model}</td>
-					<td>${typeHdd.capacity}</td>
+								</c:forEach>
 
-					<td><a href="<c:url value='/type_hdd/edit/${typeHdd.idTypeHdd}'/>">EDIT</a></td>
-					<td><a href="<c:url value='/type_hdd/delete/${typeHdd.idTypeHdd}'/>">DELETE</a></td>
-				</tr>
-
-			</c:forEach>
-
-		</table>
-<!-- 		<BR>Операции с типом винчестера <INPUT type="button" value="Новая"
-			onclick="document.theForm.func.value='new_wp'; document.theForm.submit();">
-		<br> -->
-	</FORM>
-	
-	
-	
-</div>
-           </div>
-       </div>
-       <!--div class="right pane">Right</div-->
-   </div>
-</div>
+							</table>
+				
+					</div>
+				</div>
+			</div>
+			<!--div class="right pane">Right</div-->
+		</div>
+	</div>
 </body>
 </html>
