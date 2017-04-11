@@ -67,17 +67,15 @@
 	<bean id="wpDao" class="pc.dao.hibernate.MysqlWpDaoHibernate">
 		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
 	</bean>
-	<bean id="wpService" class="pc.service.WpServiceImpl">
-		<property name="wpDao" ref="wpDao" />
-	</bean>
-	
 	<bean id="typeHddDao" class="pc.dao.hibernate.MysqlTypeHddDaoHibernate">
 		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
 	</bean>
-	<bean id="typeHddService" class="pc.service.TypeHddServiceImpl">
+	
+	<bean id="mainService" class="pc.service.MainService">
+		<property name="wpDao" ref="wpDao" />
 		<property name="typeHddDao" ref="typeHddDao" />
 	</bean>
-
+	
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
