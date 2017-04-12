@@ -66,7 +66,8 @@
 	    $("#deleteDialog").dialog({
     	    modal: true});
     	$("#deleteDialogOk").click(function() {
-	    	$("#mtab").$("#id2").remove();
+	    	$("#id2").remove();
+	    	$('#deleteDialog').dialog('close');
     	});
 
 
@@ -128,7 +129,7 @@
 		</div>
 	</div>
 
-	<div id="editDialog" title="Редактирование типа" style="hidden">
+	<div id="editDialog" title="Редактирование типа" hidden=true>
 	  <table>
 			<tr><td>id</td><td><input type="input" id="id" readonly="readonly"></td></tr>
 			<tr><td>name</td><td><input type="input" id="name"></td></tr>
