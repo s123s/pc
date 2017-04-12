@@ -12,7 +12,7 @@
 <html lang="ru">
 <head>
 
-<title>Insert title here</title>
+<title>Наличие и расстановка ПК</title>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -31,10 +31,10 @@
 
 
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-<link 	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link 	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css"
 	rel="stylesheet" type="text/css" />
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
 
 
@@ -56,6 +56,20 @@
 		$(".center.pane .inner .bottom").resizable({
 			handles : "n, s"
 		});
+
+	    /*$( "#editDialog" ).dialog({
+    	    modal: true});
+    	$("#editDialogSave").click(function() {
+      		alert("Saving..");
+    	});
+*/
+	    $("#deleteDialog").dialog({
+    	    modal: true});
+    	$("#deleteDialogOk").click(function() {
+	    	$("#mtab").$("#id2").remove();
+    	});
+
+
 	});
 	
 	
@@ -78,7 +92,7 @@
                                              <%@include file="include/top.jsp"%>
 					</div>
 					<div class="bottom">
-						<h3>Тип винчестера</h3>
+						<h4>Тип винчестера</h4>
 
 							<table id="mtab" class="tg table table-striped">
 								<tr>
@@ -92,7 +106,7 @@
 
 								<c:forEach items="${typeHdds}" var="typeHdd" varStatus="st">
 
-									<tr>
+									<tr id="id${typeHdd.idTypeHdd}">
 										<td>${st.getIndex()+1}</td>
 										<td>${typeHdd.idTypeHdd}</td>
 										<td>${typeHdd.model}</td>
@@ -113,5 +127,23 @@
 			<!--div class="right pane">Right</div-->
 		</div>
 	</div>
+
+	<div id="editDialog" title="Редактирование типа" style="hidden">
+	  <table>
+			<tr><td>id</td><td><input type="input" id="id" readonly="readonly"></td></tr>
+			<tr><td>name</td><td><input type="input" id="name"></td></tr>
+			<tr><td>isdn</td><td><input type="input" id="isdn"></td></tr>
+			<tr><td>autor_id</td><td><input type="input" id="autorId"></td></tr>
+	  </table>
+		<button id="editDialogSave" class="ui-button ui-widget ui-corner-all">Сохранить</button>
+
+	</div>
+
+	<div id="deleteDialog" title="Удаление">
+	  Вы действительно хотите удалить?
+		<button  id="deleteDialogOk" class="ui-button ui-widget ui-corner-all">Да</button>
+
+	</div>
+
 </body>
 </html>

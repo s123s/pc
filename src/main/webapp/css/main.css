@@ -33,6 +33,7 @@ html, body {
     left: 0;
     right: 0;
     height: 20px;
+    padding: 0 10px;
 //    background-color: moccasin;
 }
 .wrapper {
@@ -54,7 +55,7 @@ html, body {
 }
 .left.pane {
 //   background-color: olivedrab;
-   width: 110px;
+   width: 200px;
     height: 100%;
 }
 .center.pane {
@@ -87,4 +88,5 @@ html, body {
 {
    padding-left: 5px;
    padding-right: 5px;
+   font-size: 16px;
 }
