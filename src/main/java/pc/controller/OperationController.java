@@ -2,13 +2,19 @@ package pc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import pc.model.TypeHdd;
 import pc.service.MainService;
+import pc.service.OperaionStatus;
 
 @Controller
 //@RequestMapping(value = "")
@@ -34,16 +40,20 @@ public class OperationController {
 	}
 	
 	
-	
-	
-	
-	
 	@RequestMapping(value = "/type_hdd/edit/{id}")
 	public String editBook(@PathVariable("id") int id, Model model) {
 		//model.addAttribute("book", bookService.read(id));
 		return "type_hdd/edit";
 	}
 
+	@RequestMapping(value = "/type_hdd/save_edited",  method = RequestMethod.POST,
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public OperaionStatus saveEditedBook(@RequestBody TypeHdd typeHdd) {
+		return mainService.getTypeHddDao().update(typeHdd);
+	}	
+	
+	
 	public void setMainService(MainService mainService) {
 		this.mainService = mainService;
 	}

@@ -82,6 +82,7 @@
 		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
 	</bean>
 
+
 	<mvc:default-servlet-handler />
 	<mvc:annotation-driven />
 

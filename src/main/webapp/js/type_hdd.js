@@ -1,3 +1,5 @@
+
+
 $(function() {
 	$(".left.pane").resizable({
 		handles : "e, w"
@@ -33,7 +35,7 @@ $(document).ready(function(){
 	});
 */
 
-	//Edit/delete pos
+	//Edit pos
 	$(".editPos").click(function() {
 		//Dialog "Edit pos"
 		fillEditDialog(this.parentNode.parentNode.id);	//Заполнение диалогового окна значениями
@@ -44,6 +46,7 @@ $(document).ready(function(){
     	//$("#mtab #id2").remove();
     		saveEditedPosToHTML();
     		saveEditedPosToDatabase();
+    		renumerate();
     		$('#editDialog').dialog('close');
 	   	});
 	    });
@@ -76,5 +79,38 @@ function saveEditedPosToHTML() {
 }
 
 function saveEditedPosToDatabase(){
-	
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+
+	      var json = { "producer" : "1", "model" : "2", "price": "3"};
+
+	    	 //url: $("#newSmartphoneForm").attr( "action"),
+	    $.ajax({
+	    	url: "type_hdd/save_edited",
+	    	 
+        data: JSON.stringify(json),
+        type: "POST",
+
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader("Accept", "application/json");
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.setRequestHeader(header, token);
+        },
+                success: function(smartphone) {
+            var respContent = "";
+             
+            respContent += "<span class='success'>Smartphone was created: [";
+            respContent += smartphone.producer + " : ";
+            respContent += smartphone.model + " : " ;
+            respContent += smartphone.price + "]</span>";
+             
+            $("#sPhoneFromResponse").html(respContent);         
+        }
+    });
+
+
+
+}
+function renumerate () {
+
 }

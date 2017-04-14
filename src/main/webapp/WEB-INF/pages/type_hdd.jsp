@@ -15,8 +15,9 @@
 <title>Наличие и расстановка ПК</title>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-
+	<!-- X-CSRF-TOKEN -->
+	<meta name="_csrf" content="${_csrf.token}"/>
+	<meta name="_csrf_header" content="${_csrf.headerName}"/>
 
 
     <!-- Bootstrap -->
@@ -82,7 +83,7 @@
 
 										<td><a class="editPos">EDIT</a></td>
 										<td><a id="deletePos"
-											href="<c:url value='/type_hdd/delete/${typeHdd.idTypeHdd}'/>">DELETE</a></td>
+											href="<c:url value='type_hdd/delete/${typeHdd.idTypeHdd}'/>">DELETE</a></td>
 									</tr>
 
 								</c:forEach>
