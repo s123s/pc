@@ -1,21 +1,50 @@
 package pc.controller;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import pc.service.MainService;
+
 @Controller
-@RequestMapping(value = "/type_hdd")
+//@RequestMapping(value = "")
 public class OperationController {
 
-	/*private BookService bookService;*/
 
-	@RequestMapping(value = "/edit/{id}")
+	@Autowired(required = true)
+	//@Qualifier(value = "mainService")	
+	private MainService mainService;
+
+	@RequestMapping(value = "wp_table")
+	public String listWp(ModelMap model) {
+		/*User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();*/
+
+		model.addAttribute("wps", mainService.getWpDao().readAll());
+		return "wp_table";
+	}
+
+	@RequestMapping(value = "/type_hdd")
+	public String listTypeHdd(ModelMap model) {
+		model.addAttribute("typeHdds", mainService.getTypeHddDao().readAll());
+		return "type_hdd";
+	}
+	
+	
+	
+	
+	
+	
+	@RequestMapping(value = "/type_hdd/edit/{id}")
 	public String editBook(@PathVariable("id") int id, Model model) {
 		//model.addAttribute("book", bookService.read(id));
 		return "type_hdd/edit";
+	}
+
+	public void setMainService(MainService mainService) {
+		this.mainService = mainService;
 	}
 
 	  

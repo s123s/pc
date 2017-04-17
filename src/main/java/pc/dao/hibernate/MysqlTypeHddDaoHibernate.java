@@ -7,11 +7,13 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
+import pc.dao.DefaultDao;
 import pc.dao.TypeHddDao;
 import pc.model.TypeHdd;
 
 
-public class MysqlTypeHddDaoHibernate implements TypeHddDao {
+public class MysqlTypeHddDaoHibernate implements TypeHddDao { 
+//TypeHddDao {
 
 	private SessionFactory sessionFactory;
 

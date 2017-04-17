@@ -3,125 +3,47 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="from" uri="http://www.springframework.org/tags/form"%>
 
-
 <%@page import="java.util.ArrayList"%>
 <%@page import="pc.model.WpSummView"%>
 
-
 <%@ page contentType="text/html; charset=UTF-8"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ru">
 <head>
+
+<title>Наличие и расстановка ПК</title>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-<link
-	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"
+
+
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link 	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css"
 	rel="stylesheet" type="text/css" />
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
-
-<title>Insert title here</title>
-<style type="text/css">
-.tg {
-	border-collapse: collapse;
-	border-spacing: 0;
-	border-color: #ccc;
-}
-
-.tg td {
-	padding: 10px 5px;
-	border-style: solid;
-	border-width: 1px;
-	overflow: hidden;
-	border-color: #ccc;
-}
-
-.tg th {
-	padding: 10px 5px;
-	border-style: solid;
-	border-width: 1px;
-	overflow: hidden;
-	border-color: #ccc;
-	color: #333;
-}
-</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
 
 
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+    <script src="js/bootstrap.min.js"></script>
 
-<style>
-html, body {
-	height: 100%;
-}
 
-.header {
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	height: 20px;
-	background-color: moccasin;
-}
-
-.wrapper {
-	position: absolute;
-	top: 21px;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	background-color: fuchsia;
-}
-
-.inner-wrapper, .center.pane .inner {
-	display: table;
-	width: 100%;
-	height: 100%;
-}
-
-.pane {
-	display: table-cell;
-}
-
-.left.pane {
-	background-color: olivedrab;
-	width: 110px;
-	height: 100%;
-}
-
-.center.pane {
-	background-color: lightblue;
-	height: 100%;
-}
-
-.center.pane .inner .top, .center.pane .inner .bottom {
-	display: table-row;
-}
-
-.center.pane .inner .top {
-	background-color: lightcoral;
-}
-
-.center.pane .inner .bottom {
-	background-color: orange;
-	height: 100%;
-	width: 100%;
-}
-
-.right.pane {
-	background-color: #999;
-}
-
-#menu1 a:link, #menu1 a:visited {
-	color: blue;
-}
-
-#menu1 {
-	padding-left: 5px;
-	padding-right: 5px;
-}
-</style>
+<link href="css/main.css" rel="stylesheet" type="text/css"/>
 
 <script>
 	$(function() {
@@ -134,7 +56,24 @@ html, body {
 		$(".center.pane .inner .bottom").resizable({
 			handles : "n, s"
 		});
+
+	    /*$( "#editDialog" ).dialog({
+    	    modal: true});
+    	$("#editDialogSave").click(function() {
+      		alert("Saving..");
+    	});
+*/
+	    $("#deleteDialog").dialog({
+    	    modal: true});
+    	$("#deleteDialogOk").click(function() {
+	    	$("#id2").remove();
+	    	$('#deleteDialog').dialog('close');
+    	});
+
+
 	});
+	
+	
 </script>
 
 </head>
@@ -142,7 +81,7 @@ html, body {
 <body>
 
 
-	<div class="header">Fixed header</div>
+	<div class="header"><%@include file="include/header.jsp"%></div>
 	<div class="wrapper">
 		<div class="inner-wrapper">
 			<div class="left pane">
@@ -151,25 +90,24 @@ html, body {
 			<div class="center pane">
 				<div class="inner">
 					<div class="top">
-						Center top<br>
-						<a href="<c:url value='/logout'/>">Logout</a>
-						<h3>Тип винчестера</h3>
-
+                                             <%@include file="include/top.jsp"%>
 					</div>
 					<div class="bottom">
-						Center bottom<br>
+						<h4>Тип винчестера</h4>
 
-							<table class="tg">
+							<table id="mtab" class="tg table table-striped">
 								<tr>
-									<th nowrap>N п/п</th>
+									<th nowrap>п/п</th>
 									<th>ID</th>
 									<th>Модель</th>
 									<th>Емкость</th>
+									<th colspan="2 col-xs-1" >Операция</th>
+
 								</tr>
 
 								<c:forEach items="${typeHdds}" var="typeHdd" varStatus="st">
 
-									<tr>
+									<tr id="id${typeHdd.idTypeHdd}">
 										<td>${st.getIndex()+1}</td>
 										<td>${typeHdd.idTypeHdd}</td>
 										<td>${typeHdd.model}</td>
@@ -184,12 +122,29 @@ html, body {
 								</c:forEach>
 
 							</table>
-				
-					</div>
+    					</div>
 				</div>
 			</div>
 			<!--div class="right pane">Right</div-->
 		</div>
 	</div>
+
+	<div id="editDialog" title="Редактирование типа" hidden=true>
+	  <table>
+			<tr><td>id</td><td><input type="input" id="id" readonly="readonly"></td></tr>
+			<tr><td>name</td><td><input type="input" id="name"></td></tr>
+			<tr><td>isdn</td><td><input type="input" id="isdn"></td></tr>
+			<tr><td>autor_id</td><td><input type="input" id="autorId"></td></tr>
+	  </table>
+		<button id="editDialogSave" class="ui-button ui-widget ui-corner-all">Сохранить</button>
+
+	</div>
+
+	<div id="deleteDialog" title="Удаление">
+	  Вы действительно хотите удалить?
+		<button  id="deleteDialogOk" class="ui-button ui-widget ui-corner-all">Да</button>
+
+	</div>
+
 </body>
 </html>
