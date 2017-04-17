@@ -7,7 +7,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import testBook.model.*;
+import testBook.model.Computer;
+import testBook.model.Monitor;
+import testBook.model.User;
+import testBook.model.Wp;
 import testBook.service.*;
 
 /**
@@ -16,7 +19,6 @@ import testBook.service.*;
 @Controller
 public class ControllerHead {
 
-    private WorkplaceService workplaceService;
     private WpService wpService;
     private ComputerService computerService;
     private UserService userService;
@@ -28,12 +30,6 @@ public class ControllerHead {
     private TramService tramService;
     private TprocService tprocService;
     private TmotherService tmotherService;
-
-    @Autowired
-    @Qualifier(value="workplaceService")
-    public void setWorkplaceService(WorkplaceService workplaceService){
-        this.workplaceService = workplaceService;
-    }
 
     @Autowired
     @Qualifier(value="tmotherService")
@@ -98,115 +94,6 @@ public class ControllerHead {
         this.computerService = computerService;
     }
 
-    @RequestMapping(value="/ram")
-    public String listRsm(Model model){
-        model.addAttribute("tram", new Tram());
-        model.addAttribute("listTram", this.tramService.listTram());
-        return "ram";
-    }
-
-    @RequestMapping(value="/addRam")
-    public String addHdd(@ModelAttribute("tram") Tram tram, Model model) {
-        this.tramService.addTram(tram);
-        model.addAttribute("listTram", this.tramService.listTram());
-        return "ram";
-    }
-    @RequestMapping("removeRam/{id}")
-    public String removeRam(@PathVariable("id") Long id){
-        this.tramService.removeTram(id);
-        return "redirect:/ram";
-    }
-
-    @RequestMapping(value="/hdd")
-    public String listHdd(Model model){
-        model.addAttribute("thdd", new Thdd());
-        model.addAttribute("listThdd", this.thddService.listThdd());
-        return "hdd";
-    }
-
-    @RequestMapping(value="/addHdd")
-    public String addHdd(@ModelAttribute("thdd") Thdd thdd, Model model) {
-        this.thddService.addThdd(thdd);
-        model.addAttribute("listThdd", this.thddService.listThdd());
-        return "hdd";
-    }
-    @RequestMapping("removeHdd/{id}")
-    public String removeHdd(@PathVariable("id") Long id){
-        this.thddService.removeThdd(id);
-        return "redirect:/hdd";
-    }
-
-
-    @RequestMapping(value="/motherboard")
-    public String listMotherboard(Model model){
-        model.addAttribute("tmother", new Tproc());
-        model.addAttribute("listTmother", this.tmotherService.listTmother());
-        return "motherboard";
-    }
-
-    @RequestMapping(value="/addMotherboard")
-    public String addMotherboard(@ModelAttribute("tmother") Tmother tmother, Model model) {
-        this.tmotherService.addTmother(tmother);
-        model.addAttribute("listTmother", this.tmotherService.listTmother());
-        return "motherboard";
-    }
-    @RequestMapping("removeMotherboard/{id}")
-    public String removeMotherboard(@PathVariable("id") Long id){
-        this.tmotherService.removeTmother(id);
-        return "redirect:/motherboard";
-    }
-
-    @RequestMapping(value="/processor")
-    public String listProcessor(Model model){
-        model.addAttribute("tproc", new Tproc());
-        model.addAttribute("listTproc", this.tprocService.listTproc());
-        return "processor";
-    }
-
-    @RequestMapping(value="/addProcessor")
-    public String addProcessor(@ModelAttribute("tproc") Tproc tproc, Model model) {
-        this.tprocService.addTproc(tproc);
-        model.addAttribute("listTproc", this.tprocService.listTproc());
-        return "processor";
-    }
-    @RequestMapping("removeProcessor/{id}")
-    public String removeProcessor(@PathVariable("id") Long id){
-        this.tprocService.removeTproc(id);
-        return "redirect:/processor";
-    }
-
-    @RequestMapping(value="/workplace")
-    public String listWorkplace(Model model){
-        model.addAttribute("workplace", new Workplace());
-        model.addAttribute("listWorkplace", this.workplaceService.listWorkplace());
-        return "workplace";
-    }
-//Ups
-    @RequestMapping(value="/ups")
-    public String listUps(Model model){
-        model.addAttribute("ups", new Ups());
-        model.addAttribute("listUps", this.upsService.listUps());
-        return "ups";
-    }
-    @RequestMapping(value="/addUps")
-    public String addUps(@ModelAttribute("ups") Ups ups, Model model) {
-        this.upsService.addUps(ups);
-        model.addAttribute("listUps", this.upsService.listUps());
-        return "ups";
-    }
-//Printer
-    @RequestMapping(value="/printers")
-    public String listPrinter(Model model){
-        model.addAttribute("printer", new Printer());
-        model.addAttribute("listPrinter", this.printerService.listPrinter());
-        return "printers";
-    }
-    @RequestMapping(value="/addPrinter")
-    public String addPrinter(@ModelAttribute("printer") Printer printer, Model model) {
-        this.printerService.addPrinter(printer);
-        model.addAttribute("listPrinter", this.printerService.listPrinter());
-        return "printers";
-    }
 //User
     @RequestMapping(value="/user")
     public String listUser(Model model){

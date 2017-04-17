@@ -21,16 +21,12 @@
     <h1>MNT computer workplace </h1>
 
     </br>
-    <a href="<c:url value='/workplace'/>">Workplace</a>
+    <a href="<c:url value='/wptable'/>">WP</a>
     <a href="<c:url value='/computer'/>">Computer</a>
     <a href="<c:url value='/user'/>">User</a>
     <a href="<c:url value='/monitor'/>">Monitor</a>
-    <a href="<c:url value='/printers'/>">Printer</a>
+    <a href="<c:url value='/printer'/>">Printer</a>
     <a href="<c:url value='/ups'/>">Ups</a>
-    <a href="<c:url value='/processor'/>">Processor</a>
-    <a href="<c:url value='/motherboard'/>">Motherboard</a>
-    <a href="<c:url value='/hdd'/>">HDD</a>
-    <a href="<c:url value='/ram'/>">RAM</a>
     </br>
     <table class="table table-condensed table-striped table-bordered">
         <thead>
