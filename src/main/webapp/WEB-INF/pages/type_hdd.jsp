@@ -15,8 +15,9 @@
 <title>Наличие и расстановка ПК</title>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-
+	<!-- X-CSRF-TOKEN -->
+	<meta name="_csrf" content="${_csrf.token}"/>
+	<meta name="_csrf_header" content="${_csrf.headerName}"/>
 
 
     <!-- Bootstrap -->
@@ -31,56 +32,23 @@
 
 
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link 	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css"
-	rel="stylesheet" type="text/css" />
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-
-
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/jquery.validate.min.js"></script>
+	<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.validate.min.js"></script> -->
+	<link 	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap-theme.min.css" rel="stylesheet">
     <script src="js/bootstrap.min.js"></script>
 
+	<link href="css/main.css" rel="stylesheet" type="text/css"/>
+	<link href="css/type_hdd.css" rel="stylesheet" type="text/css"/>
 
-<link href="css/main.css" rel="stylesheet" type="text/css"/>
-
-<script>
-	$(function() {
-		$(".left.pane").resizable({
-			handles : "e, w"
-		});
-		$(".right.pane").resizable({
-			handles : "e, w"
-		});
-		$(".center.pane .inner .bottom").resizable({
-			handles : "n, s"
-		});
-
-	    /*$( "#editDialog" ).dialog({
-    	    modal: true});
-    	$("#editDialogSave").click(function() {
-      		alert("Saving..");
-    	});
-*/
-	    $("#deleteDialog").dialog({
-    	    modal: true});
-    	$("#deleteDialogOk").click(function() {
-	    	$("#id2").remove();
-	    	$('#deleteDialog').dialog('close');
-    	});
-
-
-	});
-	
-	
-</script>
-
+	<script src="js/type_hdd.js"></script>
 </head>
 
 <body>
-
-
 	<div class="header"><%@include file="include/header.jsp"%></div>
 	<div class="wrapper">
 		<div class="inner-wrapper">
@@ -109,14 +77,12 @@
 
 									<tr id="id${typeHdd.idTypeHdd}">
 										<td>${st.getIndex()+1}</td>
-										<td>${typeHdd.idTypeHdd}</td>
-										<td>${typeHdd.model}</td>
-										<td>${typeHdd.capacity}</td>
+										<td class="idTypeHdd">${typeHdd.idTypeHdd}</td>
+										<td class="model">${typeHdd.model}</td>
+										<td class="capacity">${typeHdd.capacity}</td>
 
-										<td><a
-											href="<c:url value='/type_hdd/edit/${typeHdd.idTypeHdd}'/>">EDIT</a></td>
-										<td><a
-											href="<c:url value='/type_hdd/delete/${typeHdd.idTypeHdd}'/>">DELETE</a></td>
+										<td><a class="editPos">EDIT</a></td>
+										<td><a class="deletePos">DELETE</a></td>
 									</tr>
 
 								</c:forEach>
@@ -126,22 +92,25 @@
 				</div>
 			</div>
 			<!--div class="right pane">Right</div-->
+	 </div>
 		</div>
-	</div>
 
-	<div id="editDialog" title="Редактирование типа" hidden=true>
+	<div id="editDialog" title="Редактирование типа" class="dialogWindow" hidden=true>
+<form id="editDialogForm" action="" method="post">
 	  <table>
-			<tr><td>id</td><td><input type="input" id="id" readonly="readonly"></td></tr>
-			<tr><td>name</td><td><input type="input" id="name"></td></tr>
-			<tr><td>isdn</td><td><input type="input" id="isdn"></td></tr>
-			<tr><td>autor_id</td><td><input type="input" id="autorId"></td></tr>
-	  </table>
-		<button id="editDialogSave" class="ui-button ui-widget ui-corner-all">Сохранить</button>
+	  		<tr hidden="true"><td><input type="text"  id="idTr"></td></tr>
+			<tr><td>id</td><td><input type="text" id="id" readonly="readonly"></td></tr>
+ 			<tr><td>Модель</td><td><input type="text" id="model" name="model"></td></tr>
+			<tr><td>Емкость</td><td><input type="text" id="capacity" name="capacity"></td></tr>
+	  </table><br>
+</form>
 
+		<button id="editDialogSave" class="ui-button ui-widget ui-corner-all">Сохранить</button>
 	</div>
 
-	<div id="deleteDialog" title="Удаление">
-	  Вы действительно хотите удалить?
+	<div id="deleteDialog" title="Удаление" class="dialogWindow" hidden=true>
+		<input type="text" id="id" hidden="true">
+	  Вы действительно хотите удалить?<br><br>
 		<button  id="deleteDialogOk" class="ui-button ui-widget ui-corner-all">Да</button>
 
 	</div>

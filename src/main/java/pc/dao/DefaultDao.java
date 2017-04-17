@@ -2,6 +2,8 @@ package pc.dao;
 
 import java.util.List;
 
+import pc.service.OperaionStatus;
+
 
 /**<T> - POJO object
  * <K> - key*/
@@ -16,7 +18,7 @@ public interface DefaultDao<T, K> {
 		throw new RuntimeException("NO "+ this.getClass().getName() +" read() realization");
 	}
 
-	default void update(T o){
+	default OperaionStatus update(T o){
 		throw new RuntimeException("NO "+ this.getClass().getName() +" update() realization");
 	}
 

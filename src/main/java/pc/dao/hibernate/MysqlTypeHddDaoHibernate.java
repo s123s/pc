@@ -2,6 +2,7 @@ package pc.dao.hibernate;
 
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pc.dao.DefaultDao;
 import pc.dao.TypeHddDao;
 import pc.model.TypeHdd;
+import pc.service.OperaionStatus;
 
 
 public class MysqlTypeHddDaoHibernate implements TypeHddDao { 
@@ -28,7 +30,21 @@ public class MysqlTypeHddDaoHibernate implements TypeHddDao {
 		Session session = this.sessionFactory.getCurrentSession();
 		return session.createQuery("from TypeHdd").list();
 	}
-/*
+	@Override
+	@Transactional
+	public OperaionStatus update(TypeHdd o) {
+		Session session = this.sessionFactory.getCurrentSession();
+		try {
+			System.out.println(o.getClass()+ " updating");
+			session.update(o);
+			return new OperaionStatus(true);
+		}
+		catch (HibernateException ex) {
+			return new OperaionStatus(false);
+		}
+	}
+	
+	/*
 	@Override
 	@Transactional
 	public Book read(Integer k) {
@@ -36,14 +52,7 @@ public class MysqlTypeHddDaoHibernate implements TypeHddDao {
 		return session.get(Book.class, k);
 	}
 
-	@Override
-	@Transactional
-	public void update(Book o) {
-		System.out.println(o.getName());
-		Session session = this.sessionFactory.getCurrentSession();
-		session.update(o);
-	}
-	
+
 
 	@Override
 	@Transactional

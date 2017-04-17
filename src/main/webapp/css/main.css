@@ -23,6 +23,13 @@
 //	color: #333;
 }
 
+a:hover {
+    cursor: pointer;
+}
+
+.dialogWindow {
+    text-align: center;
+}
 
 html, body {
     height: 100%;
