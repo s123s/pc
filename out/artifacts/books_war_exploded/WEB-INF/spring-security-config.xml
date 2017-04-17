@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <b:beans xmlns="http://www.springframework.org/schema/security"
+                 xmlns:b="http://www.springframework.org/schema/beans"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="
+            http://www.springframework.org/schema/security
+            http://www.springframework.org/schema/security/spring-security-4.2.xsd
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+            <http  use-expressions="false">
+
+                <intercept-url pattern="/login" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+                <intercept-url pattern="/**" access="ROLE_USER" />
+                <intercept-url pattern="/wp/**" access="ROLE_USER" />
+                <intercept-url pattern="/computer/**" access="ROLE_USER" />
+                <intercept-url pattern="/addComputer**" access="ROLE_USER" />
+                <!--<intercept-url pattern="/edit**" access="ROLE_USER" />
+                <intercept-url pattern="/update**" access="ROLE_USER" />-->
+
+                <form-login login-page="/login"
+            authentication-failure-url="/login-failure" authentication-success-forward-url="/wp" default-target-url="/wp" />
+
+            </http>
+
+
+    <authentication-manager>
+        <authentication-provider>
+        <user-service>
+            <user name="admin" password="admin" authorities="ROLE_USER, ROLE_ADMIN" />
+            <user name="user" password="user" authorities="ROLE_USER" />
+        </user-service>
+        </authentication-provider>
+    </authentication-manager>
+
+
+
+</b:beans>

@@ -32,4 +32,20 @@ public class Mother {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public Tmother gettMother() {
+        return tMother;
+    }
+
+    public void settMother(Tmother tMother) {
+        this.tMother = tMother;
+    }
+
+    public Computer getComputer() {
+        return computer;
+    }
+
+    public void setComputer(Computer computer) {
+        this.computer = computer;
+    }
 }

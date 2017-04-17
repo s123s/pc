@@ -63,7 +63,7 @@
     <a href="<c:url value='/wp'/>">Workplace</a>
     <a href="<c:url value='/user'/>">User</a>
     <a href="<c:url value='/monitor'/>">Monitor</a>
-    </div>
+    </div>b76p9
 <div class="container">
 <table class="table table-condensed table-striped table-bordered">
     <thead>
@@ -118,12 +118,10 @@
     <td>${computer.tProc.model}</td>
     <td>${computer.thdd.model}</td>
     <td>${computer.thdd.capacity}</td>
-    <td>${computer.tRam.type}</td>
-    <td>${computer.tRam.capacity}</td>
+    <td>${computer.tram.type}</td>
+    <td>${computer.tram.capacity}</td>
    <%--<td><c:forEach items="${computer.tRams}" var="ram">${ram.capacity}</c:forEach></td>--%>
-
-
-        <%--<td><a href="<c:url value='/edit/${computer.id}'/>">edit</a></td>--%>
+0        <%--<td><a href="<c:url value='/edit/${computer.id}'/>">edit</a></td>--%>
         <td><a href="<c:url value='/remove/${computer.id}'/>">delete</a></td>
     </tr>
 </c:forEach>
