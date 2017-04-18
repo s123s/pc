@@ -13,6 +13,23 @@ $(function() {
 
 
 $(document).ready(function(){
+
+	$("#editDialog").dialog({
+		autoOpen: false,
+		resizable:false,
+		modal: true});
+
+	$("#newDialog").dialog({
+		autoOpen: false,
+		resizable:false,
+		modal: true});
+
+	$("#deleteDialog").dialog({
+		autoOpen: false,
+		resizable:false,
+		modal: true});
+	
+	
 	$("#editDialogForm").validate({
     	rules:{
         	model:{
@@ -65,9 +82,9 @@ $(document).ready(function(){
 	$(".editPos").click(function() {
 		fillEditDialog(this.parentNode.parentNode.id);	//Заполнение диалогового окна значениями
 		
-    	$("#editDialog").dialog({
-    	    modal: true});
 
+		$('#editDialog').dialog('open');
+		
     	$("#editDialog #editDialogSave").click(function() {
     	//$("#mtab #id2").remove();
     		saveEditedPosToHTML();
@@ -78,26 +95,25 @@ $(document).ready(function(){
 
 
 	//New pos
-	$(".newPos").click(function() {
+	$(".newPos").unbind("click").bind('click', (function() {
 		//fillEditDialog(this.parentNode.parentNode.id);	//Заполнение диалогового окна значениями
 		
-    	$("#newDialog").dialog({
-    	    modal: true});
+		$('#newDialog').dialog('open');
 
     	$("#newDialog #newDialogSave").click(function() {
     		saveNewPosToDatabase();
-    		saveNewPosToHTML();
+    		//saveNewPosToHTML();
     		$('#newDialog').dialog('close');
 	   	});
-	});
+	}));
 
 	//Delete pos
 	$(".deletePos").click(function() {
 		fillDeleteDialog(this.parentNode.parentNode.id);	//Заполнение диалогового окна значениями
-		
-		//Dialog "Delete pos"
-	    $("#deleteDialog").dialog({
-		    modal: true});
+
+		$('#deleteDialog').dialog('open');
+
+
 		$("#deleteDialog #deleteDialogOk").click(function() {
 			removePosFromHTML();
 			deleteFromDatabase();
@@ -109,24 +125,53 @@ $(document).ready(function(){
 });
 
 
-function saveNewPosToHTML() {
-	    var $tr    = $("#mtab tr")[0];
+// saveAnswer- ответ от Ajax-сохранения
+function saveNewPosToHTML(saveAnswer) {
+	if ( !saveAnswer.successfully ) return;
+	
+	var $tr    = $("#mtab #emptyTr");
+	var idLocal = saveAnswer.retObject.idTypeHdd;
+
+	
     var $clone = $tr.clone();
-    $clone.id = "idxxx";
-    $clone.find('myIndex').val('xxx');
-    $clone.find('idTypeHdd').val('');
-    $clone.find('model').val('');
-    $clone.find('capacity').val('');
+    $clone[0].id = "id"+idLocal;
+    $clone.find('.myIndex').text('xxx');
+    $clone.find('.idTypeHdd').text(idLocal);
+    $clone.find('.model').text( $("#newDialog #model")[0].value );
+    $clone.find('.capacity').text($("#newDialog #capacity")[0].value);
+	$clone[0].hidden = false;
 
-    $("#mtab tr:last").after($clone);
-
-	//var idTrLocal = $("#deleteDialog #idTr")[0].value ;
-//	$("#mtab #id2").remove();
-//	$("#mtab #"+ idTrLocal).remove();
-
+	$("#mtab").find('tbody')
+		.append ($clone);
+    //$("#mtab tr:last").after($clone);
 }
 
+function saveNewPosToDatabase(){
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
 
+	var json = { 
+		//"idTypeHdd"	: $("#newDialog #id")[0].value,
+				"model"		: $("#newDialog #model")[0].value,
+				"capacity"	: $("#newDialog #capacity")[0].value};
+
+	  //var json = { "idTypeHdd" : "1", "model" : "2", "capacity": "3"};
+
+	$.ajax({
+		url: "type_hdd/create",
+	    	 
+	    data: JSON.stringify(json),
+	    contentType: "application/json",
+	   	type: "POST",
+
+	    beforeSend: function(xhr) {
+	        xhr.setRequestHeader(header, token);
+	    },
+		success: function(retObject) {
+			saveNewPosToHTML(retObject);
+		}
+    });
+}
 
 
 
@@ -179,39 +224,10 @@ function saveEditedPosToDatabase(){
     });
 }
 
-function saveNewPosToDatabase(){
-	var token = $("meta[name='_csrf']").attr("content");
-	var header = $("meta[name='_csrf_header']").attr("content");
-
-	var json = { 
-		//"idTypeHdd"	: $("#newDialog #id")[0].value,
-				"model"		: $("#newDialog #model")[0].value,
-				"capacity"	: $("#newDialog #capacity")[0].value};
-
-	  //var json = { "idTypeHdd" : "1", "model" : "2", "capacity": "3"};
-
-	$.ajax({
-		url: "type_hdd/create",
-	    	 
-	    data: JSON.stringify(json),
-	    contentType: "application/json",
-	   	type: "POST",
-
-	    beforeSend: function(xhr) {
-	        xhr.setRequestHeader(header, token);
-	    },
-		success: function(smartphone) {
-		 //
-		}
-    });
-}
-
-//  		saveNewPosToHTML();
-
 
 
 function fillDeleteDialog (idTr, id) {
-	$("#deleteDialog #idTr")[0].value = idTr;
+	$("#deleteDialog  #idTr")[0].value = idTr;
 	$("#deleteDialog #id")[0].value = id;
 }
 

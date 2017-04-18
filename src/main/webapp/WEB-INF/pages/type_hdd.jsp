@@ -64,29 +64,42 @@
 						<a class="newPos"><span class="glyphicon glyphicon-asterisk"></span>&nbsp;Новый тип</a><br>
 
 						<table id="mtab" class="tg table table-striped">
-							<tr>
-								<th hidden="true" nowrap>п/п</th>
-								<th>ID</th>
-								<th>Модель</th>
-								<th>Емкость</th>
-								<th>Операция</th>
+							<thead>
+								<tr>
+									<th hidden="true" nowrap>п/п</th>
+									<th>ID</th>
+									<th>Модель</th>
+									<th>Емкость</th>
+									<th>Операция</th>
 
-							</tr>
-
-							<c:forEach items="${typeHdds}" var="typeHdd" varStatus="st">
-
-								<tr id="id${typeHdd.idTypeHdd}">
-									<td class="myIndex" hidden="true">${st.getIndex()+1}</td>
-									<td class="idTypeHdd">${typeHdd.idTypeHdd}</td>
-									<td class="model">${typeHdd.model}</td>
-									<td class="capacity">${typeHdd.capacity}</td>
-
-									<td><a class="editPos"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;
-										<a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>
 								</tr>
+							</head>
+							<tbody>
 
-							</c:forEach>
+								<tr id="emptyTr" hidden="true">
+										<td class="myIndex" hidden="true"></td>
+										<td class="idTypeHdd"></td>
+										<td class="model"></td>
+										<td class="capacity"></td>
 
+										<td><a class="editPos"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;
+											<a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>
+								</tr>
+									
+								<c:forEach items="${typeHdds}" var="typeHdd" varStatus="st">
+
+									<tr id="id${typeHdd.idTypeHdd}">
+										<td class="myIndex" hidden="true">${st.getIndex()+1}</td>
+										<td class="idTypeHdd">${typeHdd.idTypeHdd}</td>
+										<td class="model">${typeHdd.model}</td>
+										<td class="capacity">${typeHdd.capacity}</td>
+
+										<td><a class="editPos"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;
+											<a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>
+									</tr>
+
+								</c:forEach>
+							</tbody>
 						</table>
 					</div>
 				</div>
