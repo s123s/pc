@@ -110,6 +110,16 @@ $(document).ready(function(){
 
 
 function saveNewPosToHTML() {
+	    var $tr    = $("#mtab tr")[0];
+    var $clone = $tr.clone();
+    $clone.id = "idxxx";
+    $clone.find('myIndex').val('xxx');
+    $clone.find('idTypeHdd').val('');
+    $clone.find('model').val('');
+    $clone.find('capacity').val('');
+
+    $("#mtab tr:last").after($clone);
+
 	//var idTrLocal = $("#deleteDialog #idTr")[0].value ;
 //	$("#mtab #id2").remove();
 //	$("#mtab #"+ idTrLocal).remove();
