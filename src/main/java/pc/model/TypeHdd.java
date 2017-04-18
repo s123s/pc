@@ -7,12 +7,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import pc.jackson.View;
+
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name = "type_hdd")
 public class TypeHdd {
 	
-	@Id
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_type_hdd")
+    @JsonView(View.REST.class)
 	private Integer idTypeHdd;
 
 	@Column(name = "model")

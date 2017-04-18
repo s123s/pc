@@ -18,22 +18,48 @@ $(document).ready(function(){
         	model:{
             	required: true,
 			},
+			capacity:{
+				required: true,
+				number: true,
+			}
+
 		},
         messages:{
         	model:{
             	required: "Это поле обязательно для заполнения",
+			},
+        	capacity:{
+            	required: "Это поле обязательно для заполнения",
+            	number: "Должно быть число",
+			},
+		}
+	});
+
+
+	$("#newDialogForm").validate({
+    	rules:{
+        	model:{
+            	required: true,
+			},
+			capacity:{
+				required: true,
+				number: true,
+			}
+
+		},
+        messages:{
+        	model:{
+            	required: "Это поле обязательно для заполнения",
+			},
+        	capacity:{
+            	required: "Это поле обязательно для заполнения",
+            	number: "Должно быть число",
 			},
 		}
 	});
  
 });
 
-    /*$( "#editDialog" ).dialog({
-	    modal: true});
-	$("#editDialogSave").click(function() {
-  		alert("Saving..");
-	});
-*/
 
 	//Edit pos
 	$(".editPos").click(function() {
@@ -51,6 +77,20 @@ $(document).ready(function(){
 	});
 
 
+	//New pos
+	$(".newPos").click(function() {
+		//fillEditDialog(this.parentNode.parentNode.id);	//Заполнение диалогового окна значениями
+		
+    	$("#newDialog").dialog({
+    	    modal: true});
+
+    	$("#newDialog #newDialogSave").click(function() {
+    		saveNewPosToDatabase();
+    		saveNewPosToHTML();
+    		$('#newDialog').dialog('close');
+	   	});
+	});
+
 	//Delete pos
 	$(".deletePos").click(function() {
 		fillDeleteDialog(this.parentNode.parentNode.id);	//Заполнение диалогового окна значениями
@@ -60,12 +100,25 @@ $(document).ready(function(){
 		    modal: true});
 		$("#deleteDialog #deleteDialogOk").click(function() {
 			removePosFromHTML();
-	    	renumerate();
+			deleteFromDatabase();
+	    	renumerate("mtab");
 	    	$('#deleteDialog').dialog('close');
 		});
 	});
 
 });
+
+
+function saveNewPosToHTML() {
+	//var idTrLocal = $("#deleteDialog #idTr")[0].value ;
+//	$("#mtab #id2").remove();
+//	$("#mtab #"+ idTrLocal).remove();
+
+}
+
+
+
+
 
 /*Fill dialog window for edtiting from table node*/
 function fillEditDialog (idTr) {
@@ -82,22 +135,9 @@ function saveEditedPosToHTML() {
 }
 
 
-function fillDeleteDialog (idTr) {
-	$("#deleteDialog #id")[0].value = idTr;
-}
-
-function removePosFromHTML() {
-	var idLocal = $("#deleteDialog #id")[0].value ;
-//	$("#mtab #id2").remove();
-	$("#mtab #"+ idLocal).remove();
-
-}
-
 function saveEditedPosToDatabase(){
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
-
-
 
 	var json = { "idTypeHdd"	: $("#editDialog #id")[0].value,
 				"model"		: $("#editDialog #model")[0].value,
@@ -117,20 +157,91 @@ function saveEditedPosToDatabase(){
 	        xhr.setRequestHeader(header, token);
 	    },
 		success: function(smartphone) {
-	   /* var respContent = "";
-	     
-	    respContent += "<span class='success'>Smartphone was created: [";
-	    respContent += smartphone.producer + " : ";
-	    respContent += smartphone.model + " : " ;
-	    respContent += smartphone.price + "]</span>";
-	     
-	    $("#sPhoneFromResponse").html(respContent);     */    
-	}
+		   /* var respContent = "";
+		     
+		    respContent += "<span class='success'>Smartphone was created: [";
+		    respContent += smartphone.producer + " : ";
+		    respContent += smartphone.model + " : " ;
+		    respContent += smartphone.price + "]</span>";
+		     
+		    $("#sPhoneFromResponse").html(respContent);     */    
+		}
     });
+}
+
+function saveNewPosToDatabase(){
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+
+	var json = { 
+		//"idTypeHdd"	: $("#newDialog #id")[0].value,
+				"model"		: $("#newDialog #model")[0].value,
+				"capacity"	: $("#newDialog #capacity")[0].value};
+
+	  //var json = { "idTypeHdd" : "1", "model" : "2", "capacity": "3"};
+
+	$.ajax({
+		url: "type_hdd/create",
+	    	 
+	    data: JSON.stringify(json),
+	    contentType: "application/json",
+	   	type: "POST",
+
+	    beforeSend: function(xhr) {
+	        xhr.setRequestHeader(header, token);
+	    },
+		success: function(smartphone) {
+		 //
+		}
+    });
+}
+
+//  		saveNewPosToHTML();
 
 
+
+function fillDeleteDialog (idTr, id) {
+	$("#deleteDialog #idTr")[0].value = idTr;
+	$("#deleteDialog #id")[0].value = id;
+}
+
+function removePosFromHTML() {
+	var idTrLocal = $("#deleteDialog #idTr")[0].value ;
+//	$("#mtab #id2").remove();
+	$("#mtab #"+ idTrLocal).remove();
 
 }
-function renumerate () {
 
+
+function deleteFromDatabase (){
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	
+	var idLocal = $("#deleteDialog #id")[0].value
+
+
+
+	var json = { "idTypeHdd"	: idLocal };
+
+	$.ajax({
+		url: "type_hdd/delete",
+	    	 
+	    data: JSON.stringify(json),
+	    contentType: "application/json",
+	   	type: "delete",
+
+	    beforeSend: function(xhr) {
+	        xhr.setRequestHeader(header, token);
+	    },
+		success: function(smartphone) {
+			//
+		}
+    });
+}
+
+
+function renumerate (idTable) {
+	$("#" + idTable  +" tr").each(function(i){
+		$(" .myIndex", this).text(i);
+	});
 }

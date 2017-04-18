@@ -72,6 +72,25 @@ public class OperationController {
         return mainService.getTypeHddDao().update(typeHdd);
 	}	
 	
+	@RequestMapping(value = "/type_hdd/create",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	@JsonView(View.REST.class)
+	public OperationStatus createHddType(@RequestBody TypeHdd typeHdd) {
+        return mainService.getTypeHddDao().create(typeHdd);
+	}	
+	
+	@RequestMapping(value = "/type_hdd/delete",  method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	@JsonView(View.REST.class)
+	public OperationStatus deleteTypeHdd(@RequestBody TypeHdd typeHdd) {
+	//	mainService.getTypeHddDao().markDeleted(typeHdd.getIdTypeHdd());
+
+	//	return "redirect:/books";
+		return new OperationStatus(false);
+	}
+	
+	
+
 	
 	public void setMainService(MainService mainService) {
 		this.mainService = mainService;

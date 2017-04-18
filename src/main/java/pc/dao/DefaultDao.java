@@ -9,7 +9,7 @@ import pc.service.OperationStatus;
  * <K> - key*/
 public interface DefaultDao<T, K> {
 
-	default int create(T o) {
+	default OperationStatus create(T o) {
 		throw new RuntimeException("NO "+ this.getClass().getName() +" create() realization");
 	}
 

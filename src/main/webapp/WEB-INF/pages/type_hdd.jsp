@@ -58,62 +58,69 @@
 			<div class="center pane">
 				<div class="inner">
 					<div class="top">
-                                             <%@include file="include/top.jsp"%>
+                        <h4>Тип винчестера</h4>
 					</div>
 					<div class="bottom">
-						<h4>Тип винчестера</h4>
+						<a class="newPos"><span class="glyphicon glyphicon-asterisk"></span>&nbsp;Новый тип</a><br>
 
-							<table id="mtab" class="tg table table-striped">
-								<tr>
-									<th nowrap>п/п</th>
-									<th>ID</th>
-									<th>Модель</th>
-									<th>Емкость</th>
-									<th colspan="2 col-xs-1" >Операция</th>
+						<table id="mtab" class="tg table table-striped">
+							<tr>
+								<th hidden="true" nowrap>п/п</th>
+								<th>ID</th>
+								<th>Модель</th>
+								<th>Емкость</th>
+								<th>Операция</th>
 
+							</tr>
+
+							<c:forEach items="${typeHdds}" var="typeHdd" varStatus="st">
+
+								<tr id="id${typeHdd.idTypeHdd}">
+									<td class="myIndex" hidden="true">${st.getIndex()+1}</td>
+									<td class="idTypeHdd">${typeHdd.idTypeHdd}</td>
+									<td class="model">${typeHdd.model}</td>
+									<td class="capacity">${typeHdd.capacity}</td>
+
+									<td><a class="editPos"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;
+										<a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>
 								</tr>
 
-								<c:forEach items="${typeHdds}" var="typeHdd" varStatus="st">
+							</c:forEach>
 
-									<tr id="id${typeHdd.idTypeHdd}">
-										<td>${st.getIndex()+1}</td>
-										<td class="idTypeHdd">${typeHdd.idTypeHdd}</td>
-										<td class="model">${typeHdd.model}</td>
-										<td class="capacity">${typeHdd.capacity}</td>
-
-										<td><a class="editPos">EDIT</a></td>
-										<td><a class="deletePos">DELETE</a></td>
-									</tr>
-
-								</c:forEach>
-
-							</table>
-    					</div>
+						</table>
+					</div>
 				</div>
 			</div>
 			<!--div class="right pane">Right</div-->
-	 </div>
 		</div>
+	</div>
 
-	<div id="editDialog" title="Редактирование типа" class="dialogWindow" hidden=true>
-<form id="editDialogForm" action="" method="post">
+<div id="editDialog" title="Редактирование типа" class="dialogWindow" hidden=true>
+	<form id="editDialogForm" action="" method="post">
 	  <table>
 	  		<tr hidden="true"><td><input type="text"  id="idTr"></td></tr>
 			<tr><td>id</td><td><input type="text" id="id" readonly="readonly"></td></tr>
  			<tr><td>Модель</td><td><input type="text" id="model" name="model"></td></tr>
 			<tr><td>Емкость</td><td><input type="text" id="capacity" name="capacity"></td></tr>
 	  </table><br>
-</form>
+	</form>
+	<button id="editDialogSave" class="ui-button ui-widget ui-corner-all">Сохранить</button>
+</div>
 
-		<button id="editDialogSave" class="ui-button ui-widget ui-corner-all">Сохранить</button>
-	</div>
+<div id="newDialog" title="Создание типа" class="dialogWindow" hidden=true>
+	<table>
+		<tr><td>Модель</td><td><input type="text" id="model" name="model"></td></tr>
+		<tr><td>Емкость</td><td><input type="text" id="capacity" name="capacity"></td></tr>
+	</table><br>
+	<button id="newDialogSave" class="ui-button ui-widget ui-corner-all">Создать</button>
+</div>
 
-	<div id="deleteDialog" title="Удаление" class="dialogWindow" hidden=true>
-		<input type="text" id="id" hidden="true">
-	  Вы действительно хотите удалить?<br><br>
-		<button  id="deleteDialogOk" class="ui-button ui-widget ui-corner-all">Да</button>
 
-	</div>
+<div id="deleteDialog" title="Удаление типа" class="dialogWindow" hidden=true>
+	<input type="text" id="id" hidden="true">
+	Вы действительно хотите удалить?<br><br>
+	<button  id="deleteDialogOk" class="ui-button ui-widget ui-corner-all">Да</button>
+</div>
 
 </body>
 </html>
