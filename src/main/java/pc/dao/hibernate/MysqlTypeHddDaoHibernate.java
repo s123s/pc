@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pc.dao.DefaultDao;
 import pc.dao.TypeHddDao;
 import pc.model.TypeHdd;
-import pc.service.OperaionStatus;
+import pc.service.OperationStatus;
 
 
 public class MysqlTypeHddDaoHibernate implements TypeHddDao { 
@@ -32,15 +32,15 @@ public class MysqlTypeHddDaoHibernate implements TypeHddDao {
 	}
 	@Override
 	@Transactional
-	public OperaionStatus update(TypeHdd o) {
+	public OperationStatus update(TypeHdd o) {
 		Session session = this.sessionFactory.getCurrentSession();
 		try {
 			System.out.println(o.getClass()+ " updating");
 			session.update(o);
-			return new OperaionStatus(true);
+			return new OperationStatus(true);
 		}
 		catch (HibernateException ex) {
-			return new OperaionStatus(false);
+			return new OperationStatus(false);
 		}
 	}
 	

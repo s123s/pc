@@ -76,7 +76,7 @@ function fillEditDialog (idTr) {
 }
 
 function saveEditedPosToHTML() {
-	var idTrLocal = $("#editDialog #idTr")[0].value ;
+	var idTrLocal = $("#editDialog #idTr")[0].value;
 	$("#mtab").find("#"+idTrLocal).find(".model").text($("#editDialog #model")[0].value);
 	$("#mtab").find("#"+idTrLocal).find(".capacity").text($("#editDialog #capacity")[0].value);
 }
@@ -97,30 +97,35 @@ function saveEditedPosToDatabase(){
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
 
-	      var json = { "producer" : "1", "model" : "2", "price": "3"};
 
-	    	 //url: $("#newSmartphoneForm").attr( "action"),
-	    $.ajax({
-	    	url: "type_hdd/save_edited",
+
+	var json = { "idTypeHdd"	: $("#editDialog #id")[0].value,
+				"model"		: $("#editDialog #model")[0].value,
+				"capacity"	: $("#editDialog #capacity")[0].value};
+
+	  //var json = { "idTypeHdd" : "1", "model" : "2", "capacity": "3"};
+
+		///dataType : "json",
+	$.ajax({
+		url: "type_hdd/save_edited",
 	    	 
-        data: JSON.stringify(json),
-        type: "POST",
+	    data: JSON.stringify(json),
+	    contentType: "application/json",
+	   	type: "POST",
 
-        beforeSend: function(xhr) {
-            xhr.setRequestHeader("Accept", "application/json");
-            xhr.setRequestHeader("Content-Type", "application/json");
-            xhr.setRequestHeader(header, token);
-        },
-                success: function(smartphone) {
-            var respContent = "";
-             
-            respContent += "<span class='success'>Smartphone was created: [";
-            respContent += smartphone.producer + " : ";
-            respContent += smartphone.model + " : " ;
-            respContent += smartphone.price + "]</span>";
-             
-            $("#sPhoneFromResponse").html(respContent);         
-        }
+	    beforeSend: function(xhr) {
+	        xhr.setRequestHeader(header, token);
+	    },
+		success: function(smartphone) {
+	   /* var respContent = "";
+	     
+	    respContent += "<span class='success'>Smartphone was created: [";
+	    respContent += smartphone.producer + " : ";
+	    respContent += smartphone.model + " : " ;
+	    respContent += smartphone.price + "]</span>";
+	     
+	    $("#sPhoneFromResponse").html(respContent);     */    
+	}
     });
 
 
