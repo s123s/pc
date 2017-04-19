@@ -57,7 +57,7 @@ $(document).ready(function(){
 
 	$("#newDialogForm").validate({
     	rules:{
-        	model:{
+        	producerName:{
             	required: true,
 			},
 			capacity:{
@@ -67,7 +67,7 @@ $(document).ready(function(){
 
 		},
         messages:{
-        	model:{
+        	producerName:{
             	required: "Это поле обязательно для заполнения",
 			},
         	capacity:{
@@ -79,7 +79,7 @@ $(document).ready(function(){
 
 	$("#editDialogForm").validate({
     	rules:{
-        	model:{
+        	producerName:{
             	required: true,
 			},
 			capacity:{
@@ -89,7 +89,7 @@ $(document).ready(function(){
 
 		},
         messages:{
-        	model:{
+        	producerName:{
             	required: "Это поле обязательно для заполнения",
 			},
         	capacity:{
@@ -134,7 +134,7 @@ function saveNewPosToHTML(saveAnswer) {
     $clone[0].id = "id"+idLocal;
     $clone.find('.myIndex').text('xxx');
     $clone.find('.idTypeHdd').text(idLocal);
-    $clone.find('.model').text( $("#newDialog #model")[0].value );
+    $clone.find('.producerName').text( $("#newDialog #producerName")[0].value );
     $clone.find('.capacity').text($("#newDialog #capacity")[0].value);
 	$clone[0].hidden = false;
 
@@ -147,10 +147,10 @@ function saveNewPosToDatabase(){
 	var header = $("meta[name='_csrf_header']").attr("content");
 
 	var json = { 
-				"model"		: $("#newDialog #model")[0].value,
+				"producerName"		: $("#newDialog #producerName")[0].value,
 				"capacity"	: $("#newDialog #capacity")[0].value};
 
-	  //var json = { "idTypeHdd" : "1", "model" : "2", "capacity": "3"};
+	  //var json = { "idTypeHdd" : "1", "producerName" : "2", "capacity": "3"};
 
 	$.ajax({
 		url: "type_hdd/create",
@@ -175,13 +175,13 @@ function saveNewPosToDatabase(){
 function fillEditDialog (idTr) {
 	$("#editDialog #idTr")[0].value = idTr;
 	$("#editDialog #id")[0].value = $("#mtab").find("#"+idTr).find(".idTypeHdd").text();
-	$("#editDialog #model")[0].value = $("#mtab").find("#"+idTr).find(".model").text();
+	$("#editDialog #producerName")[0].value = $("#mtab").find("#"+idTr).find(".producerName").text();
 	$("#editDialog #capacity")[0].value = $("#mtab").find("#"+idTr).find(".capacity").text();
 }
 
 function saveEditedPosToHTML() {
 	var idTrLocal = $("#editDialog #idTr")[0].value;
-	$("#mtab").find("#"+idTrLocal).find(".model").text($("#editDialog #model")[0].value);
+	$("#mtab").find("#"+idTrLocal).find(".producerName").text($("#editDialog #producerName")[0].value);
 	$("#mtab").find("#"+idTrLocal).find(".capacity").text($("#editDialog #capacity")[0].value);
 }
 
@@ -191,7 +191,7 @@ function saveEditedPosToDatabase(){
 	var header = $("meta[name='_csrf_header']").attr("content");
 
 	var json = { "idTypeHdd"	: $("#editDialog #id")[0].value,
-				"model"		: $("#editDialog #model")[0].value,
+				"producerName"		: $("#editDialog #producerName")[0].value,
 				"capacity"	: $("#editDialog #capacity")[0].value};
 
 	$.ajax({

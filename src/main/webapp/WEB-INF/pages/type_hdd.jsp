@@ -68,7 +68,7 @@
 								<tr>
 									<th hidden="true" nowrap>п/п</th>
 									<th>ID</th>
-									<th>Модель</th>
+									<th>Производитель</th>
 									<th>Емкость</th>
 									<th>Операция</th>
 
@@ -79,7 +79,7 @@
 								<tr id="emptyTr" hidden="true">
 										<td class="myIndex" hidden="true"></td>
 										<td class="idTypeHdd"></td>
-										<td class="model"></td>
+										<td class="producerName"></td>
 										<td class="capacity"></td>
 
 										<td><a class="editPos"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;
@@ -91,7 +91,8 @@
 									<tr id="id${typeHdd.idTypeHdd}">
 										<td class="myIndex" hidden="true">${st.getIndex()+1}</td>
 										<td class="idTypeHdd">${typeHdd.idTypeHdd}</td>
-										<td class="model">${typeHdd.producer.shortname}</td>
+										<td class="idProducer" hidden="true">${typeHdd.producer.idProducer}</td>
+										<td class="producerName">${typeHdd.producer.shortname}</td>
 										<td class="capacity">${typeHdd.capacity}</td>
 
 										<td><a class="editPos"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;
@@ -112,8 +113,12 @@
 	<form id="editDialogForm" action="" method="post">
 	  <table>
 	  		<tr hidden="true"><td><input type="text"  id="idTr"></td></tr>
-			<tr><td>id</td><td><input type="text" id="id" readonly="readonly"></td></tr>
- 			<tr><td>Модель</td><td><input type="text" id="model" name="model"></td></tr>
+			<tr><td>ID</td><td><input type="text" id="id" readonly="readonly"></td></tr>
+			
+ 			<tr><td>Производитель</td><td><select id="comb"> <option>Пункт 1</option>
+																  		<option>Пункт 2</option>
+																		</select></td></tr>
+ 			<tr><td>Производитель</td><td><input type="text" id="producerName" name="producerName"></td></tr>
 			<tr><td>Емкость</td><td><input type="text" id="capacity" name="capacity"></td></tr>
 	  </table><br>
 	</form>
@@ -122,7 +127,7 @@
 
 <div id="newDialog" title="Создание типа" class="dialogWindow" hidden=true>
 	<table>
-		<tr><td>Модель</td><td><input type="text" id="model" name="model"></td></tr>
+		<tr><td>Производитель</td><td><input type="text" id="producerName" name="producerName"></td></tr>
 		<tr><td>Емкость</td><td><input type="text" id="capacity" name="capacity"></td></tr>
 	</table><br>
 	<button id="newDialogSave" class="ui-button ui-widget ui-corner-all">Создать</button>

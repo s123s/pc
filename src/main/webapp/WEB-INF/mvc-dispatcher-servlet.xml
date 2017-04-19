@@ -50,6 +50,7 @@
 			<list>
 				<value>pc.model.WpSummView</value>
 				<value>pc.model.TypeHdd</value>
+				<value>pc.model.Producer</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
