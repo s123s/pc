@@ -81,12 +81,13 @@ public class OperationController {
 	
 	@RequestMapping(value = "/type_hdd/delete",  method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	@JsonView(View.REST.class)
-	public OperationStatus deleteTypeHdd(@RequestBody TypeHdd typeHdd) {
+	//@JsonView(View.REST.class)
+	public void deleteTypeHdd(@RequestBody TypeHdd typeHdd) {
 	//	mainService.getTypeHddDao().markDeleted(typeHdd.getIdTypeHdd());
 
 	//	return "redirect:/books";
-		return new OperationStatus(false);
+				//new OperationStatus(false);
+		mainService.getTypeHddDao().delete(typeHdd.getIdTypeHdd());
 	}
 	
 	

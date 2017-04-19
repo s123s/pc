@@ -58,6 +58,17 @@ public class MysqlTypeHddDaoHibernate implements TypeHddDao {
 			return new OperationStatus(false);
 		}
 	}
+	
+	@Override
+	@Transactional
+	public void delete(Integer k) {
+		Session session = this.sessionFactory.getCurrentSession();
+		
+		TypeHdd typeHdd = new TypeHdd();
+		typeHdd.setIdTypeHdd(k);
+	
+		session.delete(typeHdd);
+	}
 	/*
 	@Override
 	@Transactional

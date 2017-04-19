@@ -130,6 +130,7 @@
 
 
 <div id="deleteDialog" title="Удаление типа" class="dialogWindow" hidden=true>
+	<input type="text" id="idTr" hidden="true">
 	<input type="text" id="id" hidden="true">
 	Вы действительно хотите удалить?<br><br>
 	<button  id="deleteDialogOk" class="ui-button ui-widget ui-corner-all">Да</button>

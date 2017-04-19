@@ -1,9 +1,12 @@
 
 
-$(function() {
+//$(function() {
+	
+$(document).ready(function(){
+
 	$(".left.pane").resizable({
-		handles : "e, w"
-	});
+			handles : "e, w"
+		});
 	$(".right.pane").resizable({
 		handles : "e, w"
 	});
@@ -12,24 +15,68 @@ $(function() {
 	});
 
 
-$(document).ready(function(){
+	$("#newDialog").dialog({
+		autoOpen: false,
+		resizable:false,
+		modal: true
+	});
+	$("#newDialog #newDialogSave").click(function() {
+		saveNewPosToDatabase();
+		//saveNewPosToHTML();
+		//$('#newDialog').dialog('close');
+   	});
+
+
 
 	$("#editDialog").dialog({
 		autoOpen: false,
 		resizable:false,
-		modal: true});
+		modal: true
+	});
 
-	$("#newDialog").dialog({
-		autoOpen: false,
-		resizable:false,
-		modal: true});
+
+	$("#editDialog #editDialogSave").click(function() {
+		saveEditedPosToDatabase();
+//		saveEditedPosToHTML();
+//		$('#editDialog').dialog('close');
+   	});
+
 
 	$("#deleteDialog").dialog({
 		autoOpen: false,
 		resizable:false,
-		modal: true});
+		modal: true
+	});
+	$("#deleteDialog #deleteDialogOk").click(function() {
+		deleteFromDatabase();
+/*		removePosFromHTML();
+    	renumerate("mtab");
+    	$('#deleteDialog').dialog('close');*/
+	});
 	
-	
+
+	$("#newDialogForm").validate({
+    	rules:{
+        	model:{
+            	required: true,
+			},
+			capacity:{
+				required: true,
+				number: true,
+			}
+
+		},
+        messages:{
+        	model:{
+            	required: "Это поле обязательно для заполнения",
+			},
+        	capacity:{
+            	required: "Это поле обязательно для заполнения",
+            	number: "Должно быть число",
+			},
+		}
+	});
+
 	$("#editDialogForm").validate({
     	rules:{
         	model:{
@@ -53,73 +100,23 @@ $(document).ready(function(){
 	});
 
 
-	$("#newDialogForm").validate({
-    	rules:{
-        	model:{
-            	required: true,
-			},
-			capacity:{
-				required: true,
-				number: true,
-			}
-
-		},
-        messages:{
-        	model:{
-            	required: "Это поле обязательно для заполнения",
-			},
-        	capacity:{
-            	required: "Это поле обязательно для заполнения",
-            	number: "Должно быть число",
-			},
-		}
-	});
- 
-});
-
-
-	//Edit pos
-	$(".editPos").click(function() {
-		fillEditDialog(this.parentNode.parentNode.id);	//Заполнение диалогового окна значениями
-		
-
-		$('#editDialog').dialog('open');
-		
-    	$("#editDialog #editDialogSave").click(function() {
-    	//$("#mtab #id2").remove();
-    		saveEditedPosToHTML();
-    		saveEditedPosToDatabase();
-    		$('#editDialog').dialog('close');
-	   	});
-	});
-
 
 	//New pos
-	$(".newPos").unbind("click").bind('click', (function() {
-		//fillEditDialog(this.parentNode.parentNode.id);	//Заполнение диалогового окна значениями
-		
+$("body").on("click", ".newPos", function () {
+//	$(".newPos").click(function() {
 		$('#newDialog').dialog('open');
+	});
 
-    	$("#newDialog #newDialogSave").click(function() {
-    		saveNewPosToDatabase();
-    		//saveNewPosToHTML();
-    		$('#newDialog').dialog('close');
-	   	});
-	}));
+	//Edit pos
+$("body").on("click", ".editPos", function () {
+		fillEditDialog(this.parentNode.parentNode.id);	//Заполнение диалогового окна значениями
+		$('#editDialog').dialog('open');
+	});
 
 	//Delete pos
-	$(".deletePos").click(function() {
+$("body").on("click", ".deletePos", function () {
 		fillDeleteDialog(this.parentNode.parentNode.id);	//Заполнение диалогового окна значениями
-
 		$('#deleteDialog').dialog('open');
-
-
-		$("#deleteDialog #deleteDialogOk").click(function() {
-			removePosFromHTML();
-			deleteFromDatabase();
-	    	renumerate("mtab");
-	    	$('#deleteDialog').dialog('close');
-		});
 	});
 
 });
@@ -143,7 +140,6 @@ function saveNewPosToHTML(saveAnswer) {
 
 	$("#mtab").find('tbody')
 		.append ($clone);
-    //$("#mtab tr:last").after($clone);
 }
 
 function saveNewPosToDatabase(){
@@ -151,7 +147,6 @@ function saveNewPosToDatabase(){
 	var header = $("meta[name='_csrf_header']").attr("content");
 
 	var json = { 
-		//"idTypeHdd"	: $("#newDialog #id")[0].value,
 				"model"		: $("#newDialog #model")[0].value,
 				"capacity"	: $("#newDialog #capacity")[0].value};
 
@@ -169,6 +164,7 @@ function saveNewPosToDatabase(){
 	    },
 		success: function(retObject) {
 			saveNewPosToHTML(retObject);
+			$('#newDialog').dialog('close');
 		}
     });
 }
@@ -198,9 +194,6 @@ function saveEditedPosToDatabase(){
 				"model"		: $("#editDialog #model")[0].value,
 				"capacity"	: $("#editDialog #capacity")[0].value};
 
-	  //var json = { "idTypeHdd" : "1", "model" : "2", "capacity": "3"};
-
-		///dataType : "json",
 	$.ajax({
 		url: "type_hdd/save_edited",
 	    	 
@@ -212,30 +205,21 @@ function saveEditedPosToDatabase(){
 	        xhr.setRequestHeader(header, token);
 	    },
 		success: function(smartphone) {
-		   /* var respContent = "";
-		     
-		    respContent += "<span class='success'>Smartphone was created: [";
-		    respContent += smartphone.producer + " : ";
-		    respContent += smartphone.model + " : " ;
-		    respContent += smartphone.price + "]</span>";
-		     
-		    $("#sPhoneFromResponse").html(respContent);     */    
-		}
+    		saveEditedPosToHTML();
+    		$('#editDialog').dialog('close');
+    	}
     });
 }
 
 
-
-function fillDeleteDialog (idTr, id) {
-	$("#deleteDialog  #idTr")[0].value = idTr;
-	$("#deleteDialog #id")[0].value = id;
+function fillDeleteDialog (idTr) {
+	$("#deleteDialog #idTr")[0].value = idTr;
+	$("#deleteDialog #id")[0].value = $("#mtab").find("#"+idTr).find(".idTypeHdd").text();
 }
 
 function removePosFromHTML() {
 	var idTrLocal = $("#deleteDialog #idTr")[0].value ;
-//	$("#mtab #id2").remove();
 	$("#mtab #"+ idTrLocal).remove();
-
 }
 
 
@@ -244,8 +228,6 @@ function deleteFromDatabase (){
 	var header = $("meta[name='_csrf_header']").attr("content");
 	
 	var idLocal = $("#deleteDialog #id")[0].value
-
-
 
 	var json = { "idTypeHdd"	: idLocal };
 
@@ -260,11 +242,12 @@ function deleteFromDatabase (){
 	        xhr.setRequestHeader(header, token);
 	    },
 		success: function(smartphone) {
-			//
+			removePosFromHTML();
+    		renumerate("mtab");
+    		$('#deleteDialog').dialog('close');
 		}
     });
 }
-
 
 function renumerate (idTable) {
 	$("#" + idTable  +" tr").each(function(i){
