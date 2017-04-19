@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import pc.jackson.View;
@@ -22,9 +24,12 @@ public class TypeHdd {
     @JsonView(View.REST.class)
 	private Integer idTypeHdd;
 
-	@Column(name = "model")
-	private String model;
-	
+//	@Column(name = "model")
+//	private String model;
+    @ManyToOne
+    @JoinColumn(name = "id_producer")
+    private Producer producer;
+        
 	@Column
 	private String capacity;
 
@@ -36,12 +41,12 @@ public class TypeHdd {
 		this.idTypeHdd = idTypeHdd;
 	}
 
-	public String getModel() {
-		return model;
+	public Producer getProducer() {
+		return producer;
 	}
 
-	public void setModel(String model) {
-		this.model = model;
+	public void setProducer(Producer producer) {
+		this.producer = producer;
 	}
 
 	public String getCapacity() {
@@ -53,6 +58,6 @@ public class TypeHdd {
 	}
 
 	public String toString() {
-		return "{" + idTypeHdd + ", " + model + ", " + capacity + "}";
+		return "{" + idTypeHdd + ", " + producer.getIdProducer() +", " +producer.getShortname() + ", " + capacity + "}";
 	}
 }

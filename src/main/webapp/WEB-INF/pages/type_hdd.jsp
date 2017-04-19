@@ -91,7 +91,7 @@
 									<tr id="id${typeHdd.idTypeHdd}">
 										<td class="myIndex" hidden="true">${st.getIndex()+1}</td>
 										<td class="idTypeHdd">${typeHdd.idTypeHdd}</td>
-										<td class="model">${typeHdd.model}</td>
+										<td class="model">${typeHdd.producer.shortname}</td>
 										<td class="capacity">${typeHdd.capacity}</td>
 
 										<td><a class="editPos"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;
