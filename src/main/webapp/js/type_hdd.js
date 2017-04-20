@@ -35,6 +35,7 @@ $(document).ready(function(){
 	});
 
 
+
 	$("#editDialog #editDialogSave").click(function() {
 		saveEditedPosToDatabase();
 //		saveEditedPosToHTML();
@@ -174,8 +175,11 @@ function saveNewPosToDatabase(){
 /*Fill dialog window for edtiting from table node*/
 function fillEditDialog (idTr) {
 	$("#editDialog #idTr")[0].value = idTr;
+	var idProducerLocal = $("#mtab").find("#"+idTr).find(".idProducer").text()
+
 	$("#editDialog #id")[0].value = $("#mtab").find("#"+idTr).find(".idTypeHdd").text();
-	$("#editDialog #producerName")[0].value = $("#mtab").find("#"+idTr).find(".producerName").text();
+	//$("#editDialog #producerName")[0].value = $("#mtab").find("#"+idTr).find(".producerName").text();
+	$("#idProducer [value='" +idProducerLocal+ "']").attr("selected", "selected");
 	$("#editDialog #capacity")[0].value = $("#mtab").find("#"+idTr).find(".capacity").text();
 }
 

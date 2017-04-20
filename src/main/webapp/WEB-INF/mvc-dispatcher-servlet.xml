@@ -71,10 +71,14 @@
 	<bean id="typeHddDao" class="pc.dao.hibernate.MysqlTypeHddDaoHibernate">
 		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
 	</bean>
+	<bean id="producerDao" class="pc.dao.hibernate.MysqlProducerDaoHibernate">
+		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
+	</bean>
 	
 	<bean id="mainService" class="pc.service.MainService">
 		<property name="wpDao" ref="wpDao" />
 		<property name="typeHddDao" ref="typeHddDao" />
+		<property name="producerDao" ref="producerDao" />
 	</bean>
 	
 	<tx:annotation-driven transaction-manager="transactionManager" />

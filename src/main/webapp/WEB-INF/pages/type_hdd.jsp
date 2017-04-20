@@ -56,6 +56,7 @@
 				<%@include file="include/left_menu.jsp"%>
 			</div>
 			<div class="center pane">
+
 				<div class="inner">
 					<div class="top">
                         <h4>Тип винчестера</h4>
@@ -115,10 +116,15 @@
 	  		<tr hidden="true"><td><input type="text"  id="idTr"></td></tr>
 			<tr><td>ID</td><td><input type="text" id="id" readonly="readonly"></td></tr>
 			
- 			<tr><td>Производитель</td><td><select id="comb"> <option>Пункт 1</option>
-																  		<option>Пункт 2</option>
-																		</select></td></tr>
- 			<tr><td>Производитель</td><td><input type="text" id="producerName" name="producerName"></td></tr>
+ 			<tr><td>Производитель</td><td>
+				<select id="idProducer">
+					<option value="">Select one...</option>
+					<c:forEach items="${producers}" var="producer" varStatus="st">
+						<option value="${producer.idProducer}">${producer.shortname}</option>
+					</c:forEach>
+				</select>
+			</td></tr>
+ 			<!-- <tr><td>Производитель</td><td><input type="text" id="producerName" name="producerName"></td></tr> -->
 			<tr><td>Емкость</td><td><input type="text" id="capacity" name="capacity"></td></tr>
 	  </table><br>
 	</form>

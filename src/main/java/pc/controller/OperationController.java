@@ -61,9 +61,9 @@ public class OperationController {
 	@RequestMapping(value = "/type_hdd")
 	public String listTypeHdd(ModelMap model) {
 		model.addAttribute("typeHdds", mainService.getTypeHddDao().readAll());
+		model.addAttribute("producers", mainService.getProducerDao().readAll());
 		return "type_hdd";
 	}
-	
 	
 	@RequestMapping(value = "/type_hdd/save_edited",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
