@@ -33,6 +33,7 @@
                 <value>testBook.model.Thdd</value>
                 <value>testBook.model.Tmother</value>
                 <value>testBook.model.Mother</value>
+                <value>testBook.model.Producer</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -146,6 +147,14 @@
 
     <bean id="wpService" class="testBook.service.WpServiceImpl">
         <property name="wpDao" ref="wpDao" />
+    </bean>
+
+    <bean id="producerDao" class="testBook.dao.ProducerDaoImpl">
+        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="producerService" class="testBook.service.ProducerServiceImpl">
+        <property name="producerDao" ref="producerDao" />
     </bean>
 
 

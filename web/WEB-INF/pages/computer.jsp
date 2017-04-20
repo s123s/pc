@@ -105,7 +105,7 @@
     <td>${computer.domainName}</td>
     <td>${computer.tMother.model}</td>
     <td>${computer.tProc.model}</td>
-    <td>${computer.thdd.model}</td>
+    <%--<td>${computer.thdd.model}</td>--%>
     <td>${computer.thdd.capacity}</td>
     <td>${computer.tram.type}</td>
     <td>${computer.tram.capacity}</td>

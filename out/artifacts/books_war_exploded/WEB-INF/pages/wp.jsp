@@ -31,6 +31,7 @@
     <a href="<c:url value='/motherboard'/>">Motherboard</a>
     <a href="<c:url value='/hdd'/>">HDD</a>
     <a href="<c:url value='/ram'/>">RAM</a>
+    <a href="<c:url value='/producer'/>">Producer</a>
     </br>
     <table class="table table-condensed table-striped table-bordered">
         <thead>

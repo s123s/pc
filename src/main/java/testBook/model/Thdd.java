@@ -14,15 +14,19 @@ public class Thdd {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="model")
-    private String model;
+    @Column(name="id_producer")
+    private Long producer;
+
+
+   /* @Column(name="model")
+    private String model;*/
 
     @Column(name="capacity")
     private Long capacity;
 
     public Thdd(){}
-    public Thdd(String model, Long capacity){
-        this.model = model;
+    public Thdd(/*String model,*/ Long capacity){
+       /* this.model = model;*/
         this.capacity = capacity;
     }
 
@@ -34,13 +38,22 @@ public class Thdd {
         this.id = id;
     }
 
-    public String getModel() {
+    public Long getProducer() {
+        return producer;
+    }
+
+    public void setProducer(Long producer) {
+        this.producer = producer;
+    }
+
+
+   /* public String getModel() {
         return model;
     }
 
     public void setModel(String model) {
         this.model = model;
-    }
+    }*/
 
     public Long getCapacity() {
         return capacity;

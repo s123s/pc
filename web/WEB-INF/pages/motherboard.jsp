@@ -62,6 +62,7 @@
         <c:forEach items="${listTmother}" var="tmother">
             <tr>
                 <td>${tmother.id}</td>
+                <td>${tmother.producer}</td>
                 <td>${tmother.model}</td>
                 <td>${tmother.socket}</td>
                     <%--<td><a href="<c:url value='/edit/${computer.id}'/>">edit</a></td>--%>

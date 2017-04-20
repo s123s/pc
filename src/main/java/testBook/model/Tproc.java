@@ -14,6 +14,17 @@ public class Tproc {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name="id_producer")
+    private Long producer;
+
+    public Long getProducer() {
+        return producer;
+    }
+
+    public void setProducer(Long producer) {
+        this.producer = producer;
+    }
+
     @Column(name="model")
     private String model;
 

@@ -48,4 +48,5 @@ public class Tram {
     public void setCapacity(Long capacity) {
         this.capacity = capacity;
     }
+
 }

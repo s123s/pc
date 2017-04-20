@@ -27,6 +27,7 @@
     <a href="<c:url value='/monitor'/>">Monitor</a>
     <a href="<c:url value='/printers'/>">Printer</a>
     <a href="<c:url value='/ups'/>">Ups</a>
+    <a href="<c:url value='/producer'/>">Producer</a>
     </br>
     <table class="table table-condensed table-striped table-bordered">
         <thead>

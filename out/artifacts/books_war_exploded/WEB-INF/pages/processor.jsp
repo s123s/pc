@@ -62,6 +62,7 @@
         <c:forEach items="${listTproc}" var="tproc">
             <tr>
                 <td>${tproc.id}</td>
+                <td>${tproc.producer}</td>
                 <td>${tproc.model}</td>
                 <td>${tproc.socket}</td>
                <%--<td><a href="<c:url value='/edit/${computer.id}'/>">edit</a></td>--%>

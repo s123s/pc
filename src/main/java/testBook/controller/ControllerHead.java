@@ -28,6 +28,14 @@ public class ControllerHead {
     private TramService tramService;
     private TprocService tprocService;
     private TmotherService tmotherService;
+    private ProducerService producerService;
+
+    @Autowired
+    @Qualifier(value="producerService")
+    public void setProducerService(ProducerService producerService){
+        this.producerService = producerService;
+    }
+
 
     @Autowired
     @Qualifier(value="workplaceService")
@@ -97,6 +105,26 @@ public class ControllerHead {
     public void setComputerService(ComputerService computerService){
         this.computerService = computerService;
     }
+
+    @RequestMapping(value="/producer")
+    public String listProducer(Model model){
+        model.addAttribute("producer", new Producer());
+        model.addAttribute("listProducer", this.producerService.listProducer());
+        return "producer";
+    }
+
+    @RequestMapping(value="/addProducer")
+    public String addProducer(@ModelAttribute("producer") Producer producer, Model model) {
+        this.producerService.addProducer(producer);
+        model.addAttribute("listProducer", this.producerService.listProducer());
+        return "producer";
+    }
+    @RequestMapping("removeProducer/{id}")
+    public String removeProducer(@PathVariable("id") Long id){
+        this.producerService.removeProducer(id);
+        return "redirect:/producer";
+    }
+
 
     @RequestMapping(value="/ram")
     public String listRsm(Model model){

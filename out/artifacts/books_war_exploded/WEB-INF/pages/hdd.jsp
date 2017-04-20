@@ -22,10 +22,10 @@
     <form name="add" action="/addHdd">
 
 
-        <div class="form-group">
+       <%-- <div class="form-group">
             <label for="model"> Model</label>
             <input type="input" name= "model" id="model" value="${thdd.model}"class="form-control">
-        </div>
+        </div>--%>
 
         <div class="form-group">
             <label for="capacity"> Capacity</label>
@@ -62,7 +62,8 @@
         <c:forEach items="${listThdd}" var="thdd">
             <tr>
                 <td>${thdd.id}</td>
-                <td>${thdd.model}</td>
+                <td>${thdd.producer}</td>
+                <%--<td>${thdd.model}</td>--%>
                 <td>${thdd.capacity}</td>
                     <%--<td><a href="<c:url value='/edit/${computer.id}'/>">edit</a></td>--%>
                 <td><a href="<c:url value='/removeHdd/${thdd.id}'/>">delete</a></td>
