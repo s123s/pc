@@ -29,7 +29,7 @@ public class TypeHdd {
     @ManyToOne
     @JoinColumn(name = "id_producer")
     private Producer producer;
-        
+
 	@Column
 	private String capacity;
 

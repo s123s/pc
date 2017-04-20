@@ -117,7 +117,7 @@
 			<tr><td>ID</td><td><input type="text" id="id" readonly="readonly"></td></tr>
 			
  			<tr><td>Производитель</td><td>
-				<select id="idProducer">
+				<select id="idProducer" style="width:100%">
 					<option value="">Select one...</option>
 					<c:forEach items="${producers}" var="producer" varStatus="st">
 						<option value="${producer.idProducer}">${producer.shortname}</option>
@@ -133,7 +133,16 @@
 
 <div id="newDialog" title="Создание типа" class="dialogWindow" hidden=true>
 	<table>
-		<tr><td>Производитель</td><td><input type="text" id="producerName" name="producerName"></td></tr>
+		<tr><td>Производитель</td><td>
+			<select id="idProducer" style="width:100%">
+				<option value="">Select one...</option>
+				<c:forEach items="${producers}" var="producer" varStatus="st">
+					<option value="${producer.idProducer}">${producer.shortname}</option>
+				</c:forEach>
+			</select>
+		</td></tr>
+
+		<!--tr><td>Производитель</td><td><input type="text" id="producerName" name="producerName"></td></tr-->
 		<tr><td>Емкость</td><td><input type="text" id="capacity" name="capacity"></td></tr>
 	</table><br>
 	<button id="newDialogSave" class="ui-button ui-widget ui-corner-all">Создать</button>

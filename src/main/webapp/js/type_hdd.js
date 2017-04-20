@@ -135,7 +135,10 @@ function saveNewPosToHTML(saveAnswer) {
     $clone[0].id = "id"+idLocal;
     $clone.find('.myIndex').text('xxx');
     $clone.find('.idTypeHdd').text(idLocal);
-    $clone.find('.producerName').text( $("#newDialog #producerName")[0].value );
+    
+	$clone.find(".idProducer").text($("#newDialog #idProducer").val());
+	$clone.find(".producerName").text($("#newDialog #idProducer option:selected").text());
+
     $clone.find('.capacity').text($("#newDialog #capacity")[0].value);
 	$clone[0].hidden = false;
 
@@ -148,7 +151,9 @@ function saveNewPosToDatabase(){
 	var header = $("meta[name='_csrf_header']").attr("content");
 
 	var json = { 
-				"producerName"		: $("#newDialog #producerName")[0].value,
+				producer:{"idProducer"		: $("#newDialog #idProducer").val(),
+						  "shortname"		: $("#newDialog #idProducer option:selected").text(),
+						 },
 				"capacity"	: $("#newDialog #capacity")[0].value};
 
 	  //var json = { "idTypeHdd" : "1", "producerName" : "2", "capacity": "3"};
@@ -178,14 +183,14 @@ function fillEditDialog (idTr) {
 	var idProducerLocal = $("#mtab").find("#"+idTr).find(".idProducer").text()
 
 	$("#editDialog #id")[0].value = $("#mtab").find("#"+idTr).find(".idTypeHdd").text();
-	//$("#editDialog #producerName")[0].value = $("#mtab").find("#"+idTr).find(".producerName").text();
 	$("#idProducer [value='" +idProducerLocal+ "']").attr("selected", "selected");
 	$("#editDialog #capacity")[0].value = $("#mtab").find("#"+idTr).find(".capacity").text();
 }
 
 function saveEditedPosToHTML() {
 	var idTrLocal = $("#editDialog #idTr")[0].value;
-	$("#mtab").find("#"+idTrLocal).find(".producerName").text($("#editDialog #producerName")[0].value);
+	$("#mtab").find("#"+idTrLocal).find(".idProducer").text($("#editDialog #idProducer").val());
+	$("#mtab").find("#"+idTrLocal).find(".producerName").text($("#editDialog #idProducer option:selected").text());
 	$("#mtab").find("#"+idTrLocal).find(".capacity").text($("#editDialog #capacity")[0].value);
 }
 
@@ -195,7 +200,9 @@ function saveEditedPosToDatabase(){
 	var header = $("meta[name='_csrf_header']").attr("content");
 
 	var json = { "idTypeHdd"	: $("#editDialog #id")[0].value,
-				"producerName"		: $("#editDialog #producerName")[0].value,
+				producer:{"idProducer"		: $("#editDialog #idProducer").val(),
+						  "shortname"		: $("#editDialog #idProducer option:selected").text(),
+						 },
 				"capacity"	: $("#editDialog #capacity")[0].value};
 
 	$.ajax({

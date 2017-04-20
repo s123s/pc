@@ -69,7 +69,7 @@ public class OperationController {
 	@ResponseBody
 	@JsonView(View.REST.class)
 	public OperationStatus saveEditedHddType(@RequestBody TypeHdd typeHdd) {
-        return mainService.getTypeHddDao().update(typeHdd);
+		return mainService.getTypeHddDao().update(typeHdd);
 	}	
 	
 	@RequestMapping(value = "/type_hdd/create",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
