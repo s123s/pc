@@ -13,4 +13,5 @@ public interface TmotherService {
     public void removeTmother(Long id);
     public Tmother getTmotherById(Long id);
     public List<Tmother> listTmother();
+    public List<Tmother> listMotherNotComp();
 }

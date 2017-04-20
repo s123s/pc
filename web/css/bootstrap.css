@@ -184,10 +184,14 @@ table {
   border-spacing: 0;
   border-collapse: collapse;
 }
+td{  text-align: center; }
+tr:hover td {background: #ccddff;}
 td,
 th {
+
   padding: 0;
 }
+
 /*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
 @media print {
   *,

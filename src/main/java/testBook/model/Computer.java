@@ -13,7 +13,7 @@ public class Computer {
 
 
 
-    @OneToOne(targetEntity = Tproc.class, cascade = {CascadeType.REFRESH}, fetch=FetchType.EAGER)
+    @OneToOne( cascade = {CascadeType.REFRESH}, fetch=FetchType.EAGER)
     @JoinTable(name="processor")@JoinColumn(name = "type_proc")
     private Tproc tProc;
 
@@ -26,7 +26,9 @@ public class Computer {
         this.tProc = tProc;
     }
 
-    @OneToOne(targetEntity = Tmother.class, cascade = {CascadeType.REFRESH}, fetch=FetchType.EAGER)
+
+
+    @OneToOne(cascade = {CascadeType.REFRESH}, fetch=FetchType.EAGER)
     @JoinTable(name="mother")@JoinColumn(name = "type_mother")
     private Tmother tMother;
 
@@ -53,14 +55,14 @@ public class Computer {
 
     @ManyToOne(targetEntity = Tram.class, cascade = {CascadeType.REFRESH}, fetch=FetchType.EAGER)
     @JoinTable(name="ram")@JoinColumn(name = "type_ram")
-    private Tram tRam;
+    private Tram tram;
 
-    public Tram gettRam() {
-        return tRam;
+    public Tram getTram() {
+        return tram;
     }
 
-    public void settRam(Tram tRam) {
-        this.tRam = tRam;
+    public void setTram(Tram tram) {
+        this.tram = tram;
     }
 
     @Id

@@ -14,10 +14,12 @@ public class Mother {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(mappedBy="mother",fetch=FetchType.EAGER)
+    @OneToOne(cascade = {CascadeType.REFRESH}, fetch=FetchType.EAGER)
+    @JoinTable(name="type_mother")@JoinColumn(name = "id_type_mother")
     private Tmother tMother;
 
-    @OneToOne(mappedBy="computer",fetch=FetchType.EAGER)
+    @OneToOne(cascade = {CascadeType.REFRESH}, fetch=FetchType.EAGER)
+    @JoinTable(name="computer")@JoinColumn(name = "id_computer")
     private Computer computer;
 
     public Mother(Tmother tMother, Computer computer) {
@@ -31,5 +33,21 @@ public class Mother {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Tmother gettMother() {
+        return tMother;
+    }
+
+    public void settMother(Tmother tMother) {
+        this.tMother = tMother;
+    }
+
+    public Computer getComputer() {
+        return computer;
+    }
+
+    public void setComputer(Computer computer) {
+        this.computer = computer;
     }
 }

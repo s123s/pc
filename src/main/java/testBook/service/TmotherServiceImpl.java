@@ -44,4 +44,8 @@ public class TmotherServiceImpl implements TmotherService {
     public List<Tmother> listTmother() {
         return  this.tmotherDao.listTmother();
     }
+
+    @Override
+    @Transactional
+    public List<Tmother> listMotherNotComp(){return this.tmotherDao.listMotherNotComp();}
 }
