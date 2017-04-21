@@ -29,7 +29,7 @@ public class SigninController {
 	    if (auth != null){    
 	        new SecurityContextLogoutHandler().logout(request, response, auth);
 	    }
-	    return "redirect:/books";
+	    return "redirect:/index";
 	}
 	
 }

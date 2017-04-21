@@ -28,7 +28,7 @@ public class MysqlTypeHddDaoHibernate implements TypeHddDao {
 	public List<TypeHdd> readAll() {
 
 		Session session = this.sessionFactory.getCurrentSession();
-		return session.createQuery("from TypeHdd").list();
+		return session.createQuery("from TypeHdd order by idTypeHdd").list();
 	}
 	@Override
 	@Transactional

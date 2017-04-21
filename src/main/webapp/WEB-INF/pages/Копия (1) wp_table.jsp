@@ -64,29 +64,115 @@
 					<div class="bottom">
 						<a class="newPos"><span class="glyphicon glyphicon-asterisk"></span>&nbsp;Новый тип</a><br>
 
+
+
+		<table class="tg">
+
+			<c:forEach items="${wps}" var="wp" varStatus="st">
+
+				<tr>
+					<td>${st.getIndex()+1}</td>
+					<td>${wp.cInvNumber}</td>
+					<td>${wp.cBuhName}</td>
+					<td>${wp.cTypeComputer}</td>
+					<td>${wp.monInvNumber}</td>
+					<td>${wp.monName}</td>
+					<td>${wp.userName}</td>
+					<td>${wp.userLogin}</td>
+					<td>${wp.cDomainName}</td>
+					<td>${wp.model}</td>
+					<td>${wp.ramCount}</td>
+					<td>${wp.ramCapacityAll}</td>
+					<td>${wp.hddCount}</td>
+					<td>${wp.hddCapacityAll}</td>
+					<td>${wp.osName}</td>
+
+					<td><a href="<c:url value='/wp/edit/${wp.idWorkplace}'/>">EDIT</a></td>
+					<td><a href="<c:url value='/wp/delete/${wp.idWorkplace}'/>">DELETE</a></td>
+				</tr>
+
+			</c:forEach>
+
+		</table>
+
+
+
+
 						<table id="mtab" class="table table-striped">
 							<thead>
 								<tr>
-									<th hidden="true" nowrap>п/п</th>
+								<tr>
+									<th nowrap rowspan="2">N п/п</th>
+									<th colspan="3">Системный блок</th>
+									<th colspan="2">Монитор(если по бух. монитор числится)</th>
+									<th colspan="2">Информация по пользователю</th>
+									<th colspan="6">Информация по мат. обеспечению</th>
+									<th colspan="3"></th>
+									<th rowspan="2" style="width:70px" >Операция</th>		
+								</tr>
+							
+								<tr>
+									<th width="80">Инв. номер</th>
+									<th width="120">Бухг. название</th>
+									<th width="120">Тип компьютера</th>
+									<th width="60">Инв. номер монитора</th>
+									<th width="60">Название монитора</th>
+									<th width="60">ФИО пользователя</th>
+									<th>Логин пользователя.</th>
+									<th>Имя ПК в сети</th>
+									<th>Марка процессора</th>
+									<th>Кол-во планок памяти</th>
+									<th>Память</th>
+									<th>Кол-во винчестеров</th>
+									<th>Винчестера</th>
+									<th>Операционная с-ма</th>
+
+									<!-- <th hidden="true" nowrap>п/п</th>
 									<th>ID</th>
 									<th>Производитель</th>
 									<th>Емкость</th>
-									<th style="width:70px" >Операция</th>
+									<th style="width:70px" >Операция</th> -->
 
 								</tr>
 							</head>
 							<tbody>
 
 								<tr id="emptyTr" hidden="true">
-										<td class="myIndex" hidden="true"></td>
+										<!-- <td class="myIndex" hidden="true"></td>
 										<td class="idTypeHdd"></td>
 										<td class="producerName"></td>
 										<td class="capacity"></td>
 
 										<td><a class="editPos"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;
-											<a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>
+											<a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td> -->
 								</tr>
 									
+			<c:forEach items="${wps}" var="wp" varStatus="st">
+
+				<tr>
+					<tr id="id$${wp.id_workplace}">
+					<td class="myIndex" hidden="true">${st.getIndex()+1}</td>
+					<td class="">${wp.cInvNumber}</td>
+					<td class="">${wp.cBuhName}</td>
+					<td class="">${wp.cTypeComputer}</td>
+					<td class="">${wp.monInvNumber}</td>
+					<td class="">${wp.monName}</td>
+					<td class="">${wp.userName}</td>
+					<td class="">${wp.userLogin}</td>
+					<td class="">${wp.cDomainName}</td>
+					<td class="">${wp.model}</td>
+					<td class="">${wp.ramCount}</td>
+					<td class="">${wp.ramCapacityAll}</td>
+					<td class="">${wp.hddCount}</td>
+					<td class="">${wp.hddCapacityAll}</td>
+					<td class="">${wp.osName}</td>
+
+					<td><a class="editPos"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;
+											<a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>
+				</tr>
+
+			</c:forEach>
+
 								<c:forEach items="${typeHdds}" var="typeHdd" varStatus="st">
 
 									<tr id="id${typeHdd.idTypeHdd}">
@@ -156,5 +242,76 @@
 	<button  id="deleteDialogOk" class="ui-button ui-widget ui-corner-all">Да</button>
 </div>
 
+</body>
+</html>
+
+
+
+		<table class="tg">
+			<tr>
+				<th nowrap rowspan="2">N п/п</th>
+				<th colspan="3">Системный блок</th>
+				<th colspan="2">Монитор(если по бух. монитор числится)</th>
+				<th colspan="2">Информация по пользователю</th>
+				<th colspan="6">Информация по мат. обеспечению</th>
+				<th colspan="3"></th>		
+			</tr>
+		
+			<tr>
+				<th width="80">Инв. номер</th>
+				<th width="120">Бухг. название</th>
+				<th width="120">Тип компьютера</th>
+				<th width="60">Инв. номер монитора</th>
+				<th width="60">Название монитора</th>
+				<th width="60">ФИО пользователя</th>
+				<th>Логин пользователя.</th>
+				<th>Имя ПК в сети</th>
+				<th>Марка процессора</th>
+				<th>Кол-во планок памяти</th>
+				<th>Память</th>
+				<th>Кол-во винчестеров</th>
+				<th>Винчестера</th>
+				<th>Операционная с-ма</th>
+				
+			</tr>
+			<c:forEach items="${wps}" var="wp" varStatus="st">
+
+				<tr>
+					<td>${st.getIndex()+1}</td>
+					<td>${wp.cInvNumber}</td>
+					<td>${wp.cBuhName}</td>
+					<td>${wp.cTypeComputer}</td>
+					<td>${wp.monInvNumber}</td>
+					<td>${wp.monName}</td>
+					<td>${wp.userName}</td>
+					<td>${wp.userLogin}</td>
+					<td>${wp.cDomainName}</td>
+					<td>${wp.model}</td>
+					<td>${wp.ramCount}</td>
+					<td>${wp.ramCapacityAll}</td>
+					<td>${wp.hddCount}</td>
+					<td>${wp.hddCapacityAll}</td>
+					<td>${wp.osName}</td>
+
+					<td><a href="<c:url value='/wp/edit/${wp.idWorkplace}'/>">EDIT</a></td>
+					<td><a href="<c:url value='/wp/delete/${wp.idWorkplace}'/>">DELETE</a></td>
+				</tr>
+
+			</c:forEach>
+
+		</table>
+		<BR>Операции с рабочим местом <INPUT type="button" value="Новая"
+			onclick="document.theForm.func.value='new_wp'; document.theForm.submit();">
+		<br>
+	</FORM>
+	
+	
+	
+</div>
+           </div>
+       </div>
+       <!--div class="right pane">Right</div-->
+   </div>
+</div>
 </body>
 </html>
