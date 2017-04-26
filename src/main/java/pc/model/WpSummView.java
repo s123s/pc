@@ -2,8 +2,6 @@ package pc.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -21,6 +19,9 @@ public class WpSummView {
 	@Column(name = "c_buh_name")
 	private String cBuhName;
 	
+	@Column(name = "id_type_computer")
+	private String idTypeComputer;
+
 	@Column(name = "c_type_computer")
 	private String cTypeComputer;
 	
@@ -190,6 +191,14 @@ public class WpSummView {
 
 	public void setIdWorkplace(Integer idWorkplace) {
 		this.idWorkplace = idWorkplace;
+	}
+
+	public String getIdTypeComputer() {
+		return idTypeComputer;
+	}
+
+	public void setIdTypeComputer(String idTypeComputer) {
+		this.idTypeComputer = idTypeComputer;
 	}
 
 }

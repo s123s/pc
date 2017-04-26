@@ -84,14 +84,14 @@
 									<th style="width:60px">Инв. номер монитора</th>
 									<th style="width:60px">Название монитора</th>
 									<th style="width:60px">ФИО пользователя</th>
-									<th>Логин пользователя.</th>
+									<th>Логин пользов.</th>
 									<th style="width:120px">Имя ПК в сети</th>
 									<th>Марка процессора</th>
-									<th>Кол-во планок памяти</th>
+									<!--th>Кол-во планок памяти</th-->
 									<th>Память</th>
-									<th>Кол-во винчестеров</th>
-									<th>Винчестера</th>
-									<th>Операционная с-ма</th>
+									<!--th>Кол-во винчестеров</th-->
+									<th>Винчестеры</th>
+									<th>Опер. с-ма</th>
 									<th style="width:70px" >Операция</th>
 
 									<!-- <th hidden="true" nowrap>п/п</th>
@@ -121,6 +121,7 @@
 										<td class="idTypeHdd" hidden="true">${wp.idWorkplace}</td>
 										<td class="cInvNumber">${wp.cInvNumber}</td>
 										<td class="cBuhName">${wp.cBuhName}</td>
+										<td class="idTypeComputer" hidden="true">${wp.idTypeComputer}</td>
 										<td class="cTypeComputer">${wp.cTypeComputer}</td>
 										<td class="monInvNumber">${wp.monInvNumber}</td>
 										<td class="monName">${wp.monName}</td>
@@ -128,9 +129,9 @@
 										<td class="userLogin">${wp.userLogin}</td>
 										<td class="cDomainName" nowrap>${wp.cDomainName}</td>
 										<td class="model">${wp.model}</td>
-										<td class="ramCount">${wp.ramCount}</td>
+										<!--td class="ramCount">${wp.ramCount}</td-->
 										<td class="ramCapacityAll">${wp.ramCapacityAll}</td>
-										<td class="hddCount">${wp.hddCount}</td>
+										<!--td class="hddCount">${wp.hddCount}</td-->
 										<td class="hddCapacityAll">${wp.hddCapacityAll}</td>
 										<td class="osName">${wp.osName}</td>
 

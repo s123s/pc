@@ -68,10 +68,10 @@
 							<thead>
 								<tr>
 									<th hidden="true" nowrap>п/п</th>
-									<th>ID</th>
-									<th>Производитель</th>
-									<th>Емкость</th>
-									<th style="width:70px" >Операция</th>
+									<th class="col-xs-1">ID</th>
+									<th class="col-xs-7">Производитель</th>
+									<th class="col-xs-3">Емкость</th>
+									<th class="col-xs-1">Операция</th>
 
 								</tr>
 							</head>
