@@ -19,6 +19,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import pc.jackson.View;
 import pc.model.TypeHdd;
+import pc.model.TypeRam;
 import pc.service.MainService;
 import pc.service.OperationStatus;
 
@@ -31,6 +32,12 @@ public class OperationController {
 	//@Qualifier(value = "mainService")	
 	private MainService mainService;
 
+	public void setMainService(MainService mainService) {
+		this.mainService = mainService;
+	}
+	
+	
+	
 	  @RequestMapping("ajax")
 	    public ModelAndView helloAjaxTest() {
 	        return new ModelAndView("ajax", "message", "Crunchify Spring MVC with Ajax and JQuery Demo..");
@@ -93,12 +100,35 @@ public class OperationController {
 	@RequestMapping(value = "/type_ram")
 	public String listTypeRam(ModelMap model) {
 		model.addAttribute("typeRams", mainService.getTypeRamDao().readAll());
+		model.addAttribute("typeRamSpecs", mainService.getTypeRamSpecDao().readAll());
 		return "type_ram";
 	}
 	
-	public void setMainService(MainService mainService) {
-		this.mainService = mainService;
+
+	@RequestMapping(value = "/type_ram/save_edited",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	@JsonView(View.REST.class)
+	public OperationStatus saveEditedRamType(@RequestBody TypeRam typeRam) {
+		return mainService.getTypeRamDao().update(typeRam);
+	}	
+	
+	@RequestMapping(value = "/type_ram/create",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	@JsonView(View.REST.class)
+	public OperationStatus createRamType(@RequestBody TypeRam typeRam) {
+        return mainService.getTypeRamDao().create(typeRam);
+	}	
+	
+	@RequestMapping(value = "/type_ram/delete",  method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public void deleteTypeRam(@RequestBody TypeRam typeRam) {
+	//	mainService.getTypeHddDao().markDeleted(typeHdd.getIdTypeHdd());
+
+	//	return "redirect:/books";
+				//new OperationStatus(false);
+		mainService.getTypeRamDao().delete(typeRam.getIdTypeRam());
 	}
+	
 
 	  
 /*	@RequestMapping(value = "/save_edited",  method = RequestMethod.POST)

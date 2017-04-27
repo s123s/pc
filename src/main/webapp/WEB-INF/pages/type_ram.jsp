@@ -42,10 +42,10 @@
     <script src="js/bootstrap.min.js"></script>
 
 	<link href="css/main.css" rel="stylesheet" type="text/css"/>
-	<link href="css/type_hdd.css" rel="stylesheet" type="text/css"/>
+	<!-- <link href="css/type_hdd.css" rel="stylesheet" type="text/css"/> -->
 
 	<script src="js/global.js"></script>
-	<script src="js/type_hdd.js"></script>
+	<script src="js/type_ram.js"></script>
 </head>
 
 <body>
@@ -59,7 +59,7 @@
 
 				<div class="inner">
 					<div class="top">
-                        <h4>Тип винчестера</h4>
+                        <h4>Типы памяти</h4>
 					</div>
 					<div class="bottom">
 						<a class="newPos"><span class="glyphicon glyphicon-asterisk"></span>&nbsp;Новый тип</a><br>
@@ -69,7 +69,7 @@
 								<tr>
 									<th hidden="true" nowrap>п/п</th>
 									<th class="col-xs-1">ID</th>
-									<th class="col-xs-7">Производитель</th>
+									<th class="col-xs-7">Тип</th>
 									<th class="col-xs-3">Емкость</th>
 									<th class="col-xs-1">Операция</th>
 
@@ -79,22 +79,22 @@
 
 								<tr id="emptyTr" hidden="true">
 										<td class="myIndex" hidden="true"></td>
-										<td class="idTypeHdd"></td>
-										<td class="producerName"></td>
+										<td class="idTypeRam"></td>
+										<td class="descriptionTypeRamSpec"></td>
 										<td class="capacity"></td>
 
 										<td><a class="editPos"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;
 											<a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>
 								</tr>
 									
-								<c:forEach items="${typeHdds}" var="typeHdd" varStatus="st">
+								<c:forEach items="${typeRams}" var="typeRam" varStatus="st">
 
-									<tr id="id${typeHdd.idTypeHdd}">
+									<tr id="id${typeRam.idTypeRam}">
 										<td class="myIndex" hidden="true">${st.getIndex()+1}</td>
-										<td class="idTypeHdd">${typeHdd.idTypeHdd}</td>
-										<td class="idProducer" hidden="true">${typeHdd.producer.idProducer}</td>
-										<td class="producerName">${typeHdd.producer.shortname}</td>
-										<td class="capacity">${typeHdd.capacity}</td>
+										<td class="idTypeRam">${typeRam.idTypeRam}</td>
+										<td class="idTypeRamSpec" hidden="true">${typeRam.typeRamSpec.idTypeRamSpec}</td>
+										<td class="descriptionTypeRamSpec">${typeRam.typeRamSpec.description}</td>
+										<td class="capacity">${typeRam.capacity}</td>
 
 										<td><a class="editPos"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;
 											<a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>
@@ -116,15 +116,14 @@
 	  		<tr hidden="true"><td><input type="text"  id="idTr"></td></tr>
 			<tr><td>ID</td><td><input type="text" id="id" readonly="readonly"></td></tr>
 			
- 			<tr><td>Производитель</td><td>
-				<select id="idProducer" style="width:100%">
+ 			<tr><td>Тип</td><td>
+				<select id="idTypeRamSpec" style="width:100%">
 					<option value="">Select one...</option>
-					<c:forEach items="${producers}" var="producer" varStatus="st">
-						<option value="${producer.idProducer}">${producer.shortname}</option>
+					<c:forEach items="${typeRamSpecs}" var="typeRamSpec" varStatus="st">
+						<option value="${typeRamSpec.idTypeRamSpec}">${typeRamSpec.description}</option>
 					</c:forEach>
 				</select>
 			</td></tr>
- 			<!-- <tr><td>Производитель</td><td><input type="text" id="producerName" name="producerName"></td></tr> -->
 			<tr><td>Емкость</td><td><input type="text" id="capacity" name="capacity"></td></tr>
 	  </table><br>
 	</form>
@@ -133,16 +132,15 @@
 
 <div id="newDialog" title="Создание типа" class="dialogWindow" hidden=true>
 	<table>
-		<tr><td>Производитель</td><td>
-			<select id="idProducer" style="width:100%">
+		<tr><td>Тип</td><td>
+			<select id="idTypeRamSpec" style="width:100%">
 				<option value="">Select one...</option>
-				<c:forEach items="${producers}" var="producer" varStatus="st">
-					<option value="${producer.idProducer}">${producer.shortname}</option>
+				<c:forEach items="${typeRamSpecs}" var="typeRamSpec" varStatus="st">
+					<option value="${typeRamSpec.idTypeRamSpec}">${typeRamSpec.description}</option>
 				</c:forEach>
 			</select>
 		</td></tr>
 
-		<!--tr><td>Производитель</td><td><input type="text" id="producerName" name="producerName"></td></tr-->
 		<tr><td>Емкость</td><td><input type="text" id="capacity" name="capacity"></td></tr>
 	</table><br>
 	<button id="newDialogSave" class="ui-button ui-widget ui-corner-all">Создать</button>

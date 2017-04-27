@@ -59,7 +59,7 @@
 
 				<div class="inner">
 					<div class="top">
-                        <h4>Тип винчестера</h4>
+                        <h4>Типы винчестеров</h4>
 					</div>
 					<div class="bottom">
 						<a class="newPos"><span class="glyphicon glyphicon-asterisk"></span>&nbsp;Новый тип</a><br>
@@ -131,7 +131,7 @@
 	<button id="editDialogSave" class="ui-button ui-widget ui-corner-all">Сохранить</button>
 </div>
 
-<div id="newDialog" title="Создание типа" class="dialogWindow" hidden=true>
+<div id="newDialog" title="Новый тип" class="dialogWindow" hidden=true>
 	<table>
 		<tr><td>Производитель</td><td>
 			<select id="idProducer" style="width:100%">

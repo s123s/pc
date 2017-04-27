@@ -14,7 +14,7 @@ import pc.jackson.View;
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
-@Table(name = "type_hdd")
+@Table(name = "type_ram")
 public class TypeRam {
 	
 
