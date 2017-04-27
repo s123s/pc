@@ -8,9 +8,7 @@ import java.util.HashSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -92,6 +90,11 @@ public class OperationController {
 	
 	
 
+	@RequestMapping(value = "/type_ram")
+	public String listTypeRam(ModelMap model) {
+		model.addAttribute("typeRams", mainService.getTypeRamDao().readAll());
+		return "type_ram";
+	}
 	
 	public void setMainService(MainService mainService) {
 		this.mainService = mainService;

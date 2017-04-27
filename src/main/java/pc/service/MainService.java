@@ -3,13 +3,15 @@ package pc.service;
 import org.springframework.stereotype.Service;
 
 import pc.dao.TypeHddDao;
+import pc.dao.TypeRamDao;
 import pc.dao.WpDao;
 import pc.dao.ProducerDao;
 
 @Service
 public class MainService implements DefaultService {
 
-	
+
+	private TypeRamDao typeRamDao;
 	private TypeHddDao typeHddDao;
 	private WpDao wpDao;
 	private ProducerDao producerDao;
@@ -32,6 +34,12 @@ public class MainService implements DefaultService {
 	}
 	public void setProducerDao(ProducerDao producerDao) {
 		this.producerDao = producerDao;
+	}
+	public TypeRamDao getTypeRamDao() {
+		return typeRamDao;
+	}
+	public void setTypeRamDao(TypeRamDao typeRamDao) {
+		this.typeRamDao = typeRamDao;
 	}
 	
 }
