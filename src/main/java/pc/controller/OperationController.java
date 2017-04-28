@@ -19,6 +19,8 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import pc.jackson.View;
 import pc.model.TypeHdd;
+import pc.model.TypeMother;
+import pc.model.TypeProc;
 import pc.model.TypeRam;
 import pc.service.MainService;
 import pc.service.OperationStatus;
@@ -123,13 +125,66 @@ public class OperationController {
 	@ResponseBody
 	public void deleteTypeRam(@RequestBody TypeRam typeRam) {
 	//	mainService.getTypeHddDao().markDeleted(typeHdd.getIdTypeHdd());
-
-	//	return "redirect:/books";
-				//new OperationStatus(false);
 		mainService.getTypeRamDao().delete(typeRam.getIdTypeRam());
+	}
+
+	
+	@RequestMapping(value = "/type_proc")
+	public String listTypeProc(ModelMap model) {
+		model.addAttribute("typeProcs", mainService.getTypeProcDao().readAll());
+		model.addAttribute("producers", mainService.getProducerDao().readAll());
+		return "type_proc";
+	}
+
+	@RequestMapping(value = "/type_proc/save_edited",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	@JsonView(View.REST.class)
+	public OperationStatus saveEditedProcType(@RequestBody TypeProc typeProc) {
+		return mainService.getTypeProcDao().update(typeProc);
+	}	
+	
+	@RequestMapping(value = "/type_proc/create",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	@JsonView(View.REST.class)
+	public OperationStatus createProcType(@RequestBody TypeProc typeProc) {
+        return mainService.getTypeProcDao().create(typeProc);
+	}	
+	
+	@RequestMapping(value = "/type_proc/delete",  method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public void deleteTypeProc(@RequestBody TypeProc typeProc) {
+	//	mainService.getTypeHddDao().markDeleted(typeHdd.getIdTypeHdd());
+		mainService.getTypeProcDao().delete(typeProc.getIdTypeProc());
 	}
 	
 
+	@RequestMapping(value = "/type_mother")
+	public String listTypeMother(ModelMap model) {
+		model.addAttribute("typeMothers", mainService.getTypeMotherDao().readAll());
+		model.addAttribute("producers", mainService.getProducerDao().readAll());
+		return "type_mother";
+	}
+
+	@RequestMapping(value = "/type_mother/save_edited",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	@JsonView(View.REST.class)
+	public OperationStatus saveEditedMotherType(@RequestBody TypeMother typeMother) {
+		return mainService.getTypeMotherDao().update(typeMother);
+	}	
+	
+	@RequestMapping(value = "/type_mother/create",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	@JsonView(View.REST.class)
+	public OperationStatus createMotherType(@RequestBody TypeMother typeMother) {
+        return mainService.getTypeMotherDao().create(typeMother);
+	}	
+	
+	@RequestMapping(value = "/type_mother/delete",  method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public void deleteTypeMother(@RequestBody TypeMother typeMother) {
+	//	mainService.getTypeHddDao().markDeleted(typeHdd.getIdTypeHdd());
+		mainService.getTypeMotherDao().delete(typeMother.getIdTypeMother());
+	}
 	  
 /*	@RequestMapping(value = "/save_edited",  method = RequestMethod.POST)
 	public String saveEditedBook(@ModelAttribute("book") Book book) {

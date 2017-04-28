@@ -4,20 +4,22 @@ saveNewPosToHTML = function (saveAnswer) {
 	if ( !saveAnswer.successfully ) return;
 	
 	var $tr    = $("#mtab #emptyTr");
-	var idLocal = saveAnswer.retObject.idTypeRam;
-	var idTypeRamSpec = $("#newDialog #idTypeRamSpec").val();
-	var descriptionTypeRamSpec = $("#newDialog #idTypeRamSpec option:selected").text();
-	var capacity = $("#newDialog #capacity")[0].value;
+	var idLocal = saveAnswer.retObject.idTypeProc;
+	var idProducer = $("#newDialog #idProducer").val();
+	var producerShortName = $("#newDialog #idProducer option:selected").text();
+	var model = $("#newDialog #model")[0].value;
+	var socket = $("#newDialog #socket")[0].value;
 	
     var $clone = $tr.clone();
     $clone[0].id = "id"+idLocal;
     $clone.find('.myIndex').text('xxx');
-    $clone.find('.idTypeRam').text(idLocal);
+    $clone.find('.idTypeProc').text(idLocal);
     
-	$clone.find(".idTypeRamSpec").text(idTypeRamSpec);
-	$clone.find(".descriptionTypeRamSpec").text(descriptionTypeRamSpec);
+	$clone.find(".idProducer").text(idProducer);
+	$clone.find(".producerName").text(producerShortName);
 
-    $clone.find('.capacity').text(capacity);
+    $clone.find('.model').text(model);
+    $clone.find('.socket').text(socket);
 	$clone[0].hidden = false;
 
 	$("#mtab").find('tbody')
@@ -27,18 +29,20 @@ saveNewPosToHTML = function (saveAnswer) {
 saveNewPosToDatabase = function (){
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
-	var idTypeRamSpec = $("#newDialog #idTypeRamSpec").val();
-	var descriptionTypeRamSpec = $("#newDialog #idTypeRamSpec option:selected").text();
-	var capacity = $("#newDialog #capacity")[0].value;
+	var idProducer = $("#newDialog #idProducer").val();
+	var producerShortName = $("#newDialog #idProducer option:selected").text();
+	var model = $("#newDialog #model")[0].value;
+	var socket = $("#newDialog #socket")[0].value;
 
 	var json = { 
-				typeRamSpec:{"idTypeRamSpec"		: idTypeRamSpec,
-							"description"		: descriptionTypeRamSpec,
-							},
-				"capacity"	: capacity};
+				producer:{"idProducer"		: idProducer,
+						  "shortname"		: producerShortName,
+						 },
+				"model"		: model, 
+				"socket"	: socket, };
 
 	$.ajax({
-		url: "type_ram/create",
+		url: "type_proc/create",
 	    	 
 	    data: JSON.stringify(json),
 	    contentType: "application/json",
@@ -58,42 +62,48 @@ saveNewPosToDatabase = function (){
 /*Fill dialog window from table node*/
 fillEditDialog = function  (idTr) {
 	$("#editDialog #idTr")[0].value = idTr;
-	var idTypeRam = $("#mtab").find("#"+idTr).find(".idTypeRam").text();
-	var idTypeRamSpec = $("#mtab").find("#"+idTr).find(".idTypeRamSpec").text();
-	var capacity = $("#mtab").find("#"+idTr).find(".capacity").text();
+	var idTypeProc = $("#mtab").find("#"+idTr).find(".idTypeProc").text();
+	var idProducer = $("#mtab").find("#"+idTr).find(".idProducer").text();
+	var model = $("#mtab").find("#"+idTr).find(".model").text();
+	var socket = $("#mtab").find("#"+idTr).find(".socket").text();
 
-	$("#editDialog #id")[0].value = idTypeRam;
-	$("#idTypeRamSpec [value='" +idTypeRamSpec+ "']").attr("selected", "selected");
-	$("#editDialog #capacity")[0].value = capacity;
+	$("#editDialog #id")[0].value = idTypeProc;
+	$("#idProducer [value='" +idProducer+ "']").attr("selected", "selected");
+	$("#editDialog #model")[0].value = model;
+	$("#editDialog #socket")[0].value = socket;
 }
 
 saveEditedPosToHTML = function () {
 	var idTrLocal = $("#editDialog #idTr")[0].value;
-	var idTypeRamSpec = $("#editDialog #idTypeRamSpec").val()
-	var descriptionTypeRamSpec = $("#editDialog #idTypeRamSpec option:selected").text();
-	var capacity = $("#editDialog #capacity")[0].value;
+	var idProducer = $("#editDialog #idProducer").val()
+	var producerShortName = $("#editDialog #idProducer option:selected").text();
+	var model = $("#editDialog #model")[0].value;
+	var socket = $("#editDialog #socket")[0].value;
 
-	$("#mtab").find("#"+idTrLocal).find(".idTypeRamSpec").text(idTypeRamSpec);
-	$("#mtab").find("#"+idTrLocal).find(".descriptionTypeRamSpec").text(descriptionTypeRamSpec);
-	$("#mtab").find("#"+idTrLocal).find(".capacity").text(capacity);
+	$("#mtab").find("#"+idTrLocal).find(".idProducer").text(idProducer);
+	$("#mtab").find("#"+idTrLocal).find(".producerName").text(producerShortName);
+	$("#mtab").find("#"+idTrLocal).find(".model").text(model);
+	$("#mtab").find("#"+idTrLocal).find(".socket").text(socket);
 }
 
 saveEditedPosToDatabase = function (){
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
-	var idTypeRam = $("#editDialog #id")[0].value;
-	var idTypeRamSpec = $("#editDialog #idTypeRamSpec").val();
-	var descriptionTypeRamSpec = $("#editDialog #idTypeRamSpec option:selected").text();
-	var capacity = $("#editDialog #capacity")[0].value;
+	var idTypeProc = $("#editDialog #id")[0].value;
+	var idProducer = $("#editDialog #idProducer").val();
+	var producerShortName = $("#editDialog #idProducer option:selected").text();
+	var model = $("#editDialog #model")[0].value;
+	var socket = $("#editDialog #socket")[0].value;
 
-	var json = { "idTypeRam"	: idTypeRam,
-					typeRamSpec:{"idTypeRamSpec"	: idTypeRamSpec,
-								"description"		: descriptionTypeRamSpec,
-						 		},
-				"capacity"	: capacity};
+	var json = { "idTypeProc"	: idTypeProc,
+				producer:{"idProducer"		: idProducer,
+						  "shortname"		: producerShortName,
+						 },
+				"model"		: model,
+				"socket"	: socket, };
 
 	$.ajax({
-		url: "type_ram/save_edited",
+		url: "type_proc/save_edited",
 	    	 
 	    data: JSON.stringify(json),
 	    contentType: "application/json",
@@ -111,10 +121,10 @@ saveEditedPosToDatabase = function (){
 
 /*Fill dialog window from table node*/
 fillDeleteDialog = function (idTr) {
-	var idTypeRam = $("#mtab").find("#"+idTr).find(".idTypeRam").text();
+	var idTypeProc = $("#mtab").find("#"+idTr).find(".idTypeProc").text();
 
 	$("#deleteDialog #idTr")[0].value = idTr;
-	$("#deleteDialog #id")[0].value = idTypeRam;
+	$("#deleteDialog #id")[0].value = idTypeProc;
 }
 
 removePosFromHTML = function () {
@@ -127,10 +137,10 @@ deleteFromDatabase = function (){
 	var header = $("meta[name='_csrf_header']").attr("content");
 	
 	var idLocal = $("#deleteDialog #id")[0].value
-	var json = { "idTypeRam"	: idLocal };
+	var json = { "idTypeProc"	: idLocal };
 
 	$.ajax({
-		url: "type_ram/delete",
+		url: "type_proc/delete",
 	    	 
 	    data: JSON.stringify(json),
 	    contentType: "application/json",
@@ -146,6 +156,7 @@ deleteFromDatabase = function (){
 		}
     });
 }
+
 
 renumerate = function (idTable) {
 	$("#" + idTable  +" tr").each(function(i){
@@ -164,8 +175,6 @@ createDialogs = function (){
 	});
 	$("#newDialog #newDialogSave").click(function() {
 		saveNewPosToDatabase();
-		//saveNewPosToHTML();
-		//$('#newDialog').dialog('close');
    	});
 
 	/*Edit dialog*/
@@ -177,8 +186,6 @@ createDialogs = function (){
 
 	$("#editDialog #editDialogSave").click(function() {
 		saveEditedPosToDatabase();
-//		saveEditedPosToHTML();
-//		$('#editDialog').dialog('close');
    	});
 
 
@@ -190,9 +197,6 @@ createDialogs = function (){
 	});
 	$("#deleteDialog #deleteDialogOk").click(function() {
 		deleteFromDatabase();
-/*		removePosFromHTML();
-    	renumerate("mtab");
-    	$('#deleteDialog').dialog('close');*/
 	});
 }
 
@@ -201,30 +205,26 @@ initDialogsValidations= function () {
 	$("#newDialogForm").validate({
     	rules:{
     		idTypeRamSpec:{ required: true, },
-			capacity:{ required: true, number: true, }
+			model: {	required: true,	},
+			socket: {	required: true,	},
 		},
         messages:{
-        	idTypeRamSpec:{
-            	required: "Это поле обязательно для заполнения",
-			},
-        	capacity:{ required: "Это поле обязательно для заполнения",
-            			number: "Должно быть число",
-			},
+        	idTypeRamSpec:{ required: "Это поле обязательно для заполнения", },
+			model:{ required: "Это поле обязательно для заполнения", },
+			socket:{ required: "Это поле обязательно для заполнения", },
 		}
 	});
 
 	$("#editDialogForm").validate({
     	rules:{
     		idTypeRamSpec:{ required: true, },
-			capacity:{ required: true, number: true, }
+			model: {	required: true,	},
+			socket: {	required: true,	},
 		},
         messages:{
-        	idTypeRamSpec:{
-            	required: "Это поле обязательно для заполнения",
-			},
-        	capacity:{ required: "Это поле обязательно для заполнения",
-            			number:	"Должно быть число",
-			},
+        	idTypeRamSpec:{ required: "Это поле обязательно для заполнения", },
+			model:{ required: "Это поле обязательно для заполнения", },
+			socket:{ required: "Это поле обязательно для заполнения", },
 		}
 	});
 }

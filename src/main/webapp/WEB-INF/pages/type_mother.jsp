@@ -42,10 +42,10 @@
     <script src="js/bootstrap.min.js"></script>
 
 	<link href="css/main.css" rel="stylesheet" type="text/css"/>
-	<link href="css/type_hdd.css" rel="stylesheet" type="text/css"/>
+<!-- 	<link href="css/type_hdd.css" rel="stylesheet" type="text/css"/> -->
 
 	<script src="js/global.js"></script>
-	<script src="js/type_hdd.js"></script>
+	<script src="js/type_mother.js"></script>
 </head>
 
 <body>
@@ -59,7 +59,7 @@
 
 				<div class="inner">
 					<div class="top">
-                        <h4>Типы винчестеров</h4>
+                      <h4>Типы материнок</h4>
 					</div>
 					<div class="bottom">
 						<a class="newPos"><span class="glyphicon glyphicon-asterisk"></span>&nbsp;Новый тип</a><br>
@@ -69,8 +69,9 @@
 								<tr>
 									<th hidden="true" nowrap>п/п</th>
 									<th class="col-xs-1">ID</th>
-									<th class="col-xs-7">Производитель</th>
-									<th class="col-xs-3">Емкость</th>
+									<th class="col-xs-6">Производитель</th>
+									<th class="col-xs-2">Модель</th>
+									<th class="col-xs-2">Сокет</th>
 									<th class="col-xs-1">Операция</th>
 
 								</tr>
@@ -79,23 +80,25 @@
 
 								<tr id="emptyTr" hidden="true">
 										<td class="myIndex" hidden="true"></td>
-										<td class="idTypeHdd"></td>
+										<td class="idTypeMother"></td>
 										<td class="idProducer" hidden="true">
 										<td class="producerName"></td>
-										<td class="capacity"></td>
+										<td class="model"></td>
+										<td class="socket"></td>
 
 										<td><a class="editPos"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;
 											<a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>
 								</tr>
 									
-								<c:forEach items="${typeHdds}" var="typeHdd" varStatus="st">
+								<c:forEach items="${typeMothers}" var="typeMother" varStatus="st">
 
-									<tr id="id${typeHdd.idTypeHdd}">
+									<tr id="id${typeMother.idTypeMother}">
 										<td class="myIndex" hidden="true">${st.getIndex()+1}</td>
-										<td class="idTypeHdd">${typeHdd.idTypeHdd}</td>
-										<td class="idProducer" hidden="true">${typeHdd.producer.idProducer}</td>
-										<td class="producerName">${typeHdd.producer.shortname}</td>
-										<td class="capacity">${typeHdd.capacity}</td>
+										<td class="idTypeMother">${typeMother.idTypeMother}</td>
+										<td class="idProducer" hidden="true">${typeMother.producer.idProducer}</td>
+										<td class="producerName">${typeMother.producer.shortname}</td>
+										<td class="model">${typeMother.model}</td>
+										<td class="socket">${typeMother.socket}</td>
 
 										<td><a class="editPos"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;
 											<a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>
@@ -125,8 +128,8 @@
 					</c:forEach>
 				</select>
 			</td></tr>
- 			<!-- <tr><td>Производитель</td><td><input type="text" id="producerName" name="producerName"></td></tr> -->
-			<tr><td>Емкость</td><td><input type="text" id="capacity" name="capacity"></td></tr>
+			<tr><td>Модель</td><td><input type="text" id="model" name="model"></td></tr>
+			<tr><td>Сокет</td><td><input type="text" id="socket" name="socket"></td></tr>
 	  </table><br>
 	</form>
 	<button id="editDialogSave" class="ui-button ui-widget ui-corner-all">Сохранить</button>
@@ -143,8 +146,8 @@
 			</select>
 		</td></tr>
 
-		<!--tr><td>Производитель</td><td><input type="text" id="producerName" name="producerName"></td></tr-->
-		<tr><td>Емкость</td><td><input type="text" id="capacity" name="capacity"></td></tr>
+			<tr><td>Модель</td><td><input type="text" id="model" name="model"></td></tr>
+			<tr><td>Сокет</td><td><input type="text" id="socket" name="socket"></td></tr>
 	</table><br>
 	<button id="newDialogSave" class="ui-button ui-widget ui-corner-all">Создать</button>
 </div>

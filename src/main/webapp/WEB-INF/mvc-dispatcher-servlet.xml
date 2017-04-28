@@ -53,6 +53,8 @@
 				<value>pc.model.TypeRam</value>
 				<value>pc.model.TypeRamSpec</value>
 				<value>pc.model.Producer</value>
+				<value>pc.model.TypeProc</value>
+				<value>pc.model.TypeMother</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -82,13 +84,20 @@
 	<bean id="producerDao" class="pc.dao.hibernate.MysqlProducerDaoHibernate">
 		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
 	</bean>
-	
+	<bean id="typeProcDao" class="pc.dao.hibernate.MysqlTypeProcDaoHibernate">
+		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
+	</bean>
+	<bean id="typeMotherDao" class="pc.dao.hibernate.MysqlTypeMotherDaoHibernate">
+		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
+	</bean>	
 	<bean id="mainService" class="pc.service.MainService">
 		<property name="wpDao" ref="wpDao" />
 		<property name="typeHddDao" ref="typeHddDao" />
 		<property name="typeRamDao" ref="typeRamDao" />
 		<property name="typeRamSpecDao" ref="typeRamSpecDao" />
 		<property name="producerDao" ref="producerDao" />
+		<property name="typeProcDao" ref="typeProcDao" />
+		<property name="typeMotherDao" ref="typeMotherDao" />
 	</bean>
 	
 	<tx:annotation-driven transaction-manager="transactionManager" />
