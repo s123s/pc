@@ -235,6 +235,11 @@ public class ControllerHead {
         model.addAttribute("listPrinter", this.printerService.listPrinter());
         return "printers";
     }
+    @RequestMapping("removePrinter/{id}")
+    public String removePrinter(@PathVariable("id") Long id){
+        this.printerService.removePrinter(id);
+        return "redirect:/printers";
+    }
 //User
     @RequestMapping(value="/user")
     public String listUser(Model model){
