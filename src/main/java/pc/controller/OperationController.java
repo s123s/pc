@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import pc.jackson.View;
+import pc.model.Monitor;
 import pc.model.Os;
 import pc.model.Printer;
 import pc.model.TypeHdd;
@@ -25,6 +26,7 @@ import pc.model.TypeMother;
 import pc.model.TypeProc;
 import pc.model.TypeRam;
 import pc.model.Ups;
+import pc.model.User;
 import pc.service.MainService;
 import pc.service.OperationStatus;
 
@@ -273,6 +275,65 @@ public class OperationController {
 	public void deletePrinter(@RequestBody Printer printer) {
 	//	mainService.getTypeHddDao().markDeleted(typeHdd.getIdTypeHdd());
 		mainService.getPrinterDao().delete(printer.getIdPrinter());
+	}
+	
+/*----monitor----*/
+	@RequestMapping(value = "/monitor")
+	public String listMonitor(ModelMap model) {
+		model.addAttribute("monitors", mainService.getMonitorDao().readAll());
+		model.addAttribute("producers", mainService.getProducerDao().readAll());
+		return "monitor";
+	}
+
+	@RequestMapping(value = "/monitor/save_edited",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	@JsonView(View.REST.class)
+	public OperationStatus saveEditedMonitor(@RequestBody Monitor monitor) {
+		return mainService.getMonitorDao().update(monitor);
+	}	
+	
+	@RequestMapping(value = "/monitor/create",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	@JsonView(View.REST.class)
+	public OperationStatus createMonitor(@RequestBody Monitor monitor) {
+        return mainService.getMonitorDao().create(monitor);
+	}	
+	
+	@RequestMapping(value = "/monitor/delete",  method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public void deleteMonitor(@RequestBody Monitor monitor) {
+	//	mainService.getTypeHddDao().markDeleted(typeHdd.getIdTypeHdd());
+		mainService.getMonitorDao().delete(monitor.getIdMonitor());
+	}
+	
+	
+	
+	/*----user----*/
+	@RequestMapping(value = "/user")
+	public String listUser(ModelMap model) {
+		model.addAttribute("users", mainService.getUserDao().readAll());
+		return "user";
+	}
+
+	@RequestMapping(value = "/user/save_edited",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	@JsonView(View.REST.class)
+	public OperationStatus saveEditedUser(@RequestBody User user) {
+		return mainService.getUserDao().update(user);
+	}	
+	
+	@RequestMapping(value = "/user/create",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	@JsonView(View.REST.class)
+	public OperationStatus createUser(@RequestBody User user) {
+        return mainService.getUserDao().create(user);
+	}	
+	
+	@RequestMapping(value = "/user/delete",  method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public void deleteUser(@RequestBody User user) {
+	//	mainService.getTypeHddDao().markDeleted(typeHdd.getIdTypeHdd());
+		mainService.getUserDao().delete(user.getIdUser());
 	}
 /*	@RequestMapping(value = "/save_edited",  method = RequestMethod.POST)
 	public String saveEditedBook(@ModelAttribute("book") Book book) {

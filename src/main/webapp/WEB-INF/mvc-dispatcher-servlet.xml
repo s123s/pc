@@ -58,6 +58,8 @@
 				<value>pc.model.Os</value>
 				<value>pc.model.Ups</value>
 				<value>pc.model.Printer</value>
+				<value>pc.model.Monitor</value>
+				<value>pc.model.User</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -102,6 +104,12 @@
 	<bean id="printerDao" class="pc.dao.hibernate.MysqlPrinterDaoHibernate">
 		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
 	</bean>	
+	<bean id="monitorDao" class="pc.dao.hibernate.MysqlMonitorDaoHibernate">
+		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
+	</bean>	
+	<bean id="userDao" class="pc.dao.hibernate.MysqlUserDaoHibernate">
+		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
+	</bean>	
 	<bean id="mainService" class="pc.service.MainService">
 		<property name="wpDao" ref="wpDao" />
 		<property name="typeHddDao" ref="typeHddDao" />
@@ -113,6 +121,8 @@
 		<property name="osDao" ref="osDao" />
 		<property name="upsDao" ref="upsDao" />
 		<property name="printerDao" ref="printerDao" />
+		<property name="monitorDao" ref="monitorDao" />
+		<property name="userDao" ref="userDao" />
 	</bean>
 	
 	<tx:annotation-driven transaction-manager="transactionManager" />

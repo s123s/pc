@@ -4,17 +4,21 @@ saveNewPosToHTML = function (saveAnswer) {
 	if ( !saveAnswer.successfully ) return;
 	
 	var $tr    = $("#mtab #emptyTr");
-	var idLocal = saveAnswer.retObject.idUps;
-	var invNumber = $("#newDialog #invNumber")[0].value;
-	var model = $("#newDialog #model")[0].value;
+	var idLocal = saveAnswer.retObject.idUser;
+	var position = $("#newDialog #position")[0].value;
+	var name = $("#newDialog #name")[0].value;
+	var login = $("#newDialog #login")[0].value;
+	var mail = $("#newDialog #mail")[0].value;
 	
     var $clone = $tr.clone();
     $clone[0].id = "id"+idLocal;
     $clone.find('.myIndex').text('xxx');
-    $clone.find('.idUps').text(idLocal);
+    $clone.find('.idUser').text(idLocal);
     
-	$clone.find('.invNumber').text(invNumber);
-	$clone.find('.model').text(model);
+	$clone.find('.position').text(position);
+	$clone.find('.name').text(name);
+	$clone.find('.login').text(login);
+	$clone.find('.mail').text(mail);
 	$clone[0].hidden = false;
 
 	$("#mtab").find('tbody')
@@ -24,15 +28,19 @@ saveNewPosToHTML = function (saveAnswer) {
 saveNewPosToDatabase = function (){
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
-	var invNumber = $("#newDialog #invNumber")[0].value;
-	var model = $("#newDialog #model")[0].value;
+	var position = $("#newDialog #position")[0].value;
+	var name = $("#newDialog #name")[0].value;
+	var login = $("#newDialog #login")[0].value;
+	var mail = $("#newDialog #mail")[0].value;
 
 	var json = { 
-				"invNumber"	: invNumber, 
-				"model"		: model, };
+			"position"		: position, 
+			"name"		: name, 
+			"login"		: login, 
+			"mail"		: mail, };
 
 	$.ajax({
-		url: "ups/create",
+		url: "user/create",
 	    	 
 	    data: JSON.stringify(json),
 	    contentType: "application/json",
@@ -52,38 +60,50 @@ saveNewPosToDatabase = function (){
 /*Fill dialog window from table node*/
 fillEditDialog = function  (idTr) {
 	$("#editDialog #idTr")[0].value = idTr;
-	var idUps = $("#mtab").find("#"+idTr).find(".idUps").text();
-	var invNumber = $("#mtab").find("#"+idTr).find(".invNumber").text();
-	var model = $("#mtab").find("#"+idTr).find(".model").text();
+	var idUser = $("#mtab").find("#"+idTr).find(".idUser").text();
+	var position = $("#mtab").find("#"+idTr).find(".position").text();
+	var name = $("#mtab").find("#"+idTr).find(".name").text();
+	var login = $("#mtab").find("#"+idTr).find(".login").text();
+	var mail = $("#mtab").find("#"+idTr).find(".mail").text();
 
-	$("#editDialog #id")[0].value = idUps;
-//	$("#idUps [value='" +idUps+ "']").attr("selected", "selected");
-	$("#editDialog #invNumber")[0].value = invNumber;
-	$("#editDialog #model")[0].value = model;
+	$("#editDialog #id")[0].value = idUser;
+//	$("#idUser [value='" +idUser+ "']").attr("selected", "selected");
+	$("#editDialog #position")[0].value = position;
+	$("#editDialog #name")[0].value = name;
+	$("#editDialog #login")[0].value = login;
+	$("#editDialog #mail")[0].value = mail;
 }
 
 saveEditedPosToHTML = function () {
 	var idTrLocal = $("#editDialog #idTr")[0].value;
-	var invNumber = $("#editDialog #invNumber")[0].value;
-	var model = $("#editDialog #model")[0].value;
-	
-	$("#mtab").find("#"+idTrLocal).find(".invNumber").text(invNumber);
-	$("#mtab").find("#"+idTrLocal).find(".model").text(model);
+	var position = $("#editDialog #position")[0].value;
+	var name = $("#editDialog #name")[0].value;
+	var login = $("#editDialog #login")[0].value;
+	var mail = $("#editDialog #mail")[0].value;
+
+	$("#mtab").find("#"+idTrLocal).find(".position").text(position);
+	$("#mtab").find("#"+idTrLocal).find(".name").text(name);
+	$("#mtab").find("#"+idTrLocal).find(".login").text(login);
+	$("#mtab").find("#"+idTrLocal).find(".mail").text(mail);
 }
 
 saveEditedPosToDatabase = function (){
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
-	var idUps = $("#editDialog #id")[0].value;
-	var invNumber = $("#editDialog #invNumber")[0].value;
-	var model = $("#editDialog #model")[0].value;
+	var idUser = $("#editDialog #id")[0].value;
+	var position = $("#editDialog #position")[0].value;
+	var name = $("#editDialog #name")[0].value;
+	var login = $("#editDialog #login")[0].value;
+	var mail = $("#editDialog #mail")[0].value;
 
-	var json = { "idUps"	: idUps,
-				"invNumber"	: invNumber, 
-				"model"		: model, };
+	var json = { "idUser"	: idUser,
+			"position"		: position,
+			"name"		: name,
+			"login"		: login,
+			"mail"		: mail, };
 
 	$.ajax({
-		url: "ups/save_edited",
+		url: "user/save_edited",
 	    	 
 	    data: JSON.stringify(json),
 	    contentType: "application/json",
@@ -101,10 +121,10 @@ saveEditedPosToDatabase = function (){
 
 /*Fill dialog window from table node*/
 fillDeleteDialog = function (idTr) {
-	var idUps = $("#mtab").find("#"+idTr).find(".idUps").text();
+	var idUser = $("#mtab").find("#"+idTr).find(".idUser").text();
 
 	$("#deleteDialog #idTr")[0].value = idTr;
-	$("#deleteDialog #id")[0].value = idUps;
+	$("#deleteDialog #id")[0].value = idUser;
 }
 
 removePosFromHTML = function () {
@@ -117,10 +137,10 @@ deleteFromDatabase = function (){
 	var header = $("meta[name='_csrf_header']").attr("content");
 	
 	var idLocal = $("#deleteDialog #id")[0].value
-	var json = { "idUps"	: idLocal };
+	var json = { "idUser"	: idLocal };
 
 	$.ajax({
-		url: "ups/delete",
+		url: "user/delete",
 	    	 
 	    data: JSON.stringify(json),
 	    contentType: "application/json",
@@ -184,27 +204,33 @@ createDialogs = function (){
 initDialogsValidations= function () {
 	$("#newDialogForm").validate({
     	rules:{
-    		idUps:{ required: true, },
-			invNumber: {	required: true, number: true	},
-			model: {	required: true,	},
+    		position:	{	required: true,	},
+			name:		{	required: true,	},
+			login:		{	required: true,	},
+			mail:		{	required: true,	},
 		},
         messages:{
-        	idUps:{ required: "Это поле обязательно для заполнения", },
-			invNumber:{ required: "Это поле обязательно для заполнения", number: "Должно быть число", },
-			model:{ required: "Это поле обязательно для заполнения", },
+        	position:{ required: "Это поле обязательно для заполнения", },
+			name:{ required: "Это поле обязательно для заполнения", },
+			login:{ required: "Это поле обязательно для заполнения", },
+			mail:{ required: "Это поле обязательно для заполнения", },
 		}
 	});
 
 	$("#editDialogForm").validate({
     	rules:{
-    		idUps:{ required: true, },
-			invNumber: {	required: true, number: true	},
-			model: {	required: true,	},
+    		idUser:		{	required: true, },
+    		position:	{	required: true,	},
+			name:		{	required: true,	},
+			login:		{	required: true,	},
+			mail:		{	required: true,	},
 		},
         messages:{
-        	idUps:{ required: "Это поле обязательно для заполнения", },
-			invNumber:{ required: "Это поле обязательно для заполнения", number: "Должно быть число", },
-			model:{ required: "Это поле обязательно для заполнения", },
+        	idUser:{ required: "Это поле обязательно для заполнения", },
+        	position:{ required: "Это поле обязательно для заполнения", },
+			name:{ required: "Это поле обязательно для заполнения", },
+			login:{ required: "Это поле обязательно для заполнения", },
+			mail:{ required: "Это поле обязательно для заполнения", },
 		}
 	});
 }

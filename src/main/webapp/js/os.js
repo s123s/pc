@@ -52,7 +52,7 @@ fillEditDialog = function  (idTr) {
 	var name = $("#mtab").find("#"+idTr).find(".name").text();
 
 	$("#editDialog #id")[0].value = idOs;
-	$("#idOs [value='" +idOs+ "']").attr("selected", "selected");
+//	$("#idOs [value='" +idOs+ "']").attr("selected", "selected");
 	$("#editDialog #name")[0].value = name;
 }
 
