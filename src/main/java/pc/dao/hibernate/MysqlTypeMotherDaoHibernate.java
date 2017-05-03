@@ -61,10 +61,10 @@ public class MysqlTypeMotherDaoHibernate implements TypeMotherDao {
 	public void delete(Integer k) {
 		Session session = this.sessionFactory.getCurrentSession();
 		
-		TypeMother typeMother = new TypeMother();
-		typeMother.setIdTypeMother(k);
+		TypeMother o = new TypeMother();
+		o.setIdTypeMother(k);
 	
-		session.delete(typeMother);
+		session.delete(o);
 	}
 	/*
 	@Override

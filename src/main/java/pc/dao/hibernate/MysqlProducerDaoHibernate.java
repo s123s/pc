@@ -64,10 +64,10 @@ public class MysqlProducerDaoHibernate implements ProducerDao {
 	public void delete(Integer k) {
 		Session session = this.sessionFactory.getCurrentSession();
 		
-		Producer producer = new Producer();
-		producer.setIdProducer(k);
+		Producer o = new Producer();
+		o.setIdProducer(k);
 	
-		session.delete(producer);
+		session.delete(o);
 	}
 	/*
 	@Override

@@ -7,12 +7,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
-import pc.dao.TypeProcDao;
-import pc.model.TypeProc;
+import pc.dao.PrinterDao;
+import pc.model.Printer;
 import pc.service.OperationStatus;
 
 
-public class MysqlTypeProcDaoHibernate implements TypeProcDao { 
+public class MysqlPrinterDaoHibernate implements PrinterDao { 
 
 	private SessionFactory sessionFactory;
 
@@ -22,14 +22,14 @@ public class MysqlTypeProcDaoHibernate implements TypeProcDao {
 
 	@Override
 	@Transactional
-	public List<TypeProc> readAll() {
+	public List<Printer> readAll() {
 
 		Session session = this.sessionFactory.getCurrentSession();
-		return session.createQuery("from TypeProc order by idTypeProc").list();
+		return session.createQuery("from Printer order by idPrinter").list();
 	}
 	@Override
 	@Transactional
-	public OperationStatus update(TypeProc o) {
+	public OperationStatus update(Printer o) {
 		Session session = this.sessionFactory.getCurrentSession();
 		try {
 			System.out.println(o.getClass()+ " updating");
@@ -44,7 +44,7 @@ public class MysqlTypeProcDaoHibernate implements TypeProcDao {
 	
 	@Override
 	@Transactional
-	public OperationStatus create(TypeProc o) {
+	public OperationStatus create(Printer o) {
 		Session session = this.sessionFactory.getCurrentSession();
 		try {
 			System.out.println(o.getClass()+ " updating");
@@ -61,8 +61,8 @@ public class MysqlTypeProcDaoHibernate implements TypeProcDao {
 	public void delete(Integer k) {
 		Session session = this.sessionFactory.getCurrentSession();
 		
-		TypeProc o = new TypeProc();
-		o.setIdTypeProc(k);
+		Printer o = new Printer();
+		o.setIdPrinter(k);
 	
 		session.delete(o);
 	}

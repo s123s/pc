@@ -62,10 +62,10 @@ public class MysqlTypeRamDaoHibernate implements TypeRamDao {
 	public void delete(Integer k) {
 		Session session = this.sessionFactory.getCurrentSession();
 		
-		TypeRam typeRam = new TypeRam();
-		typeRam.setIdTypeRam(k);
+		TypeRam o = new TypeRam();
+		o.setIdTypeRam(k);
 	
-		session.delete(typeRam);
+		session.delete(o);
 	}
 	/*
 	@Override

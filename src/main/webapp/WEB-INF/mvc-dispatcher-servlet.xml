@@ -55,6 +55,9 @@
 				<value>pc.model.Producer</value>
 				<value>pc.model.TypeProc</value>
 				<value>pc.model.TypeMother</value>
+				<value>pc.model.Os</value>
+				<value>pc.model.Ups</value>
+				<value>pc.model.Printer</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -90,6 +93,15 @@
 	<bean id="typeMotherDao" class="pc.dao.hibernate.MysqlTypeMotherDaoHibernate">
 		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
 	</bean>	
+	<bean id="osDao" class="pc.dao.hibernate.MysqlOsDaoHibernate">
+		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
+	</bean>	
+	<bean id="upsDao" class="pc.dao.hibernate.MysqlUpsDaoHibernate">
+		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
+	</bean>
+	<bean id="printerDao" class="pc.dao.hibernate.MysqlPrinterDaoHibernate">
+		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
+	</bean>	
 	<bean id="mainService" class="pc.service.MainService">
 		<property name="wpDao" ref="wpDao" />
 		<property name="typeHddDao" ref="typeHddDao" />
@@ -98,6 +110,9 @@
 		<property name="producerDao" ref="producerDao" />
 		<property name="typeProcDao" ref="typeProcDao" />
 		<property name="typeMotherDao" ref="typeMotherDao" />
+		<property name="osDao" ref="osDao" />
+		<property name="upsDao" ref="upsDao" />
+		<property name="printerDao" ref="printerDao" />
 	</bean>
 	
 	<tx:annotation-driven transaction-manager="transactionManager" />

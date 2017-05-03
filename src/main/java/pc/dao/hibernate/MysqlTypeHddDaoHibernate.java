@@ -64,10 +64,10 @@ public class MysqlTypeHddDaoHibernate implements TypeHddDao {
 	public void delete(Integer k) {
 		Session session = this.sessionFactory.getCurrentSession();
 		
-		TypeHdd typeHdd = new TypeHdd();
-		typeHdd.setIdTypeHdd(k);
+		TypeHdd o = new TypeHdd();
+		o.setIdTypeHdd(k);
 	
-		session.delete(typeHdd);
+		session.delete(o);
 	}
 	/*
 	@Override

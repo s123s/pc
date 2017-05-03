@@ -18,10 +18,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import pc.jackson.View;
+import pc.model.Os;
+import pc.model.Printer;
 import pc.model.TypeHdd;
 import pc.model.TypeMother;
 import pc.model.TypeProc;
 import pc.model.TypeRam;
+import pc.model.Ups;
 import pc.service.MainService;
 import pc.service.OperationStatus;
 
@@ -56,7 +59,7 @@ public class OperationController {
 	        return result;
 	    }
 
-
+/*----wp_table----*/
 	@RequestMapping(value = "wp_table")
 	public String listWp(ModelMap model) {
 		/*User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();*/
@@ -75,14 +78,14 @@ public class OperationController {
 	@RequestMapping(value = "/type_hdd/save_edited",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@JsonView(View.REST.class)
-	public OperationStatus saveEditedHddType(@RequestBody TypeHdd typeHdd) {
+	public OperationStatus saveEditedTypeHdd(@RequestBody TypeHdd typeHdd) {
 		return mainService.getTypeHddDao().update(typeHdd);
 	}	
 	
 	@RequestMapping(value = "/type_hdd/create",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@JsonView(View.REST.class)
-	public OperationStatus createHddType(@RequestBody TypeHdd typeHdd) {
+	public OperationStatus createTypeHdd(@RequestBody TypeHdd typeHdd) {
         return mainService.getTypeHddDao().create(typeHdd);
 	}	
 	
@@ -98,26 +101,25 @@ public class OperationController {
 	}
 	
 	
-
+/*----type_ram----*/
 	@RequestMapping(value = "/type_ram")
 	public String listTypeRam(ModelMap model) {
 		model.addAttribute("typeRams", mainService.getTypeRamDao().readAll());
 		model.addAttribute("typeRamSpecs", mainService.getTypeRamSpecDao().readAll());
 		return "type_ram";
 	}
-	
 
 	@RequestMapping(value = "/type_ram/save_edited",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@JsonView(View.REST.class)
-	public OperationStatus saveEditedRamType(@RequestBody TypeRam typeRam) {
+	public OperationStatus saveEditedTypeRam(@RequestBody TypeRam typeRam) {
 		return mainService.getTypeRamDao().update(typeRam);
 	}	
 	
 	@RequestMapping(value = "/type_ram/create",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@JsonView(View.REST.class)
-	public OperationStatus createRamType(@RequestBody TypeRam typeRam) {
+	public OperationStatus createTypeRam(@RequestBody TypeRam typeRam) {
         return mainService.getTypeRamDao().create(typeRam);
 	}	
 	
@@ -129,6 +131,7 @@ public class OperationController {
 	}
 
 	
+/*----type_proc----*/
 	@RequestMapping(value = "/type_proc")
 	public String listTypeProc(ModelMap model) {
 		model.addAttribute("typeProcs", mainService.getTypeProcDao().readAll());
@@ -139,14 +142,14 @@ public class OperationController {
 	@RequestMapping(value = "/type_proc/save_edited",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@JsonView(View.REST.class)
-	public OperationStatus saveEditedProcType(@RequestBody TypeProc typeProc) {
+	public OperationStatus saveEditedTypeProc(@RequestBody TypeProc typeProc) {
 		return mainService.getTypeProcDao().update(typeProc);
 	}	
 	
 	@RequestMapping(value = "/type_proc/create",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@JsonView(View.REST.class)
-	public OperationStatus createProcType(@RequestBody TypeProc typeProc) {
+	public OperationStatus createTypeProc(@RequestBody TypeProc typeProc) {
         return mainService.getTypeProcDao().create(typeProc);
 	}	
 	
@@ -158,6 +161,7 @@ public class OperationController {
 	}
 	
 
+/*----type_mother----*/
 	@RequestMapping(value = "/type_mother")
 	public String listTypeMother(ModelMap model) {
 		model.addAttribute("typeMothers", mainService.getTypeMotherDao().readAll());
@@ -168,14 +172,14 @@ public class OperationController {
 	@RequestMapping(value = "/type_mother/save_edited",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@JsonView(View.REST.class)
-	public OperationStatus saveEditedMotherType(@RequestBody TypeMother typeMother) {
+	public OperationStatus saveEditedTypeMother(@RequestBody TypeMother typeMother) {
 		return mainService.getTypeMotherDao().update(typeMother);
 	}	
 	
 	@RequestMapping(value = "/type_mother/create",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@JsonView(View.REST.class)
-	public OperationStatus createMotherType(@RequestBody TypeMother typeMother) {
+	public OperationStatus createTypeMother(@RequestBody TypeMother typeMother) {
         return mainService.getTypeMotherDao().create(typeMother);
 	}	
 	
@@ -186,6 +190,90 @@ public class OperationController {
 		mainService.getTypeMotherDao().delete(typeMother.getIdTypeMother());
 	}
 	  
+
+/*----OS----*/
+	@RequestMapping(value = "/os")
+	public String listOs(ModelMap model) {
+		model.addAttribute("oss", mainService.getOsDao().readAll());
+		return "os";
+	}
+
+	@RequestMapping(value = "/os/save_edited",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	@JsonView(View.REST.class)
+	public OperationStatus saveEditedOs(@RequestBody Os ups) {
+		return mainService.getOsDao().update(ups);
+	}	
+	
+	@RequestMapping(value = "/os/create",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	@JsonView(View.REST.class)
+	public OperationStatus createOs(@RequestBody Os ups) {
+        return mainService.getOsDao().create(ups);
+	}	
+	
+	@RequestMapping(value = "/os/delete",  method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public void deleteOs(@RequestBody Os ups) {
+	//	mainService.getTypeHddDao().markDeleted(typeHdd.getIdTypeHdd());
+		mainService.getOsDao().delete(ups.getIdOs());
+	}
+
+/*----ups----*/
+	@RequestMapping(value = "/ups")
+	public String listUps(ModelMap model) {
+		model.addAttribute("upss", mainService.getUpsDao().readAll());
+		return "ups";
+	}
+
+	@RequestMapping(value = "/ups/save_edited",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	@JsonView(View.REST.class)
+	public OperationStatus saveEditedUps(@RequestBody Ups ups) {
+		return mainService.getUpsDao().update(ups);
+	}	
+	
+	@RequestMapping(value = "/ups/create",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	@JsonView(View.REST.class)
+	public OperationStatus createUps(@RequestBody Ups ups) {
+        return mainService.getUpsDao().create(ups);
+	}	
+	
+	@RequestMapping(value = "/ups/delete",  method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public void deleteUps(@RequestBody Ups ups) {
+	//	mainService.getTypeHddDao().markDeleted(typeHdd.getIdTypeHdd());
+		mainService.getUpsDao().delete(ups.getIdUps());
+	}
+
+/*----printer----*/
+	@RequestMapping(value = "/printer")
+	public String listPrinter(ModelMap model) {
+		model.addAttribute("printers", mainService.getPrinterDao().readAll());
+		return "printer";
+	}
+
+	@RequestMapping(value = "/printer/save_edited",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	@JsonView(View.REST.class)
+	public OperationStatus saveEditedPrinter(@RequestBody Printer printer) {
+		return mainService.getPrinterDao().update(printer);
+	}	
+	
+	@RequestMapping(value = "/printer/create",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	@JsonView(View.REST.class)
+	public OperationStatus createPrinter(@RequestBody Printer printer) {
+        return mainService.getPrinterDao().create(printer);
+	}	
+	
+	@RequestMapping(value = "/printer/delete",  method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public void deletePrinter(@RequestBody Printer printer) {
+	//	mainService.getTypeHddDao().markDeleted(typeHdd.getIdTypeHdd());
+		mainService.getPrinterDao().delete(printer.getIdPrinter());
+	}
 /*	@RequestMapping(value = "/save_edited",  method = RequestMethod.POST)
 	public String saveEditedBook(@ModelAttribute("book") Book book) {
 		System.out.println("saveEditedBook "+book.getName());

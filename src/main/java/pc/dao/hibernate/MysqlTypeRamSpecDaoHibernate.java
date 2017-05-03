@@ -61,10 +61,10 @@ public class MysqlTypeRamSpecDaoHibernate implements TypeRamSpecDao {
 	public void delete(Integer k) {
 		Session session = this.sessionFactory.getCurrentSession();
 		
-		TypeRamSpec typeRamSpec = new TypeRamSpec();
-		typeRamSpec.setIdTypeRamSpec(k);
+		TypeRamSpec o = new TypeRamSpec();
+		o.setIdTypeRamSpec(k);
 	
-		session.delete(typeRamSpec);
+		session.delete(o);
 	}
 	/*
 	@Override
