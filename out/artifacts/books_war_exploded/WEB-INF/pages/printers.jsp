@@ -97,7 +97,9 @@
                         <%--<td><a href="<c:url value='/edit/${computer.id}'/>">edit</a></td>--%>
                         <%-- <td><a href="<c:url value='/removePrinter/${printer.id}'/>">delete</a></td>--%>
                         <span class="glyphicon glyphicon-pencil"></span></a>&nbsp;
-                        <div class="item"> <a  class="delete"><span class="glyphicon glyphicon-trash"></span></a></div></td>
+                        <div class="item"> <a id="delete${printer.id}" class="delete"><span  class="glyphicon glyphicon-trash"></span></a></div>
+
+                 </td>
             </tr>
         </c:forEach>
     </table>

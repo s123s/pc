@@ -1,10 +1,12 @@
 $(document).ready(function(){
-	
+
 	$('.item .delete').click(function(){
-		
+
+		var s = this.id;
 		var elem = $(this).closest('.item');
-		
-		$.confirm({
+
+        		$.confirm({
+
 			'title'		: /*'Delete Confirmation'*/'Удаление принтера',
 			'message'	: /*'You are about to delete this item. <br />It cannot be restored at a later time! Continue?',*/
 				'Вы уверены что хотите удалить этот принтер.<br /> Вы не сможете восстановить его позже. Продолжить?',
@@ -12,7 +14,8 @@ $(document).ready(function(){
 				/*'Yes'*/'Да'	: {
 					'class'	: 'blue',
 					'action': function(){
-                        document.delete13.submit()
+
+                        document.forms[s].submit();
 						/*elem.slideUp();*/
 					}
 				},
