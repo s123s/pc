@@ -17,7 +17,9 @@ saveNewPosToHTML = function (saveAnswer) {
 	$clone.find(".idProducer").text(idProducer);
 	$clone.find(".producerName").text(producerShortName);
 
-    $clone.find('.capacity').text(capacity);
+	$clone.find('.capacity').text(capacity);
+	$clone.find('.numberOfHdds').text(0);
+    
 	$clone[0].hidden = false;
 
 	$("#mtab").find('tbody')
@@ -191,10 +193,11 @@ createDialogs = function (){
 	$("#deleteDialog #deleteDialogOk").click(function() {
 		deleteFromDatabase();
 /*		removePosFromHTML();
-    	renumerate("mtab");
-    	$('#deleteDialog').dialog('close');*/
+	   	renumerate("mtab");
+	   	$('#deleteDialog').dialog('close');*/
 	});
 }
+
 
 /**Dialogs fields validation*/
 initDialogsValidations= function () {
@@ -243,7 +246,12 @@ initDialogsValidations= function () {
 	});
 }
 
+/**Разрешено удалять?*/
+permitedToDelete = function (idTr) {
+	var numberOfHdds = $("#mtab").find("#"+idTr).find(".haveHdd").text();
+	return (numberOfHdds == 0)? true : false;
 
+}
 /**Dialogs actions registration*/
 registerDialogsActions = function () {
 		//New pos
@@ -262,8 +270,10 @@ registerDialogsActions = function () {
 		//Delete pos
 	$("body").on("click", ".deletePos", function () {
 		var idTr = this.parentNode.parentNode.id;
-		fillDeleteDialog(idTr);		//fill delete_dialog fields from table
-		$('#deleteDialog').dialog('open');
+		if (permitedToDelete(idTr)) {
+			fillDeleteDialog(idTr);		//fill delete_dialog fields from table
+			$('#deleteDialog').dialog('open');
+		}
 	});
 
 }

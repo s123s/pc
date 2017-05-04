@@ -83,6 +83,7 @@
 										<td class="idProducer" hidden="true">
 										<td class="producerName"></td>
 										<td class="capacity"></td>
+										<td class="numberOfHdds"></td>
 
 										<td><a class="editPos"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;
 											<a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>
@@ -96,6 +97,7 @@
 										<td class="idProducer" hidden="true">${typeHdd.producer.idProducer}</td>
 										<td class="producerName">${typeHdd.producer.shortname}</td>
 										<td class="capacity">${typeHdd.capacity}</td>
+										<td class="numberOfHdds">${typeHdd.hdds.size()}</td>
 
 										<td><a class="editPos"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;
 											<a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>

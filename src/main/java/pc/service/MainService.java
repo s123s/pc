@@ -2,6 +2,7 @@ package pc.service;
 
 import org.springframework.stereotype.Service;
 
+import pc.dao.HddDao;
 import pc.dao.MonitorDao;
 import pc.dao.PrinterDao;
 import pc.dao.OsDao;
@@ -31,6 +32,7 @@ public class MainService implements DefaultService {
 	private PrinterDao printerDao;
 	private MonitorDao monitorDao;
 	private UserDao userDao;
+	private HddDao hddDao;
 	
 	public TypeHddDao getTypeHddDao() {
 		return typeHddDao;
@@ -104,6 +106,12 @@ public class MainService implements DefaultService {
 	}
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
+	}
+	public HddDao getHddDao() {
+		return hddDao;
+	}
+	public void setHddDao(HddDao hddDao) {
+		this.hddDao = hddDao;
 	}
 
 }
