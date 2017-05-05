@@ -5,6 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import pc.jackson.View;
@@ -29,9 +32,13 @@ public class Hdd {
 	@Column(name = "id_computer")
 	private Integer idComputer;
 	
-	@Column(name = "id_type_hdd")
-	private Integer idTypeHdd;
-
+//	@Column(name = "id_type_hdd")
+//	private Integer idTypeHdd;
+	@OneToOne
+	@JoinColumn(name="id_type_hdd")
+	private TypeHdd typeHdd;
+	
+	
 	public Integer getIdHdd() {
 		return idHdd;
 	}
@@ -44,15 +51,14 @@ public class Hdd {
 	public void setIdComputer(Integer idComputer) {
 		this.idComputer = idComputer;
 	}
-	public Integer getIdTypeHdd() {
-		return idTypeHdd;
+	public TypeHdd getTypeHdd() {
+		return typeHdd;
 	}
-	public void setIdTypeHdd(Integer idTypeHdd) {
-		this.idTypeHdd = idTypeHdd;
+	public void setTypeHdd(TypeHdd typeHdd) {
+		this.typeHdd = typeHdd;
 	}
-
 	public String toString() {
-		return "{" + idHdd + ", " + idComputer +", " +idTypeHdd + "}";
+		return "{" + idHdd + ", " + idComputer +", {" +typeHdd.getIdTypeHdd() +", " +typeHdd.getCapacity() + " }}";
 	}
 
 }

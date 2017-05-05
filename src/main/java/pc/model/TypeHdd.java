@@ -32,7 +32,7 @@ public class TypeHdd {
     private Producer producer;
 
     /**Нужно для проверки, есть ли ссылающиеся записи*/
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "idTypeHdd")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "typeHdd")
     private Set<Hdd> hdds;
 
 	@Column

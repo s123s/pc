@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import pc.jackson.View;
+import pc.model.Hdd;
 import pc.model.Monitor;
 import pc.model.Os;
 import pc.model.Printer;
@@ -335,6 +336,39 @@ public class OperationController {
 	//	mainService.getTypeHddDao().markDeleted(typeHdd.getIdTypeHdd());
 		mainService.getUserDao().delete(user.getIdUser());
 	}
+	
+	/*----hdd----*/
+	@RequestMapping(value = "/hdd")
+	public String listHdd(ModelMap model) {
+		model.addAttribute("hdds", mainService.getHddDao().readAll());
+		model.addAttribute("typeHdds", mainService.getTypeHddDao().readAll());
+		return "hdd";
+	}
+
+	@RequestMapping(value = "/hdd/save_edited",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	@JsonView(View.REST.class)
+	public OperationStatus saveEditedHdd(@RequestBody Hdd hdd) {
+		return mainService.getHddDao().update(hdd);
+	}	
+	
+	@RequestMapping(value = "/hdd/create",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	@JsonView(View.REST.class)
+	public OperationStatus createHdd(@RequestBody Hdd hdd) {
+        return mainService.getHddDao().create(hdd);
+	}	
+	
+	@RequestMapping(value = "/hdd/delete",  method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public void deleteHdd(@RequestBody Hdd hdd) {
+	//	mainService.getTypeHddDao().markDeleted(typeHdd.getIdTypeHdd());
+		mainService.getHddDao().delete(hdd.getIdHdd());
+	}
+	
+	
+	
+	
 /*	@RequestMapping(value = "/save_edited",  method = RequestMethod.POST)
 	public String saveEditedBook(@ModelAttribute("book") Book book) {
 		System.out.println("saveEditedBook "+book.getName());
