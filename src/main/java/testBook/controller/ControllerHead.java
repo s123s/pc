@@ -235,6 +235,20 @@ public class ControllerHead {
         model.addAttribute("listPrinter", this.printerService.listPrinter());
         return "printers";
     }
+
+    @RequestMapping(value="editPrinter/{id}")
+    public String editPrinter(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("printer", this.printerService.getPrinterById(id));
+       /* System.out.println(this.printerService.getPrinterById(id));*/
+        return "/editPrinter";
+    }
+
+    @RequestMapping(value="/updatePrinter" /*method=RequestMethod.POST*/)
+    public String updatePrinter(@ModelAttribute("printer") Printer printer){
+        this.printerService.updatePrinter(printer);
+        return "redirect:/printers";
+    }
+
     @RequestMapping("removePrinter/{id}")
     public String removePrinter(@PathVariable("id") Long id){
         this.printerService.removePrinter(id);
