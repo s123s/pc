@@ -69,9 +69,10 @@
 								<tr>
 									<th hidden="true" nowrap>п/п</th>
 									<th class="col-xs-1">ID</th>
-									<th class="col-xs-6">Производитель</th>
+									<th class="col-xs-5">Производитель</th>
 									<th class="col-xs-2">Модель</th>
 									<th class="col-xs-2">Сокет</th>
+									<th class="col-xs-1" title="Количество материнок">Кол-во матер.</th>
 									<th class="col-xs-1">Операция</th>
 
 								</tr>
@@ -85,6 +86,7 @@
 										<td class="producerName"></td>
 										<td class="model"></td>
 										<td class="socket"></td>
+										<td class="numberOfMothers"></td>
 
 										<td><a class="editPos"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;
 											<a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>
@@ -99,6 +101,7 @@
 										<td class="producerName">${typeMother.producer.shortname}</td>
 										<td class="model">${typeMother.model}</td>
 										<td class="socket">${typeMother.socket}</td>
+										<td class="numberOfMothers">${typeMother.mothers.size()}</td>
 
 										<td><a class="editPos"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;
 											<a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>
@@ -159,6 +162,6 @@
 	Вы действительно хотите удалить?<br><br>
 	<button  id="deleteDialogOk" class="ui-button ui-widget ui-corner-all">Да</button>
 </div>
-
+<%@include file="include/global.jsp"%>
 </body>
 </html>

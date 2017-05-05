@@ -61,6 +61,9 @@
 				<value>pc.model.Monitor</value>
 				<value>pc.model.User</value>
 				<value>pc.model.Hdd</value>
+				<value>pc.model.Ram</value>
+				<value>pc.model.Processor</value>
+				<value>pc.model.Mother</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -128,6 +131,7 @@
 		<property name="monitorDao" ref="monitorDao" />
 		<property name="userDao" ref="userDao" />
 		<property name="hddDao" ref="hddDao" />
+		<!-- <property name="ramDao" ref="Dao" /> -->
 	</bean>
 	
 	<tx:annotation-driven transaction-manager="transactionManager" />

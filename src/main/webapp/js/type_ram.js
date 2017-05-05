@@ -18,6 +18,7 @@ saveNewPosToHTML = function (saveAnswer) {
 	$clone.find(".descriptionTypeRamSpec").text(descriptionTypeRamSpec);
 
     $clone.find('.capacity').text(capacity);
+	$clone.find('.numberOfRams').text(0);
 	$clone[0].hidden = false;
 
 	$("#mtab").find('tbody')
@@ -229,6 +230,11 @@ initDialogsValidations= function () {
 	});
 }
 
+/**Разрешено удалять?*/
+permitedToDelete = function (idTr) {
+	var numberOfRams = $("#mtab").find("#"+idTr).find(".numberOfRams").text();
+	return (numberOfRams > 0)? false:true;
+}
 
 /**Dialogs actions registration*/
 registerDialogsActions = function () {
@@ -247,8 +253,14 @@ registerDialogsActions = function () {
 		//Delete pos
 	$("body").on("click", ".deletePos", function () {
 		var idTr = this.parentNode.parentNode.id;
-		fillDeleteDialog(idTr);		//fill delete_dialog fields from table
-		$('#deleteDialog').dialog('open');
+		if (permitedToDelete(idTr)) {
+			fillDeleteDialog(idTr);		//fill delete_dialog fields from table
+			$('#deleteDialog').dialog('open');
+		}
+		else {
+			simpleDialogOpen("Сообщение", "Есть планки памяти с таким типом. Удаление невозможно.");
+		}
+
 	});
 
 }

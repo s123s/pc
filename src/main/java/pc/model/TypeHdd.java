@@ -31,8 +31,7 @@ public class TypeHdd {
     @JoinColumn(name = "id_producer")
     private Producer producer;
 
-    /**Нужно для проверки, есть ли ссылающиеся записи
-     * size() == 0 Если нет*/
+    /**Нужно для проверки, есть ли ссылающиеся записи*/
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "idTypeHdd")
     private Set<Hdd> hdds;
 

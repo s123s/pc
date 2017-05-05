@@ -1,12 +1,16 @@
 package pc.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import pc.jackson.View;
@@ -36,7 +40,10 @@ public class TypeMother {
     @JsonView(View.REST.class)
 	private String socket;
 
-
+    /**Нужно для проверки, есть ли ссылающиеся записи*/
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "idTypeMother")
+    private Set<Mother> mothers;
+	
 	public String toString() {
 		return "{" + idTypeMother + ", " + producer.getIdProducer() +", " +producer.getShortname() + ", " + model + ", " + socket + "}";
 	}
@@ -46,9 +53,7 @@ public class TypeMother {
 	}
 	public void setProducer(Producer producer) {
 		this.producer = producer;
-	}
-
-	
+	}	
 	
 	public Integer getIdTypeMother() {
 		return idTypeMother;
@@ -69,5 +74,13 @@ public class TypeMother {
 	}
 	public void setSocket(String socket) {
 		this.socket = socket;
+	}
+
+	public Set<Mother> getMothers() {
+		return mothers;
+	}
+
+	public void setMothers(Set<Mother> mothers) {
+		this.mothers = mothers;
 	}
 }

@@ -1,12 +1,16 @@
 package pc.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import pc.jackson.View;
@@ -35,6 +39,10 @@ public class TypeProc {
 	@Column
     @JsonView(View.REST.class)
 	private String socket;
+	
+    /**Нужно для проверки, есть ли ссылающиеся записи*/
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "idTypeProc")
+    private Set<Processor> processors;
 
 
 	public String toString() {
@@ -68,4 +76,14 @@ public class TypeProc {
 	public void setSocket(String socket) {
 		this.socket = socket;
 	}
+
+	public Set<Processor> getProcessors() {
+		return processors;
+	}
+
+	public void setProcessors(Set<Processor> processors) {
+		this.processors = processors;
+	}
+
+
 }

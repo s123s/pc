@@ -20,6 +20,7 @@ saveNewPosToHTML = function (saveAnswer) {
 
     $clone.find('.model').text(model);
     $clone.find('.socket').text(socket);
+	$clone.find('.numberOfProcs').text(0);
 	$clone[0].hidden = false;
 
 	$("#mtab").find('tbody')
@@ -229,6 +230,11 @@ initDialogsValidations= function () {
 	});
 }
 
+/**Разрешено удалять?*/
+permitedToDelete = function (idTr) {
+	var numberOfProcs = $("#mtab").find("#"+idTr).find(".numberOfProcs").text();
+	return (numberOfProcs > 0)? false:true;
+}
 
 /**Dialogs actions registration*/
 registerDialogsActions = function () {
@@ -247,8 +253,13 @@ registerDialogsActions = function () {
 		//Delete pos
 	$("body").on("click", ".deletePos", function () {
 		var idTr = this.parentNode.parentNode.id;
-		fillDeleteDialog(idTr);		//fill delete_dialog fields from table
-		$('#deleteDialog').dialog('open');
+		if (permitedToDelete(idTr)) {
+			fillDeleteDialog(idTr);		//fill delete_dialog fields from table
+			$('#deleteDialog').dialog('open');
+		}
+		else {
+			simpleDialogOpen("Сообщение", "Есть процессоры с таким типом. Удаление невозможно.");
+		}
 	});
 
 }

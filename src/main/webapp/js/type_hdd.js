@@ -248,8 +248,8 @@ initDialogsValidations= function () {
 
 /**Разрешено удалять?*/
 permitedToDelete = function (idTr) {
-	var numberOfHdds = $("#mtab").find("#"+idTr).find(".haveHdd").text();
-	return (numberOfHdds == 0)? true : false;
+	var numberOfHdds = $("#mtab").find("#"+idTr).find(".numberOfHdds").text();
+	return (numberOfHdds > 0)? false:true;
 
 }
 /**Dialogs actions registration*/
@@ -273,6 +273,9 @@ registerDialogsActions = function () {
 		if (permitedToDelete(idTr)) {
 			fillDeleteDialog(idTr);		//fill delete_dialog fields from table
 			$('#deleteDialog').dialog('open');
+		}
+		else {
+			simpleDialogOpen("Сообщение", "Есть винчестеры с таким типом. Удаление невозможно.");
 		}
 	});
 

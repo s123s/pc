@@ -12,31 +12,27 @@ import pc.jackson.View;
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
-@Table(name = "hdd")
-public class Hdd {
+@Table(name = "mother")
+public class Mother {
 	
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_hdd")
+	@Column(name = "id_mother")
     @JsonView(View.REST.class)
-	private Integer idHdd;
-
-//    @ManyToOne
-//    @JoinColumn(name = "id_computer")
-//    private Computer computer;
+	private Integer idMother;
 
 	@Column(name = "id_computer")
 	private Integer idComputer;
 	
-	@Column(name = "id_type_hdd")
-	private Integer idTypeHdd;
+	@Column(name = "id_type_mother")
+	private Integer idTypeMother;
 
-	public Integer getIdHdd() {
-		return idHdd;
+	public Integer getIdMother() {
+		return idMother;
 	}
-	public void setIdHdd(Integer idHdd) {
-		this.idHdd = idHdd;
+	public void setIdMother(Integer idMother) {
+		this.idMother = idMother;
 	}
 	public Integer getIdComputer() {
 		return idComputer;
@@ -44,15 +40,15 @@ public class Hdd {
 	public void setIdComputer(Integer idComputer) {
 		this.idComputer = idComputer;
 	}
-	public Integer getIdTypeHdd() {
-		return idTypeHdd;
+	public Integer getIdTypeMother() {
+		return idTypeMother;
 	}
-	public void setIdTypeHdd(Integer idTypeHdd) {
-		this.idTypeHdd = idTypeHdd;
+	public void setIdTypeMother(Integer idTypeMother) {
+		this.idTypeMother = idTypeMother;
 	}
 
 	public String toString() {
-		return "{" + idHdd + ", " + idComputer +", " +idTypeHdd + "}";
+		return "{" + idMother + ", " + idComputer +", " +idTypeMother + "}";
 	}
 
 }

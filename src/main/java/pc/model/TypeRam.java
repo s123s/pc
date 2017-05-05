@@ -1,12 +1,16 @@
 package pc.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import pc.jackson.View;
@@ -28,7 +32,13 @@ public class TypeRam {
     @JoinColumn(name = "id_type_ram_spec")
     private TypeRamSpec typeRamSpec;
 
+
+	@Column
 	private Integer capacity;
+	
+    /**Нужно для проверки, есть ли ссылающиеся записи*/
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "idTypeRam")
+    private Set<Ram> rams;
 	
 	public String toString () {
 		return "{" + getIdTypeRam() + ", " + getTypeRamSpec().getIdTypeRamSpec() +", " +getTypeRamSpec().getDescription() +", " +capacity + "}";
@@ -56,6 +66,14 @@ public class TypeRam {
 
 	public void setCapacity(Integer capacity) {
 		this.capacity = capacity;
+	}
+
+	public Set<Ram> getRams() {
+		return rams;
+	}
+
+	public void setRams(Set<Ram> rams) {
+		this.rams = rams;
 	}
 
 

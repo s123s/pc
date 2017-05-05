@@ -70,7 +70,8 @@
 									<th hidden="true" nowrap>п/п</th>
 									<th class="col-xs-1">ID</th>
 									<th class="col-xs-7">Производитель</th>
-									<th class="col-xs-3">Емкость</th>
+									<th class="col-xs-2">Емкость</th>
+									<th class="col-xs-1" title="Количество винчестеров">Кол-во винч.</th>
 									<th class="col-xs-1">Операция</th>
 
 								</tr>
@@ -158,6 +159,6 @@
 	Вы действительно хотите удалить?<br><br>
 	<button  id="deleteDialogOk" class="ui-button ui-widget ui-corner-all">Да</button>
 </div>
-
+<%@include file="include/global.jsp"%>
 </body>
 </html>

@@ -69,8 +69,9 @@
 								<tr>
 									<th hidden="true" nowrap>п/п</th>
 									<th class="col-xs-1">ID</th>
-									<th class="col-xs-7">Тип</th>
+									<th class="col-xs-6">Тип</th>
 									<th class="col-xs-3">Емкость</th>
+									<th class="col-xs-1" title="Количество планок памяти">Кол-во планок</th>
 									<th class="col-xs-1">Операция</th>
 
 								</tr>
@@ -82,6 +83,7 @@
 										<td class="idTypeRam"></td>
 										<td class="descriptionTypeRamSpec"></td>
 										<td class="capacity"></td>
+										<td class="numberOfRams"></td>
 
 										<td><a class="editPos"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;
 											<a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>
@@ -95,6 +97,7 @@
 										<td class="idTypeRamSpec" hidden="true">${typeRam.typeRamSpec.idTypeRamSpec}</td>
 										<td class="descriptionTypeRamSpec">${typeRam.typeRamSpec.description}</td>
 										<td class="capacity">${typeRam.capacity}</td>
+										<td class="numberOfRams">${typeRam.rams.size()}</td>
 
 										<td><a class="editPos"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;
 											<a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>
@@ -153,6 +156,6 @@
 	Вы действительно хотите удалить?<br><br>
 	<button  id="deleteDialogOk" class="ui-button ui-widget ui-corner-all">Да</button>
 </div>
-
+<%@include file="include/global.jsp"%>
 </body>
 </html>
