@@ -64,6 +64,7 @@
 				<value>pc.model.Ram</value>
 				<value>pc.model.Processor</value>
 				<value>pc.model.Mother</value>
+				<value>pc.model.Computer</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

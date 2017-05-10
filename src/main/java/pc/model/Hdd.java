@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -25,40 +26,36 @@ public class Hdd {
     @JsonView(View.REST.class)
 	private Integer idHdd;
 
-//    @ManyToOne
-//    @JoinColumn(name = "id_computer")
-//    private Computer computer;
-
-	@Column(name = "id_computer")
-	private Integer idComputer;
-	
-//	@Column(name = "id_type_hdd")
-//	private Integer idTypeHdd;
-	@OneToOne
-	@JoinColumn(name="id_type_hdd")
+    @ManyToOne
+    @JoinColumn(name = "id_type_hdd")
 	private TypeHdd typeHdd;
+    @ManyToOne
+    @JoinColumn(name = "id_computer")
+	private Computer computer;
 	
-	
-	public Integer getIdHdd() {
-		return idHdd;
+	public String toString() {
+		return "{" + idHdd 
+				+", {" + computer.getIdComputer() +", " + computer.getInvNumber() + computer.getBuhName() + computer.getDomainName() +"},"
+				+", {" +typeHdd.getIdTypeHdd() +", " +typeHdd.getCapacity() + " }}";
 	}
-	public void setIdHdd(Integer idHdd) {
-		this.idHdd = idHdd;
-	}
-	public Integer getIdComputer() {
-		return idComputer;
-	}
-	public void setIdComputer(Integer idComputer) {
-		this.idComputer = idComputer;
-	}
+
 	public TypeHdd getTypeHdd() {
 		return typeHdd;
 	}
 	public void setTypeHdd(TypeHdd typeHdd) {
 		this.typeHdd = typeHdd;
 	}
-	public String toString() {
-		return "{" + idHdd + ", " + idComputer +", {" +typeHdd.getIdTypeHdd() +", " +typeHdd.getCapacity() + " }}";
+	public Computer getComputer() {
+		return computer;
+	}
+	public void setComputer(Computer computer) {
+		this.computer = computer;
+	}
+	public Integer getIdHdd() {
+		return idHdd;
+	}
+	public void setIdHdd(Integer idHdd) {
+		this.idHdd = idHdd;
 	}
 
 }

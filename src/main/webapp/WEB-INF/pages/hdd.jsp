@@ -45,7 +45,7 @@
 	<link href="css/type_hdd.css" rel="stylesheet" type="text/css"/>
 
 	<script src="js/global.js"></script>
-	<script src="js/type_hdd.js"></script>
+	<script src="js/hdd.js"></script>
 </head>
 
 <body>
@@ -69,9 +69,7 @@
 								<tr>
 									<th hidden="true" nowrap>п/п</th>
 									<th class="col-xs-1">ID</th>
-									<th class="col-xs-7">Производитель</th>
-									<th class="col-xs-2">Емкость</th>
-									<th class="col-xs-1" >id_computer</th>
+									<th class="col-xs-10">Модель(произв.+емкость)</th>
 									<th class="col-xs-1">Операция</th>
 
 								</tr>
@@ -80,28 +78,29 @@
 
 								<tr id="emptyTr" hidden="true">
 										<td class="myIndex" hidden="true"></td>
-										<td class="idTypeHdd"></td>
-										<td class="idProducer" hidden="true">
-										<td class="producerName"></td>
-										<td class="capacity"></td>
-										<td class="idComputer"></td>
-
-										<td><a class="editPos"><span class="glyphicon glyphicon-collapse-down"></span></a>&nbsp;
-											<a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>
+										<td class="idHdd"></td>
+										<!-- <td class="idTypeHdd" hidden="true">
+										<td class="invNumber"></td> -->
+										<td><a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>
 								</tr>
 									
-								<c:forEach items="${Hdds}" var="hdd" varStatus="st">
+								<c:forEach items="${hdds}" var="hdd" varStatus="st">
 
 									<tr id="id${hdd.idHdd}">
 										<td class="myIndex" hidden="true">${st.getIndex()+1}</td>
-										<td class="idTypeHdd">${hdd.idHdd}</td>
-										<td class="idProducer" hidden="true">${hdd.typeHdd.producer.idProducer}</td>
-										<td class="producerName">${hdd.typeHdd.producer.shortname}</td>
-										<td class="capacity">${hdd.typeHdd.capacity}</td>
-										<td class="idComputer">${hdd.idComputer}</td>
-
-										<td><a class="editPos"><span class="glyphicon glyphicon glyphicon-collapse-down"></span></a>&nbsp;
-											<a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>
+										<td class="idHdd">${hdd.idHdd}</td>
+<%-- 										<td class="idTypeHdd" hidden="true">${hdd.idHdd}</td> --%>
+										<td class="idTypeHdd">
+											<select id="idTypeHdd">
+											  <option value="Slower">Slower</option>
+											  <option value="Slow">Slow</option>
+											  <option value="Medium" selected>Medium</option>
+											  <option value="Fast">Fast</option>
+											  <option value="Faster">Faster</option>
+											</select>
+										</td>
+										
+										<td><a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>
 									</tr>
 
 								</c:forEach>
@@ -114,7 +113,8 @@
 		</div>
 	</div>
 
-<div id="editDialog" title="Редактирование винчестера" class="dialogWindow" hidden=true>
+
+<%-- <div id="editDialog" title="Редактирование винчестера" class="dialogWindow" hidden=true>
 	<form id="editDialogForm" action="" method="post">
 	  <table>
 	  		<tr hidden="true"><td><input type="text"  id="idTr"></td></tr>
@@ -133,7 +133,7 @@
 	  </table><br>
 	</form>
 	<button id="editDialogSave" class="ui-button ui-widget ui-corner-all">Сохранить</button>
-</div>
+</div> --%>
 
 <div id="newDialog" title="Новый винчестер" class="dialogWindow" hidden=true>
 	<table>
