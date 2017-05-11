@@ -287,7 +287,21 @@ thisPageInit = function () {
 	initDialogsValidations ();
 	registerDialogsActions ();
 	
-	$("#idTypeHdd").selectmenu();
+	$(".idTypeHdd select").selectmenu();
+	 
+  
+	    
+	$( ".idTypeHdd select" ).on( "selectmenuopen", function( event, ui ) {
+		var options = []; 
+	    for (i = 10; i <21 ; i++) {
+	        options.push("<option value='" + i + "'>" + "str_"+ i+ "</option>");
+	    }
+	    //append after populating all options
+	    $('.idTypeHdd select')
+	        .append(options.join(""));
+	    $('.idTypeHdd select').selectmenu("refresh");
+		} );
+		
 }
 
 $(function() {

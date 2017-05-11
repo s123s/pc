@@ -1,5 +1,6 @@
 package pc.controller;
 
+import java.util.List;
 import java.util.Random;
 import java.util.Date;
 
@@ -365,7 +366,13 @@ public class OperationController {
 	}
 	
 	
-	
+	/*---Get list free type_hdd----*/
+	@RequestMapping(value = "/type_hdd/list_free_type_hdd",  method = RequestMethod.get, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	@JsonView(View.REST.class)
+	public List<TypeHdd> listFreeTypeHdd() {
+		return mainService.getTypeHddDao().readAllFreeRows();
+	}	
 	
 /*	@RequestMapping(value = "/save_edited",  method = RequestMethod.POST)
 	public String saveEditedBook(@ModelAttribute("book") Book book) {

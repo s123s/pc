@@ -89,8 +89,14 @@
 									<tr id="id${hdd.idHdd}">
 										<td class="myIndex" hidden="true">${st.getIndex()+1}</td>
 										<td class="idHdd">${hdd.idHdd}</td>
-<%-- 										<td class="idTypeHdd" hidden="true">${hdd.idHdd}</td> --%>
-										<td class="idTypeHdd">
+ 										<td class="idTypeHdd" style="width:100%">
+ 											<select>
+ 												<option value="${hdd.typeHdd.idTypeHdd}">${hdd.typeHdd.producer.shortname},&nbsp;${hdd.typeHdd.capacity},&nbsp;${hdd.computer.invNumber} </option>
+											</select>
+										</td>
+ 										${hdd.idHdd}
+ 										</td> 
+										<!-- <td class="idTypeHdd">
 											<select id="idTypeHdd">
 											  <option value="Slower">Slower</option>
 											  <option value="Slow">Slow</option>
@@ -98,7 +104,7 @@
 											  <option value="Fast">Fast</option>
 											  <option value="Faster">Faster</option>
 											</select>
-										</td>
+										</td> -->
 										
 										<td><a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>
 									</tr>

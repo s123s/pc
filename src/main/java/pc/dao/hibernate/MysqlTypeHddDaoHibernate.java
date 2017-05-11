@@ -1,5 +1,6 @@
 package pc.dao.hibernate;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -30,6 +31,20 @@ public class MysqlTypeHddDaoHibernate implements TypeHddDao {
 		Session session = this.sessionFactory.getCurrentSession();
 		return session.createQuery("from TypeHdd order by idTypeHdd").list();
 	}
+
+	public List<TypeHdd> readAllFreeRows() {
+		List<TypeHdd> rows = readAll();
+
+		for (Iterator<TypeHdd> iter = rows.iterator(); iter.hasNext(); ) {
+			TypeHdd typeHdd = iter.next();
+		    if (typeHdd.getHdds().size() != 0)  {
+		        iter.remove();
+		    }
+		}
+		return rows;
+	}
+
+	
 	@Override
 	@Transactional
 	public OperationStatus update(TypeHdd o) {
@@ -43,7 +58,6 @@ public class MysqlTypeHddDaoHibernate implements TypeHddDao {
 			return new OperationStatus(false);
 		}
 	}
-	
 	
 	@Override
 	@Transactional
