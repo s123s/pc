@@ -300,7 +300,29 @@ thisPageInit = function () {
 	    //append after populating all options
 	    $('.idTypeHdd select')
 	        .append(options.join(""));
-	    $('.idTypeHdd select').selectmenu("refresh");
+	   /* 
+	    $.when( $.ajax( "type_hdd/list_free_type_hdd" ) ).then(
+	    		function( data, textStatus, jqXHR ) {
+	    	  		$('.idTypeHdd select').selectmenu("refresh");
+	    		});
+	    */
+	    
+		$.ajax({
+			url: "type_hdd/list_free_type_hdd",
+		    	 
+		    data: JSON.stringify(json),
+		    contentType: "application/json",
+		   	type: "post",
+
+		    beforeSend: function(xhr) {
+		        xhr.setRequestHeader(header, token);
+		    },
+			success: function() {
+				$('.idTypeHdd select').selectmenu("refresh");
+			}
+	    });
+
+	    //$('.idTypeHdd select').selectmenu("refresh");
 	    
 /*	    event.preventDefault();
 		return true;*/
