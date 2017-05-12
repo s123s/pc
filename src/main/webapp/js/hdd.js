@@ -292,6 +292,7 @@ thisPageInit = function () {
   
 	    
 	$( ".idTypeHdd select" ).on( "selectmenuopen", function( event, ui ) {
+		
 		var options = []; 
 	    for (i = 10; i <21 ; i++) {
 	        options.push("<option value='" + i + "'>" + "str_"+ i+ "</option>");
@@ -300,8 +301,11 @@ thisPageInit = function () {
 	    $('.idTypeHdd select')
 	        .append(options.join(""));
 	    $('.idTypeHdd select').selectmenu("refresh");
-		} );
-		
+	    
+/*	    event.preventDefault();
+		return true;*/
+	} );
+    	
 }
 
 $(function() {

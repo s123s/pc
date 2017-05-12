@@ -367,7 +367,7 @@ public class OperationController {
 	
 	
 	/*---Get list free type_hdd----*/
-	@RequestMapping(value = "/type_hdd/list_free_type_hdd",  method = RequestMethod.get, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/type_hdd/list_free_type_hdd",  method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@JsonView(View.REST.class)
 	public List<TypeHdd> listFreeTypeHdd() {
