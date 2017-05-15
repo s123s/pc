@@ -14,14 +14,15 @@ public class Tmother {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="id_producer")
-    private Long producer;
+    @ManyToOne(cascade = {CascadeType.ALL}, fetch=FetchType.EAGER)
+    @JoinColumn(name = "id_producer")
+    private Producer producer;
 
-    public Long getProducer() {
+    public Producer getProducer() {
         return producer;
     }
 
-    public void setProducer(Long producer) {
+    public void setProducer(Producer producer) {
         this.producer = producer;
     }
 
@@ -33,6 +34,7 @@ public class Tmother {
 
     public Tmother(){}
     public Tmother(String model, Long socket){
+        this.producer = producer;
         this.model = model;
         this.socket = socket;
     }

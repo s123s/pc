@@ -47,15 +47,17 @@
             <th>
                 id
             </th>
-
             <th>
-                model
+               Inv Number
             </th>
             <th>
-                socket
+                Model
             </th>
             <th>
-                Delete
+                Socket
+            </th>
+            <th>
+               Operation
             </th>
         </tr>
         </thead>
@@ -66,11 +68,23 @@
                 <td>${tproc.model}</td>
                 <td>${tproc.socket}</td>
                <%--<td><a href="<c:url value='/edit/${computer.id}'/>">edit</a></td>--%>
-                <td><a href="<c:url value='/removeProcessor/${tproc.id}'/>">delete</a></td>
+                <td><%--<a href="<c:url value='/removeProcessor/${tproc.id}'/>">delete</a>--%>
+                    <form action="/removeProcessor/${tproc.id}" name="delete${tproc.id}" hidden="true" method="post">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                        <input type="submit">
+                    </form>
+                        <%--<td><a href="<c:url value='/edit/${computer.id}'/>">edit</a></td>--%>
+                        <%-- <td><a href="<c:url value='/removePrinter/${printer.id}'/>">delete</a></td>--%>
+                    <a  href="<c:url value='/editProcessor/${tproc.id}'/>"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;
+                    <div class="item"> <a id="delete${tproc.id}" class="delete"><span  class="glyphicon glyphicon-trash"></span></a></div>
+
+                </td>
             </tr>
         </c:forEach>
     </table>
 </div>
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<script src="jq/jquery.confirm/jquery.confirm.js"></script>
+<script src="jq/js/script.js"></script>
 </body>
 </html>

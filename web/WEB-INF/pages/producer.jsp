@@ -13,6 +13,13 @@
 <head>
     <title>Producer</title>
     <link href="<c:url value="/css/bootstrap.css" />" rel="stylesheet">
+    <meta name="_csrf" content="${_csrf.token}"/>
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
+
+    <link href="<c:url value="/css/bootstrap.css" />" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Cuprum&subset=latin' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="jq/jquery.confirm/jquery.confirm.css" />
+
 </head>
 <body>
 <div class ="container" <%--hidden="false"--%>>
@@ -46,13 +53,11 @@
             </th>
 
             <th>
-                name
+                Name
             </th>
-                        <%-- <th>
-                 Edit
-             </th>--%>
-            <th>
-                Delete
+
+            <th nowrap>
+               Operation
             </th>
         </tr>
         </thead>
@@ -62,11 +67,22 @@
                 <td>${producer.name}</td>
 
                     <%--<td><a href="<c:url value='/edit/${computer.id}'/>">edit</a></td>--%>
-                <td><a href="<c:url value='/removeProducer/${producer.id}'/>">delete</a></td>
+                <td><%--<a href="<c:url value='/removeProducer/${producer.id}'/>">delete</a>--%>
+                    <form action="/removeProducer/${producer.id}" name="delete${producer.id}" hidden="true" method="post">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                        <input type="submit">
+                    </form>
+                    <a  href="<c:url value='/editProducer/${producer.id}'/>"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;
+                    <div class="item"> <a id="delete${producer.id}" class="delete"><span  class="glyphicon glyphicon-trash"></span></a></div>
+
+                </td>
             </tr>
         </c:forEach>
     </table>
 </div>
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<script src="jq/jquery.confirm/jquery.confirm.js"></script>
+<script src="jq/js/script.js"></script>
 </body>
 </html>

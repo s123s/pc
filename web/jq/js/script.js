@@ -7,9 +7,9 @@ $(document).ready(function(){
 
         		$.confirm({
 
-			'title'		: /*'Delete Confirmation'*/'Удаление принтера',
+			'title'		: /*'Delete Confirmation'*/'Удаление объекта',
 			'message'	: /*'You are about to delete this item. <br />It cannot be restored at a later time! Continue?',*/
-				'Вы уверены что хотите удалить этот принтер.<br /> Вы не сможете восстановить его позже. Продолжить?',
+				'Вы уверены что хотите удалить этот объект.<br /> Вы не сможете восстановить его позже. Продолжить?',
 			'buttons'	: {
 				/*'Yes'*/'Да'	: {
 					'class'	: 'blue',

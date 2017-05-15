@@ -13,6 +13,12 @@
 <head>
     <title>Monitor</title>
     <link href="<c:url value="/css/bootstrap.css" />" rel="stylesheet">
+    <meta name="_csrf" content="${_csrf.token}"/>
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
+
+    <link href="<c:url value="/css/bootstrap.css" />" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Cuprum&subset=latin' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="jq/jquery.confirm/jquery.confirm.css" />
 </head>
 <body>
 </br>
@@ -72,8 +78,8 @@
             <%-- <th>
                  Edit
              </th>--%>
-            <th>
-                Delete
+            <th nowrap>
+               Operation
             </th>
         </tr>
         </thead>
@@ -85,10 +91,23 @@
                 <td>${monitor.model}</td>
                 <td>${monitor.size}</td>
                     <%--<td><a href="<c:url value='/edit/${computer.id}'/>">edit</a></td>--%>
-                <td><a href="<c:url value='/removemonitor/${monitor.id}'/>">delete</a></td>
+                <td><%--<a href="<c:url value='/removemonitor/${monitor.id}'/>">delete</a>--%>
+                    <form action="/removeMonitor/${monitor.id}" name="delete${monitor.id}" hidden="true" method="post">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                        <input type="submit">
+                    </form>
+                        <%--<td><a href="<c:url value='/edit/${computer.id}'/>">edit</a></td>--%>
+                        <%-- <td><a href="<c:url value='/removePrinter/${printer.id}'/>">delete</a></td>--%>
+                    <a  href="<c:url value='/editMonitor/${monitor.id}'/>"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;
+                    <div class="item"> <a id="delete${monitor.id}" class="delete"><span  class="glyphicon glyphicon-trash"></span></a></div>
+
+                </td>
             </tr>
         </c:forEach>
     </table>
 </div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<script src="jq/jquery.confirm/jquery.confirm.js"></script>
+<script src="jq/js/script.js"></script>
 </body>
 </html>

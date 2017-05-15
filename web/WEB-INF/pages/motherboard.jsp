@@ -13,6 +13,13 @@
 <head>
     <title>Motherboard Type</title>
     <link href="<c:url value="/css/bootstrap.css" />" rel="stylesheet">
+    <meta name="_csrf" content="${_csrf.token}"/>
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
+
+    <link href="<c:url value="/css/bootstrap.css" />" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Cuprum&subset=latin' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="jq/jquery.confirm/jquery.confirm.css" />
+
 </head>
 <body>
 </br>
@@ -21,6 +28,21 @@
 
     <form name="add" action="/addMotherboard">
 
+       <%-- <div class="form-group">
+            <label for="producer"> Производитель </label>
+            <p><select id = "producer" name="producer" size="1">
+                <option disabled>Выберите производителя</option>
+                <c:forEach items="${listProducer}" var="producer">
+                    <option>${producer.id}</option>
+                </c:forEach>
+            </select>
+            </p>
+        </div>
+--%>
+           <div class="form-group">
+               <label for="producer"> Producer</label>
+               <input type="input" name= "producer" id="producer" value="${producer.id}"class="form-control">
+           </div>
 
         <div class="form-group">
             <label for="model"> Model</label>
@@ -47,30 +69,45 @@
             <th>
                 id
             </th>
-
+            <th>
+                Producer
+            </th>
             <th>
                 model
             </th>
             <th>
                 socket
             </th>
-            <th>
-                Delete
+            <th nowrap>
+               Operation
             </th>
         </tr>
         </thead>
         <c:forEach items="${listTmother}" var="tmother">
             <tr>
                 <td>${tmother.id}</td>
-                <td>${tmother.producer}</td>
+                <td>${tmother.producer.name}</td>
                 <td>${tmother.model}</td>
                 <td>${tmother.socket}</td>
                     <%--<td><a href="<c:url value='/edit/${computer.id}'/>">edit</a></td>--%>
-                <td><a href="<c:url value='/removeMotherboard/${tmother.id}'/>">delete</a></td>
+                <td><%--<a href="<c:url value='/removeMotherboard/${tmother.id}'/>">delete</a>--%><
+                    <form action="/removeMotherboard/${tmother.id}" name="delete${tmother.id}" hidden="true" method="post">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                        <input type="submit">
+                    </form>
+                        <%--<td><a href="<c:url value='/edit/${computer.id}'/>">edit</a></td>--%>
+                        <%-- <td><a href="<c:url value='/removePrinter/${printer.id}'/>">delete</a></td>--%>
+                    <a  href="<c:url value='/editTmother/${tmother.id}'/>"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;
+                    <div class="item"> <a id="delete${tmother.id}" class="delete"><span  class="glyphicon glyphicon-trash"></span></a></div>
+
+                    </td>
             </tr>
         </c:forEach>
     </table>
 </div>
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<script src="jq/jquery.confirm/jquery.confirm.js"></script>
+<script src="jq/js/script.js"></script>
 </body>
 </html>

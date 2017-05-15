@@ -12,6 +12,7 @@ public class Producer {
 
     @Id
     @Column(name = "id_producer")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     @Column(name="shortname")

@@ -106,6 +106,7 @@ public class ControllerHead {
         this.computerService = computerService;
     }
 
+    //Producer
     @RequestMapping(value="/producer")
     public String listProducer(Model model){
         model.addAttribute("producer", new Producer());
@@ -124,8 +125,21 @@ public class ControllerHead {
         this.producerService.removeProducer(id);
         return "redirect:/producer";
     }
+    @RequestMapping(value="editProducer/{id}")
+    public String editProducer(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("producer", this.producerService.getProducerById(id));
+       /* System.out.println(this.printerService.getPrinterById(id));*/
+        return "/editProducer";
+    }
+
+    @RequestMapping(value="/updateProducer" /*method=RequestMethod.POST*/)
+    public String updateProducer(@ModelAttribute("producer") Producer producer){
+        this.producerService.updateProducer(producer);
+        return "redirect:/producer";
+    }
 
 
+//ram
     @RequestMapping(value="/ram")
     public String listRsm(Model model){
         model.addAttribute("tram", new Tram());
@@ -167,7 +181,8 @@ public class ControllerHead {
 
     @RequestMapping(value="/motherboard")
     public String listMotherboard(Model model){
-        model.addAttribute("tmother", new Tproc());
+        model.addAttribute("listProducer", this.producerService.listProducer());
+        model.addAttribute("tmother", new Tmother());
         model.addAttribute("listTmother", this.tmotherService.listTmother());
         return "motherboard";
     }
@@ -176,14 +191,26 @@ public class ControllerHead {
     public String addMotherboard(@ModelAttribute("tmother") Tmother tmother, Model model) {
         this.tmotherService.addTmother(tmother);
         model.addAttribute("listTmother", this.tmotherService.listTmother());
-        return "motherboard";
+        return "redirect:/motherboard";
     }
     @RequestMapping("removeMotherboard/{id}")
     public String removeMotherboard(@PathVariable("id") Long id){
         this.tmotherService.removeTmother(id);
         return "redirect:/motherboard";
     }
+    @RequestMapping(value="editMotherboard/{id}")
+    public String editMotherboard(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("tmother", this.tmotherService.getTmotherById(id));
+         return "/editTmother";
+    }
 
+    @RequestMapping(value="/updateMotherboard" /*method=RequestMethod.POST*/)
+    public String updateMotherboard(@ModelAttribute("tmother") Tmother tmother){
+        this.tmotherService.updateTmother(tmother);
+        return "redirect:/motherboard";
+    }
+
+//Processor
     @RequestMapping(value="/processor")
     public String listProcessor(Model model){
         model.addAttribute("tproc", new Tproc());
@@ -202,7 +229,19 @@ public class ControllerHead {
         this.tprocService.removeTproc(id);
         return "redirect:/processor";
     }
+    @RequestMapping(value="editProcessor/{id}")
+    public String editProcessor(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("tproc", this.tprocService.getTprocById(id));
+       /* System.out.println(this.printerService.getPrinterById(id));*/
+        return "/editProcessor";
+    }
 
+    @RequestMapping(value="/updateProcessor" /*method=RequestMethod.POST*/)
+    public String updateProcessor(@ModelAttribute("tproc") Tproc tProc){
+        this.tprocService.updateTproc(tProc);
+        return "redirect:/processor";
+    }
+//Workplace
     @RequestMapping(value="/workplace")
     public String listWorkplace(Model model){
         model.addAttribute("workplace", new Workplace());
@@ -221,6 +260,23 @@ public class ControllerHead {
         this.upsService.addUps(ups);
         model.addAttribute("listUps", this.upsService.listUps());
         return "ups";
+    }
+    @RequestMapping(value="editUps/{id}")
+    public String editUps(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("ups", this.upsService.getUpsById(id));
+       /* System.out.println(this.printerService.getPrinterById(id));*/
+        return "/editUps";
+    }
+
+    @RequestMapping(value="/updateUps" /*method=RequestMethod.POST*/)
+    public String updateUps(@ModelAttribute("ups") Ups ups){
+        this.upsService.updateUps(ups);
+        return "redirect:/ups";
+    }
+    @RequestMapping("removeUps/{id}")
+    public String removeUps(@PathVariable("id") Long id){
+        this.upsService.removeUps(id);
+        return "redirect:/ups";
     }
 //Printer
     @RequestMapping(value="/printers")
@@ -267,11 +323,23 @@ public class ControllerHead {
         model.addAttribute("listUser", this.userService.listUser());
         return "user";
     }
-    @RequestMapping("removeuser/{id}")
+    @RequestMapping("removeUser/{id}")
     public String removeUser(@PathVariable("id") Long id){
         this.userService.removeUser(id);
         return "redirect:/user";
     }
+    @RequestMapping(value="editUser/{id}")
+    public String editUser(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("user", this.userService.getUserById(id));
+        return "/editUser";
+    }
+
+    @RequestMapping(value="/updateUser" /*method=RequestMethod.POST*/)
+    public String updateUser(@ModelAttribute("user") User user){
+        this.userService.updateUser(user);
+        return "redirect:/user";
+    }
+
      //Monitor
      @RequestMapping(value="/monitor")
      public String listMonitor(Model model){
@@ -286,9 +354,20 @@ public class ControllerHead {
         model.addAttribute("listMonitor", this.monitorService.listMonitor());
         return "monitor";
     }
-    @RequestMapping("removemonitor/{id}")
+    @RequestMapping("removeMonitor/{id}")
     public String removeMonitor(@PathVariable("id") Long id){
         this.monitorService.removeMonitor(id);
+        return "redirect:/monitor";
+    }
+    @RequestMapping(value="editMonitor/{id}")
+    public String editMonitor(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("monitor", this.monitorService.getMonitorById(id));
+        return "/editMonitor";
+    }
+
+    @RequestMapping(value="/updateMonitor" /*method=RequestMethod.POST*/)
+    public String updateMonitor(@ModelAttribute("monitor") Monitor monitor){
+        this.monitorService.updateMonitor(monitor);
         return "redirect:/monitor";
     }
     //Computer
@@ -341,8 +420,9 @@ public class ControllerHead {
         this.computerService.updateComputer(computer);
         return "redirect:/computer";
     }*/
-//Security
 
+
+//Security
     @RequestMapping(value="/login")
     public String login() {
         return "login";

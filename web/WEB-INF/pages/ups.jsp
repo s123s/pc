@@ -13,6 +13,14 @@
 <head>
     <title>Ups</title>
     <link href="<c:url value="/css/bootstrap.css" />" rel="stylesheet">
+    <meta name="_csrf" content="${_csrf.token}"/>
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
+
+    <link href="<c:url value="/css/bootstrap.css" />" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Cuprum&subset=latin' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="jq/jquery.confirm/jquery.confirm.css" />
+
+
 </head>
 <body>
 </br>
@@ -58,7 +66,7 @@
                  Edit
              </th>--%>
             <th>
-                Delete
+               Operation
             </th>
         </tr>
         </thead>
@@ -68,14 +76,26 @@
                 <td>${ups.invNumber}</td>
                 <td>${ups.model}</td>
                     <%--<td><a href="<c:url value='/edit/${computer.id}'/>">edit</a></td>--%>
-                <td><a href="<c:url value='/remove/${ups.id}'/>">delete</a></td>
+                <td><%--<a href="<c:url value='/remove/${ups.id}'/>">delete</a>--%>
+                    <form action="/removeUps/${ups.id}" name="delete${ups.id}" hidden="true" method="post">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                        <input type="submit">
+                    </form>
+                        <%--<td><a href="<c:url value='/edit/${computer.id}'/>">edit</a></td>--%>
+                        <%-- <td><a href="<c:url value='/removePrinter/${printer.id}'/>">delete</a></td>--%>
+                    <a  href="<c:url value='/editUps/${ups.id}'/>"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;
+                    <div class="item"> <a id="delete${ups.id}" class="delete"><span  class="glyphicon glyphicon-trash"></span></a></div>
+
+                </td>
             </tr>
         </c:forEach>
     </table>
 </div>
 
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<script src="jq/jquery.confirm/jquery.confirm.js"></script>
+<script src="jq/js/script.js"></script>
 </body>
 </html>
 
-</html>
+
