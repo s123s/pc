@@ -94,9 +94,8 @@
  												<option value="${hdd.typeHdd.idTypeHdd}">${hdd.typeHdd.producer.shortname},&nbsp;${hdd.typeHdd.capacity},&nbsp;${hdd.computer.invNumber} </option>
 											</select>
 										</td>
- 										${hdd.idHdd}
- 										</td> 
-										<!-- <td class="idTypeHdd">
+ 										
+ 										<!-- <td class="idTypeHdd">
 											<select id="idTypeHdd">
 											  <option value="Slower">Slower</option>
 											  <option value="Slow">Slow</option>

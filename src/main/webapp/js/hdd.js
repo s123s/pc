@@ -298,8 +298,9 @@ thisPageInit = function () {
 	        options.push("<option value='" + i + "'>" + "str_"+ i+ "</option>");
 	    }
 	    //append after populating all options
-	    $('.idTypeHdd select')
-	        .append(options.join(""));
+	    //$('.idTypeHdd select')
+	    this.append(options.join(""));
+	    this.selectmenu("refresh");
 	   /* 
 	    $.when( $.ajax( "type_hdd/list_free_type_hdd" ) ).then(
 	    		function( data, textStatus, jqXHR ) {
