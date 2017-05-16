@@ -223,28 +223,6 @@ initDialogsValidations= function () {
 			},
 		}
 	});
-
-	$("#editDialogForm").validate({
-    	rules:{
-    		idProducer:{
-            	required: true,
-			},
-			capacity:{
-				required: true,
-				number: true,
-			}
-
-		},
-        messages:{
-        	idProducer:{
-            	required: "Это поле обязательно для заполнения",
-			},
-        	capacity:{
-            	required: "Это поле обязательно для заполнения",
-            	number:	"Должно быть число",
-			},
-		}
-	});
 }
 
 /**Разрешено удалять?*/
@@ -281,54 +259,71 @@ registerDialogsActions = function () {
 	});
 
 }
+initSelects = function () {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	
+	/*$(".idTypeHdd select").selectmenu();*/
+	var options = []; 
+ 
+	$.ajax({
+		url: "type_hdd/list_free_type_hdd",
+	    	 
+	    contentType: "application/json",
+	   	type: "post",
+
+	    beforeSend: function(xhr) {
+	        xhr.setRequestHeader(header, token);
+	    },
+		success: function(listOfRetOblectsidTypeHdds) {
+			   for (i = 0; i <listOfRetOblectsidTypeHdds.length ; i++) {
+			        options.push("<option value='" + listOfRetOblectsidTypeHdds[i].idTypeHdd + "'>" 
+												   + listOfRetOblectsidTypeHdds[i].producer.shortname +",&nbsp;"
+												   + listOfRetOblectsidTypeHdds[i].capacity
+			        							   + "</option>");
+			    }
+			    $( ".idTypeHdd select" ).append(options.join(""));
+		}
+    });
+
+    
+	$( ".idTypeHdd select" ).on( "change", function( event, ui ) {
+		alert (1);
+		$( ".idTypeHdd select  option:unselected [value='"+this.value+"']" ).each(function( index ) {
+		  
+		});
+		/*	var options = []; 
+		    for (i = 10; i <21 ; i++) {
+		        options.push("<option value='" + i + "'>" + "str_"+ i+ "</option>");
+		    }
+		    //append after populating all options
+		    //$('.idTypeHdd select')
+		    this.append(options.join(""));
+		    $(".idTypeHdd select").selectmenu("refresh");*/
+			
+		   /* 
+		    $.when( $.ajax( "type_hdd/list_free_type_hdd" ) ).then(
+		    		function( data, textStatus, jqXHR ) {
+		    	  		$('.idTypeHdd select').selectmenu("refresh");
+		    		});
+		    */
+		    
+
+		    //$('.idTypeHdd select').selectmenu("refresh");
+		    
+	/*	    event.preventDefault();
+			return true;*/
+		} );
+}
 
 thisPageInit = function () {
+
+
 	createDialogs ();
 	initDialogsValidations ();
 	registerDialogsActions ();
 	
-	$(".idTypeHdd select").selectmenu();
-	 
-  
-	    
-	$( ".idTypeHdd select" ).on( "selectmenuopen", function( event, ui ) {
-		
-		var options = []; 
-	    for (i = 10; i <21 ; i++) {
-	        options.push("<option value='" + i + "'>" + "str_"+ i+ "</option>");
-	    }
-	    //append after populating all options
-	    //$('.idTypeHdd select')
-	    this.append(options.join(""));
-	    this.selectmenu("refresh");
-	   /* 
-	    $.when( $.ajax( "type_hdd/list_free_type_hdd" ) ).then(
-	    		function( data, textStatus, jqXHR ) {
-	    	  		$('.idTypeHdd select').selectmenu("refresh");
-	    		});
-	    */
-	    
-		$.ajax({
-			url: "type_hdd/list_free_type_hdd",
-		    	 
-		    data: JSON.stringify(json),
-		    contentType: "application/json",
-		   	type: "post",
-
-		    beforeSend: function(xhr) {
-		        xhr.setRequestHeader(header, token);
-		    },
-			success: function() {
-				$('.idTypeHdd select').selectmenu("refresh");
-			}
-	    });
-
-	    //$('.idTypeHdd select').selectmenu("refresh");
-	    
-/*	    event.preventDefault();
-		return true;*/
-	} );
-    	
+	initSelects();
 }
 
 $(function() {

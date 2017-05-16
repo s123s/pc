@@ -32,6 +32,8 @@ public class MysqlTypeHddDaoHibernate implements TypeHddDao {
 		return session.createQuery("from TypeHdd order by idTypeHdd").list();
 	}
 
+	@Override
+	@Transactional
 	public List<TypeHdd> readAllFreeRows() {
 		List<TypeHdd> rows = readAll();
 

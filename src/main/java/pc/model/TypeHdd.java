@@ -29,6 +29,7 @@ public class TypeHdd {
 
     @ManyToOne
     @JoinColumn(name = "id_producer")
+    @JsonView(View.REST.class)
     private Producer producer;
 
     /**Нужно для проверки, есть ли ссылающиеся записи*/
@@ -36,6 +37,7 @@ public class TypeHdd {
     private Set<Hdd> hdds;
 
 	@Column
+    @JsonView(View.REST.class)
 	private String capacity;
 
 	public Integer getIdTypeHdd() {

@@ -29,8 +29,10 @@ public class Hdd {
     @ManyToOne
     @JoinColumn(name = "id_type_hdd")
 	private TypeHdd typeHdd;
+    
     @ManyToOne
     @JoinColumn(name = "id_computer")
+    @JsonView(View.REST.class)
 	private Computer computer;
 	
 	public String toString() {

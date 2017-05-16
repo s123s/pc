@@ -28,6 +28,7 @@ public class Computer {
 	private Integer idTypeComputer;
 	
 	@Column(name = "inv_number")
+    @JsonView(View.REST.class)
 	private Integer invNumber;
     
     @Column(name = "buh_name")

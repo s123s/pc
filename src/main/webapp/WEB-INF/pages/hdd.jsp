@@ -62,49 +62,44 @@
                         <h4>Винчестеры</h4>
 					</div>
 					<div class="bottom">
+					<input class="form-control input-lg" type="text" placeholder=".input-lg">+
+					
+					
+					
 						<a class="newPos"><span class="glyphicon glyphicon-plus"></span>&nbsp;Добавить винчестер</a><br>
 
 						<table id="mtab" class="table table-striped">
 							<thead>
 								<tr>
 									<th hidden="true" nowrap>п/п</th>
-									<th class="col-xs-1">ID</th>
-									<th class="col-xs-10">Модель(произв.+емкость)</th>
-									<th class="col-xs-1">Операция</th>
+									<th class="col-lg-1">ID</th>
+									<th class="col-lg-10">Модель(произв.+емкость)</th>
+									<th class="col-lg-1">Операция</th>
 
 								</tr>
 							</head>
 							<tbody>
 
-								<tr id="emptyTr" hidden="true">
+								<!-- <tr id="emptyTr" hidden="true">
 										<td class="myIndex" hidden="true"></td>
-										<td class="idHdd"></td>
+										<td class="idHdd"></td> -->
 										<!-- <td class="idTypeHdd" hidden="true">
 										<td class="invNumber"></td> -->
-										<td><a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>
-								</tr>
+								<!-- 		<td><a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>
+								</tr> -->
 									
 								<c:forEach items="${hdds}" var="hdd" varStatus="st">
 
 									<tr id="id${hdd.idHdd}">
 										<td class="myIndex" hidden="true">${st.getIndex()+1}</td>
 										<td class="idHdd">${hdd.idHdd}</td>
- 										<td class="idTypeHdd" style="width:100%">
- 											<select>
+ 										<td class="idTypeHdd">
+ 										<!-- <input class="form-control input-lg" type="text" placeholder=".input-lg">+ -->
+
+ 											<select class="form-control" >
  												<option value="${hdd.typeHdd.idTypeHdd}">${hdd.typeHdd.producer.shortname},&nbsp;${hdd.typeHdd.capacity},&nbsp;${hdd.computer.invNumber} </option>
 											</select>
-										</td>
- 										
- 										<!-- <td class="idTypeHdd">
-											<select id="idTypeHdd">
-											  <option value="Slower">Slower</option>
-											  <option value="Slow">Slow</option>
-											  <option value="Medium" selected>Medium</option>
-											  <option value="Fast">Fast</option>
-											  <option value="Faster">Faster</option>
-											</select>
-										</td> -->
-										
+  										</td>
 										<td><a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>
 									</tr>
 
