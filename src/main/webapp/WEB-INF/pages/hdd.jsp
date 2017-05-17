@@ -62,10 +62,6 @@
                         <h4>Винчестеры</h4>
 					</div>
 					<div class="bottom">
-					<input class="form-control input-lg" type="text" placeholder=".input-lg">+
-					
-					
-					
 						<a class="newPos"><span class="glyphicon glyphicon-plus"></span>&nbsp;Добавить винчестер</a><br>
 
 						<table id="mtab" class="table table-striped">
@@ -73,7 +69,7 @@
 								<tr>
 									<th hidden="true" nowrap>п/п</th>
 									<th class="col-lg-1">ID</th>
-									<th class="col-lg-10">Модель(произв.+емкость)</th>
+									<th class="col-lg-9" title="производитель+емкость)">Модель(произв.+емкость)</th>
 									<th class="col-lg-1">Операция</th>
 
 								</tr>
@@ -94,12 +90,10 @@
 										<td class="myIndex" hidden="true">${st.getIndex()+1}</td>
 										<td class="idHdd">${hdd.idHdd}</td>
  										<td class="idTypeHdd">
- 										<!-- <input class="form-control input-lg" type="text" placeholder=".input-lg">+ -->
-
  											<select class="form-control" >
- 												<option value="${hdd.typeHdd.idTypeHdd}">${hdd.typeHdd.producer.shortname},&nbsp;${hdd.typeHdd.capacity},&nbsp;${hdd.computer.invNumber} </option>
+ 												<option value="${hdd.typeHdd.idTypeHdd}">${hdd.typeHdd.producer.shortname}&nbsp;${hdd.typeHdd.capacity}Gb</option>
 											</select>
-  										</td>
+										</td>
 										<td><a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>
 									</tr>
 
@@ -112,7 +106,9 @@
 			<!--div class="right pane">Right</div-->
 		</div>
 	</div>
-
+	
+<select id="listOfFreeTypeHdds" hidden="true">
+</select>
 
 <%-- <div id="editDialog" title="Редактирование винчестера" class="dialogWindow" hidden=true>
 	<form id="editDialogForm" action="" method="post">

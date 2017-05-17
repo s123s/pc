@@ -259,6 +259,25 @@ registerDialogsActions = function () {
 	});
 
 }
+
+/*removeOptionFromAllSelects = function(pNewValue, POldValue){
+	$( ".idTypeHdd select :not(option:selected)[value='"+pNewValue+"']" ).remove();
+	sПодчищаем
+	$( ".idTypeHdd select :not(option:selected)[value='"+POldValue+"']" ).remove();
+}
+addOptionToAllSelects = function(pValue){
+	var optionIdTypeHdd = $( ".idTypeHdd select option[value='"+ pValue+"']" )[0].outerHTML;
+	$( ".idTypeHdd select" ).append(optionIdTypeHdd);
+}*/
+
+/*Добавить options в select (selectElement)*/
+addOptionsToSelect = function (selectElement) {
+	$.each($( "#listOfFreeTypeHdds")[0].options, function(key, value) {
+		value.removeAttr("selected")";
+	    $(selectElement).append(value);
+	});
+}
+
 initSelects = function () {
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
@@ -275,23 +294,28 @@ initSelects = function () {
 	    beforeSend: function(xhr) {
 	        xhr.setRequestHeader(header, token);
 	    },
-		success: function(listOfRetOblectsidTypeHdds) {
-			   for (i = 0; i <listOfRetOblectsidTypeHdds.length ; i++) {
-			        options.push("<option value='" + listOfRetOblectsidTypeHdds[i].idTypeHdd + "'>" 
-												   + listOfRetOblectsidTypeHdds[i].producer.shortname +",&nbsp;"
-												   + listOfRetOblectsidTypeHdds[i].capacity
-			        							   + "</option>");
+	    /*Список непривязанных TypeHdd*/
+		success: function(listOfRetOblectsTypeHdds) {
+			   for (i = 0; i <listOfRetOblectsTypeHdds.length ; i++) {
+			        options.push("<option value='" + listOfRetOblectsTypeHdds[i].idTypeHdd + "'>" 
+												   + listOfRetOblectsTypeHdds[i].producer.shortname +"&nbsp;"
+												   + listOfRetOblectsTypeHdds[i].capacity
+			        							   + "Gb</option>");
 			    }
-			    $( ".idTypeHdd select" ).append(options.join(""));
+			    $( "#listOfFreeTypeHdds" ).append(options.join(""));
 		}
     });
 
-    
+	$( ".idTypeHdd select" ).on( "mouseenter", function( event, ui ) {
+		addOptionsToSelect (this);
+	} );
+	
 	$( ".idTypeHdd select" ).on( "change", function( event, ui ) {
-		alert (1);
-		$( ".idTypeHdd select  option:unselected [value='"+this.value+"']" ).each(function( index ) {
-		  
-		});
+		this.options.length = 1;
+		
+/*		var idTypeHddInBase = $(".idTypeHddInBase",  this.parentNode.parentNode);
+		removeOptionFromAllSelects(this.value, idTypeHddInBase);
+		addOptionToAllSelects (idTypeHddInBase);*/
 		/*	var options = []; 
 		    for (i = 10; i <21 ; i++) {
 		        options.push("<option value='" + i + "'>" + "str_"+ i+ "</option>");
