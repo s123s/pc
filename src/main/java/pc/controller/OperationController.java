@@ -371,7 +371,7 @@ public class OperationController {
 	@ResponseBody
 	@JsonView(View.REST.class)
 	public List<TypeHdd> listFreeTypeHdd() {
-		return mainService.getTypeHddDao().readAllFreeRows();
+		return mainService.getTypeHddDao().readAll();
 	}	
 	
 /*	@RequestMapping(value = "/save_edited",  method = RequestMethod.POST)

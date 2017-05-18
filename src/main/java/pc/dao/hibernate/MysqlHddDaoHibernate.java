@@ -1,5 +1,6 @@
 package pc.dao.hibernate;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -28,6 +29,21 @@ public class MysqlHddDaoHibernate implements HddDao {
 		Session session = this.sessionFactory.getCurrentSession();
 		return session.createQuery("from Hdd order by idHdd").list();
 	}
+	
+/*	@Override
+	@Transactional
+	public List<Hdd> readAllFreeRows() {
+		List<Hdd> rows = readAll();
+
+		for (Iterator<Hdd> iter = rows.iterator(); iter.hasNext(); ) {
+			Hdd hdd = iter.next();
+		    if (hdd.get.getHdds().size() != 0)  {
+		        iter.remove();
+		    }
+		}
+		return rows;
+	}*/
+
 	@Override
 	@Transactional
 	public OperationStatus update(Hdd o) {

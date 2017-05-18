@@ -1,7 +1,6 @@
 
-var varListOfFreeTypeHdds;
 // saveAnswer- ответ от Ajax-сохранения
-/*saveNewPosToHTML = function (saveAnswer) {
+saveNewPosToHTML = function (saveAnswer) {
 	if ( !saveAnswer.successfully ) return;
 	
 	var $tr    = $("#mtab #emptyTr");
@@ -55,11 +54,11 @@ saveNewPosToDatabase = function (){
 			$('#newDialog').dialog('close');
 		}
     });
-}*/
+}
 
 
 /*Fill dialog window from table node*/
-/*fillEditDialog = function  (idTr) {
+fillEditDialog = function  (idTr) {
 	$("#editDialog #idTr")[0].value = idTr;
 	var idTypeHdd = $("#mtab").find("#"+idTr).find(".idTypeHdd").text();
 	var idProducer = $("#mtab").find("#"+idTr).find(".idProducer").text();
@@ -81,23 +80,22 @@ saveEditedPosToHTML = function () {
 	$("#mtab").find("#"+idTrLocal).find(".capacity").text(capacity);
 }
 
-*/
-
-saveEditedPosToDatabase = function (trElement){
+saveEditedPosToDatabase = function (){
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
+	var idTypeHdd = $("#editDialog #id")[0].value;
+	var idProducer = $("#editDialog #idProducer").val();
+	var producerShortName = $("#editDialog #idProducer option:selected").text();
+	var capacity = $("#editDialog #capacity")[0].value;
 
-	var idHdd = $(".idHdd", trElement).text();
-	var idComputer = $(".idComputer", trElement).text();
-	var idTypeHdd = $(".idTypeHdd>select", trElement).val();
-
-	var json = { "idHdd"	: idHdd,
-				computer:{"idComputer" : idComputer, },
-				typeHdd:{"idTypeHdd"		: idTypeHdd, },
-				};
+	var json = { "idTypeHdd"	: idTypeHdd,
+				producer:{"idProducer"		: idProducer,
+						  "shortname"		: producerShortName,
+						 },
+				"capacity"	: capacity};
 
 	$.ajax({
-		url: "hdd/save_edited",
+		url: "type_hdd/save_edited",
 	    	 
 	    data: JSON.stringify(json),
 	    contentType: "application/json",
@@ -107,17 +105,18 @@ saveEditedPosToDatabase = function (trElement){
 	        xhr.setRequestHeader(header, token);
 	    },
 		success: function(smartphone) {
-    		simpleDialogOpen("Сообщение", "Сохранение прошло успешно");
+    		saveEditedPosToHTML();
+    		$('#editDialog').dialog('close');
     	}
     });
 }
 
 /*Fill dialog window from table node*/
 fillDeleteDialog = function (idTr) {
-	var idHdd = $("#mtab").find("#"+idTr).find(".idHdd").text();
+	var idTypeHdd = $("#mtab").find("#"+idTr).find(".idTypeHdd").text();
 
 	$("#deleteDialog #idTr")[0].value = idTr;
-	$("#deleteDialog #id")[0].value = idHdd;
+	$("#deleteDialog #id")[0].value = idTypeHdd;
 }
 
 removePosFromHTML = function () {
@@ -130,10 +129,10 @@ deleteFromDatabase = function (){
 	var header = $("meta[name='_csrf_header']").attr("content");
 	
 	var idLocal = $("#deleteDialog #id")[0].value
-	var json = { "idHdd"	: idLocal };
+	var json = { "idTypeHdd"	: idLocal };
 
 	$.ajax({
-		url: "hdd/delete",
+		url: "type_hdd/delete",
 	    	 
 	    data: JSON.stringify(json),
 	    contentType: "application/json",
@@ -171,7 +170,7 @@ createDialogs = function (){
 		//$('#newDialog').dialog('close');
    	});
 
-/*	Edit dialog
+	/*Edit dialog*/
 	$("#editDialog").dialog({
 		autoOpen: false,
 		resizable:false,
@@ -183,8 +182,7 @@ createDialogs = function (){
 //		saveEditedPosToHTML();
 //		$('#editDialog').dialog('close');
    	});
-*/
-	$( "#menu" ).menu();
+
 
 	/*Delete dialog*/
 	$("#deleteDialog").dialog({
@@ -224,12 +222,34 @@ initDialogsValidations= function () {
 			},
 		}
 	});
+
+	$("#editDialogForm").validate({
+    	rules:{
+    		idProducer:{
+            	required: true,
+			},
+			capacity:{
+				required: true,
+				number: true,
+			}
+
+		},
+        messages:{
+        	idProducer:{
+            	required: "Это поле обязательно для заполнения",
+			},
+        	capacity:{
+            	required: "Это поле обязательно для заполнения",
+            	number:	"Должно быть число",
+			},
+		}
+	});
 }
 
 /**Разрешено удалять?*/
 permitedToDelete = function (idTr) {
-	var invNumber = $("#mtab").find("#"+idTr).find(".invNumber").text();
-	return (invNumber.length != 0)? false:true;
+	var numberOfHdds = $("#mtab").find("#"+idTr).find(".numberOfHdds").text();
+	return (numberOfHdds > 0)? false:true;
 
 }
 /**Dialogs actions registration*/
@@ -240,6 +260,13 @@ registerDialogsActions = function () {
 			$('#newDialog').dialog('open');
 		});
 
+		//Edit pos
+	$("body").on("click", ".editPos", function () {
+		var idTr = this.parentNode.parentNode.id;
+		fillEditDialog(idTr);	//fill edit_dialog fields from table
+		$('#editDialog').dialog('open');
+	});
+
 		//Delete pos
 	$("body").on("click", ".deletePos", function () {
 		var idTr = this.parentNode.parentNode.id;
@@ -248,7 +275,7 @@ registerDialogsActions = function () {
 			$('#deleteDialog').dialog('open');
 		}
 		else {
-			simpleDialogOpen("Сообщение", "Винчестер установлен в компьютере. Удаление невозможно.");
+			simpleDialogOpen("Сообщение", "Есть винчестеры с таким типом. Удаление невозможно.");
 		}
 	});
 

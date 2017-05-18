@@ -76,7 +76,7 @@ fillEditDialog = function  (idTr) {
 
 saveEditedPosToHTML = function () {
 	var idTrLocal = $("#editDialog #idTr")[0].value;
-	var idProducer = $("#editDialog #idProducer").val()
+	var idProducer = $("#editDialog #idProducer").val();
 	var producerShortName = $("#editDialog #idProducer option:selected").text();
 	var model = $("#editDialog #model")[0].value;
 	var socket = $("#editDialog #socket")[0].value;

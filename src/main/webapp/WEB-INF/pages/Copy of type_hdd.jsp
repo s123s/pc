@@ -45,12 +45,11 @@
 	<link href="css/type_hdd.css" rel="stylesheet" type="text/css"/>
 
 	<script src="js/global.js"></script>
-	<script src="js/hdd.js"></script>
+	<script src="js/type_hdd.js"></script>
 </head>
 
-<body> 
-	<div class="header"><%@include file="include/header.jsp"%>
-	</div>
+<body>
+	<div class="header"><%@include file="include/header.jsp"%></div>
 	<div class="wrapper">
 		<div class="inner-wrapper">
 			<div class="left pane">
@@ -60,52 +59,49 @@
 
 				<div class="inner">
 					<div class="top">
-                        <h4>Винчестеры</h4>
+                        <h4>Типы винчестеров</h4>
 					</div>
 					<div class="bottom">
-						<a class="newPos"><span class="glyphicon glyphicon-plus"></span>&nbsp;Добавить винчестер</a><br>
+						<a class="newPos"><span class="glyphicon glyphicon-asterisk"></span>&nbsp;Новый тип</a><br>
 
 						<table id="mtab" class="table table-striped">
 							<thead>
 								<tr>
 									<th hidden="true" nowrap>п/п</th>
-									<th class="col-lg-1">ID</th>
-									<th class="col-lg-9" title="производитель+емкость">Модель(произв.+емкость)</th>
-									<th class="col-lg-1">Операция</th>
+									<th class="col-xs-1">ID</th>
+									<th class="col-xs-7">Производитель</th>
+									<th class="col-xs-2">Емкость</th>
+									<th class="col-xs-1" title="Количество винчестеров">Кол-во винч.</th>
+									<th class="col-xs-1">Операция</th>
 
 								</tr>
 							</head>
 							<tbody>
 
 								<tr id="emptyTr" hidden="true">
-										<td class="myIndex" hidden="true">${st.getIndex()+1}</td>
-										<td class="idHdd">${hdd.idHdd}</td>
-										<td class="idComputer" hidden="true">${hdd.computer.idComputer}</td>
- 										<td class="idTypeHdd">
- 											<select class="form-control" >
-												<c:forEach items="${typeHdds}" var="typeHdd" varStatus="st">
-													<option value="${typeHdd.idTypeHdd}" ${(hdd.typeHdd.idTypeHdd == null || hdd.typeHdd.idTypeHdd != typeHdd.idTypeHdd) ? "": "selected"} >${typeHdd.producer.shortname}&nbsp;${typeHdd.capacity}Gb</option>
-												</c:forEach>
-											</select>
-										</td>
-										<td><a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>
+										<td class="myIndex" hidden="true"></td>
+										<td class="idTypeHdd"></td>
+										<td class="idProducer" hidden="true">
+										<td class="producerName"></td>
+										<td class="capacity"></td>
+										<td class="numberOfHdds"></td>
+
+										<td><a class="editPos"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;
+											<a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>
 								</tr>
 									
-								<c:forEach items="${hdds}" var="hdd" varStatus="st">
+								<c:forEach items="${typeHdds}" var="typeHdd" varStatus="st">
 
-									<tr id="id${hdd.idHdd}">
+									<tr id="id${typeHdd.idTypeHdd}">
 										<td class="myIndex" hidden="true">${st.getIndex()+1}</td>
-										<td class="idHdd">${hdd.idHdd}</td>
-										<td class="idComputer" hidden="true">${hdd.computer.idComputer}</td>
- 										<td class="idTypeHdd">
- 											<select class="form-control" >
+										<td class="idTypeHdd">${typeHdd.idTypeHdd}</td>
+										<td class="idProducer" hidden="true">${typeHdd.producer.idProducer}</td>
+										<td class="producerName">${typeHdd.producer.shortname}</td>
+										<td class="capacity">${typeHdd.capacity}</td>
+										<td class="numberOfHdds">${typeHdd.hdds.size()}</td>
 
-												<c:forEach items="${typeHdds}" var="typeHdd" varStatus="st">
-													<option value="${typeHdd.idTypeHdd}" ${(hdd.typeHdd.idTypeHdd == null || hdd.typeHdd.idTypeHdd != typeHdd.idTypeHdd) ? "": "selected"} >${typeHdd.producer.shortname}&nbsp;${typeHdd.capacity}Gb</option>
-												</c:forEach>
-											</select>
-										</td>
-										<td><a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>
+										<td><a class="editPos"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;
+											<a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>
 									</tr>
 
 								</c:forEach>
@@ -117,30 +113,38 @@
 			<!--div class="right pane">Right</div-->
 		</div>
 	</div>
-	
-<select id="listOfFreeTypeHdds" hidden="true">
-</select>
 
-<div id="newDialog" title="Новый винчестер" class="dialogWindow" hidden=true>
+<div id="editDialog" title="Редактирование типа" class="dialogWindow" hidden=true>
+	<form id="editDialogForm" action="" method="post">
+	  <table>
+	  		<tr hidden="true"><td><input type="text"  id="idTr"></td></tr>
+			<tr><td>ID</td><td><input type="text" id="id" readonly="readonly"></td></tr>
+			
+ 			<tr><td>Производитель</td><td>
+				<select id="idProducer" style="width:100%">
+					<option value="">Select one...</option>
+					<c:forEach items="${producers}" var="producer" varStatus="st">
+						<option value="${producer.idProducer}">${producer.shortname}</option>
+					</c:forEach>
+				</select>
+			</td></tr>
+ 			<!-- <tr><td>Производитель</td><td><input type="text" id="producerName" name="producerName"></td></tr> -->
+			<tr><td>Емкость</td><td><input type="text" id="capacity" name="capacity"></td></tr>
+	  </table><br>
+	</form>
+	<button id="editDialogSave" class="ui-button ui-widget ui-corner-all">Сохранить</button>
+</div>
+
+<div id="newDialog" title="Новый тип" class="dialogWindow" hidden=true>
 	<table>
-		<tr><td>Модель(произв.+емкость)</td><td>
-			<select class="form-control" >
-
-
-				<c:forEach items="${typeHdds}" var="typeHdd" varStatus="st">
-					<option value="${typeHdd.idTypeHdd}" ${(hdd.typeHdd.idTypeHdd == null || hdd.typeHdd.idTypeHdd != typeHdd.idTypeHdd) ? "": "selected"} >${typeHdd.producer.shortname}&nbsp;${typeHdd.capacity}Gb</option>
-				</c:forEach>
-			</select>
-
-											<!-- 
+		<tr><td>Производитель</td><td>
 			<select id="idProducer" style="width:100%">
 				<option value="">Select one...</option>
 				<c:forEach items="${producers}" var="producer" varStatus="st">
 					<option value="${producer.idProducer}">${producer.shortname}</option>
 				</c:forEach>
 			</select>
-		</td> -->
-		</tr>
+		</td></tr>
 
 		<!--tr><td>Производитель</td><td><input type="text" id="producerName" name="producerName"></td></tr-->
 		<tr><td>Емкость</td><td><input type="text" id="capacity" name="capacity"></td></tr>
@@ -149,7 +153,7 @@
 </div>
 
 
-<div id="deleteDialog" title="Удаление винчестера" class="dialogWindow" hidden=true>
+<div id="deleteDialog" title="Удаление типа" class="dialogWindow" hidden=true>
 	<input type="text" id="idTr" hidden="true">
 	<input type="text" id="id" hidden="true">
 	Вы действительно хотите удалить?<br><br>
