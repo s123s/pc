@@ -1,61 +1,5 @@
 
 var varListOfFreeTypeHdds;
-// saveAnswer- ответ от Ajax-сохранения
-/*saveNewPosToHTML = function (saveAnswer) {
-	if ( !saveAnswer.successfully ) return;
-	
-	var $tr    = $("#mtab #emptyTr");
-	var idLocal = saveAnswer.retObject.idTypeHdd;
-	var idProducer = $("#newDialog #idProducer").val();
-	var producerShortName = $("#newDialog #idProducer option:selected").text();
-	var capacity = $("#newDialog #capacity")[0].value;
-	
-    var $clone = $tr.clone();
-    $clone[0].id = "id"+idLocal;
-    $clone.find('.myIndex').text('xxx');
-    $clone.find('.idTypeHdd').text(idLocal);
-    
-	$clone.find(".idProducer").text(idProducer);
-	$clone.find(".producerName").text(producerShortName);
-
-	$clone.find('.capacity').text(capacity);
-	$clone.find('.numberOfHdds').text(0);
-    
-	$clone[0].hidden = false;
-
-	$("#mtab").find('tbody')
-		.append ($clone);
-}
-
-saveNewPosToDatabase = function (){
-	var token = $("meta[name='_csrf']").attr("content");
-	var header = $("meta[name='_csrf_header']").attr("content");
-	var idProducer = $("#newDialog #idProducer").val();
-	var producerShortName = $("#newDialog #idProducer option:selected").text();
-	var capacity = $("#newDialog #capacity")[0].value;
-
-	var json = { 
-				producer:{"idProducer"		: idProducer,
-						  "shortname"		: producerShortName,
-						 },
-				"capacity"	: capacity};
-
-	$.ajax({
-		url: "type_hdd/create",
-	    	 
-	    data: JSON.stringify(json),
-	    contentType: "application/json",
-	   	type: "POST",
-
-	    beforeSend: function(xhr) {
-	        xhr.setRequestHeader(header, token);
-	    },
-		success: function(retObject) {
-			saveNewPosToHTML(retObject);
-			$('#newDialog').dialog('close');
-		}
-    });
-}*/
 
 
 /*Fill dialog window from table node*/
@@ -82,6 +26,51 @@ saveEditedPosToHTML = function () {
 }
 
 */
+
+
+/** saveAnswer- ответ от Ajax-сохранения*/
+saveNewPosOnTrToHTML = function (saveAnswer, trTag) {
+	if ( !saveAnswer.successfully ) return;
+	
+	var $tr    = trTag;
+	var idLocal = saveAnswer.retObject.idHdd;
+
+	 trTag.id = "id"+idLocal;
+	 $('.idHdd', trTag).text(idLocal);
+	 $tr.class = "";
+
+	 $('.okPos', trTag)[0].hidden = true;
+	 $('.deletePos', trTag)[0].hidden = false;
+}
+
+
+/**Внимание! Параметры: trTag - тег. е idTr*/
+saveNewPosOnTrToDatabase = function (trTag){
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+
+	var idComputer = $("#idComputer", trTag).text();
+	var idTypeHdd = $("idTypeHdd>option:selected").text();
+
+	var json = { 
+				"idComputer": idComputer,
+				"idTypeHdd"	: idTypeHdd};
+
+	$.ajax({
+		url: "hdd/create",
+	    	 
+	    data: JSON.stringify(json),
+	    contentType: "application/json",
+	   	type: "POST",
+
+	    beforeSend: function(xhr) {
+	        xhr.setRequestHeader(header, token);
+	    },
+		success: function(retObject) {
+			saveNewPosOnTrToHTML(retObject, trTag);
+		}
+    });
+}
 
 saveEditedPosToDatabase = function (trElement){
 	var token = $("meta[name='_csrf']").attr("content");
@@ -159,18 +148,6 @@ renumerate = function (idTable) {
 /**Create dialogs for C/U/D (crud)*/
 createDialogs = function (){
 
-	/*Create dialog*/
-	$("#newDialog").dialog({
-		autoOpen: false,
-		resizable:false,
-		modal: true
-	});
-	$("#newDialog #newDialogSave").click(function() {
-		saveNewPosToDatabase();
-		//saveNewPosToHTML();
-		//$('#newDialog').dialog('close');
-   	});
-
 /*	Edit dialog
 	$("#editDialog").dialog({
 		autoOpen: false,
@@ -202,7 +179,7 @@ createDialogs = function (){
 
 
 /**Dialogs fields validation*/
-initDialogsValidations= function () {
+initValidations= function () {
 	$("#newDialogForm").validate({
     	rules:{
     		idProducer:{
@@ -226,6 +203,21 @@ initDialogsValidations= function () {
 	});
 }
 
+
+addPosToHTML = function () {
+	var $tr    = $("#mtab #emptyTr");
+
+	var $clone = $tr.clone();
+    $clone[0].id = "emptyTrNew";
+    $clone.find('.myIndex').text( $("#mtab tr").length);
+    $clone.find('.idHdd').text("");
+ 	$clone.find(".idComputer").text("");
+	$clone[0].hidden = false;
+
+	$("#mtab").find('tbody')
+		.append ($clone);
+}
+
 /**Разрешено удалять?*/
 permitedToDelete = function (idTr) {
 	var invNumber = $("#mtab").find("#"+idTr).find(".invNumber").text();
@@ -233,13 +225,17 @@ permitedToDelete = function (idTr) {
 
 }
 /**Dialogs actions registration*/
-registerDialogsActions = function () {
+registerActions = function () {
 		//New pos
 	$("body").on("click", ".newPos", function () {
-	//	$(".newPos").click(function() {
-			$('#newDialog').dialog('open');
-		});
+		addPosToHTML();
+	});
 
+		//Ok pos
+	$("body").on("click", ".okPos", function () {
+		var trTag = this.parentNode.parentNode;
+		saveNewPosOnTrToDatabase(trTag);
+	});
 		//Delete pos
 	$("body").on("click", ".deletePos", function () {
 		var idTr = this.parentNode.parentNode.id;
@@ -256,8 +252,8 @@ registerDialogsActions = function () {
 
 thisPageInit = function () {
 	createDialogs ();
-	initDialogsValidations ();
-	registerDialogsActions ();
+	initValidations ();
+	registerActions ();
 }
 
 $(function() {

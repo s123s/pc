@@ -77,18 +77,20 @@
 							</head>
 							<tbody>
 
-								<tr id="emptyTr" hidden="true">
+								<tr id="emptyTr" class="emptyTrClass" hidden="true">
 										<td class="myIndex" hidden="true">${st.getIndex()+1}</td>
 										<td class="idHdd">${hdd.idHdd}</td>
 										<td class="idComputer" hidden="true">${hdd.computer.idComputer}</td>
  										<td class="idTypeHdd">
- 											<select class="form-control" >
+ 											<select class="form-control">
 												<c:forEach items="${typeHdds}" var="typeHdd" varStatus="st">
 													<option value="${typeHdd.idTypeHdd}" ${(hdd.typeHdd.idTypeHdd == null || hdd.typeHdd.idTypeHdd != typeHdd.idTypeHdd) ? "": "selected"} >${typeHdd.producer.shortname}&nbsp;${typeHdd.capacity}Gb</option>
 												</c:forEach>
 											</select>
 										</td>
-										<td><a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>
+										<td><a class="okPos"><span class="glyphicon glyphicon-ok"></span></a>
+											<a class="deletePos" hidden="true"><span class="glyphicon glyphicon-trash"></span></a>
+										</td>
 								</tr>
 									
 								<c:forEach items="${hdds}" var="hdd" varStatus="st">
@@ -123,14 +125,12 @@
 
 <div id="newDialog" title="Новый винчестер" class="dialogWindow" hidden=true>
 	<table>
-		<tr><td>Модель(произв.+емкость)</td><td>
+		<tr><td>Модель</td><td>
 			<select class="form-control" >
-
-
 				<c:forEach items="${typeHdds}" var="typeHdd" varStatus="st">
 					<option value="${typeHdd.idTypeHdd}" ${(hdd.typeHdd.idTypeHdd == null || hdd.typeHdd.idTypeHdd != typeHdd.idTypeHdd) ? "": "selected"} >${typeHdd.producer.shortname}&nbsp;${typeHdd.capacity}Gb</option>
 				</c:forEach>
-			</select>
+l			</select>
 
 											<!-- 
 			<select id="idProducer" style="width:100%">
