@@ -209,7 +209,7 @@ addPosToHTML = function () {
 
 	var $clone = $tr.clone();
     $clone[0].id = "emptyTrNew";
-    $clone.find('.myIndex').text( $("#mtab tr").length);
+    $clone.find('.myIndex').text( $("#mtab>tbody>tr").length );
     $clone.find('.idHdd').text("");
  	$clone.find(".idComputer").text("");
 	$clone[0].hidden = false;
