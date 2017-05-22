@@ -212,7 +212,8 @@ addPosToHTML = function () {
     $clone.find('.myIndex').text( $("#mtab>tbody>tr").length );
     $clone.find('.idHdd').text("");
  	$clone.find(".idComputer").text("");
-	$clone[0].hidden = false;
+ 	$clone.find(".invNumberComputer").text("");
+ 	$clone[0].hidden = false;
 
 	$("#mtab").find('tbody')
 		.append ($clone);
@@ -236,6 +237,12 @@ registerActions = function () {
 		var trTag = this.parentNode.parentNode;
 		saveNewPosOnTrToDatabase(trTag);
 	});
+
+	$( ".idTypeHdd select" ).on( "change", function( event, ui ) {
+		saveEditedPosToDatabase(this.parentNode.parentNode);
+	} );
+
+
 		//Delete pos
 	$("body").on("click", ".deletePos", function () {
 		var idTr = this.parentNode.parentNode.id;

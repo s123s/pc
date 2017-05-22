@@ -71,6 +71,7 @@
 									<th hidden="true" nowrap>п/п</th>
 									<th class="col-lg-1">ID</th>
 									<th class="col-lg-9" title="производитель+емкость">Модель(произв.+емкость)</th>
+									<th class="col-lg-1" title="Инвертарный номер компьютера">Инв. № компьютера</th>
 									<th class="col-lg-1">Операция</th>
 
 								</tr>
@@ -78,7 +79,7 @@
 							<tbody>
 
 								<tr id="emptyTr" class="emptyTrClass" hidden="true">
-										<td class="myIndex" hidden="true">${st.getIndex()+1}</td>
+										<td class="myIndex" hidden="true"></td>
 										<td class="idHdd">${hdd.idHdd}</td>
 										<td class="idComputer" hidden="true">${hdd.computer.idComputer}</td>
  										<td class="idTypeHdd">
@@ -88,6 +89,7 @@
 												</c:forEach>
 											</select>
 										</td>
+										<td class="invNumberComputer"></td>
 										<td><a class="okPos"><span class="glyphicon glyphicon-ok"></span></a>
 											<a class="deletePos" hidden="true"><span class="glyphicon glyphicon-trash"></span></a>
 										</td>
@@ -105,6 +107,7 @@
 												<c:forEach items="${typeHdds}" var="typeHdd" varStatus="st">
 													<option value="${typeHdd.idTypeHdd}" ${(hdd.typeHdd.idTypeHdd == null || hdd.typeHdd.idTypeHdd != typeHdd.idTypeHdd) ? "": "selected"} >${typeHdd.producer.shortname}&nbsp;${typeHdd.capacity}Gb</option>
 												</c:forEach>
+											<td class="invNumberComputer">${hdd.computer.invNumber}</td>
 											</select>
 										</td>
 										<td><a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>
