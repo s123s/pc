@@ -43,7 +43,7 @@
 	</bean>
 
 	<!-- Hibernate SessionFactory Bean definition -->
-	<bean id="hibernate5AnnotatedSessionFactory"
+	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="annotatedClasses">
@@ -71,6 +71,8 @@
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.use_sql_comments">true</prop>
 				<!-- <prop key="hibernate.connection.characterEncoding">utf8</prop>
 				<prop key="hibernate.connection.useUnicode">true</prop> -->
 			</props>
@@ -80,43 +82,43 @@
 
 	<!--DAO and ..Service beans -->
 	<bean id="wpDao" class="pc.dao.hibernate.MysqlWpDaoHibernate">
-		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="typeHddDao" class="pc.dao.hibernate.MysqlTypeHddDaoHibernate">
-		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="typeRamDao" class="pc.dao.hibernate.MysqlTypeRamDaoHibernate">
-		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="typeRamSpecDao" class="pc.dao.hibernate.MysqlTypeRamSpecDaoHibernate">
-		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="producerDao" class="pc.dao.hibernate.MysqlProducerDaoHibernate">
-		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="typeProcDao" class="pc.dao.hibernate.MysqlTypeProcDaoHibernate">
-		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="typeMotherDao" class="pc.dao.hibernate.MysqlTypeMotherDaoHibernate">
-		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>	
 	<bean id="osDao" class="pc.dao.hibernate.MysqlOsDaoHibernate">
-		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>	
 	<bean id="upsDao" class="pc.dao.hibernate.MysqlUpsDaoHibernate">
-		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="printerDao" class="pc.dao.hibernate.MysqlPrinterDaoHibernate">
-		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>	
 	<bean id="monitorDao" class="pc.dao.hibernate.MysqlMonitorDaoHibernate">
-		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>	
 	<bean id="userDao" class="pc.dao.hibernate.MysqlUserDaoHibernate">
-		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>	
 	<bean id="hddDao" class="pc.dao.hibernate.MysqlHddDaoHibernate">
-		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>	
 	<bean id="mainService" class="pc.service.MainService">
 		<property name="wpDao" ref="wpDao" />
@@ -138,7 +140,7 @@
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
 

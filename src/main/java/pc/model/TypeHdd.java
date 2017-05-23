@@ -13,6 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import pc.jackson.View;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -27,13 +30,15 @@ public class TypeHdd {
     @JsonView(View.REST.class)
 	private Integer idTypeHdd;
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.EAGER)
+    @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "id_producer")
     @JsonView(View.REST.class)
     private Producer producer;
 
     /**Нужно для проверки, есть ли ссылающиеся записи*/
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "typeHdd")
+    @OneToMany(mappedBy = "typeHdd", fetch=FetchType.EAGER)
+    @Fetch(FetchMode.JOIN)
     private Set<Hdd> hdds;
 
 	@Column
