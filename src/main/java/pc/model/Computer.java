@@ -1,5 +1,7 @@
 package pc.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import pc.jackson.View;
@@ -37,6 +40,10 @@ public class Computer {
 	@Column(name = "domain_name")
 	private String domainName;
 
+    /**Нужно для проверки, есть ли ссылающиеся записи*/
+    @OneToMany
+    private Set<Hdd> hdds;
+    
 	public String toString() {
 		return "{" + idComputer + ", " + invNumber + ", " + buhName +", " +domainName +"}";
 	}

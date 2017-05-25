@@ -30,11 +30,13 @@ public class Hdd {
     @JsonView(View.REST.class)
 	private Integer idHdd;
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.EAGER)
+    @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "id_type_hdd")
 	private TypeHdd typeHdd;
     
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.EAGER)
+    @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "id_computer")
     @JsonView(View.REST.class)
 	private Computer computer;

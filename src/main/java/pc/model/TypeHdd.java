@@ -37,7 +37,7 @@ public class TypeHdd {
     private Producer producer;
 
     /**Нужно для проверки, есть ли ссылающиеся записи*/
-    @OneToMany(mappedBy = "typeHdd", fetch=FetchType.EAGER)
+    @OneToMany(mappedBy="typeHdd", fetch=FetchType.EAGER)
     @Fetch(FetchMode.JOIN)
     private Set<Hdd> hdds;
 
