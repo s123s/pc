@@ -83,8 +83,9 @@
 										<td class="idHdd">${hdd.idHdd}</td>
 										<td class="idComputer" hidden="true">${hdd.computer.idComputer}</td>
  										<td class="idTypeHdd">
- 											<select class="form-control">
-												<c:forEach items="${typeHdds}" var="typeHdd" varStatus="st">
+										  <select class="form-control">
+												<option value="">Select one...</option>
+ 												<c:forEach items="${typeHdds}" var="typeHdd" varStatus="st">
 													<option value="${typeHdd.idTypeHdd}" ${(hdd.typeHdd.idTypeHdd == null || hdd.typeHdd.idTypeHdd != typeHdd.idTypeHdd) ? "": "selected"} >${typeHdd.producer.shortname}&nbsp;${typeHdd.capacity}Gb</option>
 												</c:forEach>
 											</select>
@@ -104,6 +105,7 @@
  										<td class="idTypeHdd">
  											<select class="form-control" >
 
+											  <option value="">Select one...</option>
 												<c:forEach items="${typeHdds}" var="typeHdd" varStatus="st">
 													<option value="${typeHdd.idTypeHdd}" ${(hdd.typeHdd.idTypeHdd == null || hdd.typeHdd.idTypeHdd != typeHdd.idTypeHdd) ? "": "selected"} >${typeHdd.producer.shortname}&nbsp;${typeHdd.capacity}Gb</option>
 												</c:forEach>

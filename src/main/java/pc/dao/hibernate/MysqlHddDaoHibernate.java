@@ -65,7 +65,8 @@ public class MysqlHddDaoHibernate implements HddDao {
 		Session session = this.sessionFactory.getCurrentSession();
 		try {
 			System.out.println(o.getClass()+ " updating");
-			session.save(o);
+			session.persist(o);
+			//session.save(o);
 			return new OperationStatus(true, o);	//return o. ID filled
 		}
 		catch (HibernateException ex) {

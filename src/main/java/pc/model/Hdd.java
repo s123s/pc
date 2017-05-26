@@ -1,5 +1,6 @@
 package pc.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,6 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -30,12 +32,13 @@ public class Hdd {
     @JsonView(View.REST.class)
 	private Integer idHdd;
 
-    @ManyToOne(fetch=FetchType.EAGER)
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
     @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "id_type_hdd")
+    @JsonView(View.REST.class)
 	private TypeHdd typeHdd;
     
-    @ManyToOne(fetch=FetchType.EAGER)
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
     @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "id_computer")
     @JsonView(View.REST.class)

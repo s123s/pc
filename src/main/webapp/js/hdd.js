@@ -44,17 +44,18 @@ saveNewPosOnTrToHTML = function (saveAnswer, trTag) {
 }
 
 
-/**Внимание! Параметры: trTag - тег. е idTr*/
-saveNewPosOnTrToDatabase = function (trTag){
+/**Внимание! Параметры: trElement - тег. idTr*/
+saveNewPosOnTrToDatabase = function (trElement){
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
 
-	var idComputer = $("#idComputer", trTag).text();
-	var idTypeHdd = $("idTypeHdd>option:selected").text();
 
-	var json = { 
-				"idComputer": idComputer,
-				"idTypeHdd"	: idTypeHdd};
+	var idTypeHdd = $(".idTypeHdd>select", trElement).val();
+
+	var json = {  "idHdd"	: "",
+				computer:{"idComputer" : "", },
+				typeHdd:{"idTypeHdd"		: idTypeHdd, },
+				};
 
 	$.ajax({
 		url: "hdd/create",
