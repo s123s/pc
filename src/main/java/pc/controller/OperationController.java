@@ -21,6 +21,7 @@ import pc.model.Hdd;
 import pc.model.Monitor;
 import pc.model.Os;
 import pc.model.Printer;
+import pc.model.Processor;
 import pc.model.Ram;
 import pc.model.TypeHdd;
 import pc.model.TypeMother;
@@ -395,6 +396,35 @@ public class OperationController {
 		mainService.getRamDao().delete(ram.getIdRam());
 	}
 	
+	
+	/*----processor----*/
+	@RequestMapping(value = "/processor")
+	public String listProcessor(ModelMap model) {
+		model.addAttribute("processors", mainService.getProcessorDao().readAll());
+		model.addAttribute("typeProcs", mainService.getTypeProcDao().readAll());
+		return "processor";
+	}
+
+	@RequestMapping(value = "/processor/save_edited",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	@JsonView(View.REST.class)
+	public OperationStatus saveEditedProcessor(@RequestBody Processor processor) {
+		return mainService.getProcessorDao().update(processor);
+	}	
+	
+	@RequestMapping(value = "/processor/create",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	@JsonView(View.REST.class)
+	public OperationStatus createProcessor(@RequestBody Processor processor) {
+        return mainService.getProcessorDao().create(processor);
+	}	
+	
+	@RequestMapping(value = "/processor/delete",  method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public void deleteProcessor(@RequestBody Processor processor) {
+	//	mainService.getTypeProcessorDao().markDeleted(typeProcessor.getIdTypeProcessor());
+		mainService.getProcessorDao().delete(processor.getIdProcessor());
+	}
 /*	---Get list free type_hdd----
 	@RequestMapping(value = "/type_hdd/list_free_type_hdd",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody

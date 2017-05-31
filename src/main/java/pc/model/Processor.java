@@ -1,11 +1,18 @@
 package pc.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import pc.jackson.View;
 
@@ -21,33 +28,42 @@ public class Processor {
     @JsonView(View.REST.class)
 	private Integer idProcessor;
 
-	@Column(name = "id_computer")
-	private Integer idComputer;
-	
-	@Column(name = "id_type_proc")
-	private Integer idTypeProc;
-
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+    @Fetch(FetchMode.JOIN)
+    @JoinColumn(name = "id_type_proc")
+    @JsonView(View.REST.class)
+	private TypeProc typeProc;
+    
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+    @Fetch(FetchMode.JOIN)
+    @JoinColumn(name = "id_computer")
+    @JsonView(View.REST.class)
+	private Computer computer;
+    
 	public Integer getIdProcessor() {
 		return idProcessor;
 	}
 	public void setIdProcessor(Integer idProcessor) {
 		this.idProcessor = idProcessor;
 	}
-	public Integer getIdComputer() {
-		return idComputer;
+	public TypeProc getTypeProc() {
+		return typeProc;
 	}
-	public void setIdComputer(Integer idComputer) {
-		this.idComputer = idComputer;
+	public void setTypeProc(TypeProc typeProc) {
+		this.typeProc = typeProc;
 	}
-	public Integer getIdTypeProc() {
-		return idTypeProc;
+	public Computer getComputer() {
+		return computer;
 	}
-	public void setIdTypeProc(Integer idTypeProc) {
-		this.idTypeProc = idTypeProc;
+	public void setComputer(Computer computer) {
+		this.computer = computer;
 	}
-
+	
 	public String toString() {
-		return "{" + idProcessor + ", " + idComputer +", " +idTypeProc + "}";
+		return "{" + idProcessor 
+				+", {" + computer.getIdComputer() +", " + computer.getInvNumber() + computer.getBuhName() + computer.getDomainName() +"},"
+				+", {" +typeProc.getIdTypeProc() 
+				+", {" + typeProc.getProducer().getIdProducer() +", " + typeProc.getProducer().getShortname() +"},"
+				+", " +typeProc.getModel() +", " +typeProc.getSocket() + " }}";
 	}
-
 }

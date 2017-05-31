@@ -41,7 +41,7 @@ public class TypeProc {
 	private String socket;
 	
     /**Нужно для проверки, есть ли ссылающиеся записи*/
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "idTypeProc")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "typeProc")
     private Set<Processor> processors;
 
 

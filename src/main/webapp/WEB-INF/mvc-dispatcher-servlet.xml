@@ -34,7 +34,8 @@
 
 
 	<!-- Database Information -->
-<!-- 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+<!--	dbcp
+ 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="${jdbc.driverClassName}" />
 		<property name="url" value="${jdbc.url}" />
@@ -42,7 +43,7 @@
 		<property name="password" value="${jdbc.password}" />
 	</bean>
  -->
-	
+ <!--  c3p0 -->
 <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
           destroy-method="close">
         <property name="driverClass" value="${jdbc.driverClassName}" />
@@ -80,6 +81,7 @@
 				<value>pc.model.Processor</value>
 				<value>pc.model.Mother</value>
 				<value>pc.model.Computer</value>
+				<value>pc.model.Processor</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -140,6 +142,9 @@
 	<bean id="ramDao" class="pc.dao.hibernate.MysqlRamDaoHibernate">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	<bean id="processorDao" class="pc.dao.hibernate.MysqlProcessorDaoHibernate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 	<bean id="mainService" class="pc.service.MainService">
 		<property name="wpDao" ref="wpDao" />
 		<property name="typeHddDao" ref="typeHddDao" />
@@ -155,6 +160,7 @@
 		<property name="userDao" ref="userDao" />
 		<property name="hddDao" ref="hddDao" />
 		<property name="ramDao" ref="ramDao" />
+		<property name="processorDao" ref="processorDao" />
 	</bean>
 	
 	<tx:annotation-driven transaction-manager="transactionManager" />
