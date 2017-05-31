@@ -9,7 +9,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 import pc.dao.HddDao;
+import pc.model.Computer;
 import pc.model.Hdd;
+import pc.model.TypeHdd;
 import pc.service.OperationStatus;
 
 
@@ -50,6 +52,7 @@ public class MysqlHddDaoHibernate implements HddDao {
 		Session session = this.sessionFactory.getCurrentSession();
 		try {
 			System.out.println(o.getClass()+ " updating");
+			if (o.getComputer().getIdComputer() == null) o.setComputer(null);
 			session.update(o);
 			return new OperationStatus(true);
 		}
@@ -65,8 +68,10 @@ public class MysqlHddDaoHibernate implements HddDao {
 		Session session = this.sessionFactory.getCurrentSession();
 		try {
 			System.out.println(o.getClass()+ " updating");
-			session.persist(o);
-			//session.save(o);
+			//session.persist(o);
+			if (o.getComputer().getIdComputer() == null) o.setComputer(null);
+			//o.setTypeHdd(session.load(TypeHdd.class, o.getTypeHdd().getIdTypeHdd()));
+			session.save(o);
 			return new OperationStatus(true, o);	//return o. ID filled
 		}
 		catch (HibernateException ex) {

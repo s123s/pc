@@ -29,18 +29,18 @@ saveEditedPosToHTML = function () {
 
 
 /** saveAnswer- ответ от Ajax-сохранения*/
-saveNewPosOnTrToHTML = function (saveAnswer, trTag) {
+saveNewPosOnTrToHTML = function (saveAnswer, trElement) {
 	if ( !saveAnswer.successfully ) return;
 	
-	var $tr    = trTag;
+	var $tr    = trElement;
 	var idLocal = saveAnswer.retObject.idHdd;
 
-	 trTag.id = "id"+idLocal;
-	 $('.idHdd', trTag).text(idLocal);
+	 trElement.id = "id"+idLocal;
+	 $('.idHdd', trElement).text(idLocal);
 	 $tr.class = "";
 
-	 $('.okPos', trTag)[0].hidden = true;
-	 $('.deletePos', trTag)[0].hidden = false;
+	 $('.okPos', trElement)[0].hidden = true;
+	 $('.deletePos', trElement)[0].hidden = false;
 }
 
 
@@ -67,9 +67,9 @@ saveNewPosOnTrToDatabase = function (trElement){
 	    beforeSend: function(xhr) {
 	        xhr.setRequestHeader(header, token);
 	    },
-		success: function(retObject) {
-			saveNewPosOnTrToHTML(retObject, trTag);
-		}
+		success: function (retObject) {
+			saveNewPosOnTrToHTML(retObject, this);
+		}.bind(trElement)	//context == <tr>
     });
 }
 
@@ -235,8 +235,8 @@ registerActions = function () {
 
 		//Ok pos
 	$("body").on("click", ".okPos", function () {
-		var trTag = this.parentNode.parentNode;
-		saveNewPosOnTrToDatabase(trTag);
+		var trElement = this.parentNode.parentNode;
+		saveNewPosOnTrToDatabase(trElement);
 	});
 
 	$( ".idTypeHdd select" ).on( "change", function( event, ui ) {
