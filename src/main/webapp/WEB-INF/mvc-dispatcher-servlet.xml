@@ -34,14 +34,29 @@
 
 
 	<!-- Database Information -->
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+<!-- 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="${jdbc.driverClassName}" />
 		<property name="url" value="${jdbc.url}" />
 		<property name="username" value="${jdbc.username}" />
 		<property name="password" value="${jdbc.password}" />
 	</bean>
+ -->
+	
+<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+          destroy-method="close">
+        <property name="driverClass" value="${jdbc.driverClassName}" />
+        <property name="jdbcUrl" value="${jdbc.url}" />
+        <property name="user" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" /> 
 
+        <!-- these are C3P0 properties -->
+        <property name="acquireIncrement" value="5" />
+        <property name="minPoolSize" value="2" />
+        <property name="maxPoolSize" value="5" />
+        <!-- <property name="maxIdleTime" value="300" /> -->
+</bean>
+    
 	<!-- Hibernate SessionFactory Bean definition -->
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
