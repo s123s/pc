@@ -8,6 +8,11 @@ saveNewPosOnTrToHTML = function (saveAnswer, trElement) {
 	 trElement.id = "id"+idLocal;
 	 $('.idHdd', trElement).text(idLocal);
 	 $tr.class = "";
+	 
+ 	//action
+	$("select",$tr).on( "change", function( event, ui ) {
+		saveEditedPosToDatabase(this.parentNode.parentNode);
+	} );
 
 	 $('.okPos', trElement)[0].hidden = true;
 	 $('.deletePos', trElement)[0].hidden = false;
