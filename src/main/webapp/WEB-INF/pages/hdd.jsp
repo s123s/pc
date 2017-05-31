@@ -124,35 +124,6 @@
 			<!--div class="right pane">Right</div-->
 		</div>
 	</div>
-	
-<select id="listOfFreeTypeHdds" hidden="true">
-</select>
-
-<div id="newDialog" title="Новый винчестер" class="dialogWindow" hidden=true>
-	<table>
-		<tr><td>Модель</td><td>
-			<select class="form-control" >
-				<c:forEach items="${typeHdds}" var="typeHdd" varStatus="st">
-					<option value="${typeHdd.idTypeHdd}" ${(hdd.typeHdd.idTypeHdd == null || hdd.typeHdd.idTypeHdd != typeHdd.idTypeHdd) ? "": "selected"} >${typeHdd.producer.shortname}&nbsp;${typeHdd.capacity}Gb</option>
-				</c:forEach>
-l			</select>
-
-											<!-- 
-			<select id="idProducer" style="width:100%">
-				<option value="">Select one...</option>
-				<c:forEach items="${producers}" var="producer" varStatus="st">
-					<option value="${producer.idProducer}">${producer.shortname}</option>
-				</c:forEach>
-			</select>
-		</td> -->
-		</tr>
-
-		<!--tr><td>Производитель</td><td><input type="text" id="producerName" name="producerName"></td></tr-->
-		<tr><td>Емкость</td><td><input type="text" id="capacity" name="capacity"></td></tr>
-	</table><br>
-	<button id="newDialogSave" class="ui-button ui-widget ui-corner-all">Создать</button>
-</div>
-
 
 <div id="deleteDialog" title="Удаление винчестера" class="dialogWindow" hidden=true>
 	<input type="text" id="idTr" hidden="true">

@@ -1,33 +1,3 @@
-
-var varListOfFreeTypeHdds;
-
-
-/*Fill dialog window from table node*/
-/*fillEditDialog = function  (idTr) {
-	$("#editDialog #idTr")[0].value = idTr;
-	var idTypeHdd = $("#mtab").find("#"+idTr).find(".idTypeHdd").text();
-	var idProducer = $("#mtab").find("#"+idTr).find(".idProducer").text();
-	var capacity = $("#mtab").find("#"+idTr).find(".capacity").text();
-
-	$("#editDialog #id")[0].value = idTypeHdd;
-	$("#idProducer [value='" +idProducer+ "']").attr("selected", "selected");
-	$("#editDialog #capacity")[0].value = capacity;
-}
-
-saveEditedPosToHTML = function () {
-	var idTrLocal = $("#editDialog #idTr")[0].value;
-	var idProducer = $("#editDialog #idProducer").val()
-	var producerShortName = $("#editDialog #idProducer option:selected").text();
-	var capacity = $("#editDialog #capacity")[0].value;
-
-	$("#mtab").find("#"+idTrLocal).find(".idProducer").text(idProducer);
-	$("#mtab").find("#"+idTrLocal).find(".producerName").text(producerShortName);
-	$("#mtab").find("#"+idTrLocal).find(".capacity").text(capacity);
-}
-
-*/
-
-
 /** saveAnswer- ответ от Ajax-сохранения*/
 saveNewPosOnTrToHTML = function (saveAnswer, trElement) {
 	if ( !saveAnswer.successfully ) return;
@@ -149,19 +119,6 @@ renumerate = function (idTable) {
 /**Create dialogs for C/U/D (crud)*/
 createDialogs = function (){
 
-/*	Edit dialog
-	$("#editDialog").dialog({
-		autoOpen: false,
-		resizable:false,
-		modal: true
-	});
-
-	$("#editDialog #editDialogSave").click(function() {
-		saveEditedPosToDatabase();
-//		saveEditedPosToHTML();
-//		$('#editDialog').dialog('close');
-   	});
-*/
 	$( "#menu" ).menu();
 
 	/*Delete dialog*/
@@ -172,16 +129,13 @@ createDialogs = function (){
 	});
 	$("#deleteDialog #deleteDialogOk").click(function() {
 		deleteFromDatabase();
-/*		removePosFromHTML();
-	   	renumerate("mtab");
-	   	$('#deleteDialog').dialog('close');*/
 	});
 }
 
 
 /**Dialogs fields validation*/
 initValidations= function () {
-	$("#newDialogForm").validate({
+/*	$("#newDialogForm").validate({
     	rules:{
     		idProducer:{
             	required: true,
@@ -201,7 +155,7 @@ initValidations= function () {
             	number: "Должно быть число",
 			},
 		}
-	});
+	});*/
 }
 
 
