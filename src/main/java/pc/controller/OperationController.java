@@ -19,6 +19,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import pc.jackson.View;
 import pc.model.Hdd;
 import pc.model.Monitor;
+import pc.model.Mother;
 import pc.model.Os;
 import pc.model.Printer;
 import pc.model.Processor;
@@ -424,6 +425,35 @@ public class OperationController {
 	public void deleteProcessor(@RequestBody Processor processor) {
 	//	mainService.getTypeProcessorDao().markDeleted(typeProcessor.getIdTypeProcessor());
 		mainService.getProcessorDao().delete(processor.getIdProcessor());
+	}
+
+	/*----mother----*/
+	@RequestMapping(value = "/mother")
+	public String listMother(ModelMap model) {
+		model.addAttribute("mothers", mainService.getMotherDao().readAll());
+		model.addAttribute("typeMothers", mainService.getTypeMotherDao().readAll());
+		return "mother";
+	}
+
+	@RequestMapping(value = "/mother/save_edited",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	@JsonView(View.REST.class)
+	public OperationStatus saveEditedMother(@RequestBody Mother mother) {
+		return mainService.getMotherDao().update(mother);
+	}	
+	
+	@RequestMapping(value = "/mother/create",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	@JsonView(View.REST.class)
+	public OperationStatus createMother(@RequestBody Mother mother) {
+        return mainService.getMotherDao().create(mother);
+	}	
+	
+	@RequestMapping(value = "/mother/delete",  method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public void deleteMother(@RequestBody Mother mother) {
+	//	mainService.getTypeMotherDao().markDeleted(typeMother.getIdTypeMother());
+		mainService.getMotherDao().delete(mother.getIdMother());
 	}
 /*	---Get list free type_hdd----
 	@RequestMapping(value = "/type_hdd/list_free_type_hdd",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)

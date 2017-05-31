@@ -41,7 +41,7 @@ public class TypeMother {
 	private String socket;
 
     /**Нужно для проверки, есть ли ссылающиеся записи*/
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "idTypeMother")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "typeMother")
     private Set<Mother> mothers;
 	
 	public String toString() {

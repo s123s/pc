@@ -1,11 +1,18 @@
 package pc.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import pc.jackson.View;
 
@@ -22,33 +29,51 @@ public class Mother {
     @JsonView(View.REST.class)
 	private Integer idMother;
 
-	@Column(name = "id_computer")
+/*	@Column(name = "id_computer")
 	private Integer idComputer;
 	
 	@Column(name = "id_type_mother")
 	private Integer idTypeMother;
-
-	public Integer getIdMother() {
+*/
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+    @Fetch(FetchMode.JOIN)
+    @JoinColumn(name = "id_type_mother")
+    @JsonView(View.REST.class)
+	private TypeMother typeMother;
+    
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+    @Fetch(FetchMode.JOIN)
+    @JoinColumn(name = "id_computer")
+    @JsonView(View.REST.class)
+	private Computer computer;
+    
+    public Integer getIdMother() {
 		return idMother;
 	}
 	public void setIdMother(Integer idMother) {
 		this.idMother = idMother;
 	}
-	public Integer getIdComputer() {
-		return idComputer;
-	}
-	public void setIdComputer(Integer idComputer) {
-		this.idComputer = idComputer;
-	}
-	public Integer getIdTypeMother() {
-		return idTypeMother;
-	}
-	public void setIdTypeMother(Integer idTypeMother) {
-		this.idTypeMother = idTypeMother;
-	}
+
 
 	public String toString() {
-		return "{" + idMother + ", " + idComputer +", " +idTypeMother + "}";
+		return "{" + idMother 
+				+", {" + computer.getIdComputer() +", " + computer.getInvNumber() + computer.getBuhName() + computer.getDomainName() +"},"
+				+", {" +typeMother.getIdTypeMother() 
+				+", {" + typeMother.getProducer().getIdProducer() +", " + typeMother.getProducer().getShortname() +"},"
+				+", " +typeMother.getModel() +", " +typeMother.getSocket() + " }}";
+	}
+
+	public TypeMother getTypeMother() {
+		return typeMother;
+	}
+	public void setTypeMother(TypeMother typeMother) {
+		this.typeMother = typeMother;
+	}
+	public Computer getComputer() {
+		return computer;
+	}
+	public void setComputer(Computer computer) {
+		this.computer = computer;
 	}
 
 }

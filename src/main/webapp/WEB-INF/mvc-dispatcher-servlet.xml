@@ -145,6 +145,9 @@
 	<bean id="processorDao" class="pc.dao.hibernate.MysqlProcessorDaoHibernate">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	<bean id="motherDao" class="pc.dao.hibernate.MysqlMotherDaoHibernate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 	<bean id="mainService" class="pc.service.MainService">
 		<property name="wpDao" ref="wpDao" />
 		<property name="typeHddDao" ref="typeHddDao" />
@@ -161,6 +164,7 @@
 		<property name="hddDao" ref="hddDao" />
 		<property name="ramDao" ref="ramDao" />
 		<property name="processorDao" ref="processorDao" />
+		<property name="motherDao" ref="motherDao" />
 	</bean>
 	
 	<tx:annotation-driven transaction-manager="transactionManager" />

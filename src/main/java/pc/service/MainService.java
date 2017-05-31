@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import pc.dao.HddDao;
 import pc.dao.MonitorDao;
+import pc.dao.MotherDao;
 import pc.dao.PrinterDao;
 import pc.dao.OsDao;
 import pc.dao.ProcessorDao;
@@ -37,6 +38,7 @@ public class MainService implements DefaultService {
 	private HddDao hddDao;
 	private RamDao ramDao;
 	private ProcessorDao processorDao;
+	private MotherDao motherDao;
 	
 	public TypeHddDao getTypeHddDao() {
 		return typeHddDao;
@@ -128,6 +130,12 @@ public class MainService implements DefaultService {
 	}
 	public void setProcessorDao(ProcessorDao processorDao) {
 		this.processorDao = processorDao;
+	}
+	public MotherDao getMotherDao() {
+		return motherDao;
+	}
+	public void setMotherDao(MotherDao motherDao) {
+		this.motherDao = motherDao;
 	}
 
 }
