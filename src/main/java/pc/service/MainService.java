@@ -6,6 +6,7 @@ import pc.dao.HddDao;
 import pc.dao.MonitorDao;
 import pc.dao.PrinterDao;
 import pc.dao.OsDao;
+import pc.dao.RamDao;
 import pc.dao.TypeHddDao;
 import pc.dao.TypeMotherDao;
 import pc.dao.TypeProcDao;
@@ -33,6 +34,7 @@ public class MainService implements DefaultService {
 	private MonitorDao monitorDao;
 	private UserDao userDao;
 	private HddDao hddDao;
+	private RamDao ramDao;
 	
 	public TypeHddDao getTypeHddDao() {
 		return typeHddDao;
@@ -112,6 +114,12 @@ public class MainService implements DefaultService {
 	}
 	public void setHddDao(HddDao hddDao) {
 		this.hddDao = hddDao;
+	}
+	public RamDao getRamDao() {
+		return ramDao;
+	}
+	public void setRamDao(RamDao ramDao) {
+		this.ramDao = ramDao;
 	}
 
 }

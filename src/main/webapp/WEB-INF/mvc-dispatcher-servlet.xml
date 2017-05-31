@@ -136,7 +136,10 @@
 	</bean>	
 	<bean id="hddDao" class="pc.dao.hibernate.MysqlHddDaoHibernate">
 		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>	
+	</bean>
+	<bean id="ramDao" class="pc.dao.hibernate.MysqlRamDaoHibernate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 	<bean id="mainService" class="pc.service.MainService">
 		<property name="wpDao" ref="wpDao" />
 		<property name="typeHddDao" ref="typeHddDao" />
@@ -151,7 +154,7 @@
 		<property name="monitorDao" ref="monitorDao" />
 		<property name="userDao" ref="userDao" />
 		<property name="hddDao" ref="hddDao" />
-		<!-- <property name="ramDao" ref="Dao" /> -->
+		<property name="ramDao" ref="ramDao" />
 	</bean>
 	
 	<tx:annotation-driven transaction-manager="transactionManager" />

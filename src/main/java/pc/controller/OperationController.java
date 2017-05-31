@@ -21,6 +21,7 @@ import pc.model.Hdd;
 import pc.model.Monitor;
 import pc.model.Os;
 import pc.model.Printer;
+import pc.model.Ram;
 import pc.model.TypeHdd;
 import pc.model.TypeMother;
 import pc.model.TypeProc;
@@ -365,14 +366,42 @@ public class OperationController {
 		mainService.getHddDao().delete(hdd.getIdHdd());
 	}
 	
+	/*----ram----*/
+	@RequestMapping(value = "/ram")
+	public String listRam(ModelMap model) {
+		model.addAttribute("rams", mainService.getRamDao().readAll());
+		model.addAttribute("typeRams", mainService.getTypeRamDao().readAll());
+		return "ram";
+	}
+
+	@RequestMapping(value = "/ram/save_edited",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	@JsonView(View.REST.class)
+	public OperationStatus saveEditedRam(@RequestBody Ram ram) {
+		return mainService.getRamDao().update(ram);
+	}	
 	
-	/*---Get list free type_hdd----*/
+	@RequestMapping(value = "/ram/create",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	@JsonView(View.REST.class)
+	public OperationStatus createRam(@RequestBody Ram ram) {
+        return mainService.getRamDao().create(ram);
+	}	
+	
+	@RequestMapping(value = "/ram/delete",  method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public void deleteRam(@RequestBody Ram ram) {
+	//	mainService.getTypeRamDao().markDeleted(typeRam.getIdTypeRam());
+		mainService.getRamDao().delete(ram.getIdRam());
+	}
+	
+/*	---Get list free type_hdd----
 	@RequestMapping(value = "/type_hdd/list_free_type_hdd",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@JsonView(View.REST.class)
 	public List<TypeHdd> listFreeTypeHdd() {
 		return mainService.getTypeHddDao().readAll();
-	}	
+	}	*/
 	
 /*	@RequestMapping(value = "/save_edited",  method = RequestMethod.POST)
 	public String saveEditedBook(@ModelAttribute("book") Book book) {

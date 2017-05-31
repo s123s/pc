@@ -37,7 +37,7 @@ public class TypeRam {
 	private Integer capacity;
 	
     /**Нужно для проверки, есть ли ссылающиеся записи*/
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "idTypeRam")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "typeRam")
     private Set<Ram> rams;
 	
 	public String toString () {

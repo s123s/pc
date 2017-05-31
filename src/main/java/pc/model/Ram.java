@@ -1,11 +1,18 @@
 package pc.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import pc.jackson.View;
 
@@ -22,33 +29,41 @@ public class Ram {
     @JsonView(View.REST.class)
 	private Integer idRam;
 
-	@Column(name = "id_computer")
-	private Integer idComputer;
-	
-	@Column(name = "id_type_ram")
-	private Integer idTypeRam;
-
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+    @Fetch(FetchMode.JOIN)
+    @JoinColumn(name = "id_type_ram")
+    @JsonView(View.REST.class)
+	private TypeRam typeRam;
+    
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+    @Fetch(FetchMode.JOIN)
+    @JoinColumn(name = "id_computer")
+    @JsonView(View.REST.class)
+	private Computer computer;
+    
 	public Integer getIdRam() {
 		return idRam;
 	}
 	public void setIdRam(Integer idRam) {
 		this.idRam = idRam;
 	}
-	public Integer getIdComputer() {
-		return idComputer;
+	public TypeRam getTypeRam() {
+		return typeRam;
 	}
-	public void setIdComputer(Integer idComputer) {
-		this.idComputer = idComputer;
+	public void setTypeRam(TypeRam typeRam) {
+		this.typeRam = typeRam;
 	}
-	public Integer getIdTypeRam() {
-		return idTypeRam;
+	public Computer getComputer() {
+		return computer;
 	}
-	public void setIdTypeRam(Integer idTypeRam) {
-		this.idTypeRam = idTypeRam;
+	public void setComputer(Computer computer) {
+		this.computer = computer;
 	}
 
 	public String toString() {
-		return "{" + idRam + ", " + idComputer +", " +idTypeRam + "}";
+		return "{" + idRam 
+				+", {" + computer.getIdComputer() +", " + computer.getInvNumber() + computer.getBuhName() + computer.getDomainName() +"},"
+				+", {" +typeRam.getIdTypeRam() +", " +typeRam.getCapacity() + " }}";
 	}
 
 }
