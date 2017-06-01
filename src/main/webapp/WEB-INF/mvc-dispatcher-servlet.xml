@@ -68,6 +68,7 @@
 				<value>pc.model.TypeHdd</value>
 				<value>pc.model.TypeRam</value>
 				<value>pc.model.TypeRamSpec</value>
+				<value>pc.model.TypeComputer</value>
 				<value>pc.model.Producer</value>
 				<value>pc.model.TypeProc</value>
 				<value>pc.model.TypeMother</value>
@@ -82,6 +83,7 @@
 				<value>pc.model.Mother</value>
 				<value>pc.model.Computer</value>
 				<value>pc.model.Processor</value>
+				<value>pc.model.Workplace</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -148,6 +150,15 @@
 	<bean id="motherDao" class="pc.dao.hibernate.MysqlMotherDaoHibernate">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	<bean id="computerDao" class="pc.dao.hibernate.MysqlComputerDaoHibernate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="typeComputerDao" class="pc.dao.hibernate.MysqlTypeComputerDaoHibernate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="workplace" class="pc.dao.hibernate.MysqlWorkplaceDaoHibernate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 	<bean id="mainService" class="pc.service.MainService">
 		<property name="wpDao" ref="wpDao" />
 		<property name="typeHddDao" ref="typeHddDao" />
@@ -165,6 +176,9 @@
 		<property name="ramDao" ref="ramDao" />
 		<property name="processorDao" ref="processorDao" />
 		<property name="motherDao" ref="motherDao" />
+		<property name="computerDao" ref="computerDao" />
+		<property name="typeComputerDao" ref="typeComputerDao" />
+		<property name="workplace" ref="WworkplaceDao" />
 	</bean>
 	
 	<tx:annotation-driven transaction-manager="transactionManager" />

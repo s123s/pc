@@ -42,10 +42,10 @@
     <script src="js/bootstrap.min.js"></script>
 
 	<link href="css/main.css" rel="stylesheet" type="text/css"/>
-	<!-- <link href="css/mother.css" rel="stylesheet" type="text/css"/> -->
+	<!-- <link href="css/computer.css" rel="stylesheet" type="text/css"/> -->
 
 	<script src="js/global.js"></script>
-	<script src="js/mother.js"></script>
+	<script src="js/computer.js"></script>
 </head>
 
 <body> 
@@ -60,7 +60,7 @@
 
 				<div class="inner">
 					<div class="top">
-                        <h4>Материнские платы</h4>
+                        <h4>компьютеры</h4>
 					</div>
 					<div class="bottom">
 						<a class="newPos"><span class="glyphicon glyphicon-plus"></span>&nbsp;Добавить мат. плату</a><br>
@@ -70,8 +70,10 @@
 								<tr>
 									<th hidden="true" nowrap>п/п</th>
 									<th class="col-lg-1">ID</th>
-									<th class="col-lg-9" title="Производитель+модель+сокет">Произв.+модель+сокет</th>
-									<th class="col-lg-1" title="Инвертарный номер компьютера">Инв. № компьютера</th>
+									<th class="col-lg-2" title="Модель">Модель</th>
+									<th class="col-lg-3" title="Инвертарный номер компьютера">Инв. № компьютера</th>
+									<th class="col-lg-3" title="Бухгалтерское название">Бухг. название</th>
+									<th class="col-lg-2" title="Доменное имя">Доменное имя</th>
 									<th class="col-lg-1">Операция</th>
 
 								</tr>
@@ -80,41 +82,45 @@
 
 								<tr id="emptyTr" class="emptyTrClass" hidden="true">
 										<td class="myIndex" hidden="true"></td>
-										<td class="idMother">${mother.idMother}</td>
-										<td class="idComputer" hidden="true">${mother.computer.idComputer}</td>
- 										<td class="idTypeMother">
+										<td class="idComputer"></td>
+										<td class="idWorkplace" hidden="true"></td>
+ 										<td class="idTypeComputer">
 										  <select class="form-control">
 												<option value="">Select one...</option>
- 												<c:forEach items="${typeMothers}" var="typeMother" varStatus="st">
-													<option value="${typeMother.idTypeMother}">
-															${typeMother.producer.shortname}, Model:&nbsp;${typeMother.model},&nbsp;Socket:${typeMother.socket}
+ 												<c:forEach items="${typeComputers}" var="typeComputer" varStatus="st">
+													<option value="${typeComputer.idTypeComputer}">
+															${typeComputer.description}
 													</option>
 												</c:forEach>
 											</select>
 										</td>
 										<td class="invNumberComputer"></td>
+										<td class="buhName"></td>
+										<td class="domainName"></td>
 										<td><a class="okPos"><span class="glyphicon glyphicon-ok"></span></a>
 											<a class="deletePos" hidden="true"><span class="glyphicon glyphicon-trash"></span></a>
 										</td>
 								</tr>
 									
-								<c:forEach items="${mothers}" var="mother" varStatus="st">
+								<c:forEach items="${computers}" var="computer" varStatus="st">
 
-									<tr id="id${mother.idMother}">
+									<tr id="id${computer.idComputer}">
 										<td class="myIndex" hidden="true">${st.getIndex()+1}</td>
-										<td class="idMother">${mother.idMother}</td>
-										<td class="idComputer" hidden="true">${mother.computer.idComputer}</td>
- 										<td class="idTypeMother">
+										<td class="idComputer">${computer.idComputer}</td>
+										<td class="idWorkplace" hidden="true">${computer.workplace.idWorkplace}</td>
+ 										<td class="idTypeComputer">
  											<select class="form-control" >
 
 											  <option value="">Select one...</option>
-												<c:forEach items="${typeMothers}" var="typeMother" varStatus="st">
-													<option value="${typeMother.idTypeMother}" 
-														${(mother.typeMother.idTypeMother == null || mother.typeMother.idTypeMother != typeMother.idTypeMother) ? "": "selected"} >
-															${typeMother.producer.shortname}, Model:&nbsp;${typeMother.model},&nbsp;Socket:${typeMother.socket}
+												<c:forEach items="${typeComputers}" var="typeComputer" varStatus="st">
+													<option value="${typeComputer.idTypeComputer}" 
+														${(computer.typeComputer.idTypeComputer == null || computer.typeComputer.idTypeComputer != typeComputer.idTypeComputer) ? "": "selected"} >
+															${typeComputer.description}
 													</option>
 												</c:forEach>
-											<td class="invNumberComputer">${mother.computer.invNumber}</td>
+											<td class="invNumberComputer">${computer.invNumber}</td>
+											<td class="buhName">${computer.buhName}</td>
+											<td class="domainName">${computer.domainName}</td>
 											</select>
 										</td>
 										<td><a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>
@@ -130,7 +136,7 @@
 		</div>
 	</div>
 
-<div id="deleteDialog" title="Удаление мат. платы" class="dialogWindow" hidden=true>
+<div id="deleteDialog" title="Удаление компьютера" class="dialogWindow" hidden=true>
 	<input type="text" id="idTr" hidden="true">
 	<input type="text" id="id" hidden="true">
 	Вы действительно хотите удалить?<br><br>

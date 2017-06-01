@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import pc.jackson.View;
+import pc.model.Computer;
 import pc.model.Hdd;
 import pc.model.Monitor;
 import pc.model.Mother;
@@ -455,6 +456,43 @@ public class OperationController {
 	//	mainService.getTypeMotherDao().markDeleted(typeMother.getIdTypeMother());
 		mainService.getMotherDao().delete(mother.getIdMother());
 	}
+	
+	/*----computer----*/
+	@RequestMapping(value = "/computer")
+	public String listComputer(ModelMap model) {
+		model.addAttribute("computers", mainService.getComputerDao().readAll());
+		model.addAttribute("typeComputers", mainService.getTypeComputerDao().readAll());
+		return "computer";
+	}
+
+	@RequestMapping(value = "/computer/save_edited",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	@JsonView(View.REST.class)
+	public OperationStatus saveEditedComputer(@RequestBody Computer computer) {
+		return mainService.getComputerDao().update(computer);
+	}	
+	
+	@RequestMapping(value = "/computer/create",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	@JsonView(View.REST.class)
+	public OperationStatus createComputer(@RequestBody Computer computer) {
+        return mainService.getComputerDao().create(computer);
+	}	
+	
+	@RequestMapping(value = "/computer/delete",  method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public void deleteComputer(@RequestBody Computer computer) {
+	//	mainService.getTypeComputerDao().markDeleted(typeComputer.getIdTypeComputer());
+		mainService.getComputerDao().delete(computer.getIdComputer());
+	}
+		
+	
+	
+	
+	
+	
+	
+	
 /*	---Get list free type_hdd----
 	@RequestMapping(value = "/type_hdd/list_free_type_hdd",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody

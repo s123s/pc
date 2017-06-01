@@ -2,6 +2,7 @@ package pc.service;
 
 import org.springframework.stereotype.Service;
 
+import pc.dao.ComputerDao;
 import pc.dao.HddDao;
 import pc.dao.MonitorDao;
 import pc.dao.MotherDao;
@@ -9,6 +10,7 @@ import pc.dao.PrinterDao;
 import pc.dao.OsDao;
 import pc.dao.ProcessorDao;
 import pc.dao.RamDao;
+import pc.dao.TypeComputerDao;
 import pc.dao.TypeHddDao;
 import pc.dao.TypeMotherDao;
 import pc.dao.TypeProcDao;
@@ -16,6 +18,7 @@ import pc.dao.TypeRamDao;
 import pc.dao.TypeRamSpecDao;
 import pc.dao.UpsDao;
 import pc.dao.UserDao;
+import pc.dao.WorkplaceDao;
 import pc.dao.WpDao;
 import pc.dao.ProducerDao;
 
@@ -39,6 +42,9 @@ public class MainService implements DefaultService {
 	private RamDao ramDao;
 	private ProcessorDao processorDao;
 	private MotherDao motherDao;
+	private ComputerDao computerDao;
+	private TypeComputerDao typeComputerDao;
+	private WorkplaceDao  workplaceDao;
 	
 	public TypeHddDao getTypeHddDao() {
 		return typeHddDao;
@@ -136,6 +142,24 @@ public class MainService implements DefaultService {
 	}
 	public void setMotherDao(MotherDao motherDao) {
 		this.motherDao = motherDao;
+	}
+	public ComputerDao getComputerDao() {
+		return computerDao;
+	}
+	public void setComputerDao(ComputerDao computerDao) {
+		this.computerDao = computerDao;
+	}
+	public TypeComputerDao getTypeComputerDao() {
+		return typeComputerDao;
+	}
+	public void setTypeComputerDao(TypeComputerDao typeComputerDao) {
+		this.typeComputerDao = typeComputerDao;
+	}
+	public WorkplaceDao getWorkplaceDao() {
+		return workplaceDao;
+	}
+	public void setWorkplaceDao(WorkplaceDao workplaceDao) {
+		this.workplaceDao = workplaceDao;
 	}
 
 }
