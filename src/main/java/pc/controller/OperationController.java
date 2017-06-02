@@ -462,7 +462,8 @@ public class OperationController {
 	public String listComputer(ModelMap model) {
 		model.addAttribute("computers", mainService.getComputerDao().readAll());
 		model.addAttribute("typeComputers", mainService.getTypeComputerDao().readAll());
-		return "computer";
+		model.addAttribute("typeMothers", mainService.getTypeMotherDao().readAll());
+		return "computer_with_table_edit";
 	}
 
 	@RequestMapping(value = "/computer/save_edited",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)

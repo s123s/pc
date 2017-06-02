@@ -156,7 +156,7 @@
 	<bean id="typeComputerDao" class="pc.dao.hibernate.MysqlTypeComputerDaoHibernate">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="workplace" class="pc.dao.hibernate.MysqlWorkplaceDaoHibernate">
+	<bean id="workplaceDao" class="pc.dao.hibernate.MysqlWorkplaceDaoHibernate">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="mainService" class="pc.service.MainService">
@@ -178,7 +178,7 @@
 		<property name="motherDao" ref="motherDao" />
 		<property name="computerDao" ref="computerDao" />
 		<property name="typeComputerDao" ref="typeComputerDao" />
-		<property name="workplace" ref="WworkplaceDao" />
+		<property name="workplaceDao" ref="workplaceDao" />
 	</bean>
 	
 	<tx:annotation-driven transaction-manager="transactionManager" />

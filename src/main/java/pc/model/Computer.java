@@ -38,12 +38,15 @@ public class Computer {
     @JsonView(View.REST.class)
 	private TypeComputer typeComputer;
  
-    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+    /**Нужно для проверки, есть ли ссылающиеся записи*/
+    @OneToMany(mappedBy="computer", fetch=FetchType.EAGER)
     @Fetch(FetchMode.JOIN)
-    @JoinColumn(name = "id_workplace")
-    @JsonView(View.REST.class)
-	private Workplace workplace;
- 
+    private Set<Workplace> workplace;
+
+    @OneToMany(mappedBy="computer", fetch=FetchType.EAGER)
+    @Fetch(FetchMode.JOIN)
+    private Set<Mother> mothersSet;
+
 		
 	@Column(name = "inv_number")
     @JsonView(View.REST.class)
@@ -58,6 +61,17 @@ public class Computer {
     /**Нужно для проверки, есть ли ссылающиеся записи*/
     @OneToMany
     private Set<Hdd> hdds;
+    
+    /**Не указана материнка*/
+    public boolean noMother (){
+    	return (mothersSet.size() == 0) ? false:true;
+    }
+    
+    public Mother fetchFirstMother () {
+    	if (!noMother()) 
+    		return mothersSet.iterator().next();
+    	return null;
+    }
     
 	public String toString() {
 		return "{" + idComputer + ", " + invNumber + ", " + buhName +", " +domainName +"}";
@@ -84,21 +98,25 @@ public class Computer {
 	public void setDomainName(String domainName) {
 		this.domainName = domainName;
 	}
-
 	public TypeComputer getTypeComputer() {
 		return typeComputer;
 	}
-
 	public void setTypeComputer(TypeComputer typeComputer) {
 		this.typeComputer = typeComputer;
 	}
-
-	public Workplace getWorkplace() {
+	public Set<Workplace> getWorkplace() {
 		return workplace;
 	}
-
-	public void setWorkplace(Workplace workplace) {
+	public void setWorkplace(Set<Workplace> workplace) {
 		this.workplace = workplace;
+	}
+
+	public Set<Mother> getMothersSet() {
+		return mothersSet;
+	}
+
+	public void setMothersSet(Set<Mother> mothersSet) {
+		this.mothersSet = mothersSet;
 	}
 
 }

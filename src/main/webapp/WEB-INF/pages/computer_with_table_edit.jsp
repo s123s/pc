@@ -42,14 +42,15 @@
     <script src="js/bootstrap.min.js"></script>
 
 	<link href="css/main.css" rel="stylesheet" type="text/css"/>
-<!-- 	<link href="css/computer.css" rel="stylesheet" type="text/css"/> -->
+	<!-- <link href="css/computer_with_table_edit.css" rel="stylesheet" type="text/css"/> -->
 
 	<script src="js/global.js"></script>
-	<script src="js/computer.js"></script>
+	<script src="js/computer_with_table_edit.js"></script>
 </head>
 
-<body>
-	<div class="header"><%@include file="include/header.jsp"%></div>
+<body> 
+	<div class="header"><%@include file="include/header.jsp"%>
+	</div>
 	<div class="wrapper">
 		<div class="inner-wrapper">
 			<div class="left pane">
@@ -59,10 +60,10 @@
 
 				<div class="inner">
 					<div class="top">
-                      <h4>Компьютеры</h4>
+                        <h4>компьютеры</h4>
 					</div>
 					<div class="bottom">
-						<a class="newPos"><span class="glyphicon glyphicon-asterisk"></span>&nbsp;Новый компьютер</a><br>
+						<a class="newPos"><span class="glyphicon glyphicon-plus"></span>&nbsp;Добавить мат. плату</a><br>
 
 						<table id="mtab" class="table table-striped">
 							<thead>
@@ -70,26 +71,39 @@
 									<th hidden="true" nowrap>п/п</th>
 									<th class="col-lg-1">ID</th>
 									<th class="col-lg-1" title="Модель">Модель</th>
-									<th class="col-lg-4" title="Инвертарный номер компьютера">Инв. № компьютера</th>
-									<th class="col-lg-3" title="Бухгалтерское название">Бухг. название</th>
+									<th class="col-lg-1" title="Инвертарный номер компьютера">Инв.№ комп.</th>
+									<th class="col-lg-2" title="Бухгалтерское название">Бухг. назв.</th>
 									<th class="col-lg-2" title="Доменное имя">Доменное имя</th>
+									<th class="col-lg-1" title="Материнская плата">Мат. плата</th>
+									<th class="col-lg-1" title="Процессор">Процессор</th>
+									<th class="col-lg-1" title="Память">Память</th>
+									<th class="col-lg-1" title="Винчестер">Винчестер</th>
 									<th class="col-lg-1">Операция</th>
 
 								</tr>
 							</head>
 							<tbody>
-	
-								<tr id="emptyTr" hidden="true">
+
+								<tr id="emptyTr" class="emptyTrClass" hidden="true">
 										<td class="myIndex" hidden="true"></td>
 										<td class="idComputer"></td>
-										<td class="workplaceCount" hidden="true"></td>
- 										<td class="idTypeComputer"></td>
- 										<td class="invNumberComputer"></td>
+										<td class="workplaceSize" hidden="true"></td>
+ 										<td class="idTypeComputer">
+										  <select class="form-control">
+												<option value="">Select one...</option>
+ 												<c:forEach items="${typeComputers}" var="typeComputer" varStatus="st">
+													<option value="${typeComputer.idTypeComputer}">
+															${typeComputer.description}
+													</option>
+												</c:forEach>
+											</select>
+										</td>
+										<td class="invNumberComputer"></td>
 										<td class="buhName"></td>
 										<td class="domainName"></td>
-
-										<td><a class="editPos"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;
-											<a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>
+										<td><a class="okPos"><span class="glyphicon glyphicon-ok"></span></a>
+											<a class="deletePos" hidden="true"><span class="glyphicon glyphicon-trash"></span></a>
+										</td>
 								</tr>
 									
 								<c:forEach items="${computers}" var="computer" varStatus="st">
@@ -97,14 +111,37 @@
 									<tr id="id${computer.idComputer}">
 										<td class="myIndex" hidden="true">${st.getIndex()+1}</td>
 										<td class="idComputer">${computer.idComputer}</td>
-										<td class="workplaceCount" hidden="true">${computer.workplace.size()}</td>
- 										<td class="typeComputerDescription">${computer.typeComputer.description}</td>
- 										<td class="invNumberComputer">${computer.invNumber}</td>
+										<td class="workplaceSize" hidden="true">${computer.workplace.size()}</td>
+ 										<td class="idTypeComputer">
+ 											<select class="form-control" >
+
+											  <option value="">Select one...</option>
+												<c:forEach items="${typeComputers}" var="typeComputer" varStatus="st">
+													<option value="${typeComputer.idTypeComputer}" 
+														${(computer.typeComputer.idTypeComputer == null || computer.typeComputer.idTypeComputer != typeComputer.idTypeComputer) ? "": "selected"} >
+															${typeComputer.description}
+													</option>
+												</c:forEach>
+											</select>
+										</td>
+										
+l										<td class="invNumberComputer">${computer.invNumber}</td>
 										<td class="buhName">${computer.buhName}</td>
 										<td class="domainName">${computer.domainName}</td>
-
-										<td><a class="editPos"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;
-											<a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>
+ 										<td class="idTypeMother">
+ 											<%-- <select class="form-control" >
+ 											
+											  <option value="">Select one...</option>
+												<c:forEach items="${typeMothers}" var="typeMother" varStatus="st">
+													<option value="${typeMother.idTypeMother}" 
+														${((computer.noMother() || computer.fetchFirstMother().noTypeMother()) || computer.fetchFirstMother().idTypeMother != typeMother.idTypeMother) ? "": "selected"} >
+														${( computer.fetchFirstMother().idTypeMother != typeMother.idTypeMother) ? "": "selected"} >
+															${typeMother.producer.shortname}, Model:&nbsp;${typeMother.model},&nbsp;Socket:${typeMother.socket}
+													</option>
+												</c:forEach>
+											</select> --%>
+										</td>
+										<td><a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>
 									</tr>
 
 								</c:forEach>
@@ -116,45 +153,6 @@
 			<!--div class="right pane">Right</div-->
 		</div>
 	</div>
-
-<div id="editDialog" title="Редактирование компьютера" class="dialogWindow" hidden=true>
-	<form id="editDialogForm" action="" method="post">
-	  <table>
-	  		<tr hidden="true"><td><input type="text"  id="idTr"></td></tr>
-			<tr><td>ID</td><td><input type="text" id="id" readonly="readonly"></td></tr>
-			
- 			<tr><td>Производитель</td><td>
-				<select id="idProducer" style="width:100%">
-					<option value="">Select one...</option>
-					<c:forEach items="${producers}" var="producer" varStatus="st">
-						<option value="${producer.idProducer}">${producer.shortname}</option>
-					</c:forEach>
-				</select>
-			</td></tr>
-			<tr><td>Модель</td><td><input type="text" id="model" name="model"></td></tr>
-			<tr><td>Сокет</td><td><input type="text" id="socket" name="socket"></td></tr>
-	  </table><br>
-	</form>
-	<button id="editDialogSave" class="ui-button ui-widget ui-corner-all">Сохранить</button>
-</div>
-
-<div id="newDialog" title="Новый компьютер" class="dialogWindow" hidden=true>
-	<table>
-		<tr><td>Производитель</td><td>
-			<select id="idProducer" style="width:100%">
-				<option value="">Select one...</option>
-				<c:forEach items="${producers}" var="producer" varStatus="st">
-					<option value="${producer.idProducer}">${producer.shortname}</option>
-				</c:forEach>
-			</select>
-		</td></tr>
-
-			<tr><td>Модель</td><td><input type="text" id="model" name="model"></td></tr>
-			<tr><td>Сокет</td><td><input type="text" id="socket" name="socket"></td></tr>
-	</table><br>
-	<button id="newDialogSave" class="ui-button ui-widget ui-corner-all">Создать</button>
-</div>
-
 
 <div id="deleteDialog" title="Удаление компьютера" class="dialogWindow" hidden=true>
 	<input type="text" id="idTr" hidden="true">

@@ -1,40 +1,49 @@
-/** saveAnswer- ответ от Ajax-сохранения*/
-saveNewPosOnTrToHTML = function (saveAnswer, trElement) {
+
+// saveAnswer- ответ от Ajax-сохранения
+saveNewPosToHTML = function (saveAnswer) {
 	if ( !saveAnswer.successfully ) return;
 	
-	var $tr    = trElement;
-	var idLocal = saveAnswer.retObject.idmother;
+	var $tr    = $("#mtab #emptyTr");
+	var idLocal = saveAnswer.retObject.idComputer;
+	var idProducer = $("#newDialog #idProducer").val();
+	var producerShortName = $("#newDialog #idProducer option:selected").text();
+	var model = $("#newDialog #model")[0].value;
+	var socket = $("#newDialog #socket")[0].value;
+	
+    var $clone = $tr.clone();
+    $clone[0].id = "id"+idLocal;
+    $clone.find('.myIndex').text('xxx');
+    $clone.find('.idComputer').text(idLocal);
+    
+	$clone.find(".idProducer").text(idProducer);
+	$clone.find(".producerName").text(producerShortName);
 
-	 trElement.id = "id"+idLocal;
-	 $('.idmother', trElement).text(idLocal);
-	 $tr.class = "";
-	 
- 	//action
-	$("select",$tr).on( "change", function( event, ui ) {
-		saveEditedPosToDatabase(this.parentNode.parentNode);
-	} );
+    $clone.find('.model').text(model);
+    $clone.find('.socket').text(socket);
+	$clone.find('.numberOfMothers').text(0);
+	$clone[0].hidden = false;
 
-
-	 $('.okPos', trElement)[0].hidden = true;
-	 $('.deletePos', trElement)[0].hidden = false;
+	$("#mtab").find('tbody')
+		.append ($clone);
 }
 
-
-/**Внимание! Параметры: trElement - тег. idTr*/
-saveNewPosOnTrToDatabase = function (trElement){
+saveNewPosToDatabase = function (){
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
+	var idProducer = $("#newDialog #idProducer").val();
+	var producerShortName = $("#newDialog #idProducer option:selected").text();
+	var model = $("#newDialog #model")[0].value;
+	var socket = $("#newDialog #socket")[0].value;
 
-
-	var idTypeMother = $(".idTypeMother>select", trElement).val();
-
-	var json = {  "idmother"	: "",
-				computer:{"idComputer" : "", },
-				typeMother:{"idTypeMother"		: idTypeMother, },
-				};
+	var json = { 
+				producer:{"idProducer"		: idProducer,
+						  "shortname"		: producerShortName,
+						 },
+				"model"		: model, 
+				"socket"	: socket, };
 
 	$.ajax({
-		url: "mother/create",
+		url: "type_mother/create",
 	    	 
 	    data: JSON.stringify(json),
 	    contentType: "application/json",
@@ -43,27 +52,59 @@ saveNewPosOnTrToDatabase = function (trElement){
 	    beforeSend: function(xhr) {
 	        xhr.setRequestHeader(header, token);
 	    },
-		success: function (retObject) {
-			saveNewPosOnTrToHTML(retObject, this);
-		}.bind(trElement)	//context == <tr>
+		success: function(retObject) {
+			saveNewPosToHTML(retObject);
+			$('#newDialog').dialog('close');
+		}
     });
 }
 
-saveEditedPosToDatabase = function (trElement){
+
+/*Fill dialog window from table node*/
+fillEditDialog = function  (idTr) {
+	$("#editDialog #idTr")[0].value = idTr;
+	var idComputer = $("#mtab").find("#"+idTr).find(".idComputer").text();
+	var idProducer = $("#mtab").find("#"+idTr).find(".idProducer").text();
+	var model = $("#mtab").find("#"+idTr).find(".model").text();
+	var socket = $("#mtab").find("#"+idTr).find(".socket").text();
+
+	$("#editDialog #id")[0].value = idComputer;
+	$("#idProducer [value='" +idProducer+ "']").attr("selected", "selected");
+	$("#editDialog #model")[0].value = model;
+	$("#editDialog #socket")[0].value = socket;
+}
+
+saveEditedPosToHTML = function () {
+	var idTrLocal = $("#editDialog #idTr")[0].value;
+	var idProducer = $("#editDialog #idProducer").val();
+	var producerShortName = $("#editDialog #idProducer option:selected").text();
+	var model = $("#editDialog #model")[0].value;
+	var socket = $("#editDialog #socket")[0].value;
+
+	$("#mtab").find("#"+idTrLocal).find(".idProducer").text(idProducer);
+	$("#mtab").find("#"+idTrLocal).find(".producerName").text(producerShortName);
+	$("#mtab").find("#"+idTrLocal).find(".model").text(model);
+	$("#mtab").find("#"+idTrLocal).find(".socket").text(socket);
+}
+
+saveEditedPosToDatabase = function (){
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
+	var idComputer = $("#editDialog #id")[0].value;
+	var idProducer = $("#editDialog #idProducer").val();
+	var producerShortName = $("#editDialog #idProducer option:selected").text();
+	var model = $("#editDialog #model")[0].value;
+	var socket = $("#editDialog #socket")[0].value;
 
-	var idmother = $(".idmother", trElement).text();
-	var idComputer = $(".idComputer", trElement).text();
-	var idTypeMother = $(".idTypeMother>select", trElement).val();
-
-	var json = { "idmother"	: idmother,
-				computer:{"idComputer" : idComputer, },
-				typeMother:{"idTypeMother"		: idTypeMother, },
-				};
+	var json = { "idComputer"	: idComputer,
+				producer:{"idProducer"		: idProducer,
+						  "shortname"		: producerShortName,
+						 },
+				"model"		: model,
+				"socket"	: socket, };
 
 	$.ajax({
-		url: "mother/save_edited",
+		url: "type_mother/save_edited",
 	    	 
 	    data: JSON.stringify(json),
 	    contentType: "application/json",
@@ -73,17 +114,18 @@ saveEditedPosToDatabase = function (trElement){
 	        xhr.setRequestHeader(header, token);
 	    },
 		success: function(smartphone) {
-    		simpleDialogOpen("Сообщение", "Сохранение прошло успешно");
+    		saveEditedPosToHTML();
+    		$('#editDialog').dialog('close');
     	}
     });
 }
 
 /*Fill dialog window from table node*/
 fillDeleteDialog = function (idTr) {
-	var idmother = $("#mtab").find("#"+idTr).find(".idmother").text();
+	var idComputer = $("#mtab").find("#"+idTr).find(".idComputer").text();
 
 	$("#deleteDialog #idTr")[0].value = idTr;
-	$("#deleteDialog #id")[0].value = idmother;
+	$("#deleteDialog #id")[0].value = idComputer;
 }
 
 removePosFromHTML = function () {
@@ -96,10 +138,10 @@ deleteFromDatabase = function (){
 	var header = $("meta[name='_csrf_header']").attr("content");
 	
 	var idLocal = $("#deleteDialog #id")[0].value
-	var json = { "idmother"	: idLocal };
+	var json = { "idComputer"	: idLocal };
 
 	$.ajax({
-		url: "mother/delete",
+		url: "type_mother/delete",
 	    	 
 	    data: JSON.stringify(json),
 	    contentType: "application/json",
@@ -116,6 +158,7 @@ deleteFromDatabase = function (){
     });
 }
 
+
 renumerate = function (idTable) {
 	$("#" + idTable  +" tr").each(function(i){
 		$(" .myIndex", this).text(i);
@@ -125,7 +168,27 @@ renumerate = function (idTable) {
 /**Create dialogs for C/U/D (crud)*/
 createDialogs = function (){
 
-	$( "#menu" ).menu();
+	/*Create dialog*/
+	$("#newDialog").dialog({
+		autoOpen: false,
+		resizable:false,
+		modal: true
+	});
+	$("#newDialog #newDialogSave").click(function() {
+		saveNewPosToDatabase();
+   	});
+
+	/*Edit dialog*/
+	$("#editDialog").dialog({
+		autoOpen: false,
+		resizable:false,
+		modal: true
+	});
+
+	$("#editDialog #editDialogSave").click(function() {
+		saveEditedPosToDatabase();
+   	});
+
 
 	/*Delete dialog*/
 	$("#deleteDialog").dialog({
@@ -138,70 +201,54 @@ createDialogs = function (){
 	});
 }
 
-
 /**Dialogs fields validation*/
-initValidations= function () {
-/*	$("#newDialogForm").validate({
+initDialogsValidations= function () {
+	$("#newDialogForm").validate({
     	rules:{
-    		idProducer:{
-            	required: true,
-			},
-			capacity:{
-				required: true,
-				number: true,
-			}
-
+    		idTypeRamSpec:{ required: true, },
+			model: {	required: true,	},
+			socket: {	required: true,	},
 		},
         messages:{
-        	idProducer:{
-            	required: "Это поле обязательно для заполнения",
-			},
-        	capacity:{
-            	required: "Это поле обязательно для заполнения",
-            	number: "Должно быть число",
-			},
+        	idTypeRamSpec:{ required: "Это поле обязательно для заполнения", },
+			model:{ required: "Это поле обязательно для заполнения", },
+			socket:{ required: "Это поле обязательно для заполнения", },
 		}
-	});*/
-}
+	});
 
-addPosToHTML = function () {
-	var $tr    = $("#mtab #emptyTr");
-
-	var $clone = $tr.clone();
-    $clone[0].id = "emptyTrNew";
-    $clone.find('.myIndex').text( $("#mtab>tbody>tr").length );
-    $clone.find('.idmother').text("");
- 	$clone.find(".idComputer").text("");
- 	$clone.find(".invNumberComputer").text("");
- 	$clone[0].hidden = false;
-	
-	$("#mtab").find('tbody')
-		.append ($clone);
+	$("#editDialogForm").validate({
+    	rules:{
+    		idTypeRamSpec:{ required: true, },
+			model: {	required: true,	},
+			socket: {	required: true,	},
+		},
+        messages:{
+        	idTypeRamSpec:{ required: "Это поле обязательно для заполнения", },
+			model:{ required: "Это поле обязательно для заполнения", },
+			socket:{ required: "Это поле обязательно для заполнения", },
+		}
+	});
 }
 
 /**Разрешено удалять?*/
 permitedToDelete = function (idTr) {
-	var idWorkplace = $("#mtab").find("#"+idTr).find(".idWorkplace").text();
-	return (idWorkplace.length != 0)? false:true;
-
+	var numberOfMothers = $("#mtab").find("#"+idTr).find(".numberOfMothers").text();
+	return (numberOfMothers > 0)? false:true;
 }
+
 /**Dialogs actions registration*/
-registerActions = function () {
+registerDialogsActions = function () {
 		//New pos
 	$("body").on("click", ".newPos", function () {
-		addPosToHTML();
+			$('#newDialog').dialog('open');
+		});
+
+		//Edit pos
+	$("body").on("click", ".editPos", function () {
+		var idTr = this.parentNode.parentNode.id;
+		fillEditDialog(idTr);	//fill edit_dialog fields from table
+		$('#editDialog').dialog('open');
 	});
-
-		//Ok pos
-	$("body").on("click", ".okPos", function () {
-		var trElement = this.parentNode.parentNode;
-		saveNewPosOnTrToDatabase(trElement);
-	});
-
-	$( ".idTypeMother select" ).on( "change", function( event, ui ) {
-		saveEditedPosToDatabase(this.parentNode.parentNode);
-	} );
-
 
 		//Delete pos
 	$("body").on("click", ".deletePos", function () {
@@ -211,7 +258,7 @@ registerActions = function () {
 			$('#deleteDialog').dialog('open');
 		}
 		else {
-			simpleDialogOpen("Сообщение", "Винчестер установлен в компьютере. Удаление невозможно.");
+			simpleDialogOpen("Сообщение", "Есть материнские платы с таким типом. Удаление невозможно.");
 		}
 	});
 
@@ -219,8 +266,8 @@ registerActions = function () {
 
 thisPageInit = function () {
 	createDialogs ();
-	initValidations ();
-	registerActions ();
+	initDialogsValidations ();
+	registerDialogsActions ();
 }
 
 $(function() {

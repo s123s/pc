@@ -54,6 +54,10 @@ public class Mother {
 		this.idMother = idMother;
 	}
 
+    /**Не указан тип материнки*/
+    boolean noTypeMother (){
+    	return (typeMother.getIdTypeMother()  == null) ? false:true;
+    }
 
 	public String toString() {
 		return "{" + idMother 
