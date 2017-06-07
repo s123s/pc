@@ -64,7 +64,7 @@ public class Computer {
     
     /**Не указана материнка*/
     public boolean noMother (){
-    	return (mothersSet.size() == 0) ? false:true;
+    	return (mothersSet.size() == 0) ? true:false;
     }
     
     public Mother fetchFirstMother () {

@@ -5,6 +5,9 @@
 
 <!-- <%@page import="java.util.ArrayList"%> -->
 
+<%@page import="pc.model.Mother"%>
+<%@page import="pc.model.Computer"%>
+
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -47,7 +50,7 @@
 	<script src="js/global.js"></script>
 	<script src="js/computer_with_table_edit.js"></script>
 </head>
-
+Mother
 <body> 
 	<div class="header"><%@include file="include/header.jsp"%>
 	</div>
@@ -63,8 +66,8 @@
                         <h4>компьютеры</h4>
 					</div>
 					<div class="bottom">
-						<a class="newPos"><span class="glyphicon glyphicon-plus"></span>&nbsp;Добавить мат. плату</a><br>
-
+						<a class="newPos"><span class="glyphicon glyphicon-plus"></span>&nbsp;Добавить компьютер</a><br>
+						
 						<table id="mtab" class="table table-striped">
 							<thead>
 								<tr>
@@ -125,21 +128,22 @@
 											</select>
 										</td>
 										
-l										<td class="invNumberComputer">${computer.invNumber}</td>
+										<td class="invNumberComputer">${computer.invNumber}</td>
 										<td class="buhName">${computer.buhName}</td>
 										<td class="domainName">${computer.domainName}</td>
  										<td class="idTypeMother">
- 											<%-- <select class="form-control" >
+ 											<select class="form-control" >
  											
 											  <option value="">Select one...</option>
 												<c:forEach items="${typeMothers}" var="typeMother" varStatus="st">
 													<option value="${typeMother.idTypeMother}" 
-														${((computer.noMother() || computer.fetchFirstMother().noTypeMother()) || computer.fetchFirstMother().idTypeMother != typeMother.idTypeMother) ? "": "selected"} >
-														${( computer.fetchFirstMother().idTypeMother != typeMother.idTypeMother) ? "": "selected"} >
-															${typeMother.producer.shortname}, Model:&nbsp;${typeMother.model},&nbsp;Socket:${typeMother.socket}
+														${((computer.noMother() || computer.fetchFirstMother().noTypeMother()) 
+															|| computer.fetchFirstMother().getTypeMother().idTypeMother != typeMother.idTypeMother) ? "": "selected"} >
+														
+															${computer.fetchFirstMother().combineDisplayName()}
 													</option>
 												</c:forEach>
-											</select> --%>
+											</select>
 										</td>
 										<td><a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>
 									</tr>

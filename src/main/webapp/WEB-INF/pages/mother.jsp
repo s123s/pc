@@ -111,7 +111,7 @@
 												<c:forEach items="${typeMothers}" var="typeMother" varStatus="st">
 													<option value="${typeMother.idTypeMother}" 
 														${(mother.typeMother.idTypeMother == null || mother.typeMother.idTypeMother != typeMother.idTypeMother) ? "": "selected"} >
-															${typeMother.producer.shortname}, Model:&nbsp;${typeMother.model},&nbsp;Socket:${typeMother.socket}
+															${typeMother.combineDisplayName()}
 													</option>
 												</c:forEach>
 											<td class="invNumberComputer">${mother.computer.invNumber}</td>

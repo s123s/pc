@@ -55,8 +55,8 @@ public class Mother {
 	}
 
     /**Не указан тип материнки*/
-    boolean noTypeMother (){
-    	return (typeMother.getIdTypeMother()  == null) ? false:true;
+    public boolean noTypeMother (){
+    	return (typeMother.getIdTypeMother()  == null) ? true:false;
     }
 
 	public String toString() {
@@ -78,6 +78,11 @@ public class Mother {
 	}
 	public void setComputer(Computer computer) {
 		this.computer = computer;
+	}
+	/**Собрать удобное имя*/
+	public String combineDisplayName () {
+		return idMother+", " 
+				+ (noTypeMother()? "": getTypeMother().combineDisplayName());
 	}
 
 }
