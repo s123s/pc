@@ -488,13 +488,6 @@ public class OperationController {
 	}
 		
 	
-	/**---Get list free type_mother----*/
-	@RequestMapping(value = "/mother/list_free_mother",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	@JsonView(View.REST.class)
-	public List<Mother> listFreeMother() {
-		return mainService.getMotherDao().readAllFreeRows();
-	}	
 	
 	
 	

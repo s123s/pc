@@ -131,14 +131,11 @@ Mother
 										<td class="invNumberComputer">${computer.invNumber}</td>
 										<td class="buhName">${computer.buhName}</td>
 										<td class="domainName">${computer.domainName}</td>
- 										<td class="idMother">
+ 										<td class="idTypeMother">
  											<select class="form-control" >
  											
-											  <!-- <option value="">Select one...</option> -->
-											  <option value="${computer.fetchFirstMother().getIdMother()}">
-											  ${computer.producer.getShortname() +", Model:" + computer.mother.model +", Socket:" +computer.mother.socket}</option>
-											</select>
-												<%-- <c:forEach items="${typeMothers}" var="typeMother" varStatus="st">
+											  <option value="">Select one...</option>
+												<c:forEach items="${typeMothers}" var="typeMother" varStatus="st">
 													<option value="${typeMother.idTypeMother}" 
 														${((computer.noMother() || computer.fetchFirstMother().noTypeMother()) 
 															|| computer.fetchFirstMother().getTypeMother().idTypeMother != typeMother.idTypeMother) ? "": "selected"} >
@@ -146,7 +143,7 @@ Mother
 															${computer.fetchFirstMother().combineDisplayName()}
 													</option>
 												</c:forEach>
-											</select> --%>
+											</select>
 										</td>
 										<td><a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>
 									</tr>
@@ -160,9 +157,6 @@ Mother
 			<!--div class="right pane">Right</div-->
 		</div>
 	</div>
-	
-<select id="listOfFreeTypeMothers" hidden="true">
-</select>
 
 <div id="deleteDialog" title="Удаление компьютера" class="dialogWindow" hidden=true>
 	<input type="text" id="idTr" hidden="true">

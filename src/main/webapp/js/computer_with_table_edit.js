@@ -217,80 +217,10 @@ registerActions = function () {
 
 }
 
-/*Добавить options в select (selectElement)*/
-addOptionsToTypeMothersSelect = function (selectElement) {
-	$.each($( "#listOfFreeTypeMothers")[0].options, function(key, value) {
-		//value.removeAttr("selected");
-		value.selected = false;
-	    $(selectElement).append(value);
-	});
-}
-
-
-initSelects = function () {
-	var token = $("meta[name='_csrf']").attr("content");
-	var header = $("meta[name='_csrf_header']").attr("content");
-	
-	/*$(".idTypeHdd select").selectmenu();*/
-	var options = []; 
- 
-	$.ajax({
-		url: "type_mother/list_free_type_mother",
-	    	 
-	    contentType: "application/json",
-	   	type: "post",
-	    beforeSend: function(xhr) {
-	        xhr.setRequestHeader(header, token);
-	    },
-	    /*Список непривязанных Mother*/
-		success: function(listOfRetOblectsMothers) {
-			   for (i = 0; i <listOfRetOblectsMothers.length ; i++) {
-			        options.push("<option value='" + listOfRetOblectsMothers[i].idTypeMother + "'>" 
-												   + listOfRetOblectsMothers[i].getShortname() +", Model:" + listOfRetOblectsMothers[i].model +", Socket:" +listOfRetOblectsMothers[i].socket
-												   		"</option>");
-			    }
-			    $( "#listOfFreeTypeMothers" ).append(options.join(""));
-		}
-    });
-	$( ".idTypeMother select" ).on( "mouseenter", function( event, ui ) {
-		addOptionsToTypeMothersSelect (this);
-	} );
-	
-	$( ".idTypeMother select" ).on( "change", function( event, ui ) {
-		this.options.length = 1;
-		
-/*		var idTypeHddInBase = $(".idTypeHddInBase",  this.parentNode.parentNode);
-		removeOptionFromAllSelects(this.value, idTypeHddInBase);
-		addOptionToAllSelects (idTypeHddInBase);*/
-		/*	var options = []; 
-		    for (i = 10; i <21 ; i++) {
-		        options.push("<option value='" + i + "'>" + "str_"+ i+ "</option>");
-		    }
-		    //append after populating all options
-		    //$('.idTypeHdd select')
-		    this.append(options.join(""));
-		    $(".idTypeHdd select").selectmenu("refresh");*/
-			
-		   /* 
-		    $.when( $.ajax( "type_hdd/list_free_type_hdd" ) ).then(
-		    		function( data, textStatus, jqXHR ) {
-		    	  		$('.idTypeHdd select').selectmenu("refresh");
-		    		});
-		    */
-		    
-		    //$('.idTypeHdd select').selectmenu("refresh");
-		    
-	/*	    event.preventDefault();
-			return true;*/
-		} );
-}
-
-
 thisPageInit = function () {
 	createDialogs ();
 	initValidations ();
 	registerActions ();
-	initSelects();
 }
 
 $(function() {
