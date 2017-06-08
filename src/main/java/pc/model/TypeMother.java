@@ -83,8 +83,8 @@ public class TypeMother {
 	public void setMothers(Set<Mother> mothers) {
 		this.mothers = mothers;
 	}
-	/**Собрать удобное имя*/
-	public String combineDisplayName () {
+/*	*//**Собрать удобное имя*//*
+	public String combineDisplayNd() {
 		return producer.getShortname() +", Model:" + model +", Socket:" +socket;
-	}
+	}*/
 }

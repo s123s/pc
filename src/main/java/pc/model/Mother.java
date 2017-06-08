@@ -79,10 +79,11 @@ public class Mother {
 	public void setComputer(Computer computer) {
 		this.computer = computer;
 	}
-	/**Собрать удобное имя*/
+/*	*//**Собрать удобное имя*//*
+    @JsonView(View.REST.class)
 	public String combineDisplayName () {
 		return idMother+", " 
 				+ (noTypeMother()? "": getTypeMother().combineDisplayName());
-	}
+	}*/
 
 }

@@ -1,5 +1,6 @@
 package pc.dao.hibernate;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -27,6 +28,7 @@ public class MysqlTypeMotherDaoHibernate implements TypeMotherDao {
 		Session session = this.sessionFactory.getCurrentSession();
 		return session.createQuery("from TypeMother order by idTypeMother").list();
 	}
+	
 	@Override
 	@Transactional
 	public OperationStatus update(TypeMother o) {
