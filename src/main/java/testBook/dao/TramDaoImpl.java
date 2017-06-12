@@ -2,6 +2,7 @@ package testBook.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import testBook.model.Producer;
 import testBook.model.Tram;
 
 import java.util.List;

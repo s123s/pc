@@ -109,6 +109,7 @@ public class ControllerHead {
     //Producer
     @RequestMapping(value="/producer")
     public String listProducer(Model model){
+
         model.addAttribute("producer", new Producer());
         model.addAttribute("listProducer", this.producerService.listProducer());
         return "producer";
@@ -161,6 +162,7 @@ public class ControllerHead {
 
     @RequestMapping(value="/hdd")
     public String listHdd(Model model){
+        model.addAttribute("listProducer", this.producerService.listProducer());
         model.addAttribute("thdd", new Thdd());
         model.addAttribute("listThdd", this.thddService.listThdd());
         return "hdd";
@@ -213,6 +215,7 @@ public class ControllerHead {
 //Processor
     @RequestMapping(value="/processor")
     public String listProcessor(Model model){
+        model.addAttribute("listProducer", this.producerService.listProducer());
         model.addAttribute("tproc", new Tproc());
         model.addAttribute("listTproc", this.tprocService.listTproc());
         return "processor";

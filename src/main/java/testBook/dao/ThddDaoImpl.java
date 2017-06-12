@@ -2,6 +2,7 @@ package testBook.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import testBook.model.Producer;
 import testBook.model.Thdd;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class ThddDaoImpl implements ThddDao {
     @Override
     public void addThdd(Thdd thdd) {
         Session session = this.sessionFactory.getCurrentSession();
+        thdd.setProducer((Producer) session.load(Producer.class, thdd.getProducer().getId()));
         session.persist(thdd);
     }
 
@@ -33,6 +35,7 @@ public class ThddDaoImpl implements ThddDao {
         Session session = this.sessionFactory.getCurrentSession();
         Thdd thdd = (Thdd) session.load(Thdd.class, new Long(id));
         if(thdd != null)
+            thdd.setProducer(null);
             session.delete(thdd);
     }
 

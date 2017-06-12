@@ -13,6 +13,10 @@
 <head>
     <title>RAM Type</title>
     <link href="<c:url value="/css/bootstrap.css" />" rel="stylesheet">
+
+    <link href="<c:url value="/css/bootstrap.css" />" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Cuprum&subset=latin' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="jq/jquery.confirm/jquery.confirm.css" />
 </head>
 <body>
 </br>
@@ -20,7 +24,6 @@
 <div class ="container">
 
     <form name="add" action="/addRam">
-
 
         <div class="form-group">
             <label for="type"> Type</label>
@@ -65,11 +68,23 @@
                 <td>${tram.type}</td>
                 <td>${tram.capacity}</td>
                     <%--<td><a href="<c:url value='/edit/${computer.id}'/>">edit</a></td>--%>
-                <td><a href="<c:url value='/removeRam/${tram.id}'/>">delete</a></td>
+                <td><%--<a href="<c:url value='/removeRam/${tram.id}'/>">delete</a>--%>
+                    <form action="/removeRam/${tram.id}" name="delete${tram.id}" hidden="true" method="post">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                        <input type="submit">
+                    </form>
+                        <%--<td><a href="<c:url value='/edit/${computer.id}'/>">edit</a></td>--%>
+                        <%-- <td><a href="<c:url value='/removePrinter/${printer.id}'/>">delete</a></td>--%>
+                  <%--  <a  href="<c:url value='/editTmother/${tmother.id}'/>"><span class="glyphicon glyphicon-pencil"></span></a>&nbs--%><%--p;--%>
+                    <div class="item"> <a id="delete${tram.id}" class="delete"><span  class="glyphicon glyphicon-trash"></span></a></div>
+                </td>
             </tr>
         </c:forEach>
     </table>
 </div>
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<script src="jq/jquery.confirm/jquery.confirm.js"></script>
+<script src="jq/js/script.js"></script>
 </body>
 </html>

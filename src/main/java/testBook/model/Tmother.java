@@ -1,5 +1,7 @@
 package testBook.model;
 
+import org.hibernate.sql.Update;
+
 import javax.persistence.*;
 
 /**
@@ -14,8 +16,9 @@ public class Tmother {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(cascade = {CascadeType.ALL}, fetch=FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinColumn(name = "id_producer")
+
     private Producer producer;
 
     public Producer getProducer() {

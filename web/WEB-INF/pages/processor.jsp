@@ -13,14 +13,30 @@
 <head>
     <title>Processor Type</title>
     <link href="<c:url value="/css/bootstrap.css" />" rel="stylesheet">
+
+    <link href="<c:url value="/css/bootstrap.css" />" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Cuprum&subset=latin' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="jq/jquery.confirm/jquery.confirm.css" />
+
 </head>
 <body>
 </br>
 </br>
+
 <div class ="container">
 
     <form name="add" action="/addProcessor">
 
+        <div class="form-group">
+            <label for="producer"> Производитель </label>
+            <p><select id = "producer" name="producer.id" size="1">
+                <option disabled>Выберите производителя</option>
+                <c:forEach items="${listProducer}" var="producer">
+                    <option>${producer.id}</option>
+                </c:forEach>
+            </select>
+            </p>
+        </div>
 
         <div class="form-group">
             <label for="model"> Model</label>
@@ -35,6 +51,7 @@
         <input type="submit"class="btn btn-primary" value="Додати">
     </form>
 </div>
+
 <div class="container">
     <a href="<c:url value='/wp'/>">Workplace</a>
     <a href="<c:url value='/computer'/>">Computer</a>
@@ -48,7 +65,7 @@
                 id
             </th>
             <th>
-               Inv Number
+               Producer
             </th>
             <th>
                 Model
@@ -64,7 +81,7 @@
         <c:forEach items="${listTproc}" var="tproc">
             <tr>
                 <td>${tproc.id}</td>
-                <td>${tproc.producer}</td>
+                <td>${tproc.producer.name}</td>
                 <td>${tproc.model}</td>
                 <td>${tproc.socket}</td>
                <%--<td><a href="<c:url value='/edit/${computer.id}'/>">edit</a></td>--%>

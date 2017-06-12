@@ -2,6 +2,7 @@ package testBook.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import testBook.model.Producer;
 import testBook.model.Tproc;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class TprocDaoImpl implements TprocDao {
     @Override
     public void addTproc(Tproc tproc) {
         Session session = this.sessionFactory.getCurrentSession();
+        tproc.setProducer((Producer) session.load(Producer.class, tproc.getProducer().getId()));
         session.persist(tproc);
     }
 
@@ -34,6 +36,7 @@ public class TprocDaoImpl implements TprocDao {
         Session session = this.sessionFactory.getCurrentSession();
         Tproc tproc = (Tproc) session.load(Tproc.class, new Long(id));
         if(tproc != null)
+            tproc.setProducer(null);
             session.delete(tproc);
     }
 

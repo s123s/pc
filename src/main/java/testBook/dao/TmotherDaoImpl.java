@@ -3,6 +3,7 @@ package testBook.dao;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import testBook.model.Producer;
 import testBook.model.Tmother;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class TmotherDaoImpl implements TmotherDao {
     @Override
     public void addTmother(Tmother tmother) {
         Session session = this.sessionFactory.getCurrentSession();
+        tmother.setProducer((Producer) session.load(Producer.class, tmother.getProducer().getId()));
         session.persist(tmother);
     }
 
@@ -35,6 +37,7 @@ public class TmotherDaoImpl implements TmotherDao {
         Session session = this.sessionFactory.getCurrentSession();
         Tmother tmother = (Tmother) session.load(Tmother.class, new Long(id));
         if (tmother != null)
+            tmother.setProducer(null);
             session.delete(tmother);
     }
 

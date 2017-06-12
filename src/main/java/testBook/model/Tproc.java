@@ -1,5 +1,7 @@
 package testBook.model;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 
 /**
@@ -14,14 +16,16 @@ public class Tproc {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="id_producer")
-    private Long producer;
+    @ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinColumn(name = "id_producer")
 
-    public Long getProducer() {
+    private Producer producer;
+
+    public Producer getProducer() {
         return producer;
     }
 
-    public void setProducer(Long producer) {
+    public void setProducer(Producer producer) {
         this.producer = producer;
     }
 
@@ -33,6 +37,7 @@ public class Tproc {
 
     public Tproc(){}
     public Tproc(String model, Long socket){
+        this.producer = producer;
         this.model = model;
         this.socket = socket;
     }

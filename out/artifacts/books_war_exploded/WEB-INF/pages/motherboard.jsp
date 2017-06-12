@@ -28,21 +28,21 @@
 
     <form name="add" action="/addMotherboard">
 
-       <%-- <div class="form-group">
+        <div class="form-group">
             <label for="producer"> Производитель </label>
-            <p><select id = "producer" name="producer" size="1">
+            <p><select id = "producer" name="producer.id" size="1">
                 <option disabled>Выберите производителя</option>
                 <c:forEach items="${listProducer}" var="producer">
                     <option>${producer.id}</option>
                 </c:forEach>
             </select>
             </p>
-        </div>
---%>
-           <div class="form-group">
-               <label for="producer"> Producer</label>
-               <input type="input" name= "producer" id="producer" value="${producer.id}"class="form-control">
-           </div>
+        </div><%--  <div class="form-group">
+               <label for="producer.id"> Producer</label>
+               <input type="input" name="producer.id" id="producer.id" value="${tmother.producer.id}"class="form-control">
+               <input type="input" name="producer.shortname" id="producer.shortname" value="Samsung"class="form-control">
+           </div>--%>
+
 
         <div class="form-group">
             <label for="model"> Model</label>

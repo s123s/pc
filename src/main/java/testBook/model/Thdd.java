@@ -14,9 +14,18 @@ public class Thdd {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="id_producer")
-    private Long producer;
+    @ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinColumn(name = "id_producer")
 
+    private Producer producer;
+
+    public Producer getProducer() {
+        return producer;
+    }
+
+    public void setProducer(Producer producer) {
+        this.producer = producer;
+    }
 
    /* @Column(name="model")
     private String model;*/
@@ -36,14 +45,6 @@ public class Thdd {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getProducer() {
-        return producer;
-    }
-
-    public void setProducer(Long producer) {
-        this.producer = producer;
     }
 
 
