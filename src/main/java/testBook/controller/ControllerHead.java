@@ -167,7 +167,19 @@ public class ControllerHead {
         model.addAttribute("listThdd", this.thddService.listThdd());
         return "hdd";
     }
+    @RequestMapping(value="editHdd/{id}")
+    public String editHdd(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("listProducer", this.producerService.listProducer());
+        model.addAttribute("thdd", this.thddService.getThddById(id));
+       /* System.out.println(this.printerService.getPrinterById(id));*/
+        return "/editHdd";
+    }
 
+    @RequestMapping(value="/updateHdd" /*method=RequestMethod.POST*/)
+    public String updateHdd(@ModelAttribute("thdd") Thdd tHdd){
+        this.thddService.updateThdd(tHdd);
+        return "redirect:/hdd";
+    }
     @RequestMapping(value="/addHdd")
     public String addHdd(@ModelAttribute("thdd") Thdd thdd, Model model) {
         this.thddService.addThdd(thdd);
@@ -200,10 +212,11 @@ public class ControllerHead {
         this.tmotherService.removeTmother(id);
         return "redirect:/motherboard";
     }
-    @RequestMapping(value="editMotherboard/{id}")
+    @RequestMapping(value="editMother/{id}")
     public String editMotherboard(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("listProducer", this.producerService.listProducer());
         model.addAttribute("tmother", this.tmotherService.getTmotherById(id));
-         return "/editTmother";
+         return "/editMother";
     }
 
     @RequestMapping(value="/updateMotherboard" /*method=RequestMethod.POST*/)
@@ -234,6 +247,7 @@ public class ControllerHead {
     }
     @RequestMapping(value="editProcessor/{id}")
     public String editProcessor(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("listProducer", this.producerService.listProducer());
         model.addAttribute("tproc", this.tprocService.getTprocById(id));
        /* System.out.println(this.printerService.getPrinterById(id));*/
         return "/editProcessor";

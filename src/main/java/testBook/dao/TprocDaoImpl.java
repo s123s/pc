@@ -28,6 +28,7 @@ public class TprocDaoImpl implements TprocDao {
     @Override
     public void updateTproc(Tproc tproc) {
         Session session = this.sessionFactory.getCurrentSession();
+        tproc.setProducer((Producer) session.load(Producer.class, tproc.getProducer().getId()));
         session.update(tproc);
     }
 

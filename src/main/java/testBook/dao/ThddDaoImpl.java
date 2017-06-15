@@ -27,6 +27,7 @@ public class ThddDaoImpl implements ThddDao {
     @Override
     public void updateThdd(Thdd thdd) {
         Session session = this.sessionFactory.getCurrentSession();
+        thdd.setProducer((Producer) session.load(Producer.class, thdd.getProducer().getId()));
         session.update(thdd);
     }
 

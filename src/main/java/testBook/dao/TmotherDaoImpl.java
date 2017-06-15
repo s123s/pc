@@ -29,6 +29,7 @@ public class TmotherDaoImpl implements TmotherDao {
     @Override
     public void updateTmother(Tmother tmother) {
         Session session = this.sessionFactory.getCurrentSession();
+        tmother.setProducer((Producer) session.load(Producer.class, tmother.getProducer().getId()));
         session.update(tmother);
     }
 

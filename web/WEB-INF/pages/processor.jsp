@@ -32,7 +32,7 @@
             <p><select id = "producer" name="producer.id" size="1">
                 <option disabled>Выберите производителя</option>
                 <c:forEach items="${listProducer}" var="producer">
-                    <option>${producer.id}</option>
+                    <option value="${producer.id}">${producer.name}</option>
                 </c:forEach>
             </select>
             </p>

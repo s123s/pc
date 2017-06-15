@@ -30,7 +30,7 @@
             <p><select id = "producer" name="producer.id" size="1">
                 <option disabled>Выберите производителя</option>
                 <c:forEach items="${listProducer}" var="producer">
-                    <option>${producer.id}</option>
+                    <option value="${producer.id}">${producer.name}</option>
                 </c:forEach>
             </select>
             </p>
@@ -86,7 +86,7 @@
                     </form>
                         <%--<td><a href="<c:url value='/edit/${computer.id}'/>">edit</a></td>--%>
                         <%-- <td><a href="<c:url value='/removePrinter/${printer.id}'/>">delete</a></td>--%>
-                   <%-- <a  href="<c:url value='/editTmother/${tmother.id}'/>"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;--%>
+                    <a  href="<c:url value='/editHdd/${thdd.id}'/>"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;
                     <div class="item"> <a id="delete${thdd.id}" class="delete"><span  class="glyphicon glyphicon-trash"></span></a></div>
                 </td>
             </tr>
