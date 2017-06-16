@@ -31,19 +31,19 @@ public class MysqlMotherDaoHibernate implements MotherDao {
 		return session.createQuery("from Mother order by idMother").list();
 	}
 	
-/*	@Override
+	@Override
 	@Transactional
 	public List<Mother> readAllFreeRows() {
 		List<Mother> rows = readAll();
 
 		for (Iterator<Mother> iter = rows.iterator(); iter.hasNext(); ) {
-			Mother processor = iter.next();
-		    if (processor.get.getMothers().size() != 0)  {
+			Mother mother = iter.next();
+		    if (mother.getComputer().getIdComputer() != null)  {
 		        iter.remove();
 		    }
 		}
 		return rows;
-	}*/
+	}
 
 	@Override
 	@Transactional

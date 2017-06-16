@@ -54,9 +54,9 @@ public class Mother {
 		this.idMother = idMother;
 	}
 
-    /**Не указан тип материнки*/
-    public boolean noTypeMother (){
-    	return (typeMother.getIdTypeMother()  == null) ? true:false;
+    /**Указан тип материнки*/
+    public boolean hasTypeMother (){
+    	return (typeMother.getIdTypeMother()  == null) ? false:true;
     }
 
 	public String toString() {
@@ -82,7 +82,7 @@ public class Mother {
 	/**Собрать удобное имя*/
 	public String combineDisplayName () {
 		return idMother+", " 
-				+ (noTypeMother()? "": getTypeMother().combineDisplayName());
+				+ (hasTypeMother() ? typeMother.combineDisplayName(): "");
 	}
 
 }

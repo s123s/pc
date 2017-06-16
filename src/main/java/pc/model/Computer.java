@@ -62,13 +62,13 @@ public class Computer {
     @OneToMany
     private Set<Hdd> hdds;
     
-    /**Не указана материнка*/
-    public boolean noMother (){
-    	return (mothersSet.size() == 0) ? true:false;
+    /**Указана материнка*/
+    public boolean hasMother (){
+    	return (mothersSet.size() == 0) ? false:true;
     }
     
     public Mother fetchFirstMother () {
-    	if (!noMother()) 
+    	if (hasMother()) 
     		return mothersSet.iterator().next();
     	return null;
     }

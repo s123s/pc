@@ -462,7 +462,7 @@ public class OperationController {
 	public String listComputer(ModelMap model) {
 		model.addAttribute("computers", mainService.getComputerDao().readAll());
 		model.addAttribute("typeComputers", mainService.getTypeComputerDao().readAll());
-		model.addAttribute("typeMothers", mainService.getTypeMotherDao().readAll());
+		model.addAttribute("mothers", mainService.getMotherDao().readAllFreeRows());
 		return "computer_with_table_edit";
 	}
 

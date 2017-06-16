@@ -86,7 +86,7 @@ Mother
 								</tr>
 							</head>
 							<tbody>
-
+<!-- emptyTr -->
 								<tr id="emptyTr" class="emptyTrClass" hidden="true">
 										<td class="myIndex" hidden="true"></td>
 										<td class="idComputer"></td>
@@ -108,7 +108,7 @@ Mother
 											<a class="deletePos" hidden="true"><span class="glyphicon glyphicon-trash"></span></a>
 										</td>
 								</tr>
-									
+<!-- computers -->					
 								<c:forEach items="${computers}" var="computer" varStatus="st">
 
 									<tr id="id${computer.idComputer}">
@@ -135,10 +135,10 @@ Mother
  											<select class="form-control" >
  											
 											  <option value="">Select one...</option>
-												<c:forEach items="${typeMothers}" var="typeMother" varStatus="st">
-													<option value="${typeMother.idTypeMother}" 
-														${((computer.noMother() || computer.fetchFirstMother().noTypeMother()) 
-															|| computer.fetchFirstMother().getTypeMother().idTypeMother != typeMother.idTypeMother) ? "": "selected"} >
+												<c:forEach items="${mothers}" var="mother" varStatus="st">
+													<option value="${mother.idMother}" 
+														${(computer.hasMother() 
+															&& computer.fetchFirstMother().idMother == mother.idMother) ? "selected" : ""} >
 														
 															${computer.fetchFirstMother().combineDisplayName()}
 													</option>
