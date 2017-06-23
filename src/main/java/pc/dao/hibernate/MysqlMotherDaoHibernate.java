@@ -37,8 +37,8 @@ public class MysqlMotherDaoHibernate implements MotherDao {
 		List<Mother> rows = readAll();
 
 		for (Iterator<Mother> iter = rows.iterator(); iter.hasNext(); ) {
-			Mother mother = iter.next();
-		    if (mother.getComputer().getIdComputer() != null)  {
+			Mother motherLocal = iter.next();
+		    if (motherLocal.hasComputer() && motherLocal.getComputer().getIdComputer() != null)  {
 		        iter.remove();
 		    }
 		}

@@ -59,6 +59,11 @@ public class Mother {
     	return (typeMother.getIdTypeMother()  == null) ? false:true;
     }
 
+    /**Указан компьютер*/
+    public boolean hasComputer (){
+    	return (computer == null) ? false:true;
+    }
+
 	public String toString() {
 		return "{" + idMother 
 				+", {" + computer.getIdComputer() +", " + computer.getInvNumber() + computer.getBuhName() + computer.getDomainName() +"},"
