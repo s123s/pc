@@ -69,4 +69,13 @@ public class Hdd {
 		this.idHdd = idHdd;
 	}
 
-}
+    /**Указан тип*/
+    public boolean hasTypeHdd (){
+    	return (typeHdd.getIdTypeHdd()  == null) ? false:true;
+    }
+    
+	/**Собрать удобное имя*/
+	public String combineDisplayName () {
+		return "" 
+				+ (hasTypeHdd() ? typeHdd.combineDisplayName(): "");
+	}}

@@ -1,5 +1,6 @@
 package pc.model;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -12,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Fetch;
@@ -43,10 +45,18 @@ public class Computer {
     @Fetch(FetchMode.JOIN)
     private Set<Workplace> workplace;
 
-    @OneToMany(mappedBy="computer", fetch=FetchType.EAGER)
-    @Fetch(FetchMode.JOIN)
-    private Set<Mother> mothersSet;
+    //@OneToMany(mappedBy="computer", fetch=FetchType.EAGER)
 
+	@OneToOne(mappedBy = "computer", fetch = FetchType.EAGER)
+    private Mother mother;
+	
+	@OneToOne(mappedBy = "computer", fetch = FetchType.EAGER)
+    private Processor processor;
+	
+	/*@OneToOne(mappedBy = "computer", fetch = FetchType.EAGER)
+    private Ram ram;*/
+    @OneToMany(mappedBy="computer", fetch=FetchType.LAZY)
+	private List<Ram> rams;
 		
 	@Column(name = "inv_number")
     @JsonView(View.REST.class)
@@ -58,20 +68,24 @@ public class Computer {
 	@Column(name = "domain_name")
 	private String domainName;
 
-    /**Нужно для проверки, есть ли ссылающиеся записи*/
+/*    *//**Нужно для проверки, есть ли ссылающиеся записи*//*
     @OneToMany
-    private Set<Hdd> hdds;
+    private Set<Hdd> hdds;*/
+
+    /**Нужно для проверки, есть ли ссылающиеся записи*/
+    @OneToMany(mappedBy="computer", fetch=FetchType.LAZY)
+    private List<Hdd> hdds;
     
-    /**Указана материнка*/
-    public boolean hasMother (){
-    	return (mothersSet.size() == 0) ? false:true;
-    }
-    
-    public Mother fetchFirstMother () {
-    	if (hasMother()) 
-    		return mothersSet.iterator().next();
-    	return null;
-    }
+//    /**Указана материнка*/
+//    public boolean hasMother (){
+//    	return (mothersSet.size() == 0) ? false:true;
+//    }
+//    
+//    public Mother fetchFirstMother () {
+//    	if (hasMother()) 
+//    		return mothersSet.iterator().next();
+//    	return null;
+//    }
     
 	public String toString() {
 		return "{" + idComputer + ", " + invNumber + ", " + buhName +", " +domainName +"}";
@@ -111,12 +125,36 @@ public class Computer {
 		this.workplace = workplace;
 	}
 
-	public Set<Mother> getMothersSet() {
-		return mothersSet;
+	public Mother getMother() {
+		return mother;
 	}
 
-	public void setMothersSet(Set<Mother> mothersSet) {
-		this.mothersSet = mothersSet;
+	public void setMother(Mother mother) {
+		this.mother = mother;
+	}
+
+	public Processor getProcessor() {
+		return processor;
+	}
+
+	public void setProcessor(Processor processor) {
+		this.processor = processor;
+	}
+
+	public List<Ram> getRams() {
+		return rams;
+	}
+
+	public void setRams(List<Ram> rams) {
+		this.rams = rams;
+	}
+
+	public List<Hdd> getHdds() {
+		return hdds;
+	}
+
+	public void setHdds(List<Hdd> hdds) {
+		this.hdds = hdds;
 	}
 
 }

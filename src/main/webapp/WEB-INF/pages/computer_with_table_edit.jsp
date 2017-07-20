@@ -50,7 +50,6 @@
 	<script src="js/global.js"></script>
 	<script src="js/computer_with_table_edit.js"></script>
 </head>
-Mother
 <body> 
 	<div class="header"><%@include file="include/header.jsp"%>
 	</div>

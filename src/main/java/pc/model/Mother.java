@@ -54,16 +54,6 @@ public class Mother {
 		this.idMother = idMother;
 	}
 
-    /**Указан тип материнки*/
-    public boolean hasTypeMother (){
-    	return (typeMother.getIdTypeMother()  == null) ? false:true;
-    }
-
-    /**Указан компьютер*/
-    public boolean hasComputer (){
-    	return (computer == null) ? false:true;
-    }
-
 	public String toString() {
 		return "{" + idMother 
 				+", {" + computer.getIdComputer() +", " + computer.getInvNumber() + computer.getBuhName() + computer.getDomainName() +"},"
@@ -84,10 +74,20 @@ public class Mother {
 	public void setComputer(Computer computer) {
 		this.computer = computer;
 	}
-	/**Собрать удобное имя*/
+
+    /**Указан компьютер*/
+    public boolean hasComputer (){
+    	return (computer == null) ? false:true;
+    }
+    
+    /**Указан тип*/
+    public boolean hasTypeMother (){
+    	return (typeMother.getIdTypeMother()  == null) ? false:true;
+    }
+
+    /**Собрать удобное имя*/
 	public String combineDisplayName () {
-		return idMother+", " 
+		return "" 
 				+ (hasTypeMother() ? typeMother.combineDisplayName(): "");
 	}
-
 }

@@ -32,12 +32,11 @@ public class TypeRam {
     @JoinColumn(name = "id_type_ram_spec")
     private TypeRamSpec typeRamSpec;
 
-
 	@Column
 	private Integer capacity;
 	
     /**Нужно для проверки, есть ли ссылающиеся записи*/
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "typeRam")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "typeRam")
     private Set<Ram> rams;
 	
 	public String toString () {
@@ -77,5 +76,14 @@ public class TypeRam {
 	}
 
 
-
+    /**Указан тип материнки*/
+    public boolean hasTypeRamSpec (){
+    	return (typeRamSpec.getIdTypeRamSpec()== null) ? false:true;
+    }
+    
+	/**Собрать удобное имя*/
+	public String combineDisplayName () {
+		return "" 
+				+ (hasTypeRamSpec() ? typeRamSpec.combineDisplayName() +" " + capacity: "");
+	}
 }

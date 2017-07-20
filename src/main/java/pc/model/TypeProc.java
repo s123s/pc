@@ -41,7 +41,7 @@ public class TypeProc {
 	private String socket;
 	
     /**Нужно для проверки, есть ли ссылающиеся записи*/
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "typeProc")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "typeProc")
     private Set<Processor> processors;
 
 
@@ -85,5 +85,8 @@ public class TypeProc {
 		this.processors = processors;
 	}
 
-
+	/**Собрать удобное имя*/
+	public String combineDisplayName () {
+		return producer.getShortname() +", Model:" + model +", Socket:" +socket;
+	}
 }

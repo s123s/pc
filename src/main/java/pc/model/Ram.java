@@ -66,4 +66,14 @@ public class Ram {
 				+", {" +typeRam.getIdTypeRam() +", " +typeRam.getCapacity() + " }}";
 	}
 
+    /**Указан тип*/
+    public boolean hasTypeRam (){
+    	return (typeRam.getIdTypeRam()  == null) ? false:true;
+    }
+    
+	/**Собрать удобное имя*/
+	public String combineDisplayName () {
+		return "" 
+				+ (hasTypeRam() ? typeRam.combineDisplayName(): "");
+	}
 }

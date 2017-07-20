@@ -70,9 +70,13 @@
 									<th hidden="true" nowrap>п/п</th>
 									<th class="col-lg-1">ID</th>
 									<th class="col-lg-1" title="Модель">Модель</th>
-									<th class="col-lg-4" title="Инвертарный номер компьютера">Инв. № компьютера</th>
-									<th class="col-lg-3" title="Бухгалтерское название">Бухг. название</th>
+									<th class="col-lg-1" title="Инвертарный номер компьютера">Инв.№ комп.</th>
+									<th class="col-lg-2" title="Бухгалтерское название">Бухг. назв.</th>
 									<th class="col-lg-2" title="Доменное имя">Доменное имя</th>
+									<th class="col-lg-1" title="Материнская плата">Мат. плата</th>
+									<th class="col-lg-1" title="Процессор">Процессор</th>
+									<th class="col-lg-1" title="Память">Память</th>
+									<th class="col-lg-1" title="Винчестер">Винчестер</th>
 									<th class="col-lg-1">Операция</th>
 
 								</tr>
@@ -102,7 +106,33 @@
  										<td class="invNumberComputer">${computer.invNumber}</td>
 										<td class="buhName">${computer.buhName}</td>
 										<td class="domainName">${computer.domainName}</td>
-
+										<td class="idMother" hidden="true">${computer.mother.idMother}</td>
+										<td class="displayNameMother">${computer.mother.combineDisplayName()}</td>
+										<td class="idProcessor" hidden="true">${computer.processor.idProcessor}</td>
+										<td class="displayNameProcessor">${computer.processor.combineDisplayName()}</td>
+										<%-- <td class="idRam" hidden="true">${computer.ram.idRam}</td> --%>
+										<%-- <td class="displayNameRam">${computer.ram.combineDisplayName()}</td> --%>
+										<td class="rams">
+											<ul>
+												<c:forEach items="${computer.rams}" var="ram" varStatus="st1">
+												<li>
+													<span class="idRam" hidden="true">${ram.idRam}</span>
+													<span  class="displayNameRam">${ram.combineDisplayName()}</span>
+												</li>
+												</c:forEach>
+											</ul>
+										</td>
+										<td class="hdds">
+											<ul>
+												<c:forEach items="${computer.hdds}" var="hdd" varStatus="st1">
+												<li>
+													<span class="idHdd" hidden="true">${hdd.idHdd}</span>
+													<span  class="displayNameHdd">${hdd.combineDisplayName()}</span>
+												</li>
+												</c:forEach>
+											</ul>
+										</td>
+										
 										<td><a class="editPos"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;
 											<a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>
 									</tr>

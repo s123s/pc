@@ -7,6 +7,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -459,12 +460,23 @@ public class OperationController {
 	
 	/*----computer----*/
 	@RequestMapping(value = "/computer")
+	@Transactional(readOnly=true)
 	public String listComputer(ModelMap model) {
+		model.addAttribute("computers", mainService.getComputerDao().readAll());
+		model.addAttribute("typeComputers", mainService.getTypeComputerDao().readAll());
+		model.addAttribute("mothers", mainService.getMotherDao().readAllFreeRows());
+		/*return "computer_with_table_edit";*/
+		return "computer";
+	}
+	
+	@RequestMapping(value = "/computer_with_table_edit")
+	public String listComputer1(ModelMap model) {
 		model.addAttribute("computers", mainService.getComputerDao().readAll());
 		model.addAttribute("typeComputers", mainService.getTypeComputerDao().readAll());
 		model.addAttribute("mothers", mainService.getMotherDao().readAllFreeRows());
 		return "computer_with_table_edit";
 	}
+	
 
 	@RequestMapping(value = "/computer/save_edited",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody

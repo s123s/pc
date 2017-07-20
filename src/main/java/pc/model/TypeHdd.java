@@ -37,7 +37,7 @@ public class TypeHdd {
     private Producer producer;
 
     /**Нужно для проверки, есть ли ссылающиеся записи*/
-    @OneToMany(mappedBy="typeHdd", fetch=FetchType.EAGER)
+    @OneToMany(mappedBy="typeHdd", fetch=FetchType.LAZY)
     @Fetch(FetchMode.JOIN)
     private Set<Hdd> hdds;
 
@@ -73,6 +73,11 @@ public class TypeHdd {
 	}
 	public void setHdds(Set<Hdd> hdds) {
 		this.hdds = hdds;
+	}
+	
+	/**Собрать удобное имя*/
+	public String combineDisplayName () {
+		return producer.getShortname() +" " +capacity;
 	}
 
 }

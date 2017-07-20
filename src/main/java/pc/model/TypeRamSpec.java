@@ -27,34 +27,28 @@ public class TypeRamSpec {
   	@Column
 	private String description;
 
-	
-	
 	public String toString () {
 		return "{" + idTypeRamSpec + ", " + description + "}";
 	}
-
-
 
 	public Integer getIdTypeRamSpec() {
 		return idTypeRamSpec;
 	}
 
-
-
 	public void setIdTypeRamSpec(Integer idTypeRamSpec) {
 		this.idTypeRamSpec = idTypeRamSpec;
 	}
-
-
 
 	public String getDescription() {
 		return description;
 	}
 
-
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
+	/**Собрать удобное имя*/
+	public String combineDisplayName () {
+		return description;
+	}
 }

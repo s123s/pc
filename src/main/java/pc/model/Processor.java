@@ -66,4 +66,16 @@ public class Processor {
 				+", {" + typeProc.getProducer().getIdProducer() +", " + typeProc.getProducer().getShortname() +"},"
 				+", " +typeProc.getModel() +", " +typeProc.getSocket() + " }}";
 	}
+	
+    /**Указан тип*/
+    public boolean hasTypeProc (){
+    	return (typeProc.getIdTypeProc()  == null) ? false:true;
+    }
+    
+	/**Собрать удобное имя*/
+	public String combineDisplayName () {
+		return "" 
+				+ (hasTypeProc() ? typeProc.combineDisplayName(): "");
+	}
+
 }
