@@ -2,13 +2,14 @@
 <%@ page session="false"%>
 <html>
 <head>
-    <title>Home</title>
+    <title>ERROR</title>
 </head>
 <body>
-    <h1>${errorMsg}</h1><br>
+<%--     <h1>${errorMsg}</h1><br>
     
 Message:
-<%=exception.getMessage()%>
+<%=exception.getMessage()%> --%>
+ERROR
 <%-- 
 StackTrace:
 <%

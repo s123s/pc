@@ -48,7 +48,11 @@ public class OperationController {
 		this.mainService = mainService;
 	}
 	
-	
+
+	@RequestMapping(value = "/errorPage")
+	public String errorPage() {
+		return "errorPage";
+	}
 	
 	  @RequestMapping("ajax")
 	    public ModelAndView helloAjaxTest() {

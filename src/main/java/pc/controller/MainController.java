@@ -14,5 +14,8 @@ public class MainController {
 	public String index() {
 		return "index";
 	}
-
+	@RequestMapping(value = "/",  method = RequestMethod.GET)
+	public String index1() {
+		return "index";
+	}
 }

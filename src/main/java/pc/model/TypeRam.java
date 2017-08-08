@@ -13,6 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import pc.jackson.View;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -36,7 +39,8 @@ public class TypeRam {
 	private Integer capacity;
 	
     /**Нужно для проверки, есть ли ссылающиеся записи*/
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "typeRam")
+    @OneToMany(mappedBy="typeRam", fetch=FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
     private Set<Ram> rams;
 	
 	public String toString () {
