@@ -5,7 +5,12 @@
 
 	<display-name>Spring MVC Application</display-name>
 
-	<!-- Loads Spring Security config file -->
+	<!-- Creates the Spring Container shared by all Servlets and Filters -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!-- Spring Security config file -->
 	<!-- For ROOT context -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -15,12 +20,7 @@
 		</param-value>
 	</context-param>
 
-	<!-- Creates the Spring Container shared by all Servlets and Filters -->
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
-
-   <filter>
+  <!--  <filter>
       <filter-name>hibernateFilter</filter-name>
       <filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>
       <init-param>
@@ -34,7 +34,7 @@
     <url-pattern>/*</url-pattern>
     <dispatcher>REQUEST</dispatcher>
     <dispatcher>FORWARD</dispatcher>
-   </filter-mapping> 
+   </filter-mapping>  -->
    
    
 	<!-- Spring MVC -->

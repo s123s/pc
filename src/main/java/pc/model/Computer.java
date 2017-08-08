@@ -55,7 +55,8 @@ public class Computer {
 	
 	/*@OneToOne(mappedBy = "computer", fetch = FetchType.EAGER)
     private Ram ram;*/
-    @OneToMany(mappedBy="computer", fetch=FetchType.LAZY)
+    @OneToMany(mappedBy="computer", fetch=FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
 	private List<Ram> rams;
 		
 	@Column(name = "inv_number")
@@ -73,7 +74,8 @@ public class Computer {
     private Set<Hdd> hdds;*/
 
     /**Нужно для проверки, есть ли ссылающиеся записи*/
-    @OneToMany(mappedBy="computer", fetch=FetchType.LAZY)
+    @OneToMany(mappedBy="computer", fetch=FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<Hdd> hdds;
     
 //    /**Указана материнка*/
