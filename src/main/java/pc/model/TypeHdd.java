@@ -12,6 +12,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -19,6 +26,7 @@ import org.hibernate.annotations.FetchMode;
 import pc.jackson.View;
 
 import com.fasterxml.jackson.annotation.JsonView;
+
 
 @Entity
 @Table(name = "type_hdd")
@@ -43,6 +51,9 @@ public class TypeHdd {
 
 	@Column
     @JsonView(View.REST.class)
+    @NotNull(message="capacity должно быть задано")
+   @Size(min = 3, message="Длина фамилии должна быть больше трех")
+	@Pattern(regexp="[a-z]*", message="Должны быть символы")
 	private String capacity;
 
 	public Integer getIdTypeHdd() {
@@ -66,7 +77,8 @@ public class TypeHdd {
 
 	
 	public String toString() {
-		return "{" + idTypeHdd + ", " + producer.getIdProducer() +", " +producer.getShortname() + ", " + capacity + "}";
+		return "{" + idTypeHdd + ", " + (producer==null?"":producer.getIdProducer()) 
+				+", " +(producer==null?"":producer.getShortname()) + ", " + capacity + "}";
 	}
 	public Set<Hdd> getHdds() {
 		return hdds;
@@ -80,4 +92,25 @@ public class TypeHdd {
 		return producer.getShortname() +" " +capacity;
 	}
 
+	  public static void validate(Object object, Validator validator) {
+		    Set<ConstraintViolation<Object>> constraintViolations = validator
+		        .validate(object);
+		    
+		    System.out.println(object);
+		    System.out.println(String.format("Кол-во ошибок: %d",
+		        constraintViolations.size()));
+		    
+		    for (ConstraintViolation<Object> cv : constraintViolations)
+		      System.out.println(String.format(
+		          "Внимание, ошибка! property: [%s], value: [%s], message: [%s]",
+		          cv.getPropertyPath(), cv.getInvalidValue(), cv.getMessage()));
+		  }
+
+	  public static void main(String[] args) {
+	    ValidatorFactory vf = Validation.buildDefaultValidatorFactory();
+	    Validator validator = vf.getValidator();
+
+	    TypeHdd typeHdd = new TypeHdd();typeHdd.setCapacity("12");
+	    validate(typeHdd, validator);
+	  }
 }

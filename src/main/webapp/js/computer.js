@@ -182,6 +182,7 @@ createDialogs = function (){
 	$("#editDialog").dialog({
 		autoOpen: false,
 		resizable:false,
+		width: 350,
 		modal: true
 	});
 

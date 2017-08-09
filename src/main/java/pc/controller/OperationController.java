@@ -4,11 +4,14 @@ import java.util.List;
 import java.util.Random;
 import java.util.Date;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -96,7 +99,13 @@ public class OperationController {
 	@RequestMapping(value = "/type_hdd/create",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@JsonView(View.REST.class)
-	public OperationStatus createTypeHdd(@RequestBody TypeHdd typeHdd) {
+	public OperationStatus createTypeHdd(@Valid @RequestBody TypeHdd typeHdd, BindingResult bindingResult) {
+		
+		//Если проверка значений не прошла
+		if (bindingResult.hasErrors()) {
+//			logger.info("Returning custSave.jsp page");
+			return new OperationStatus(false);
+		}
         return mainService.getTypeHddDao().create(typeHdd);
 	}	
 	
@@ -469,7 +478,6 @@ public class OperationController {
 		model.addAttribute("computers", mainService.getComputerDao().readAll());
 		model.addAttribute("typeComputers", mainService.getTypeComputerDao().readAll());
 		model.addAttribute("mothers", mainService.getMotherDao().readAllFreeRows());
-		/*return "computer_with_table_edit";*/
 		return "computer";
 	}
 	
