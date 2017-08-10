@@ -59,7 +59,12 @@ public class Processor {
 		this.computer = computer;
 	}
 	
-	public String toString() {
+    /**Указан компьютер*/
+    public boolean hasComputer (){
+    	return (computer == null) ? false:true;
+    }
+    
+    public String toString() {
 		return "{" + idProcessor 
 				+", {" + computer.getIdComputer() +", " + computer.getInvNumber() + computer.getBuhName() + computer.getDomainName() +"},"
 				+", {" +typeProc.getIdTypeProc() 

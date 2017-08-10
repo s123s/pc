@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import pc.dao.ProcessorDao;
 import pc.model.Computer;
+import pc.model.Mother;
 import pc.model.Processor;
 import pc.model.TypeProc;
 import pc.service.OperationStatus;
@@ -31,6 +32,21 @@ public class MysqlProcessorDaoHibernate implements ProcessorDao {
 		return session.createQuery("from Processor order by idProcessor").list();
 	}
 	
+
+	@Override
+	@Transactional
+	public List<Processor> readAllFreeRows() {
+		List<Processor> rows = readAll();
+
+		for (Iterator<Processor> iter = rows.iterator(); iter.hasNext(); ) {
+			Processor processorLocal = iter.next();
+		    if (processorLocal.hasComputer() && processorLocal.getComputer().getIdComputer() != null)  {
+		        iter.remove();
+		    }
+		}
+		return rows;
+	}
+
 /*	@Override
 	@Transactional
 	public List<Processor> readAllFreeRows() {

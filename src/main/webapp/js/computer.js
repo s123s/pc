@@ -172,6 +172,7 @@ createDialogs = function (){
 	$("#newDialog").dialog({
 		autoOpen: false,
 		resizable:false,
+		width: 350,
 		modal: true
 	});
 	$("#newDialog #newDialogSave").click(function() {

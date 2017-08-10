@@ -170,22 +170,48 @@
 
 <div id="newDialog" title="Новый компьютер" class="dialogWindow" hidden=true>
 	<table>
-		<tr><td>Производитель</td><td>
-			<select id="idProducer" style="width:100%">
+		<tr><td>Тип</td><td>
+			<select id="idTypeComputers" style="width:100%">
 				<option value="">Select one...</option>
-				<c:forEach items="${producers}" var="producer" varStatus="st">
-					<option value="${producer.idProducer}">${producer.shortname}</option>
+				<c:forEach items="${typeComputers}" var="tc" varStatus="st">
+					<option value="${tc.idTypeComputer}">${tc.description}</option>
 				</c:forEach>
 			</select>
 		</td></tr>
 
-			<tr><td>Модель</td><td><input type="text" id="model" name="model"></td></tr>
-			<tr><td>Сокет</td><td><input type="text" id="socket" name="socket"></td></tr>
+			<tr><td>Инв.№ комп.</td><td><input type="text" id="invNumberComputer" name="invNumberComputer"></td></tr>
+			<tr><td>Буг. назв.</td><td><input type="text" id="buhName" name="buhName"></td></tr>
+			<tr><td>Доменное имя</td><td><input type="text" id="domainName" name="domainName"></td></tr>
+ 			<tr><td>Мат. плата</td><td>
+ 					<select id="idTypeComputer" style="width:100%">
+						<option value="">Select one...</option>
+						<c:forEach items="${FreeMothers}" var="fm" varStatus="st">
+							<option value="${fm.idMother}">${fm.combineDisplayName()}</option>
+						</c:forEach>
+					</select>
+				</td></tr>
+ 			<tr><td>Процессор</td><td>
+ 					<select id="idProcessor" style="width:100%">
+						<option value="">Select one...</option>
+						<c:forEach items="${FreeProcessors}" var="fp" varStatus="st">
+							<option value="${fp.idProcessor}">${fp.combineDisplayName()}</option>
+						</c:forEach>
+					</select>
+				</td></tr>
+ 			
+			<tr><td>Память</td><td><input type="text" id="idRam1" name="idRam1"></td></tr>
+			<tr hidden=true><td>Память</td><td><input type="text" id="idRam2" name="idRam2"></td></tr>
+			<tr hidden=true><td>Память</td><td><input type="text" id="idRam3" name="idRam3"></td></tr>
+			<tr hidden=true><td>Память</td><td><input type="text" id="idRam4" name="idRam4"></td></tr>
+			<tr><td>Винчестер</td><td><input type="text" id="idHdd1" name="idHdd1"></td></tr>
+			<tr hidden=true><td>Винчестер</td><td><input type="text" id="idHdd2" name="idHdd2"></td></tr>
+			<tr hidden=true><td>Винчестер</td><td><input type="text" id="idHdd3" name="idHdd3"></td></tr>
+			<tr hidden=true><td>Винчестер</td><td><input type="text" id="idHdd4" name="idHdd4"></td></tr>
 	</table><br>
 	<button id="newDialogSave" class="ui-button ui-widget ui-corner-all">Создать</button>
 </div>
 
-
+<!--  -->
 <div id="deleteDialog" title="Удаление компьютера" class="dialogWindow" hidden=true>
 	<input type="text" id="idTr" hidden="true">
 	<input type="text" id="id" hidden="true">

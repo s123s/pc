@@ -477,10 +477,12 @@ public class OperationController {
 	public String listComputer(ModelMap model) {
 		model.addAttribute("computers", mainService.getComputerDao().readAll());
 		model.addAttribute("typeComputers", mainService.getTypeComputerDao().readAll());
-		model.addAttribute("mothers", mainService.getMotherDao().readAllFreeRows());
+		model.addAttribute("freeMothers", mainService.getMotherDao().readAllFreeRows());
+		model.addAttribute("freeProcessors", mainService.getProcessorDao().readAllFreeRows());
 		return "computer";
 	}
 	
+	/*Не используется*/
 	@RequestMapping(value = "/computer_with_table_edit")
 	public String listComputer1(ModelMap model) {
 		model.addAttribute("computers", mainService.getComputerDao().readAll());

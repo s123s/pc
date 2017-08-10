@@ -50,8 +50,16 @@ saveNewPosToDatabase = function (){
 	        xhr.setRequestHeader(header, token);
 	    },
 		success: function(retObject) {
-			saveNewPosToHTML(retObject);
+			if (retObject.successfully) {
+				saveNewPosToHTML(retObject);
+			}
+			else {
+				alert ("ERROR");
+			}
 			$('#newDialog').dialog('close');
+		},
+	    error: function(retObject) {
+			alert ("ERROR");
 		}
     });
 }

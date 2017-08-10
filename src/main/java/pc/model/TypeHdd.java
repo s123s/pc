@@ -52,8 +52,8 @@ public class TypeHdd {
 	@Column
     @JsonView(View.REST.class)
     @NotNull(message="capacity должно быть задано")
-   @Size(min = 3, message="Длина фамилии должна быть больше трех")
-	@Pattern(regexp="[a-z]*", message="Должны быть символы")
+//   @Size(min = 3, message="Длина фамилии должна быть больше трех")
+	@Pattern(regexp="[0-9]*", message="Должны быть символы")
 	private String capacity;
 
 	public Integer getIdTypeHdd() {
