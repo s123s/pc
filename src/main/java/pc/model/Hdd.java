@@ -69,7 +69,9 @@ public class Hdd {
 		this.idHdd = idHdd;
 	}
 
-    /**Указан тип*/
+    /**Указан тип
+     * @return Есть ли тип
+    */
     public boolean hasTypeHdd (){
     	return (typeHdd.getIdTypeHdd()  == null) ? false:true;
     }
