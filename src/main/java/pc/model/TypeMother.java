@@ -13,6 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import pc.jackson.View;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -41,7 +44,8 @@ public class TypeMother {
 	private String socket;
 
     /**Нужно для проверки, есть ли ссылающиеся записи*/
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "typeMother")
+    @OneToMany(mappedBy="typeMother", fetch=FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
     private Set<Mother> mothers;
 	
 	public String toString() {
