@@ -40,11 +40,11 @@
 	
 	<dependencies>
 <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-catalina -->
-<dependency>
-    <groupId>org.apache.tomcat</groupId>
-    <artifactId>tomcat-catalina</artifactId>
-    <version>8.5.16</version>
-</dependency>
+		<dependency>
+		    <groupId>org.apache.tomcat</groupId>
+		    <artifactId>tomcat-catalina</artifactId>
+		    <version>8.5.16</version>
+		</dependency>
 
 		<!-- Jackson JSON -->
         <dependency>
