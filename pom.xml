@@ -2,11 +2,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>pc</groupId>
-	<artifactId>pc</artifactId>
-	<packaging>war</packaging>
-	<version>001</version>
-	<name>PC Maven Webapp</name>
-	<url>http://maven.apache.org</url>
+	<artifactId>pc-app</artifactId>
+	<packaging>pom</packaging>
+	<version>0.1</version>
+	<name>pc-app</name>
+	<!-- <url>http://maven.apache.org</url> -->
 
 	<properties>
 		<spring.version>4.2.0.RELEASE</spring.version>
@@ -309,4 +309,7 @@
 			</plugin>
 		</plugins>
 	</build>
+	<modules>
+		<module>pc-backend</module>
+	</modules>
 </project>
