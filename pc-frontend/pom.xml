@@ -7,7 +7,16 @@
 		<version>0.1</version>
 	</parent>
   
-	<artifactId>pc-backend</artifactId>
-	<name>pc-backend</name>
+	<artifactId>pc-frontend</artifactId>
+	<packaging>war</packaging>
+	<name>pc-frontend</name>
 
+		
+	<dependencies>
+		<dependency>
+			<groupId>pc</groupId>
+			<artifactId>pc-backend</artifactId>
+			<version>0.1</version>
+		</dependency>
+	</dependencies>
 </project>

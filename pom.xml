@@ -23,7 +23,28 @@
     <jackson.mapper.version>1.9.13</jackson.mapper.version>
 	</properties>
 
-
+<profiles>
+  <!-- Профили, относящиеся к настройкам окружения - при сборке мы должны указать только 1 профиль -->
+  <!-- <profile>
+    <id>env-igor-dev</id>
+    <properties>
+      <tomcatHost>localhost</tomcatHost>
+      <tomcatPort>8091</tomcatPort>
+      <tomcatManagerUser>tomcat</tomcatManagerUser>
+      <tomcatManagerPassword>1</tomcatManagerPassword>
+    </properties>
+  </profile> -->
+  <profile>
+    <id>env-test</id>
+    <properties>
+	    <tomcatNameForMaven>localtomcat</tomcatNameForMaven>
+	    <tomcatHost>localhost</tomcatHost>
+	    <tomcatPort>8080</tomcatPort>
+    </properties>
+  </profile>
+  </profiles>
+  
+  
 	<dependencyManagement>
 		<dependencies>
 
@@ -266,14 +287,27 @@
         </plugin>
         
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
+				<!-- <groupId>org.codehaus.mojo</groupId>
 				<artifactId>tomcat-maven-plugin</artifactId>
 				<version>1.1</version>
 				<configuration>
 					<server>localtomcat</server>
 
 					<url>http://localhost:8080/manager/text</url>
+					<path>/pc</path> -->
+				
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>tomcat-maven-plugin</artifactId>
+				<version>1.1</version>
+				<configuration>
+					<server>${tomcatNameForMaven}</server>
+
+					<url>http://${tomcatHost}:${tomcatPort}/manager/text</url>
 					<path>/pc</path>
+<!-- 	    <tomcatNameForMaven>localtomcat</tomcatNameForMaven>
+	    <tomcatHost>localhost</tomcatHost>
+	    <tomcatPort>8080</tomcatPort> -->
+					
 				</configuration>
 			</plugin>
 			
@@ -311,5 +345,6 @@
 	</build>
 	<modules>
 		<module>pc-backend</module>
+		<module>pc-frontend</module>
 	</modules>
 </project>
