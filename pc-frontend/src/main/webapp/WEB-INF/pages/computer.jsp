@@ -42,7 +42,7 @@
     <script src="js/bootstrap.min.js"></script>
 
 	<link href="css/main.css" rel="stylesheet" type="text/css"/>
-<!-- 	<link href="css/computer.css" rel="stylesheet" type="text/css"/> -->
+ 	<link href="css/computer.css" rel="stylesheet" type="text/css"/>
 
 	<script src="js/global.js"></script>
 	<script src="js/computer.js"></script>
@@ -84,13 +84,19 @@
 							<tbody>
 	
 								<tr id="emptyTr" hidden="true">
-										<td class="myIndex" hidden="true"></td>
-										<td class="idComputer"></td>
-										<td class="workplaceCount" hidden="true"></td>
- 										<td class="idTypeComputer"></td>
- 										<td class="invNumberComputer"></td>
-										<td class="buhName"></td>
-										<td class="domainName"></td>
+										<td class="myIndex" hidden="true">${st.getIndex()+1}</td>
+										<td class="idComputer">${computer.idComputer}</td>
+										<td class="workplaceCount" hidden="true">${computer.workplace.size()}</td>
+ 										<td class="typeComputerDescription">${computer.typeComputer.description}</td>
+ 										<td class="invNumberComputer">${computer.invNumber}</td>
+										<td class="buhName">${computer.buhName}</td>
+										<td class="domainName">${computer.domainName}</td>
+										<td class="idMother" hidden="true">${computer.mother.idMother}</td>
+										<td class="displayNameMother">${computer.mother.combineDisplayName()}</td>
+										<td class="idProcessor" hidden="true">${computer.processor.idProcessor}</td>
+										<td class="displayNameProcessor">${computer.processor.combineDisplayName()}</td>
+										<%-- <td class="idRam" hidden="true">${computer.ram.idRam}</td> --%>
+										<%-- <td class="displayNameRam">${computer.ram.combineDisplayName()}</td> --%>
 
 										<td><a class="editPos"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;
 											<a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>
@@ -147,6 +153,7 @@
 		</div>
 	</div>
 
+<!-- -----------------EDIT---------------------------------- -->
 <div id="editDialog" title="Редактирование компьютера" class="dialogWindow" hidden=true>
 	<form id="editDialogForm" action="" method="post">
 	  <table>
@@ -168,10 +175,11 @@
 	<button id="editDialogSave" class="ui-button ui-widget ui-corner-all">Сохранить</button>
 </div>
 
+<!-- -----------------------NEW---------------------------- -->
 <div id="newDialog" title="Новый компьютер" class="dialogWindow" hidden=true>
 	<table>
-		<tr><td>Тип</td><td>
-			<select id="idTypeComputers" style="width:100%">
+		<tr style="width:100%"><td>Тип</td><td>
+			<select id="idTypeComputer" style="width:100%">
 				<option value="">Select one...</option>
 				<c:forEach items="${typeComputers}" var="tc" varStatus="st">
 					<option value="${tc.idTypeComputer}">${tc.description}</option>
@@ -179,13 +187,13 @@
 			</select>
 		</td></tr>
 
-			<tr><td>Инв.№ комп.</td><td><input type="text" id="invNumberComputer" name="invNumberComputer"></td></tr>
-			<tr><td>Буг. назв.</td><td><input type="text" id="buhName" name="buhName"></td></tr>
-			<tr><td>Доменное имя</td><td><input type="text" id="domainName" name="domainName"></td></tr>
+			<tr><td>Инв.№ комп.</td><td><input style="width:100%" type="text" id="invNumberComputer" name="invNumberComputer"></td></tr>
+			<tr><td>Буг. назв.</td><td><input style="width:100%" type="text" id="buhName" name="buhName"></td></tr>
+			<tr><td>Доменное имя</td><td><input style="width:100%" type="text" id="domainName" name="domainName"></td></tr>
  			<tr><td>Мат. плата</td><td>
- 					<select id="idTypeComputer" style="width:100%">
+ 					<select id="idMother" style="width:100%">
 						<option value="">Select one...</option>
-						<c:forEach items="${FreeMothers}" var="fm" varStatus="st">
+						<c:forEach items="${freeMothers}" var="fm" varStatus="st">
 							<option value="${fm.idMother}">${fm.combineDisplayName()}</option>
 						</c:forEach>
 					</select>
@@ -193,28 +201,28 @@
  			<tr><td>Процессор</td><td>
  					<select id="idProcessor" style="width:100%">
 						<option value="">Select one...</option>
-						<c:forEach items="${FreeProcessors}" var="fp" varStatus="st">
+						<c:forEach items="${freeProcessors}" var="fp" varStatus="st">
 							<option value="${fp.idProcessor}">${fp.combineDisplayName()}</option>
 						</c:forEach>
 					</select>
 				</td></tr>
  			
-			<tr><td>Память</td><td><input type="text" id="idRam1" name="idRam1"></td></tr>
-			<tr hidden=true><td>Память</td><td><input type="text" id="idRam2" name="idRam2"></td></tr>
-			<tr hidden=true><td>Память</td><td><input type="text" id="idRam3" name="idRam3"></td></tr>
-			<tr hidden=true><td>Память</td><td><input type="text" id="idRam4" name="idRam4"></td></tr>
-			<tr><td>Винчестер</td><td><input type="text" id="idHdd1" name="idHdd1"></td></tr>
-			<tr hidden=true><td>Винчестер</td><td><input type="text" id="idHdd2" name="idHdd2"></td></tr>
-			<tr hidden=true><td>Винчестер</td><td><input type="text" id="idHdd3" name="idHdd3"></td></tr>
-			<tr hidden=true><td>Винчестер</td><td><input type="text" id="idHdd4" name="idHdd4"></td></tr>
+			<tr><td>Память</td><td><input style="width:100%" type="text" id="idRam1" name="idRam1"></td></tr>
+			<tr hidden=true><td>Память</td><td><input style="width:100%" type="text" id="idRam2" name="idRam2"></td></tr>
+			<tr hidden=true><td>Память</td><td><input style="width:100%" type="text" id="idRam3" name="idRam3"></td></tr>
+			<tr hidden=true><td>Память</td><td><input style="width:100%" type="text" id="idRam4" name="idRam4"></td></tr>
+			<tr><td>Винчестер</td><td><input style="width:100%" type="text" id="idHdd1" name="idHdd1"></td></tr>
+			<tr hidden=true><td>Винчестер</td><td><input style="width:100%" type="text" id="idHdd2" name="idHdd2"></td></tr>
+			<tr hidden=true><td>Винчестер</td><td><input style="width:100%" type="text" id="idHdd3" name="idHdd3"></td></tr>
+			<tr hidden=true><td>Винчестер</td><td><input style="width:100%" type="text" id="idHdd4" name="idHdd4"></td></tr>
 	</table><br>
 	<button id="newDialogSave" class="ui-button ui-widget ui-corner-all">Создать</button>
 </div>
 
-<!--  -->
+<!-- -------------------------DELETE-------------------------- -->
 <div id="deleteDialog" title="Удаление компьютера" class="dialogWindow" hidden=true>
-	<input type="text" id="idTr" hidden="true">
-	<input type="text" id="id" hidden="true">
+	<input style="width:100%" type="text" id="idTr" hidden="true">
+	<input style="width:100%" type="text" id="id" hidden="true">
 	Вы действительно хотите удалить?<br><br>
 	<button  id="deleteDialogOk" class="ui-button ui-widget ui-corner-all">Да</button>
 </div>

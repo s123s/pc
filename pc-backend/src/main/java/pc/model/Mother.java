@@ -82,7 +82,7 @@ public class Mother {
     
     /**Указан тип*/
     public boolean hasTypeMother (){
-    	return (typeMother.getIdTypeMother()  == null) ? false:true;
+    	return (typeMother==null || typeMother.getIdTypeMother()  == null) ? false:true;
     }
 
     /**Собрать удобное имя*/

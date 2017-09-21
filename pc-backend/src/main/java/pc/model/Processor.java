@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table(name = "processor")
-public class Processor {
+public class Processor implements Cloneable{
 	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

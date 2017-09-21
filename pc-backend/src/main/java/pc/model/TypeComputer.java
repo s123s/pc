@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table(name = "type_computer")
-public class TypeComputer {
+public class TypeComputer implements Cloneable{
 	
 
     @Id

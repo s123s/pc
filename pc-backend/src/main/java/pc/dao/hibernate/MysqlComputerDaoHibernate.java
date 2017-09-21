@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import pc.dao.ComputerDao;
 import pc.model.Computer;
 import pc.model.Computer;
+import pc.model.Mother;
+import pc.model.Processor;
 import pc.model.TypeProc;
 import pc.service.OperationStatus;
 
@@ -71,6 +73,18 @@ public class MysqlComputerDaoHibernate implements ComputerDao {
 			//if (o.getComputer().getIdComputer() == null) o.setComputer(null);
 			//o.setTypeComputer(session.load(TypeComputer.class, o.getTypeComputer().getIdTypeHdd()));
 			session.save(o);
+			
+			Mother mother = o.getMother();
+			mother = (Mother)session.load(Mother.class, mother.getIdMother());
+			if (mother.getIdMother() != null) {
+				mother.setComputer((Computer)o.clone());session.save(mother);
+			}
+
+			Processor processor = o.getProcessor();
+			processor = (Processor)session.load(Processor.class, processor.getIdProcessor());
+			if (processor.getIdProcessor() != null) {
+				processor.setComputer((Computer)o.clone());session.save(processor);
+			}
 			return new OperationStatus(true, o);	//return o. ID filled
 		}
 		catch (HibernateException ex) {

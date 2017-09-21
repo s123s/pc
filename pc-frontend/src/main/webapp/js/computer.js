@@ -5,22 +5,34 @@ saveNewPosToHTML = function (saveAnswer) {
 	
 	var $tr    = $("#mtab #emptyTr");
 	var idLocal = saveAnswer.retObject.idComputer;
-	var idProducer = $("#newDialog #idProducer").val();
-	var producerShortName = $("#newDialog #idProducer option:selected").text();
-	var model = $("#newDialog #model")[0].value;
-	var socket = $("#newDialog #socket")[0].value;
+
+	var idComputer = saveAnswer.retObject.idComputer;
+	var idTypeComputer = $("#newDialog #idTypeComputer").val();
+	var typeComputerName = $("#newDialog #idTypeComputer option:selected").text();
+	var invNumberComputer = $("#newDialog #invNumberComputer")[0].value;
+	var buhName = $("#newDialog #buhName")[0].value;
+	var domainName = $("#newDialog #domainName")[0].value;
+	var idMother = $("#newDialog #idMother").val();
+	var motherName = $("#newDialog #idMother option:selected").text();
+	var idProcessor = $("#newDialog #idProcessor").val();
+	var processorName = $("#newDialog #idProcessor option:selected").text();
+
 	
     var $clone = $tr.clone();
     $clone[0].id = "id"+idLocal;
     $clone.find('.myIndex').text('xxx');
-    $clone.find('.idComputer').text(idLocal);
+    $clone.find('.idComputer').text(idComputer);
     
-	$clone.find(".idProducer").text(idProducer);
-	$clone.find(".producerName").text(producerShortName);
-
-    $clone.find('.model').text(model);
-    $clone.find('.socket').text(socket);
-	$clone.find('.numberOfMothers').text(0);
+	$clone.find(".workplaceCount").text("");
+	$clone.find(".typeComputerDescription").text(typeComputerName);
+	$clone.find(".invNumberComputer").text(invNumberComputer);
+	$clone.find(".buhName").text(buhName);
+	$clone.find(".domainName").text(domainName);
+	$clone.find(".idMother").text(idMother);
+	$clone.find(".displayNameMother").text(motherName);
+	$clone.find(".idProcessor").text(idProcessor);
+	$clone.find(".displayNameProcessor").text(processorName);
+	
 	$clone[0].hidden = false;
 
 	$("#mtab").find('tbody')
@@ -30,20 +42,33 @@ saveNewPosToHTML = function (saveAnswer) {
 saveNewPosToDatabase = function (){
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
-	var idProducer = $("#newDialog #idProducer").val();
-	var producerShortName = $("#newDialog #idProducer option:selected").text();
-	var model = $("#newDialog #model")[0].value;
-	var socket = $("#newDialog #socket")[0].value;
+	
+	var idTypeComputer = $("#newDialog #idTypeComputer").val();
+	var typeComputerName = $("#newDialog #idTypeComputer option:selected").text();
+	var invNumberComputer = $("#newDialog #invNumberComputer")[0].value;
+	var buhName = $("#newDialog #buhName")[0].value;
+	var domainName = $("#newDialog #domainName")[0].value;
+	var idMother = $("#newDialog #idMother").val();
+	var motherName = $("#newDialog #idMother option:selected").text();
+	var idProcessor = $("#newDialog #idProcessor").val();
+	var processorName = $("#newDialog #idProcessor option:selected").text();
 
 	var json = { 
-				producer:{"idProducer"		: idProducer,
-						  "shortname"		: producerShortName,
+			typeComputer:{"idTypeComputer"		: idTypeComputer,
+						  "description"			: typeComputerName,
 						 },
-				"model"		: model, 
-				"socket"	: socket, };
+				"invNumber"		: invNumberComputer, 
+				"buhName"	: buhName,  
+				"domainName"	: domainName,  
+			mother:{"idMother"		: idMother,
+			  //"motherName"			: motherName,
+			 },
+			 processor:{"idProcessor"		: idProcessor,
+			 // "description"			: typeComputerName,
+			 }, };
 
 	$.ajax({
-		url: "type_mother/create",
+		url: "computer/create",
 	    	 
 	    data: JSON.stringify(json),
 	    contentType: "application/json",

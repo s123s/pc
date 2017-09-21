@@ -471,7 +471,17 @@ public class OperationController {
 		mainService.getMotherDao().delete(mother.getIdMother());
 	}
 	
+	
 	/*----computer----*/
+	/*	Не используется
+	@RequestMapping(value = "/computer_with_table_edit")
+	public String listComputer1(ModelMap model) {
+		model.addAttribute("computers", mainService.getComputerDao().readAll());
+		model.addAttribute("typeComputers", mainService.getTypeComputerDao().readAll());
+		model.addAttribute("mothers", mainService.getMotherDao().readAllFreeRows());
+		return "computer_with_table_edit";
+	}*/
+	
 	@RequestMapping(value = "/computer")
 	@Transactional(readOnly=true)
 	public String listComputer(ModelMap model) {
@@ -482,16 +492,6 @@ public class OperationController {
 		return "computer";
 	}
 	
-	/*Не используется*/
-	@RequestMapping(value = "/computer_with_table_edit")
-	public String listComputer1(ModelMap model) {
-		model.addAttribute("computers", mainService.getComputerDao().readAll());
-		model.addAttribute("typeComputers", mainService.getTypeComputerDao().readAll());
-		model.addAttribute("mothers", mainService.getMotherDao().readAllFreeRows());
-		return "computer_with_table_edit";
-	}
-	
-
 	@RequestMapping(value = "/computer/save_edited",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@JsonView(View.REST.class)
@@ -502,6 +502,7 @@ public class OperationController {
 	@RequestMapping(value = "/computer/create",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@JsonView(View.REST.class)
+	//public OperationStatus createComputer(@RequestBody ComputerInterf computer) {
 	public OperationStatus createComputer(@RequestBody Computer computer) {
         return mainService.getComputerDao().create(computer);
 	}	
