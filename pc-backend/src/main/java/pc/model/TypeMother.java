@@ -14,7 +14,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import pc.jackson.View;
 
@@ -31,7 +30,7 @@ public class TypeMother {
     @JsonView(View.REST.class)
 	private Integer idTypeMother;
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "id_producer")
     private Producer producer;
 
@@ -44,8 +43,9 @@ public class TypeMother {
 	private String socket;
 
     /**Нужно для проверки, есть ли ссылающиеся записи*/
-    @OneToMany(mappedBy="typeMother", fetch=FetchType.EAGER)
-    @Fetch(value = FetchMode.SUBSELECT)
+/*    @OneToMany(mappedBy="typeMother", fetch=FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)*/
+    @OneToMany(mappedBy="typeMother", fetch=FetchType.LAZY)
     private Set<Mother> mothers;
 	
 	public String toString() {

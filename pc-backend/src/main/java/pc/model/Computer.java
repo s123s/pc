@@ -33,32 +33,32 @@ public class Computer implements Cloneable {
 	@JsonView(View.REST.class)
 	private Integer idComputer;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-	@Fetch(FetchMode.JOIN)
+/*	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	@Fetch(FetchMode.JOIN)*/
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "id_type_computer")
 	@JsonView(View.REST.class)
 	private TypeComputer typeComputer;
 
 	/** Нужно для проверки, есть ли ссылающиеся записи */
-	@OneToMany(mappedBy = "computer", fetch = FetchType.EAGER)
-	@Fetch(FetchMode.JOIN)
-	transient private Set<Workplace> workplace;
+//	@OneToMany(mappedBy = "computer", fetch = FetchType.EAGER)
+//	@Fetch(FetchMode.JOIN)
+	@OneToMany(mappedBy = "computer", fetch = FetchType.LAZY)
+	private Set<Workplace> workplace;
 
-	// @OneToMany(mappedBy="computer", fetch=FetchType.EAGER)
-
-	@OneToOne(mappedBy = "computer", fetch = FetchType.EAGER)
+//   @OneToMany(mappedBy="computer", fetch=FetchType.EAGER)
+//	@OneToOne(mappedBy = "computer", fetch = FetchType.EAGER)
+	@OneToOne(mappedBy = "computer", fetch = FetchType.LAZY)
 	private Mother mother;
 
-	@OneToOne(mappedBy = "computer", fetch = FetchType.EAGER)
+//	@OneToOne(mappedBy = "computer", fetch = FetchType.EAGER)
+	@OneToOne(mappedBy = "computer", fetch = FetchType.LAZY)
 	private Processor processor;
 
-	/*
-	 * @OneToOne(mappedBy = "computer", fetch = FetchType.EAGER) private Ram
-	 * ram;
-	 */
-	@OneToMany(mappedBy = "computer", fetch = FetchType.EAGER)
-	@Fetch(value = FetchMode.SUBSELECT)
-	transient private List<Ram> rams;
+/*	@OneToMany(mappedBy = "computer", fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)*/
+	@OneToMany(mappedBy = "computer", fetch = FetchType.LAZY)
+	private List<Ram> rams;
 
 	@Column(name = "inv_number")
 	@JsonView(View.REST.class)
@@ -71,13 +71,11 @@ public class Computer implements Cloneable {
 	private String domainName;
 
 	/*    *//** Нужно для проверки, есть ли ссылающиеся записи */
-	/*
-	 * @OneToMany private Set<Hdd> hdds;
-	 */
 
 	/** Нужно для проверки, есть ли ссылающиеся записи */
-	@OneToMany(mappedBy = "computer", fetch = FetchType.EAGER)
-	@Fetch(value = FetchMode.SUBSELECT)
+/*	@OneToMany(mappedBy = "computer", fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)*/
+	@OneToMany(mappedBy = "computer", fetch = FetchType.LAZY)
 	private List<Hdd> hdds;
 
 	// /**Указана материнка*/

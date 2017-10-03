@@ -9,13 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import pc.jackson.View;
 
@@ -24,7 +18,6 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Entity
 @Table(name = "hdd")
 public class Hdd {
-	
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,14 +25,16 @@ public class Hdd {
     @JsonView(View.REST.class)
 	private Integer idHdd;
 
-    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
-    @Fetch(FetchMode.JOIN)
+/*    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+    @Fetch(FetchMode.JOIN)*/
+    @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.PERSIST)
     @JoinColumn(name = "id_type_hdd")
     @JsonView(View.REST.class)
 	private TypeHdd typeHdd;
     
-    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
-    @Fetch(FetchMode.JOIN)
+/*    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+    @Fetch(FetchMode.JOIN)*/
+    @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.PERSIST)
     @JoinColumn(name = "id_computer")
     @JsonView(View.REST.class)
 	private Computer computer;

@@ -25,7 +25,7 @@ public class MysqlMonitorDaoHibernate implements MonitorDao {
 	public List<Monitor> readAll() {
 
 		Session session = this.sessionFactory.getCurrentSession();
-		return session.createQuery("from Monitor order by idMonitor").list();
+		return session.createQuery("from Monitor tab left outer join fetch tab.producer  order by tab.idMonitor").list();
 	}
 	@Override
 	@Transactional

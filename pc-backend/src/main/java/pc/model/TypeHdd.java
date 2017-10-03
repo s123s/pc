@@ -38,15 +38,15 @@ public class TypeHdd {
     @JsonView(View.REST.class)
 	private Integer idTypeHdd;
 
-    @ManyToOne(fetch=FetchType.EAGER)
-    @Fetch(FetchMode.JOIN)
+    @ManyToOne(fetch=FetchType.LAZY)
+//    @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "id_producer")
     @JsonView(View.REST.class)
     private Producer producer;
 
     /**Нужно для проверки, есть ли ссылающиеся записи*/
     @OneToMany(mappedBy="typeHdd", fetch=FetchType.LAZY)
-    @Fetch(FetchMode.JOIN)
+//    @Fetch(FetchMode.JOIN)
     private Set<Hdd> hdds;
 
 	@Column

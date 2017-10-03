@@ -1,15 +1,12 @@
 package pc.dao.hibernate;
 
-import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
-import pc.dao.DefaultDao;
 import pc.dao.TypeHddDao;
 import pc.model.TypeHdd;
 import pc.service.OperationStatus;
@@ -29,7 +26,7 @@ public class MysqlTypeHddDaoHibernate implements TypeHddDao {
 	public List<TypeHdd> readAll() {
 
 		Session session = this.sessionFactory.getCurrentSession();
-		return session.createQuery("from TypeHdd order by idTypeHdd").list();
+		return session.createQuery("from TypeHdd typeHdd left outer join fetch typeHdd.producer left outer join fetch typeHdd.hdds  order by typeHdd.idTypeHdd").list();
 	}
 
 	@Override

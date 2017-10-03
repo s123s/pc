@@ -25,7 +25,7 @@ public class MysqlTypeProcDaoHibernate implements TypeProcDao {
 	public List<TypeProc> readAll() {
 
 		Session session = this.sessionFactory.getCurrentSession();
-		return session.createQuery("from TypeProc order by idTypeProc").list();
+		return session.createQuery("from TypeProc tab left outer join fetch tab.processors left outer join fetch tab.producer order by tab.idTypeProc").list();
 	}
 	@Override
 	@Transactional

@@ -25,7 +25,7 @@ public class MysqlTypeMotherDaoHibernate implements TypeMotherDao {
 	public List<TypeMother> readAll() {
 
 		Session session = this.sessionFactory.getCurrentSession();
-		return session.createQuery("from TypeMother order by idTypeMother").list();
+		return session.createQuery("from TypeMother tab left outer join fetch tab.mothers left outer join fetch tab.producer order by tab.idTypeMother").list();
 	}
 	@Override
 	@Transactional

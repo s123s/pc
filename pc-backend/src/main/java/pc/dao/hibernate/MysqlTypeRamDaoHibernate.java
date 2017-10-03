@@ -26,7 +26,7 @@ public class MysqlTypeRamDaoHibernate implements TypeRamDao {
 	public List<TypeRam> readAll() {
 
 		Session session = this.sessionFactory.getCurrentSession();
-		return session.createQuery("from TypeRam order by idTypeRam").list();
+		return session.createQuery("from TypeRam tab left outer join fetch tab.typeRamSpec order by tab.idTypeRam").list();
 	}
 	@Override
 	@Transactional

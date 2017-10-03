@@ -2,7 +2,7 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	
+
 	xsi:schemaLocation="
         http://www.springframework.org/schema/beans     
         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
@@ -13,15 +13,9 @@
 		http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-<!-- <import resource="spring-security.xml"/> -->
+	<!-- <import resource="spring-security.xml"/> -->
 
-
-	<context:component-scan base-package="pc.controller" />
-	<context:component-scan base-package="pc.security.controller" />
-
-	<!-- Getting Database properties -->
-	<context:property-placeholder location="classpath:jdbc.properties" />
-
+	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix">
@@ -31,164 +25,17 @@
 			<value>.jsp</value>
 		</property>
 	</bean>
-
-
-	<!-- Database Information -->
-<!--	dbcp
- 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-		destroy-method="close">
-		<property name="driverClassName" value="${jdbc.driverClassName}" />
-		<property name="url" value="${jdbc.url}" />
-		<property name="username" value="${jdbc.username}" />
-		<property name="password" value="${jdbc.password}" />
-	</bean>
- -->
- <!--  c3p0 -->
-<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
-          destroy-method="close">
-        <property name="driverClass" value="${jdbc.driverClassName}" />
-        <property name="jdbcUrl" value="${jdbc.url}" />
-        <property name="user" value="${jdbc.username}" />
-        <property name="password" value="${jdbc.password}" /> 
-
-        <!-- these are C3P0 properties -->
-        <property name="acquireIncrement" value="5" />
-        <property name="minPoolSize" value="2" />
-        <property name="maxPoolSize" value="5" />
-        <!-- <property name="maxIdleTime" value="300" /> -->
-</bean>
-    
-	<!-- Hibernate SessionFactory Bean definition -->
-	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="annotatedClasses">
-			<list>
-				<value>pc.model.WpSummView</value>
-				<value>pc.model.TypeHdd</value>
-				<value>pc.model.TypeRam</value>
-				<value>pc.model.TypeRamSpec</value>
-				<value>pc.model.TypeComputer</value>
-				<value>pc.model.Producer</value>
-				<value>pc.model.TypeProc</value>
-				<value>pc.model.TypeMother</value>
-				<value>pc.model.Os</value>
-				<value>pc.model.Ups</value>
-				<value>pc.model.Printer</value>
-				<value>pc.model.Monitor</value>
-				<value>pc.model.User</value>
-				<value>pc.model.Hdd</value>
-				<value>pc.model.Ram</value>
-				<value>pc.model.Processor</value>
-				<value>pc.model.Mother</value>
-				<value>pc.model.Computer</value>
-				<value>pc.model.Processor</value>
-				<value>pc.model.Workplace</value>
-			</list>
-		</property>
-		<property name="hibernateProperties">
-			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.format_sql">true</prop>
-				<prop key="hibernate.use_sql_comments">true</prop>
-				<prop key="hibernate.jdbc.batch_size">100</prop>
-				
-				<!-- <prop key="hibernate.connection.characterEncoding">utf8</prop>
-				<prop key="hibernate.connection.useUnicode">true</prop> -->
-			</props>
-		</property>
-
-	</bean>
-
-	<!--DAO and ..Service beans -->
-	<bean id="wpDao" class="pc.dao.hibernate.MysqlWpDaoHibernate">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="typeHddDao" class="pc.dao.hibernate.MysqlTypeHddDaoHibernate">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="typeRamDao" class="pc.dao.hibernate.MysqlTypeRamDaoHibernate">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="typeRamSpecDao" class="pc.dao.hibernate.MysqlTypeRamSpecDaoHibernate">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="producerDao" class="pc.dao.hibernate.MysqlProducerDaoHibernate">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="typeProcDao" class="pc.dao.hibernate.MysqlTypeProcDaoHibernate">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="typeMotherDao" class="pc.dao.hibernate.MysqlTypeMotherDaoHibernate">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>	
-	<bean id="osDao" class="pc.dao.hibernate.MysqlOsDaoHibernate">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>	
-	<bean id="upsDao" class="pc.dao.hibernate.MysqlUpsDaoHibernate">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="printerDao" class="pc.dao.hibernate.MysqlPrinterDaoHibernate">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>	
-	<bean id="monitorDao" class="pc.dao.hibernate.MysqlMonitorDaoHibernate">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>	
-	<bean id="userDao" class="pc.dao.hibernate.MysqlUserDaoHibernate">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>	
-	<bean id="hddDao" class="pc.dao.hibernate.MysqlHddDaoHibernate">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="ramDao" class="pc.dao.hibernate.MysqlRamDaoHibernate">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="processorDao" class="pc.dao.hibernate.MysqlProcessorDaoHibernate">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="motherDao" class="pc.dao.hibernate.MysqlMotherDaoHibernate">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="computerDao" class="pc.dao.hibernate.MysqlComputerDaoHibernate">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="typeComputerDao" class="pc.dao.hibernate.MysqlTypeComputerDaoHibernate">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="workplaceDao" class="pc.dao.hibernate.MysqlWorkplaceDaoHibernate">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="mainService" class="pc.service.MainService">
-		<property name="wpDao" ref="wpDao" />
-		<property name="typeHddDao" ref="typeHddDao" />
-		<property name="typeRamDao" ref="typeRamDao" />
-		<property name="typeRamSpecDao" ref="typeRamSpecDao" />
-		<property name="producerDao" ref="producerDao" />
-		<property name="typeProcDao" ref="typeProcDao" />
-		<property name="typeMotherDao" ref="typeMotherDao" />
-		<property name="osDao" ref="osDao" />
-		<property name="upsDao" ref="upsDao" />
-		<property name="printerDao" ref="printerDao" />
-		<property name="monitorDao" ref="monitorDao" />
-		<property name="userDao" ref="userDao" />
-		<property name="hddDao" ref="hddDao" />
-		<property name="ramDao" ref="ramDao" />
-		<property name="processorDao" ref="processorDao" />
-		<property name="motherDao" ref="motherDao" />
-		<property name="computerDao" ref="computerDao" />
-		<property name="typeComputerDao" ref="typeComputerDao" />
-		<property name="workplaceDao" ref="workplaceDao" />
-	</bean>
 	
-	<tx:annotation-driven transaction-manager="transactionManager" />
-	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
+	<context:component-scan base-package="pc.controller" />
+	<context:component-scan base-package="pc.security.controller" />
 
+	<!-- Getting Database properties --><!-- 
+	<context:property-placeholder location="classpath:jdbc.properties" /> -->
 
+	<!-- <tx:annotation-driven transaction-manager="transactionManager" />
+	<mvc:annotation-driven /> -->
 	<mvc:default-servlet-handler />
-	<mvc:annotation-driven />
+	<mvc:annotation-driven /> 
+	
 
 </beans>

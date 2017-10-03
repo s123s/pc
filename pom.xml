@@ -40,6 +40,7 @@
 	    <tomcatNameForMaven>localtomcat</tomcatNameForMaven>
 	    <tomcatHost>localhost</tomcatHost>
 	    <tomcatPort>8080</tomcatPort>
+	    
     </properties>
   </profile>
   </profiles>

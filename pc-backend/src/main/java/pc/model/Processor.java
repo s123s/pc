@@ -28,14 +28,20 @@ public class Processor implements Cloneable{
     @JsonView(View.REST.class)
 	private Integer idProcessor;
 
-    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+/*    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
     @Fetch(FetchMode.JOIN)
+    @JoinColumn(name = "id_type_proc")
+    @JsonView(View.REST.class)*/
+    @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.PERSIST)
     @JoinColumn(name = "id_type_proc")
     @JsonView(View.REST.class)
 	private TypeProc typeProc;
     
-    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+/*    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
     @Fetch(FetchMode.JOIN)
+    @JoinColumn(name = "id_computer")
+    @JsonView(View.REST.class)*/
+    @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.PERSIST)
     @JoinColumn(name = "id_computer")
     @JsonView(View.REST.class)
 	private Computer computer;

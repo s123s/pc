@@ -13,9 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
 import pc.jackson.View;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -31,7 +28,7 @@ public class TypeProc {
     @JsonView(View.REST.class)
 	private Integer idTypeProc;
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "id_producer")
     private Producer producer;
 
@@ -44,8 +41,9 @@ public class TypeProc {
 	private String socket;
 	
     /**Нужно для проверки, есть ли ссылающиеся записи*/
-    @OneToMany(mappedBy="typeProc", fetch=FetchType.EAGER)
-    @Fetch(value = FetchMode.SUBSELECT)
+/*    @OneToMany(mappedBy="typeProc", fetch=FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)*/
+    @OneToMany(mappedBy="typeProc", fetch=FetchType.LAZY)
     private Set<Processor> processors;
 
 

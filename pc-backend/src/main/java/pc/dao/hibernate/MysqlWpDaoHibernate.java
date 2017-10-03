@@ -11,7 +11,6 @@ import pc.dao.WpDao;
 import pc.model.WpSummView;
 
 public class MysqlWpDaoHibernate implements WpDao {
-
 	private SessionFactory sessionFactory;
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
