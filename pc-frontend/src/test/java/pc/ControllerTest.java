@@ -8,16 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 
+import pc.controller.OperationController;
 import pc.service.MainService;
 
-@ContextConfiguration(locations = { "classpath:spring/test-root-context.xml" })
-public class ServiceTest extends AbstractTransactionalJUnit4SpringContextTests {
+//@ContextConfiguration(locations = { "classpath:spring/xxx-test-application-security.xml" })
+public class ControllerTest extends AbstractTransactionalJUnit4SpringContextTests {
 	
 	@Autowired
-	private MainService mainService;
+	private OperationController operationController;
 
 	@Test
-	public void creationMAinServiceTest() {
-		Assert.assertNotNull(mainService);
+	public void creationOperationControllerTest() {
+		//NONE
+		/*Assert.assertNotNull(operationController);*/
 	}
 }

@@ -1,5 +1,7 @@
 package pc;
 
+import static org.mockito.Mockito.*;
+import java.util.Iterator;
 import java.util.List;
 
 import org.junit.Assert;
@@ -50,8 +52,8 @@ import pc.model.User;
 import pc.model.Workplace;
 import pc.model.WpSummView;
 
-@ContextConfiguration(locations = {"classpath:spring/test-root-context.xml" }) 
-public class SpringTest extends AbstractTransactionalJUnit4SpringContextTests{
+@ContextConfiguration(locations = { "classpath:spring/test-root-context.xml" })
+public class SpringTest extends AbstractTransactionalJUnit4SpringContextTests {
 	@Autowired
 	private TypeRamDao typeRamDao;
 	@Autowired
@@ -89,142 +91,152 @@ public class SpringTest extends AbstractTransactionalJUnit4SpringContextTests{
 	@Autowired
 	private TypeComputerDao typeComputerDao;
 	@Autowired
-	private WorkplaceDao  workplaceDao;
-	
-	
+	private WorkplaceDao workplaceDao;
+
 	@Test
 	public void typeRamDaoTest() {
+		Assert.assertNotNull(typeRamDao);
 		List<TypeRam> listResult = typeRamDao.readAll();
-		System.out.println("size= " +listResult.size());
+		System.out.println("size= " + listResult.size());
 		Assert.assertFalse(listResult.isEmpty());
 	}
-	
+
 	@Test
 	public void typeRamSpecDaoTest() {
 		List<TypeRamSpec> listResult = typeRamSpecDao.readAll();
-		System.out.println("size= " +listResult.size());
+		System.out.println("size= " + listResult.size());
 		Assert.assertFalse(listResult.isEmpty());
 	}
-	
+
 	@Test
 	public void TypeHddDaoTest() {
-//		ClassPathXmlApplicationContext ac= new ClassPathXmlApplicationContext("/spring/test-root-context.xml");
-//		TypeHddDao bean = (TypeHddDao)ac.getBean("typeHddDao");
+		// ClassPathXmlApplicationContext ac= new
+		// ClassPathXmlApplicationContext("/spring/test-root-context.xml");
+		// TypeHddDao bean = (TypeHddDao)ac.getBean("typeHddDao");
 		List<TypeHdd> listResult = typeHddDao.readAll();
 		System.out.println(listResult.get(0).getProducer());
-		System.out.println("size= " +listResult.size());
+		System.out.println("size= " + listResult.size());
 		Assert.assertFalse(listResult.isEmpty());
 	}
-	
+
 	@Test
 	public void wpDaoTest() {
 		List<WpSummView> listResult = wpDao.readAll();
-		System.out.println("size= " +listResult.size());
+		System.out.println("size= " + listResult.size());
 		Assert.assertFalse(listResult.isEmpty());
 	}
 
 	@Test
 	public void producerDaoTest() {
 		List<Producer> listResult = producerDao.readAll();
-		System.out.println("size= " +listResult.size());
+		System.out.println("size= " + listResult.size());
 		Assert.assertFalse(listResult.isEmpty());
 	}
 
 	@Test
 	public void typeProcDaoTest() {
 		List<TypeProc> listResult = typeProcDao.readAll();
-		System.out.println("size= " +listResult.size());
+		System.out.println("size= " + listResult.size());
 		Assert.assertFalse(listResult.isEmpty());
 	}
 
 	@Test
 	public void typeMotherDaoTest() {
 		List<TypeMother> listResult = typeMotherDao.readAll();
-		System.out.println("size= " +listResult.size());
+		System.out.println("size= " + listResult.size());
 		Assert.assertFalse(listResult.isEmpty());
 	}
 
 	@Test
 	public void osDaoTest() {
 		List<Os> listResult = osDao.readAll();
-		System.out.println("size= " +listResult.size());
+		System.out.println("size= " + listResult.size());
 		Assert.assertFalse(listResult.isEmpty());
 	}
 
 	@Test
 	public void upsDaoTest() {
 		List<Ups> listResult = upsDao.readAll();
-		System.out.println("size= " +listResult.size());
+		System.out.println("size= " + listResult.size());
 		Assert.assertFalse(listResult.isEmpty());
 	}
-	
+
 	@Test
 	public void printerDaoTest() {
 		List<Printer> listResult = printerDao.readAll();
-		System.out.println("size= " +listResult.size());
+		System.out.println("size= " + listResult.size());
 		Assert.assertFalse(listResult.isEmpty());
 	}
-	
+
 	@Test
 	public void monitorDaoTest() {
 		List<Monitor> listResult = monitorDao.readAll();
-		System.out.println("size= " +listResult.size());
+		System.out.println("size= " + listResult.size());
 		Assert.assertFalse(listResult.isEmpty());
 	}
-	
+
 	@Test
 	public void userDaoTest() {
 		List<User> listResult = userDao.readAll();
-		System.out.println("size= " +listResult.size());
+		System.out.println("size= " + listResult.size());
 		Assert.assertFalse(listResult.isEmpty());
 	}
-	
+
 	@Test
 	public void hddDaoTest() {
 		List<Hdd> listResult = hddDao.readAll();
-		System.out.println("size= " +listResult.size());
+		System.out.println("size= " + listResult.size());
 		Assert.assertFalse(listResult.isEmpty());
 	}
 
 	@Test
 	public void ramDaoTest() {
 		List<Ram> listResult = ramDao.readAll();
-		System.out.println("size= " +listResult.size());
+		System.out.println("size= " + listResult.size());
 		Assert.assertFalse(listResult.isEmpty());
 	}
 
 	@Test
 	public void processorDaoTest() {
 		List<Processor> listResult = processorDao.readAll();
-		System.out.println("size= " +listResult.size());
+		System.out.println("size= " + listResult.size());
 		Assert.assertFalse(listResult.isEmpty());
-	}	
+	}
 
 	@Test
 	public void motherDaoTest() {
 		List<Mother> listResult = motherDao.readAll();
-		System.out.println("size= " +listResult.size());
+		System.out.println("size= " + listResult.size());
 		Assert.assertFalse(listResult.isEmpty());
 	}
 
 	@Test
 	public void computerDaoTest() {
 		List<Computer> listResult = computerDao.readAll();
-		System.out.println("size= " +listResult.size());
+		System.out.println("size= " + listResult.size());
 		Assert.assertFalse(listResult.isEmpty());
 	}
 
 	@Test
 	public void typeComputerDaoTest() {
 		List<TypeComputer> listResult = typeComputerDao.readAll();
-		System.out.println("size= " +listResult.size());
+		System.out.println("size= " + listResult.size());
 		Assert.assertFalse(listResult.isEmpty());
 	}
 
 	@Test
 	public void workplaceDaoTest() {
 		List<Workplace> listResult = workplaceDao.readAll();
-		System.out.println("size= " +listResult.size());
+		System.out.println("size= " + listResult.size());
 		Assert.assertFalse(listResult.isEmpty());
-	}	
+	}
+
+	@Test
+	public void mockTest() {
+		Iterator i = mock(Iterator.class);
+		when(i.next()).thenReturn("first").thenReturn("last");
+		String result = i.next() + " " + i.next();
+		System.out.println(result);
+		Assert.assertEquals("first last", result);
+	}
 }
