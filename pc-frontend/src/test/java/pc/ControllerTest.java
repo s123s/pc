@@ -12,7 +12,9 @@ import pc.controller.OperationController;
 import pc.service.MainService;
 
 //@ContextConfiguration(locations = { "classpath:spring/xxx-test-application-security.xml" })
-public class ControllerTest extends AbstractTransactionalJUnit4SpringContextTests {
+public class ControllerTest {
+	//extends AbstractTransactionalJUnit4SpringContextTests {
+/*
 	
 	@Autowired
 	private OperationController operationController;
@@ -20,6 +22,6 @@ public class ControllerTest extends AbstractTransactionalJUnit4SpringContextTest
 	@Test
 	public void creationOperationControllerTest() {
 		//NONE
-		/*Assert.assertNotNull(operationController);*/
-	}
+		Assert.assertNotNull(operationController);
+	}*/
 }
