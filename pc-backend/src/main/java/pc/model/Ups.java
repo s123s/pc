@@ -14,25 +14,22 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Entity
 @Table(name = "ups")
 public class Ups {
-	
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_ups")
-    @JsonView(View.REST.class)
+	@JsonView(View.REST.class)
 	private Integer idUps;
 
 	@Column(name = "inv_number")
 	private Integer invNumber;
-    
-    @Column
+
+	@Column
 	private String model;
-	
 
 	public String toString() {
-		return "{" + idUps + ", " + invNumber + ", " + model +"}";
+		return "{" + idUps + ", " + invNumber + ", " + model + "}";
 	}
-
 
 	public Integer getIdUps() {
 		return idUps;

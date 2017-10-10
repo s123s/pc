@@ -21,36 +21,34 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Entity
 @Table(name = "workplace")
 public class Workplace {
-	
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_workplace")
-    @JsonView(View.REST.class)
+	@JsonView(View.REST.class)
 	private Integer idWorkplace;
 
-/*    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
-    @Fetch(FetchMode.JOIN)
-    @JoinColumn(name = "id_computer")
-    @JsonView(View.REST.class)*/
-    @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-    @JoinColumn(name = "id_computer")
-    @JsonView(View.REST.class)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_computer")
+	@JsonView(View.REST.class)
 	private Computer computer;
-	
+
 	public String toString() {
-		return "{" + idWorkplace + ", " + idWorkplace +"}";
+		return "{" + idWorkplace + ", " + idWorkplace + "}";
 	}
 
 	public Integer getIdWorkplace() {
 		return idWorkplace;
 	}
+
 	public void setIdWorkplace(Integer idWorkplace) {
 		this.idWorkplace = idWorkplace;
 	}
+
 	public Computer getComputer() {
 		return computer;
 	}
+
 	public void setComputer(Computer computer) {
 		this.computer = computer;
 	}

@@ -10,7 +10,7 @@ import pc.service.MainService;
 
 @ContextConfiguration(locations = { "classpath:spring/test-root-context.xml" })
 public class ServiceTest extends AbstractTransactionalJUnit4SpringContextTests {
-	
+
 	@Autowired
 	private MainService mainService;
 

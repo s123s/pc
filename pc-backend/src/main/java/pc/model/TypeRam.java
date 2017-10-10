@@ -20,29 +20,28 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Entity
 @Table(name = "type_ram")
 public class TypeRam {
-	
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_type_ram")
-    @JsonView(View.REST.class)
+	@JsonView(View.REST.class)
 	private Integer idTypeRam;
 
-    @ManyToOne(fetch=FetchType.EAGER)
-    @JoinColumn(name = "id_type_ram_spec")
-    private TypeRamSpec typeRamSpec;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_type_ram_spec")
+	private TypeRamSpec typeRamSpec;
 
 	@Column
 	private Integer capacity;
-	
-    /**Нужно для проверки, есть ли ссылающиеся записи*/
-/*    @OneToMany(mappedBy="typeRam", fetch=FetchType.EAGER)
-    @Fetch(value = FetchMode.SUBSELECT)*/
-    @OneToMany(mappedBy="typeRam", fetch=FetchType.LAZY)
-    private Set<Ram> rams;
-	
-	public String toString () {
-		return "{" + getIdTypeRam() + ", " + getTypeRamSpec().getIdTypeRamSpec() +", " +getTypeRamSpec().getDescription() +", " +capacity + "}";
+
+	/** Нужно для проверки, есть ли ссылающиеся записи */
+	@OneToMany(mappedBy = "typeRam", fetch = FetchType.LAZY)
+	private Set<Ram> rams;
+
+	public String toString() {
+		return "{" + getIdTypeRam() + ", "
+				+ getTypeRamSpec().getIdTypeRamSpec() + ", "
+				+ getTypeRamSpec().getDescription() + ", " + capacity + "}";
 	}
 
 	public Integer getIdTypeRam() {
@@ -77,15 +76,15 @@ public class TypeRam {
 		this.rams = rams;
 	}
 
+	/** Указан тип материнки */
+	public boolean hasTypeRamSpec() {
+		return (typeRamSpec.getIdTypeRamSpec() == null) ? false : true;
+	}
 
-    /**Указан тип материнки*/
-    public boolean hasTypeRamSpec (){
-    	return (typeRamSpec.getIdTypeRamSpec()== null) ? false:true;
-    }
-    
-	/**Собрать удобное имя*/
-	public String combineDisplayName () {
-		return "" 
-				+ (hasTypeRamSpec() ? typeRamSpec.combineDisplayName() +" " + capacity: "");
+	/** Собрать удобное имя */
+	public String combineDisplayName() {
+		return ""
+				+ (hasTypeRamSpec() ? typeRamSpec.combineDisplayName() + " "
+						+ capacity : "");
 	}
 }

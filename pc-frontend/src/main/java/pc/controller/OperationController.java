@@ -75,8 +75,6 @@ public class OperationController {
 /*----wp_table----*/
 	@RequestMapping(value = "wp_table")
 	public String listWp(ModelMap model) {
-		/*User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();*/
-
 		model.addAttribute("wps", mainService.getWpDao().readAll());
 		return "wp_table";
 	}
@@ -110,12 +108,7 @@ public class OperationController {
 	
 	@RequestMapping(value = "/type_hdd/delete",  method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	//@JsonView(View.REST.class)
 	public void deleteTypeHdd(@RequestBody TypeHdd typeHdd) {
-	//	mainService.getTypeHddDao().markDeleted(typeHdd.getIdTypeHdd());
-
-	//	return "redirect:/books";
-				//new OperationStatus(false);
 		mainService.getTypeHddDao().delete(typeHdd.getIdTypeHdd());
 	}
 	
@@ -470,17 +463,6 @@ public class OperationController {
 		mainService.getMotherDao().delete(mother.getIdMother());
 	}
 	
-	
-	/*----computer----*/
-	/*	Не используется
-	@RequestMapping(value = "/computer_with_table_edit")
-	public String listComputer1(ModelMap model) {
-		model.addAttribute("computers", mainService.getComputerDao().readAll());
-		model.addAttribute("typeComputers", mainService.getTypeComputerDao().readAll());
-		model.addAttribute("mothers", mainService.getMotherDao().readAllFreeRows());
-		return "computer_with_table_edit";
-	}*/
-	
 	@RequestMapping(value = "/computer")
 	@Transactional(readOnly=true)
 	public String listComputer(ModelMap model) {
@@ -501,7 +483,6 @@ public class OperationController {
 	@RequestMapping(value = "/computer/create",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@JsonView(View.REST.class)
-	//public OperationStatus createComputer(@RequestBody ComputerInterf computer) {
 	public OperationStatus createComputer(@RequestBody Computer computer) {
         return mainService.getComputerDao().create(computer);
 	}	
@@ -513,43 +494,4 @@ public class OperationController {
 		mainService.getComputerDao().delete(computer.getIdComputer());
 	}
 		
-	
-	
-	
-	
-	
-	
-	
-/*	---Get list free type_hdd----
-	@RequestMapping(value = "/type_hdd/list_free_type_hdd",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	@JsonView(View.REST.class)
-	public List<TypeHdd> listFreeTypeHdd() {
-		return mainService.getTypeHddDao().readAll();
-	}	*/
-	
-/*	@RequestMapping(value = "/save_edited",  method = RequestMethod.POST)
-	public String saveEditedBook(@ModelAttribute("book") Book book) {
-		System.out.println("saveEditedBook "+book.getName());
-		bookService.update(book);
-
-		return "redirect:/books";
-	}
-	}*/
-/*
-	@RequestMapping(value = "/delete/{id}")
-	public String deleteBook(@PathVariable("id") int id, Model model) {
-		bookService.markDeleted(id);
-
-		return "redirect:/books";
-	}
-	
-	
-	
-	@Autowired(required = true)
-	@Qualifier(value = "bookService")
-	public void setBookService(BookServiceImpl bookService) {
-		this.bookService = bookService;
-	}
-*/
 }

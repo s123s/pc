@@ -14,49 +14,56 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Entity
 @Table(name = "printer")
 public class Printer {
-	
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_printer")
-    @JsonView(View.REST.class)
+	@JsonView(View.REST.class)
 	private Integer idPrinter;
 
 	@Column(name = "inv_number")
 	private Integer invNumber;
-    
-    @Column
+
+	@Column
 	private String model;
-    @Column
+	@Column
 	private String cartridge;
 
 	public String toString() {
-		return "{" + idPrinter + ", " + invNumber + ", " + model  + ", " + cartridge +"}";
+		return "{" + idPrinter + ", " + invNumber + ", " + model + ", "
+				+ cartridge + "}";
 	}
 
 	public Integer getIdPrinter() {
 		return idPrinter;
 	}
+
 	public void setIdPrinter(Integer idPrinter) {
 		this.idPrinter = idPrinter;
-	}	public Integer getInvNumber() {
+	}
+
+	public Integer getInvNumber() {
 		return invNumber;
 	}
+
 	public void setInvNumber(Integer invNumber) {
 		this.invNumber = invNumber;
 	}
+
 	public String getModel() {
 		return model;
 	}
+
 	public void setModel(String model) {
 		this.model = model;
 	}
+
 	public String getCartridge() {
 		return cartridge;
 	}
+
 	public void setCartridge(String cartridge) {
 		this.cartridge = cartridge;
 	}
-
 
 }

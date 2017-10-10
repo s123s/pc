@@ -16,12 +16,12 @@ public class UserManager {
 		users.put("john", new User("john", "1", "ROLE_USER"));
 		users.put("bob", new User("bob", "2", "ROLE_USER, ROLE_ADMIN"));
 	}
-	
-	public User getUser(String username) throws UsernameNotFoundException{
-		if( !users.containsKey( username ) ){
-			throw new UsernameNotFoundException( username + " not found" );
+
+	public User getUser(String username) throws UsernameNotFoundException {
+		if (!users.containsKey(username)) {
+			throw new UsernameNotFoundException(username + " not found");
 		}
-		User user = users.get (username);
-		return user;		
+		User user = users.get(username);
+		return user;
 	}
 }

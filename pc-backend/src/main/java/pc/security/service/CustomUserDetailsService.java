@@ -15,6 +15,7 @@ public class CustomUserDetailsService implements UserDetailsService{
 	public void setUserManager(UserManager userManager) {
 		this.userManager = userManager;
 	}
+
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException {
 		return userManager.getUser(username);

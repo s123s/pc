@@ -8,29 +8,29 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "wp_summ_view")
 public class WpSummView {
-	
+
 	@Id
 	@Column(name = "id_workplace")
 	private Integer idWorkplace;
-	
+
 	@Column(name = "c_inv_number")
 	private Integer cInvNumber;
 
 	@Column(name = "c_buh_name")
 	private String cBuhName;
-	
+
 	@Column(name = "id_type_computer")
 	private String idTypeComputer;
 
 	@Column(name = "c_type_computer")
 	private String cTypeComputer;
-	
+
 	@Column(name = "mon_inb_number")
 	private Integer monInvNumber;
-	
+
 	@Column(name = "mon_model")
 	private String monName;
-	
+
 	@Column(name = "user_name")
 	private String userName;
 
@@ -57,18 +57,10 @@ public class WpSummView {
 
 	@Column(name = "os_name")
 	private String osName;
-	
-		
+
 	public WpSummView() {
 	};
 
-/*	public WpSummView(Integer id, String name, String isdn, Integer autor_id) {
-		this.id = id;
-		this.name = name;
-		this.isdn = isdn;
-		this.autorId = autor_id;
-	}
-*/
 	public String toString() {
 		return "" + idWorkplace;
 	}

@@ -14,18 +14,17 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Entity
 @Table(name = "type_ram_spec")
 public class TypeRamSpec {
-	
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_type_ram_spec")
-    @JsonView(View.REST.class)
+	@JsonView(View.REST.class)
 	private Integer idTypeRamSpec;
 
-  	@Column
+	@Column
 	private String description;
 
-	public String toString () {
+	public String toString() {
 		return "{" + idTypeRamSpec + ", " + description + "}";
 	}
 
@@ -45,8 +44,8 @@ public class TypeRamSpec {
 		this.description = description;
 	}
 
-	/**Собрать удобное имя*/
-	public String combineDisplayName () {
+	/** Собрать удобное имя */
+	public String combineDisplayName() {
 		return description;
 	}
 }

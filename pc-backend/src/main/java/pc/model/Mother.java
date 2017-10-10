@@ -18,79 +18,70 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Entity
 @Table(name = "mother")
 public class Mother {
-	
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_mother")
-    @JsonView(View.REST.class)
+	@JsonView(View.REST.class)
 	private Integer idMother;
 
-/*	@Column(name = "id_computer")
-	private Integer idComputer;
-	
-	@Column(name = "id_type_mother")
-	private Integer idTypeMother;
-*/
-/*    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
-    @Fetch(FetchMode.JOIN)
-    @JoinColumn(name = "id_type_mother")
-    @JsonView(View.REST.class)*/
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_type_mother")
-    @JsonView(View.REST.class)
+	@JoinColumn(name = "id_type_mother")
+	@JsonView(View.REST.class)
 	private TypeMother typeMother;
-    
-/*    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
-    @Fetch(FetchMode.JOIN)
-    @JoinColumn(name = "id_computer")
-    @JsonView(View.REST.class)*/
-    @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-    @JoinColumn(name = "id_computer")
-    @JsonView(View.REST.class)
+
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_computer")
+	@JsonView(View.REST.class)
 	private Computer computer;
-    
-    public Integer getIdMother() {
+
+	public Integer getIdMother() {
 		return idMother;
 	}
+
 	public void setIdMother(Integer idMother) {
 		this.idMother = idMother;
 	}
 
 	public String toString() {
-		return "{" + idMother 
-				+", {" + computer.getIdComputer() +", " + computer.getInvNumber() + computer.getBuhName() + computer.getDomainName() +"},"
-				+", {" +typeMother.getIdTypeMother() 
-				+", {" + typeMother.getProducer().getIdProducer() +", " + typeMother.getProducer().getShortname() +"},"
-				+", " +typeMother.getModel() +", " +typeMother.getSocket() + " }}";
+		return "{" + idMother + ", {" + computer.getIdComputer() + ", "
+				+ computer.getInvNumber() + computer.getBuhName()
+				+ computer.getDomainName() + "}," + ", {"
+				+ typeMother.getIdTypeMother() + ", {"
+				+ typeMother.getProducer().getIdProducer() + ", "
+				+ typeMother.getProducer().getShortname() + "}," + ", "
+				+ typeMother.getModel() + ", " + typeMother.getSocket() + " }}";
 	}
 
 	public TypeMother getTypeMother() {
 		return typeMother;
 	}
+
 	public void setTypeMother(TypeMother typeMother) {
 		this.typeMother = typeMother;
 	}
+
 	public Computer getComputer() {
 		return computer;
 	}
+
 	public void setComputer(Computer computer) {
 		this.computer = computer;
 	}
 
-    /**Указан компьютер*/
-    public boolean hasComputer (){
-    	return (computer == null) ? false:true;
-    }
-    
-    /**Указан тип*/
-    public boolean hasTypeMother (){
-    	return (typeMother==null || typeMother.getIdTypeMother()  == null) ? false:true;
-    }
+	/** Указан компьютер */
+	public boolean hasComputer() {
+		return (computer == null) ? false : true;
+	}
 
-    /**Собрать удобное имя*/
-	public String combineDisplayName () {
-		return "" 
-				+ (hasTypeMother() ? typeMother.combineDisplayName(): "");
+	/** Указан тип */
+	public boolean hasTypeMother() {
+		return (typeMother == null || typeMother.getIdTypeMother() == null) ? false
+				: true;
+	}
+
+	/** Собрать удобное имя */
+	public String combineDisplayName() {
+		return "" + (hasTypeMother() ? typeMother.combineDisplayName() : "");
 	}
 }

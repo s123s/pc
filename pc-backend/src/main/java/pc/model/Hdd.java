@@ -19,60 +19,64 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Table(name = "hdd")
 public class Hdd {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_hdd")
-    @JsonView(View.REST.class)
+	@JsonView(View.REST.class)
 	private Integer idHdd;
 
-/*    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
-    @Fetch(FetchMode.JOIN)*/
-    @ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "id_type_hdd")
-    @JsonView(View.REST.class)
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_type_hdd")
+	@JsonView(View.REST.class)
 	private TypeHdd typeHdd;
-    
-/*    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
-    @Fetch(FetchMode.JOIN)*/
-    @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-    @JoinColumn(name = "id_computer")
-    @JsonView(View.REST.class)
+
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_computer")
+	@JsonView(View.REST.class)
 	private Computer computer;
-	
+
 	public String toString() {
-		return "{" + idHdd 
-				+", {" + computer.getIdComputer() +", " + computer.getInvNumber() + computer.getBuhName() + computer.getDomainName() +"},"
-				+", {" +typeHdd.getIdTypeHdd() +", " +typeHdd.getCapacity() + " }}";
+		return "{" + idHdd + ", {" + computer.getIdComputer() + ", "
+				+ computer.getInvNumber() + computer.getBuhName()
+				+ computer.getDomainName() + "}," + ", {"
+				+ typeHdd.getIdTypeHdd() + ", " + typeHdd.getCapacity() + " }}";
 	}
 
 	public TypeHdd getTypeHdd() {
 		return typeHdd;
 	}
+
 	public void setTypeHdd(TypeHdd typeHdd) {
 		this.typeHdd = typeHdd;
 	}
+
 	public Computer getComputer() {
 		return computer;
 	}
+
 	public void setComputer(Computer computer) {
 		this.computer = computer;
 	}
+
 	public Integer getIdHdd() {
 		return idHdd;
 	}
+
 	public void setIdHdd(Integer idHdd) {
 		this.idHdd = idHdd;
 	}
 
-    /**Указан тип
-     * @return Есть ли тип
-    */
-    public boolean hasTypeHdd (){
-    	return (typeHdd.getIdTypeHdd()  == null) ? false:true;
-    }
-    
-	/**Собрать удобное имя*/
-	public String combineDisplayName () {
-		return "" 
-				+ (hasTypeHdd() ? typeHdd.combineDisplayName(): "");
-	}}
+	/**
+	 * Указан тип
+	 * 
+	 * @return Есть ли тип
+	 */
+	public boolean hasTypeHdd() {
+		return (typeHdd.getIdTypeHdd() == null) ? false : true;
+	}
+
+	/** Собрать удобное имя */
+	public String combineDisplayName() {
+		return "" + (hasTypeHdd() ? typeHdd.combineDisplayName() : "");
+	}
+}

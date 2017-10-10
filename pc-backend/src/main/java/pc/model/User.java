@@ -29,37 +29,48 @@ public class User {
 	private String login;
 	@Column
 	private String mail;
-	
+
 	public String toString() {
-		return "{" + idUser + ", " + position + ", " + name + ", " + login + ", " + mail + "}";
+		return "{" + idUser + ", " + position + ", " + name + ", " + login
+				+ ", " + mail + "}";
 	}
+
 	public Integer getIdUser() {
 		return idUser;
 	}
+
 	public void setIdUser(Integer idUser) {
 		this.idUser = idUser;
 	}
+
 	public String getPosition() {
 		return position;
 	}
+
 	public void setPosition(String position) {
 		this.position = position;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getLogin() {
 		return login;
 	}
+
 	public void setLogin(String login) {
 		this.login = login;
 	}
+
 	public String getMail() {
 		return mail;
 	}
+
 	public void setMail(String mail) {
 		this.mail = mail;
 	}

@@ -17,7 +17,6 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-
 import pc.jackson.View;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -32,8 +31,6 @@ public class Computer implements Cloneable {
 	@JsonView(View.REST.class)
 	private Integer idComputer;
 
-/*	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-	@Fetch(FetchMode.JOIN)*/
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_type_computer")
 	@JsonView(View.REST.class)
@@ -48,21 +45,18 @@ public class Computer implements Cloneable {
 
 	@Column(name = "domain_name")
 	private String domainName;
-	
+
 	@OneToOne(mappedBy = "computer", fetch = FetchType.LAZY)
 	private Mother mother;
 
 	@OneToOne(mappedBy = "computer", fetch = FetchType.LAZY)
 	private Processor processor;
-	
+
 	/** Нужно для проверки, есть ли ссылающиеся записи */
-//	@OneToMany(mappedBy = "computer", fetch = FetchType.EAGER)
-//	@Fetch(FetchMode.JOIN)
 	@OneToMany(mappedBy = "computer", fetch = FetchType.LAZY)
 	private List<Workplace> workplace;
 
 	/** Нужно для проверки, есть ли ссылающиеся записи */
-	//@OneToMany(mappedBy = "computer", fetch = FetchType.LAZY)
 	@OneToMany(mappedBy = "computer", fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
 	private List<Ram> rams;
@@ -71,17 +65,6 @@ public class Computer implements Cloneable {
 	@OneToMany(mappedBy = "computer", fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
 	private List<Hdd> hdds;
-
-	// /**Указана материнка*/
-	// public boolean hasMother (){
-	// return (mothersSet.size() == 0) ? false:true;
-	// }
-	//
-	// public Mother fetchFirstMother () {
-	// if (hasMother())
-	// return mothersSet.iterator().next();
-	// return null;
-	// }
 
 	public String toString() {
 		return "{" + idComputer + ", " + invNumber + ", " + buhName + ", "

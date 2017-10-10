@@ -13,18 +13,17 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table(name = "type_computer")
-public class TypeComputer implements Cloneable{
-	
+public class TypeComputer implements Cloneable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_type_computer")
-    @JsonView(View.REST.class)
+	@JsonView(View.REST.class)
 	private Integer idTypeComputer;
 
 	@Column
 	private String description;
-	
+
 	public Integer getIdTypeComputer() {
 		return idTypeComputer;
 	}
@@ -33,7 +32,7 @@ public class TypeComputer implements Cloneable{
 		this.idTypeComputer = idTypeComputer;
 	}
 
-	public String getDescription() { 
+	public String getDescription() {
 		return description;
 	}
 
@@ -42,6 +41,6 @@ public class TypeComputer implements Cloneable{
 	}
 
 	public String toString() {
-		return "{" + idTypeComputer + ", " + description +"}";
+		return "{" + idTypeComputer + ", " + description + "}";
 	}
 }

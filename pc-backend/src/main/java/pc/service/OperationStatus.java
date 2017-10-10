@@ -6,13 +6,14 @@ import pc.jackson.View;
 
 public class OperationStatus {
 
-    @JsonView(View.REST.class)
+	@JsonView(View.REST.class)
 	Boolean successfully = false;
 
-    @JsonView(View.REST.class)
-    Object retObject;
-    
-	public OperationStatus() {}
+	@JsonView(View.REST.class)
+	Object retObject;
+
+	public OperationStatus() {
+	}
 
 	public OperationStatus(Boolean successfully) {
 		this.successfully = successfully;

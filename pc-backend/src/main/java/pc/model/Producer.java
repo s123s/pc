@@ -14,16 +14,15 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Entity
 @Table(name = "producer")
 public class Producer {
-	
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_producer")
-    @JsonView(View.REST.class)
+	@JsonView(View.REST.class)
 	private Integer idProducer;
 
 	@Column(name = "shortname")
-    @JsonView(View.REST.class)
+	@JsonView(View.REST.class)
 	private String shortname;
 
 	public Integer getIdProducer() {
