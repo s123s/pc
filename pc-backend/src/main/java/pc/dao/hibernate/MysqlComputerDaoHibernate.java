@@ -14,6 +14,7 @@ import pc.model.Processor;
 import pc.service.OperationStatus;
 
 
+@SuppressWarnings("unchecked")
 public class MysqlComputerDaoHibernate implements ComputerDao { 
 
 	private SessionFactory sessionFactory;
@@ -27,9 +28,16 @@ public class MysqlComputerDaoHibernate implements ComputerDao {
 	public List<Computer> readAll() {
 
 		Session session = this.sessionFactory.getCurrentSession();
-		return session.createQuery("from Computer tab left outer join fetch tab.workplace left outer join fetch tab.rams "
+		return session.createQuery("from Computer tab "
+				+ " left outer join fetch tab.workplace "
 				//OneToOne
-				+ " left outer join fetch tab.mother left outer join fetch tab.processor order by tab.idComputer").list();
+				+ " left outer join fetch tab.mother "
+				+ " left outer join fetch tab.processor "
+				//lazy initialization
+				+ " left outer join fetch tab.typeComputer "
+				+ " left outer join fetch tab.processor.typeProc "
+				+ " left outer join fetch tab.mother.typeMother "
+				+ " order by tab.idComputer").list();
 	}
 	
 /*	@Override

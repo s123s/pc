@@ -33,7 +33,7 @@ public class Workplace {
     @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "id_computer")
     @JsonView(View.REST.class)*/
-    @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.PERSIST)
+    @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
     @JoinColumn(name = "id_computer")
     @JsonView(View.REST.class)
 	private Computer computer;

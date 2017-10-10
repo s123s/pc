@@ -21,6 +21,7 @@ public class MysqlTypeHddDaoHibernate implements TypeHddDao {
 		this.sessionFactory = sessionFactory;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	public List<TypeHdd> readAll() {

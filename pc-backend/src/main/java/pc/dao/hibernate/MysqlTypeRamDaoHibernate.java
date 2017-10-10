@@ -13,7 +13,6 @@ import pc.service.OperationStatus;
 
 
 public class MysqlTypeRamDaoHibernate implements TypeRamDao { 
-//TypeRamDao {
 
 	private SessionFactory sessionFactory;
 
@@ -21,6 +20,7 @@ public class MysqlTypeRamDaoHibernate implements TypeRamDao {
 		this.sessionFactory = sessionFactory;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	public List<TypeRam> readAll() {

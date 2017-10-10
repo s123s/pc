@@ -20,6 +20,7 @@ public class MysqlTypeProcDaoHibernate implements TypeProcDao {
 		this.sessionFactory = sessionFactory;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	public List<TypeProc> readAll() {

@@ -13,8 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Fetch;
-
 import pc.jackson.View;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -30,7 +28,7 @@ public class TypeMother {
     @JsonView(View.REST.class)
 	private Integer idTypeMother;
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name = "id_producer")
     private Producer producer;
 

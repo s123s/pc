@@ -20,6 +20,7 @@ public class MysqlMonitorDaoHibernate implements MonitorDao {
 		this.sessionFactory = sessionFactory;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	public List<Monitor> readAll() {

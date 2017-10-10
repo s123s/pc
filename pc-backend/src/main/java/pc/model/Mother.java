@@ -11,9 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
 import pc.jackson.View;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -39,7 +36,7 @@ public class Mother {
     @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "id_type_mother")
     @JsonView(View.REST.class)*/
-    @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_type_mother")
     @JsonView(View.REST.class)
 	private TypeMother typeMother;
@@ -48,7 +45,7 @@ public class Mother {
     @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "id_computer")
     @JsonView(View.REST.class)*/
-    @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.PERSIST)
+    @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
     @JoinColumn(name = "id_computer")
     @JsonView(View.REST.class)
 	private Computer computer;

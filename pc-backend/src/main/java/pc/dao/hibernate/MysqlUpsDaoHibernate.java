@@ -20,6 +20,7 @@ public class MysqlUpsDaoHibernate implements UpsDao {
 		this.sessionFactory = sessionFactory;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	public List<Ups> readAll() {

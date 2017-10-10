@@ -13,9 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
 import pc.jackson.View;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -31,7 +28,7 @@ public class TypeRam {
     @JsonView(View.REST.class)
 	private Integer idTypeRam;
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name = "id_type_ram_spec")
     private TypeRamSpec typeRamSpec;
 

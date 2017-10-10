@@ -20,6 +20,7 @@ public class MysqlTypeRamSpecDaoHibernate implements TypeRamSpecDao {
 		this.sessionFactory = sessionFactory;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	public List<TypeRamSpec> readAll() {

@@ -9,10 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 import pc.dao.ProcessorDao;
-import pc.model.Computer;
-import pc.model.Mother;
 import pc.model.Processor;
-import pc.model.TypeProc;
 import pc.service.OperationStatus;
 
 
@@ -24,6 +21,7 @@ public class MysqlProcessorDaoHibernate implements ProcessorDao {
 		this.sessionFactory = sessionFactory;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	public List<Processor> readAll() {

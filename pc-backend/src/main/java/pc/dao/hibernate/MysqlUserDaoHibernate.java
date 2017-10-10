@@ -20,6 +20,7 @@ public class MysqlUserDaoHibernate implements UserDao {
 		this.sessionFactory = sessionFactory;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	public List<User> readAll() {

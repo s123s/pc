@@ -20,6 +20,7 @@ public class MysqlTypeMotherDaoHibernate implements TypeMotherDao {
 		this.sessionFactory = sessionFactory;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	public List<TypeMother> readAll() {

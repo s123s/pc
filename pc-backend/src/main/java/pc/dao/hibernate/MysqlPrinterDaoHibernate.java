@@ -20,6 +20,7 @@ public class MysqlPrinterDaoHibernate implements PrinterDao {
 		this.sessionFactory = sessionFactory;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	public List<Printer> readAll() {

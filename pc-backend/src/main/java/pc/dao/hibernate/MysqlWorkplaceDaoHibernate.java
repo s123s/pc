@@ -20,6 +20,7 @@ public class MysqlWorkplaceDaoHibernate implements WorkplaceDao {
 		this.sessionFactory = sessionFactory;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	public List<Workplace> readAll() {

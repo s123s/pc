@@ -18,10 +18,6 @@ import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import pc.jackson.View;
 
@@ -38,7 +34,7 @@ public class TypeHdd {
     @JsonView(View.REST.class)
 	private Integer idTypeHdd;
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.EAGER)
 //    @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "id_producer")
     @JsonView(View.REST.class)

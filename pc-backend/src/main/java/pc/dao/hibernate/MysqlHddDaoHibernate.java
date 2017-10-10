@@ -1,6 +1,5 @@
 package pc.dao.hibernate;
 
-import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -9,9 +8,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 import pc.dao.HddDao;
-import pc.model.Computer;
 import pc.model.Hdd;
-import pc.model.TypeHdd;
 import pc.service.OperationStatus;
 
 
@@ -24,14 +21,21 @@ public class MysqlHddDaoHibernate implements HddDao {
 		this.sessionFactory = sessionFactory;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	public List<Hdd> readAll() {
 
 		Session session = this.sessionFactory.getCurrentSession();
-		return session.createQuery("from Hdd tab left outer join fetch tab.typeHdd left outer join fetch tab.computer"
+		return session.createQuery("from Hdd tab"
+				+ " left outer join fetch tab.typeHdd"
+				+ " left outer join fetch tab.computer"
 				//OneToOne
-				+ " left outer join fetch tab.computer.mother left outer join fetch tab.computer.processor order by tab.idHdd").list();
+				+ " left outer join fetch tab.computer.mother"
+				+ " left outer join fetch tab.computer.processor"
+				+ " left outer join fetch tab.computer.processor.typeProc"
+				+ " left outer join fetch tab.computer.processor.typeProc.producer"
+				+ " order by tab.idHdd").list();
 	}
 	
 /*	@Override

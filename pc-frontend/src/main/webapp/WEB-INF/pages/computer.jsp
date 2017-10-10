@@ -84,19 +84,19 @@
 							<tbody>
 	
 								<tr id="emptyTr" hidden="true">
-										<td class="myIndex" hidden="true">${st.getIndex()+1}</td>
-										<td class="idComputer">${computer.idComputer}</td>
-										<td class="workplaceCount" hidden="true">${computer.workplace.size()}</td>
- 										<td class="typeComputerDescription">${computer.typeComputer.description}</td>
- 										<td class="invNumberComputer">${computer.invNumber}</td>
-										<td class="buhName">${computer.buhName}</td>
-										<td class="domainName">${computer.domainName}</td>
-										<td class="idMother" hidden="true">${computer.mother.idMother}</td>
-										<td class="displayNameMother">${computer.mother.combineDisplayName()}</td>
-										<td class="idProcessor" hidden="true">${computer.processor.idProcessor}</td>
-										<td class="displayNameProcessor">${computer.processor.combineDisplayName()}</td>
-										<%-- <td class="idRam" hidden="true">${computer.ram.idRam}</td> --%>
-										<%-- <td class="displayNameRam">${computer.ram.combineDisplayName()}</td> --%>
+										<td class="myIndex" hidden="true"></td>
+										<td class="idComputer"></td>
+										<td class="workplaceCount" hidden="true"></td>
+ 										<td class="typeComputerDescription"></td>
+ 										<td class="invNumberComputer"></td>
+										<td class="buhName"></td>
+										<td class="domainName"></td>
+										<td class="idMother" hidden="true"></td>
+										<td class="displayNameMother"></td>
+										<td class="idProcessor" hidden="true"></td>
+										<td class="displayNameProcessor"></td>
+										<%-- <td class="idRam" hidden="true"></td> --%>
+										<%-- <td class="displayNameRam"></td> --%>
 
 										<td><a class="editPos"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;
 											<a class="deletePos"><span class="glyphicon glyphicon-trash"></span></a></td>

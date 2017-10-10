@@ -3,19 +3,16 @@ package pc.dao.hibernate;
 import java.util.List;
 
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
-import pc.dao.DefaultDao;
 import pc.dao.ProducerDao;
 import pc.model.Producer;
 import pc.service.OperationStatus;
 
 
 public class MysqlProducerDaoHibernate implements ProducerDao { 
-//TypeHddDao {
 
 	private SessionFactory sessionFactory;
 
@@ -23,6 +20,7 @@ public class MysqlProducerDaoHibernate implements ProducerDao {
 		this.sessionFactory = sessionFactory;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	public List<Producer> readAll() {

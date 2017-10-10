@@ -27,14 +27,14 @@ public class Hdd {
 
 /*    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
     @Fetch(FetchMode.JOIN)*/
-    @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.PERSIST)
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "id_type_hdd")
     @JsonView(View.REST.class)
 	private TypeHdd typeHdd;
     
 /*    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
     @Fetch(FetchMode.JOIN)*/
-    @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.PERSIST)
+    @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
     @JoinColumn(name = "id_computer")
     @JsonView(View.REST.class)
 	private Computer computer;

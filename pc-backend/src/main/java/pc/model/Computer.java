@@ -1,9 +1,7 @@
 package pc.model;
 
 import java.util.List;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,6 +13,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 
 import pc.jackson.View;
 
@@ -32,30 +34,10 @@ public class Computer implements Cloneable {
 
 /*	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	@Fetch(FetchMode.JOIN)*/
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_type_computer")
 	@JsonView(View.REST.class)
 	private TypeComputer typeComputer;
-
-	/** Нужно для проверки, есть ли ссылающиеся записи */
-//	@OneToMany(mappedBy = "computer", fetch = FetchType.EAGER)
-//	@Fetch(FetchMode.JOIN)
-	@OneToMany(mappedBy = "computer", fetch = FetchType.LAZY)
-	private Set<Workplace> workplace;
-
-//   @OneToMany(mappedBy="computer", fetch=FetchType.EAGER)
-//	@OneToOne(mappedBy = "computer", fetch = FetchType.EAGER)
-	@OneToOne(mappedBy = "computer", fetch = FetchType.LAZY)
-	private Mother mother;
-
-//	@OneToOne(mappedBy = "computer", fetch = FetchType.EAGER)
-	@OneToOne(mappedBy = "computer", fetch = FetchType.LAZY)
-	private Processor processor;
-
-/*	@OneToMany(mappedBy = "computer", fetch = FetchType.EAGER)
-	@Fetch(value = FetchMode.SUBSELECT)*/
-	@OneToMany(mappedBy = "computer", fetch = FetchType.LAZY)
-	private List<Ram> rams;
 
 	@Column(name = "inv_number")
 	@JsonView(View.REST.class)
@@ -66,13 +48,28 @@ public class Computer implements Cloneable {
 
 	@Column(name = "domain_name")
 	private String domainName;
+	
+	@OneToOne(mappedBy = "computer", fetch = FetchType.LAZY)
+	private Mother mother;
 
-	/*    *//** Нужно для проверки, есть ли ссылающиеся записи */
+	@OneToOne(mappedBy = "computer", fetch = FetchType.LAZY)
+	private Processor processor;
+	
+	/** Нужно для проверки, есть ли ссылающиеся записи */
+//	@OneToMany(mappedBy = "computer", fetch = FetchType.EAGER)
+//	@Fetch(FetchMode.JOIN)
+	@OneToMany(mappedBy = "computer", fetch = FetchType.LAZY)
+	private List<Workplace> workplace;
 
 	/** Нужно для проверки, есть ли ссылающиеся записи */
-/*	@OneToMany(mappedBy = "computer", fetch = FetchType.EAGER)
-	@Fetch(value = FetchMode.SUBSELECT)*/
-	@OneToMany(mappedBy = "computer", fetch = FetchType.LAZY)
+	//@OneToMany(mappedBy = "computer", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "computer", fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
+	private List<Ram> rams;
+
+	/** Нужно для проверки, есть ли ссылающиеся записи */
+	@OneToMany(mappedBy = "computer", fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	private List<Hdd> hdds;
 
 	// /**Указана материнка*/
@@ -127,11 +124,11 @@ public class Computer implements Cloneable {
 		this.typeComputer = typeComputer;
 	}
 
-	public Set<Workplace> getWorkplace() {
+	public List<Workplace> getWorkplace() {
 		return workplace;
 	}
 
-	public void setWorkplace(Set<Workplace> workplace) {
+	public void setWorkplace(List<Workplace> workplace) {
 		this.workplace = workplace;
 	}
 

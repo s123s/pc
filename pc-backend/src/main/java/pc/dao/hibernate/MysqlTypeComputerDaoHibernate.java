@@ -20,6 +20,7 @@ public class MysqlTypeComputerDaoHibernate implements TypeComputerDao {
 		this.sessionFactory = sessionFactory;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	public List<TypeComputer> readAll() {

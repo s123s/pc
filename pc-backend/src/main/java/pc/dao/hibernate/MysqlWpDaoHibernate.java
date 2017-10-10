@@ -2,7 +2,6 @@ package pc.dao.hibernate;
 
 import java.util.List;
 
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +16,7 @@ public class MysqlWpDaoHibernate implements WpDao {
 		this.sessionFactory = sessionFactory;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	public List<WpSummView> readAll() {

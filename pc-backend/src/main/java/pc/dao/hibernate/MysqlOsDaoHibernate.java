@@ -20,6 +20,7 @@ public class MysqlOsDaoHibernate implements OsDao {
 		this.sessionFactory = sessionFactory;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	public List<Os> readAll() {

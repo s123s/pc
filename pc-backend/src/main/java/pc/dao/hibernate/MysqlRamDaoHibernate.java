@@ -1,6 +1,5 @@
 package pc.dao.hibernate;
 
-import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -9,9 +8,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 import pc.dao.RamDao;
-import pc.model.Computer;
 import pc.model.Ram;
-import pc.model.TypeRam;
 import pc.service.OperationStatus;
 
 
@@ -23,6 +20,7 @@ public class MysqlRamDaoHibernate implements RamDao {
 		this.sessionFactory = sessionFactory;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	public List<Ram> readAll() {

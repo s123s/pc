@@ -1,6 +1,6 @@
 package pc.model;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import pc.jackson.View;
 
@@ -28,7 +31,7 @@ public class TypeProc {
     @JsonView(View.REST.class)
 	private Integer idTypeProc;
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name = "id_producer")
     private Producer producer;
 
@@ -44,7 +47,8 @@ public class TypeProc {
 /*    @OneToMany(mappedBy="typeProc", fetch=FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)*/
     @OneToMany(mappedBy="typeProc", fetch=FetchType.LAZY)
-    private Set<Processor> processors;
+    @Fetch(FetchMode.SUBSELECT)
+    private List<Processor> processors;
 
 
 	public String toString() {
@@ -79,11 +83,11 @@ public class TypeProc {
 		this.socket = socket;
 	}
 
-	public Set<Processor> getProcessors() {
+	public List<Processor> getProcessors() {
 		return processors;
 	}
 
-	public void setProcessors(Set<Processor> processors) {
+	public void setProcessors(List<Processor> processors) {
 		this.processors = processors;
 	}
 

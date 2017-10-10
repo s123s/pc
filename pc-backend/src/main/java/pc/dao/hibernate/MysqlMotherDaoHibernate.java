@@ -9,9 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 import pc.dao.MotherDao;
-import pc.model.Computer;
 import pc.model.Mother;
-import pc.model.TypeProc;
 import pc.service.OperationStatus;
 
 
@@ -23,6 +21,7 @@ public class MysqlMotherDaoHibernate implements MotherDao {
 		this.sessionFactory = sessionFactory;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	public List<Mother> readAll() {
