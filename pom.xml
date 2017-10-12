@@ -15,6 +15,7 @@
 		<servlet.version>3.1.0</servlet.version>
 		<!-- <primefaces.version>5.3</primefaces.version> -->
 		<junit.version>4.11</junit.version>
+		<moskito.version>1.9.5</moskito.version>
 		<java.version>1.8</java.version>
 		<hibernate.version>5.1.0.Final</hibernate.version>
 		<org-slf4j.version>1.5.10</org-slf4j.version>
@@ -147,6 +148,13 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>${moskito.version}</version>
 			<scope>test</scope>
 		</dependency>
 

@@ -466,6 +466,7 @@ public class OperationController {
 	@RequestMapping(value = "/computer")
 	@Transactional(readOnly=true)
 	public String listComputer(ModelMap model) {
+		System.out.println("computer logged");
 		model.addAttribute("computers", mainService.getComputerDao().readAll());
 		model.addAttribute("typeComputers", mainService.getTypeComputerDao().readAll());
 		model.addAttribute("freeMothers", mainService.getMotherDao().readAllFreeRows());
