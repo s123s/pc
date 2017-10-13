@@ -73,7 +73,7 @@
 		</property>
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.Dialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">true</prop>
 				<prop key="hibernate.use_sql_comments">true</prop>
@@ -87,61 +87,61 @@
 	</bean>
 
 	<!--DAO and ..Service beans -->
-	<bean id="wpDao" class="pc.dao.hibernate.MysqlWpDaoHibernate">
+	<bean id="wpDao" class="pc.dao.hibernate.WpDaoHibernate">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="typeHddDao" class="pc.dao.hibernate.MysqlTypeHddDaoHibernate">
+	<bean id="typeHddDao" class="pc.dao.hibernate.TypeHddDaoHibernate">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="typeRamDao" class="pc.dao.hibernate.MysqlTypeRamDaoHibernate">
+	<bean id="typeRamDao" class="pc.dao.hibernate.TypeRamDaoHibernate">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="typeRamSpecDao" class="pc.dao.hibernate.MysqlTypeRamSpecDaoHibernate">
+	<bean id="typeRamSpecDao" class="pc.dao.hibernate.TypeRamSpecDaoHibernate">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="producerDao" class="pc.dao.hibernate.MysqlProducerDaoHibernate">
+	<bean id="producerDao" class="pc.dao.hibernate.ProducerDaoHibernate">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="typeProcDao" class="pc.dao.hibernate.MysqlTypeProcDaoHibernate">
+	<bean id="typeProcDao" class="pc.dao.hibernate.TypeProcDaoHibernate">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="typeMotherDao" class="pc.dao.hibernate.MysqlTypeMotherDaoHibernate">
+	<bean id="typeMotherDao" class="pc.dao.hibernate.TypeMotherDaoHibernate">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="osDao" class="pc.dao.hibernate.MysqlOsDaoHibernate">
+	<bean id="osDao" class="pc.dao.hibernate.OsDaoHibernate">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="upsDao" class="pc.dao.hibernate.MysqlUpsDaoHibernate">
+	<bean id="upsDao" class="pc.dao.hibernate.UpsDaoHibernate">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="printerDao" class="pc.dao.hibernate.MysqlPrinterDaoHibernate">
+	<bean id="printerDao" class="pc.dao.hibernate.PrinterDaoHibernate">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="monitorDao" class="pc.dao.hibernate.MysqlMonitorDaoHibernate">
+	<bean id="monitorDao" class="pc.dao.hibernate.MonitorDaoHibernate">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="userDao" class="pc.dao.hibernate.MysqlUserDaoHibernate">
+	<bean id="userDao" class="pc.dao.hibernate.UserDaoHibernate">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="hddDao" class="pc.dao.hibernate.MysqlHddDaoHibernate">
+	<bean id="hddDao" class="pc.dao.hibernate.HddDaoHibernate">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="ramDao" class="pc.dao.hibernate.MysqlRamDaoHibernate">
+	<bean id="ramDao" class="pc.dao.hibernate.RamDaoHibernate">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="processorDao" class="pc.dao.hibernate.MysqlProcessorDaoHibernate">
+	<bean id="processorDao" class="pc.dao.hibernate.ProcessorDaoHibernate">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="motherDao" class="pc.dao.hibernate.MysqlMotherDaoHibernate">
+	<bean id="motherDao" class="pc.dao.hibernate.MotherDaoHibernate">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="computerDao" class="pc.dao.hibernate.MysqlComputerDaoHibernate">
+	<bean id="computerDao" class="pc.dao.hibernate.ComputerDaoHibernate">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="typeComputerDao" class="pc.dao.hibernate.MysqlTypeComputerDaoHibernate">
+	<bean id="typeComputerDao" class="pc.dao.hibernate.TypeComputerDaoHibernate">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="workplaceDao" class="pc.dao.hibernate.MysqlWorkplaceDaoHibernate">
+	<bean id="workplaceDao" class="pc.dao.hibernate.WorkplaceDaoHibernate">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="mainService" class="pc.service.MainService">

@@ -9,26 +9,21 @@ import org.springframework.transaction.annotation.Transactional;
 import pc.dao.WpDao;
 import pc.model.WpSummView;
 
-public class MysqlWpDaoHibernate implements WpDao {
-	private SessionFactory sessionFactory;
-
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
+public class WpDaoHibernate extends WpDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	public List<WpSummView> readAll() {
 
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = getSessionFactory().getCurrentSession();
 		return session.createQuery("from WpSummView").list();
 	}
 /*
 	@Override
 	@Transactional
 	public Book read(Integer k) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = getSessionFactory().getCurrentSession();
 		return session.get(Book.class, k);
 	}
 
@@ -36,7 +31,7 @@ public class MysqlWpDaoHibernate implements WpDao {
 	@Transactional
 	public void update(Book o) {
 		System.out.println(o.getName());
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = getSessionFactory().getCurrentSession();
 		session.update(o);
 	}
 	
@@ -44,7 +39,7 @@ public class MysqlWpDaoHibernate implements WpDao {
 	@Override
 	@Transactional
 	public int markDeleted(Integer k) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = getSessionFactory().getCurrentSession();
 		Query query = session.createQuery("update Book set deleted = 1 where id = :id").setParameter("id", k);
 		
 		return query.executeUpdate();

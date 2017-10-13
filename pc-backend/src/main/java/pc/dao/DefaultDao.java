@@ -2,35 +2,48 @@ package pc.dao;
 
 import java.util.List;
 
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import pc.service.OperationStatus;
 
 
 /**<T> - POJO object
  * <K> - key*/
-public interface DefaultDao<T, K> {
+public abstract class DefaultDao<T, K> {
 
-	default OperationStatus create(T o) {
+	public SessionFactory sessionFactory;
+	
+	public OperationStatus create(T o) {
 		throw new RuntimeException("NO "+ this.getClass().getName() +" create() realization");
 	}
 
 	/** Read by K */
-	default T read(K k){
+	public T read(K k){
 		throw new RuntimeException("NO "+ this.getClass().getName() +" read() realization");
 	}
 
-	default OperationStatus update(T o){
+	public OperationStatus update(T o){
 		throw new RuntimeException("NO "+ this.getClass().getName() +" update() realization");
 	}
 
-	default void delete(K k){
+	public void delete(K k){
 		throw new RuntimeException("NO "+ this.getClass().getName() +" delete() realization");
 	}
 
-	default int markDeleted(K k){
+	public int markDeleted(K k){
 		throw new RuntimeException("NO "+ this.getClass().getName() +" markDeleted() realization");
 	}
 	
-	default List<T> readAll () {
+	public List<T> readAll () {
 		throw new RuntimeException("NO "+ this.getClass().getName() +" readAll() realization");
+	}
+
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
 	}
 }

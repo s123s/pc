@@ -2,5 +2,5 @@ package pc.dao;
 
 import pc.model.Printer;
 
-public interface PrinterDao extends DefaultDao<Printer, Integer>{
+public  abstract class PrinterDao extends DefaultDao<Printer, Integer>{
 }

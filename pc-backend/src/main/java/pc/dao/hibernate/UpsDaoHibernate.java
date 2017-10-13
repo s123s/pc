@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 import pc.dao.UpsDao;
@@ -12,26 +11,20 @@ import pc.model.Ups;
 import pc.service.OperationStatus;
 
 
-public class MysqlUpsDaoHibernate implements UpsDao { 
-
-	private SessionFactory sessionFactory;
-
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
+public class UpsDaoHibernate extends UpsDao { 
 
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	public List<Ups> readAll() {
 
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = getSessionFactory().getCurrentSession();
 		return session.createQuery("from Ups order by idUps").list();
 	}
 	@Override
 	@Transactional
 	public OperationStatus update(Ups o) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = getSessionFactory().getCurrentSession();
 		try {
 			System.out.println(o.getClass()+ " updating");
 			session.update(o);
@@ -46,7 +39,7 @@ public class MysqlUpsDaoHibernate implements UpsDao {
 	@Override
 	@Transactional
 	public OperationStatus create(Ups o) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = getSessionFactory().getCurrentSession();
 		try {
 			System.out.println(o.getClass()+ " updating");
 			session.save(o);
@@ -60,7 +53,7 @@ public class MysqlUpsDaoHibernate implements UpsDao {
 	@Override
 	@Transactional
 	public void delete(Integer k) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = getSessionFactory().getCurrentSession();
 		
 		Ups o = new Ups();
 		o.setIdUps(k);
@@ -71,7 +64,7 @@ public class MysqlUpsDaoHibernate implements UpsDao {
 	@Override
 	@Transactional
 	public Book read(Integer k) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = getSessionFactory().getCurrentSession();
 		return session.get(Book.class, k);
 	}
 
@@ -80,7 +73,7 @@ public class MysqlUpsDaoHibernate implements UpsDao {
 	@Override
 	@Transactional
 	public int markDeleted(Integer k) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = getSessionFactory().getCurrentSession();
 		Query query = session.createQuery("update Book set deleted = 1 where id = :id").setParameter("id", k);
 		
 		return query.executeUpdate();

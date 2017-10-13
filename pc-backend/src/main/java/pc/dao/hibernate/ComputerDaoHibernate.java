@@ -13,119 +13,111 @@ import pc.model.Mother;
 import pc.model.Processor;
 import pc.service.OperationStatus;
 
-
 @SuppressWarnings("unchecked")
-public class MysqlComputerDaoHibernate implements ComputerDao { 
-
-	private SessionFactory sessionFactory;
-
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
+public class ComputerDaoHibernate extends ComputerDao {
 
 	@Override
 	@Transactional
 	public List<Computer> readAll() {
 
-		Session session = this.sessionFactory.getCurrentSession();
-		return session.createQuery("from Computer tab "
-				+ " left outer join fetch tab.workplace "
-				//OneToOne
-				+ " left outer join fetch tab.mother "
-				+ " left outer join fetch tab.processor "
-				//lazy initialization
-				+ " left outer join fetch tab.typeComputer "
-				+ " left outer join fetch tab.processor.typeProc "
-				+ " left outer join fetch tab.mother.typeMother "
-				+ " order by tab.idComputer").list();
+		Session session = getSessionFactory().getCurrentSession();
+		return session.createQuery(
+				"from Computer tab "
+						+ " left outer join fetch tab.workplace "
+						// OneToOne
+						+ " left outer join fetch tab.mother "
+						+ " left outer join fetch tab.processor "
+						// lazy initialization
+						+ " left outer join fetch tab.typeComputer "
+						+ " left outer join fetch tab.processor.typeProc "
+						+ " left outer join fetch tab.mother.typeMother "
+						+ " order by tab.idComputer").list();
 	}
-	
-/*	@Override
-	@Transactional
-	public List<Computer> readAllFreeRows() {
-		List<Computer> rows = readAll();
 
-		for (Iterator<Computer> iter = rows.iterator(); iter.hasNext(); ) {
-			Computer processor = iter.next();
-		    if (processor.get.getComputers().size() != 0)  {
-		        iter.remove();
-		    }
-		}
-		return rows;
-	}*/
+	/*
+	 * @Override
+	 * 
+	 * @Transactional public List<Computer> readAllFreeRows() { List<Computer>
+	 * rows = readAll();
+	 * 
+	 * for (Iterator<Computer> iter = rows.iterator(); iter.hasNext(); ) {
+	 * Computer processor = iter.next(); if (processor.get.getComputers().size()
+	 * != 0) { iter.remove(); } } return rows; }
+	 */
 
 	@Override
 	@Transactional
 	public OperationStatus update(Computer o) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = getSessionFactory().getCurrentSession();
 		try {
-			System.out.println(o.getClass()+ " updating");
-			//if (o.getComputer().getIdComputer() == null) o.setComputer(null);
+			System.out.println(o.getClass() + " updating");
+			// if (o.getComputer().getIdComputer() == null) o.setComputer(null);
 			session.update(o);
 			return new OperationStatus(true);
-		}
-		catch (HibernateException ex) {
+		} catch (HibernateException ex) {
 			return new OperationStatus(false);
 		}
 	}
-	
-	
+
 	@Override
 	@Transactional
 	public OperationStatus create(Computer o) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = getSessionFactory().getCurrentSession();
 		try {
-			System.out.println(o.getClass()+ " updating");
-			//session.persist(o);
-			//if (o.getComputer().getIdComputer() == null) o.setComputer(null);
-			//o.setTypeComputer(session.load(TypeComputer.class, o.getTypeComputer().getIdTypeHdd()));
+			System.out.println(o.getClass() + " updating");
+			// session.persist(o);
+			// if (o.getComputer().getIdComputer() == null) o.setComputer(null);
+			// o.setTypeComputer(session.load(TypeComputer.class,
+			// o.getTypeComputer().getIdTypeHdd()));
 			session.save(o);
-			
+
 			Mother mother = o.getMother();
-			mother = (Mother)session.load(Mother.class, mother.getIdMother());
+			mother = (Mother) session.load(Mother.class, mother.getIdMother());
 			if (mother.getIdMother() != null) {
-				mother.setComputer((Computer)o.clone());session.save(mother);
+				mother.setComputer((Computer) o.clone());
+				session.save(mother);
 			}
 
 			Processor processor = o.getProcessor();
-			processor = (Processor)session.load(Processor.class, processor.getIdProcessor());
+			processor = (Processor) session.load(Processor.class,
+					processor.getIdProcessor());
 			if (processor.getIdProcessor() != null) {
-				processor.setComputer((Computer)o.clone());session.save(processor);
+				processor.setComputer((Computer) o.clone());
+				session.save(processor);
 			}
-			return new OperationStatus(true, o);	//return o. ID filled
-		}
-		catch (HibernateException ex) {
+			return new OperationStatus(true, o); // return o. ID filled
+		} catch (HibernateException ex) {
 			return new OperationStatus(false);
 		}
 	}
-	
+
 	@Override
 	@Transactional
 	public void delete(Integer k) {
-		Session session = this.sessionFactory.getCurrentSession();
-		
+		Session session = getSessionFactory().getCurrentSession();
+
 		Computer o = new Computer();
 		o.setIdComputer(k);
-	
+
 		session.delete(o);
 	}
 	/*
-	@Override
-	@Transactional
-	public Book read(Integer k) {
-		Session session = this.sessionFactory.getCurrentSession();
-		return session.get(Book.class, k);
-	}
-
-
-
-	@Override
-	@Transactional
-	public int markDeleted(Integer k) {
-		Session session = this.sessionFactory.getCurrentSession();
-		Query query = session.createQuery("update Book set deleted = 1 where id = :id").setParameter("id", k);
-		
-		return query.executeUpdate();
-	}*/
+	 * @Override
+	 * 
+	 * @Transactional public Book read(Integer k) { Session session =
+	 * getSessionFactory().getCurrentSession(); return session.get(Book.class,
+	 * k); }
+	 * 
+	 * 
+	 * 
+	 * @Override
+	 * 
+	 * @Transactional public int markDeleted(Integer k) { Session session =
+	 * getSessionFactory().getCurrentSession(); Query query =
+	 * session.createQuery
+	 * ("update Book set deleted = 1 where id = :id").setParameter("id", k);
+	 * 
+	 * return query.executeUpdate(); }
+	 */
 
 }

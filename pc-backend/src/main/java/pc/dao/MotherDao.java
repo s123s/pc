@@ -4,8 +4,8 @@ import java.util.List;
 
 import pc.model.Mother;
 
-public interface MotherDao extends DefaultDao<Mother, Integer>{
-	default List<Mother> readAllFreeRows () {
+public abstract class MotherDao extends DefaultDao<Mother, Integer>{
+	public List<Mother> readAllFreeRows () {
 		throw new RuntimeException("NO "+ this.getClass().getName() +" readAllFreeRows() realization");
 	}
 }

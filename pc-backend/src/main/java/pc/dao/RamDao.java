@@ -4,8 +4,8 @@ import java.util.List;
 
 import pc.model.Ram;
 
-public interface RamDao extends DefaultDao<Ram, Integer>{
-	default List<Ram> readAllFreeRows () {
+public  abstract class RamDao extends DefaultDao<Ram, Integer>{
+	public List<Ram> readAllFreeRows () {
 		throw new RuntimeException("NO "+ this.getClass().getName() +" readAllFreeRows() realization");
 	}
 }

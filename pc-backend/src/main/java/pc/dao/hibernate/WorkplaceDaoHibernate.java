@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 import pc.dao.WorkplaceDao;
@@ -12,26 +11,19 @@ import pc.model.Workplace;
 import pc.service.OperationStatus;
 
 
-public class MysqlWorkplaceDaoHibernate implements WorkplaceDao { 
-
-	private SessionFactory sessionFactory;
-
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
-
+public class WorkplaceDaoHibernate extends WorkplaceDao { 
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	public List<Workplace> readAll() {
 
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = getSessionFactory().getCurrentSession();
 		return session.createQuery("from Workplace order by idWorkplace").list();
 	}
 	@Override
 	@Transactional
 	public OperationStatus update(Workplace o) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = getSessionFactory().getCurrentSession();
 		try {
 			System.out.println(o.getClass()+ " updating");
 			session.update(o);
@@ -46,7 +38,7 @@ public class MysqlWorkplaceDaoHibernate implements WorkplaceDao {
 	@Override
 	@Transactional
 	public OperationStatus create(Workplace o) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = getSessionFactory().getCurrentSession();
 		try {
 			System.out.println(o.getClass()+ " updating");
 			session.save(o);
@@ -60,7 +52,7 @@ public class MysqlWorkplaceDaoHibernate implements WorkplaceDao {
 	@Override
 	@Transactional
 	public void delete(Integer k) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = getSessionFactory().getCurrentSession();
 		
 		Workplace o = new Workplace();
 		o.setIdWorkplace(k);
@@ -71,7 +63,7 @@ public class MysqlWorkplaceDaoHibernate implements WorkplaceDao {
 	@Override
 	@Transactional
 	public Book read(Integer k) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = getSessionFactory().getCurrentSession();
 		return session.get(Book.class, k);
 	}
 
@@ -80,7 +72,7 @@ public class MysqlWorkplaceDaoHibernate implements WorkplaceDao {
 	@Override
 	@Transactional
 	public int markDeleted(Integer k) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = getSessionFactory().getCurrentSession();
 		Query query = session.createQuery("update Book set deleted = 1 where id = :id").setParameter("id", k);
 		
 		return query.executeUpdate();

@@ -2,5 +2,5 @@ package pc.dao;
 
 import pc.model.Producer;
 
-public interface ProducerDao extends DefaultDao<Producer, Integer>{
+public  abstract class ProducerDao extends DefaultDao<Producer, Integer>{
 }

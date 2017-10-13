@@ -1,6 +1,9 @@
 package pc.dao;
 
+import javax.persistence.MappedSuperclass;
+
 import pc.model.User;
 
-public interface UserDao extends DefaultDao<User, Integer>{
+
+public abstract class UserDao extends DefaultDao<User, Integer>{
 }

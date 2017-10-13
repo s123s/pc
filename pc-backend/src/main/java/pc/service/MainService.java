@@ -19,7 +19,6 @@ import pc.dao.TypeRamSpecDao;
 import pc.dao.UpsDao;
 import pc.dao.UserDao;
 import pc.dao.WorkplaceDao;
-import pc.dao.WpDao;
 import pc.dao.ProducerDao;
 
 @Service
@@ -28,7 +27,6 @@ public class MainService implements DefaultService {
 	private TypeRamDao typeRamDao;
 	private TypeRamSpecDao typeRamSpecDao;
 	private TypeHddDao typeHddDao;
-	private WpDao wpDao;
 	private ProducerDao producerDao;
 	private TypeProcDao typeProcDao;
 	private TypeMotherDao typeMotherDao;
@@ -53,13 +51,6 @@ public class MainService implements DefaultService {
 		this.typeHddDao = typeHddDao;
 	}
 
-	public WpDao getWpDao() {
-		return wpDao;
-	}
-
-	public void setWpDao(WpDao wpDao) {
-		this.wpDao = wpDao;
-	}
 
 	public ProducerDao getProducerDao() {
 		return producerDao;

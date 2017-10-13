@@ -2,5 +2,5 @@ package pc.dao;
 
 import pc.model.Os;
 
-public interface OsDao extends DefaultDao<Os, Integer>{
+public  abstract class OsDao extends DefaultDao<Os, Integer>{
 }

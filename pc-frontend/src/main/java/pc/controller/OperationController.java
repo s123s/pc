@@ -72,13 +72,6 @@ public class OperationController {
 	        return result;
 	    }
 
-/*----wp_table----*/
-	@RequestMapping(value = "wp_table")
-	public String listWp(ModelMap model) {
-		model.addAttribute("wps", mainService.getWpDao().readAll());
-		return "wp_table";
-	}
-
 	@RequestMapping(value = "/type_hdd")
 	public String listTypeHdd(ModelMap model) {
 		model.addAttribute("typeHdds", mainService.getTypeHddDao().readAll());
