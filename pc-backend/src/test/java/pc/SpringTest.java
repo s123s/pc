@@ -58,8 +58,6 @@ public class SpringTest extends AbstractTransactionalJUnit4SpringContextTests {
 	@Autowired
 	private TypeHddDao typeHddDao;
 	@Autowired
-	private WpDao wpDao;
-	@Autowired
 	private ProducerDao producerDao;
 	@Autowired
 	private TypeProcDao typeProcDao;
@@ -112,13 +110,6 @@ public class SpringTest extends AbstractTransactionalJUnit4SpringContextTests {
 		// TypeHddDao bean = (TypeHddDao)ac.getBean("typeHddDao");
 		List<TypeHdd> listResult = typeHddDao.readAll();
 		System.out.println(listResult.get(0).getProducer());
-		System.out.println("size= " + listResult.size());
-		Assert.assertFalse(listResult.isEmpty());
-	}
-
-	@Test
-	public void wpDaoTest() {
-		List<WpSummView> listResult = wpDao.readAll();
 		System.out.println("size= " + listResult.size());
 		Assert.assertFalse(listResult.isEmpty());
 	}

@@ -12,7 +12,7 @@ import pc.service.OperationStatus;
  * <K> - key*/
 public abstract class DefaultDao<T, K> {
 
-	public SessionFactory sessionFactory;
+	private SessionFactory sessionFactory;
 	
 	public OperationStatus create(T o) {
 		throw new RuntimeException("NO "+ this.getClass().getName() +" create() realization");

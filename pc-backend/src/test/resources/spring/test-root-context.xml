@@ -73,7 +73,7 @@
 		</property>
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.Dialect</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">true</prop>
 				<prop key="hibernate.use_sql_comments">true</prop>
@@ -87,9 +87,6 @@
 	</bean>
 
 	<!--DAO and ..Service beans -->
-	<bean id="wpDao" class="pc.dao.hibernate.WpDaoHibernate">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
 	<bean id="typeHddDao" class="pc.dao.hibernate.TypeHddDaoHibernate">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
@@ -145,7 +142,6 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="mainService" class="pc.service.MainService">
-		<property name="wpDao" ref="wpDao" />
 		<property name="typeHddDao" ref="typeHddDao" />
 		<property name="typeRamDao" ref="typeRamDao" />
 		<property name="typeRamSpecDao" ref="typeRamSpecDao" />
