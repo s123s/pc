@@ -11,7 +11,7 @@ import pc.service.OperationStatus;
 /**<T> - POJO object
  * <K> - key*/
 public abstract class DefaultDao<T, K> {
-
+	@Autowired
 	private SessionFactory sessionFactory;
 	
 	public OperationStatus create(T o) {

@@ -73,7 +73,7 @@
 		</property>
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.Dialect</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 				<prop key="hibernate.show_sql">false</prop>
 				<prop key="hibernate.format_sql">true</prop>
 				<prop key="hibernate.use_sql_comments">true</prop>
@@ -87,9 +87,6 @@
 	</bean>
 
 	<!--DAO and ..Service beans -->
-	<bean id="wpDao" class="pc.dao.hibernate.WpDaoHibernate">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
 	<bean id="typeHddDao" class="pc.dao.hibernate.TypeHddDaoHibernate">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
@@ -144,8 +141,7 @@
 	<bean id="workplaceDao" class="pc.dao.hibernate.WorkplaceDaoHibernate">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="mainService" class="pc.service.MainService">
-		<property name="wpDao" ref="wpDao" />
+<!-- 	<bean id="mainService" class="pc.service.MainService">
 		<property name="typeHddDao" ref="typeHddDao" />
 		<property name="typeRamDao" ref="typeRamDao" />
 		<property name="typeRamSpecDao" ref="typeRamSpecDao" />
@@ -164,7 +160,7 @@
 		<property name="computerDao" ref="computerDao" />
 		<property name="typeComputerDao" ref="typeComputerDao" />
 		<property name="workplaceDao" ref="workplaceDao" />
-	</bean>
+	</bean> -->
 
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate5.HibernateTransactionManager">

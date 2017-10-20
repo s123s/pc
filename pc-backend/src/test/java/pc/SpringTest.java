@@ -50,6 +50,12 @@ import pc.model.Workplace;
 import pc.model.WpSummView;
 
 @ContextConfiguration(locations = { "classpath:spring/test-root-context.xml" })
+
+/*@ContextConfiguration(locations = {
+		"file:src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml",
+		"file:src/test/resources/spring/xxxx-test-root-context.xml",
+		"file:src/main/webapp/WEB-INF/spring/application-security.xml" })
+@WebAppConfiguration("file:src/main/webapp/WEB-INF/web.xml")*/
 public class SpringTest extends AbstractTransactionalJUnit4SpringContextTests {
 	@Autowired
 	private TypeRamDao typeRamDao;

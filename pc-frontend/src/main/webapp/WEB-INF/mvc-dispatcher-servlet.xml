@@ -28,6 +28,8 @@
 	
 	<context:component-scan base-package="pc.controller" />
 	<context:component-scan base-package="pc.security.controller" />
+	<context:component-scan base-package="pc.dao.hibernate" />
+	<context:component-scan base-package="pc.service" />
 
 	<!-- Getting Database properties --><!-- 
 	<context:property-placeholder location="classpath:jdbc.properties" /> -->

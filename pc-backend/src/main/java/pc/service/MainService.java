@@ -1,5 +1,6 @@
 package pc.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pc.dao.ComputerDao;
@@ -23,25 +24,24 @@ import pc.dao.ProducerDao;
 
 @Service
 public class MainService implements DefaultService {
-
-	private TypeRamDao typeRamDao;
-	private TypeRamSpecDao typeRamSpecDao;
-	private TypeHddDao typeHddDao;
-	private ProducerDao producerDao;
-	private TypeProcDao typeProcDao;
-	private TypeMotherDao typeMotherDao;
-	private OsDao osDao;
-	private UpsDao upsDao;
-	private PrinterDao printerDao;
-	private MonitorDao monitorDao;
-	private UserDao userDao;
-	private HddDao hddDao;
-	private RamDao ramDao;
-	private ProcessorDao processorDao;
-	private MotherDao motherDao;
-	private ComputerDao computerDao;
-	private TypeComputerDao typeComputerDao;
-	private WorkplaceDao workplaceDao;
+	@Autowired private TypeRamDao typeRamDao;
+	@Autowired private TypeRamSpecDao typeRamSpecDao;
+	@Autowired private TypeHddDao typeHddDao;
+	@Autowired private ProducerDao producerDao;
+	@Autowired private TypeProcDao typeProcDao;
+	@Autowired private TypeMotherDao typeMotherDao;
+	@Autowired private OsDao osDao;
+	@Autowired private UpsDao upsDao;
+	@Autowired private PrinterDao printerDao;
+	@Autowired private MonitorDao monitorDao;
+	@Autowired private UserDao userDao;
+	@Autowired private HddDao hddDao;
+	@Autowired private RamDao ramDao;
+	@Autowired private ProcessorDao processorDao;
+	@Autowired private MotherDao motherDao;
+	@Autowired private ComputerDao computerDao;
+	@Autowired private TypeComputerDao typeComputerDao;
+	@Autowired private WorkplaceDao workplaceDao;
 
 	public TypeHddDao getTypeHddDao() {
 		return typeHddDao;

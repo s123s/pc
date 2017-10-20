@@ -2,9 +2,13 @@ package pc.dao.hibernate;
 
 import java.util.List;
 
+import javax.persistence.MappedSuperclass;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import pc.dao.ComputerDao;
@@ -15,7 +19,7 @@ import pc.service.OperationStatus;
 
 @SuppressWarnings("unchecked")
 public class ComputerDaoHibernate extends ComputerDao {
-
+	
 	@Override
 	@Transactional
 	public List<Computer> readAll() {

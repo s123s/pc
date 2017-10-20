@@ -2,9 +2,11 @@ package pc.dao.hibernate;
 
 import java.util.List;
 
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Component;
 
 import pc.dao.TypeHddDao;
 import pc.model.TypeHdd;

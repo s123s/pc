@@ -6,13 +6,14 @@ import javax.persistence.MappedSuperclass;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import pc.dao.UserDao;
 import pc.model.User;
 import pc.service.OperationStatus;
 
-@MappedSuperclass
+//@MappedSuperclass
 public class UserDaoHibernate extends UserDao { 
 	@SuppressWarnings("unchecked")
 	@Override
