@@ -1,0 +1,182 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <add_sockets socket="370" description="Socket 370"/>
+  <add_sockets socket="775" description="Socket T (LGA 775)"/>
+  <autor/>
+  <computer id_computer="1" id_type_computer="1" inv_number="1069251" buh_name="Цюпик компютер" domain_name="mnt-mts-park"/>
+  <computer id_computer="2" id_type_computer="1" inv_number="101012" buh_name="Дашко компьютер" domain_name="mnt-mts-2"/>
+  <computer id_computer="3" id_type_computer="1" inv_number="1062004" buh_name="химлаб компьютер" domain_name="mnt-himlab"/>
+  <computer id_computer="4" id_type_computer="1" inv_number="10424085" buh_name="Токаленко Л компьютер" domain_name="mnt-him-nach"/>
+  <computer id_computer="5" id_type_computer="1" inv_number="1044454" buh_name="Токаленко А компьютер" domain_name="mnt-ehz"/>
+  <computer id_computer="6" id_type_computer="1" inv_number="1043484" buh_name="Горішний компьютер" domain_name="mnt-kvp-nach"/>
+  <computer id_computer="7" id_type_computer="1" inv_number="20004506" buh_name="Франчук компьютер " domain_name="mnt-kvp-mast"/>
+  <computer id_computer="8" id_type_computer="1" inv_number="1065801" buh_name="Яковенко Компьютер" domain_name="mnt-kvp-admin"/>
+  <computer id_computer="9" id_type_computer="1" inv_number="1063488" buh_name="Кононович компьютер" domain_name="mnt-kvp-metr"/>
+  <computer id_computer="10" id_type_computer="1" buh_name="Штемпелюк компьютер" domain_name="mnt-gidroteh"/>
+  <computer id_computer="12" id_type_computer="1" inv_number="111" buh_name="nbbn" domain_name="jn,nm,"/>
+  <computer id_computer="15" id_type_computer="1" inv_number="7777" buh_name="bhbnmn" domain_name="jbnmbmnb"/>
+  <computer id_computer="16" id_type_computer="1" inv_number="23323" buh_name="bvbb" domain_name="yuyuy"/>
+  <computer id_computer="17" id_type_computer="1" buh_name="a" domain_name="qwq"/>
+  <computer id_computer="18" id_type_computer="1" buh_name="ff" domain_name="55"/>
+  <computer id_computer="19" id_type_computer="1" buh_name="ff" domain_name="55"/>
+  <computer id_computer="20" id_type_computer="1" buh_name="aa" domain_name="aa"/>
+  <computer id_computer="21" id_type_computer="1" buh_name="aa" domain_name="aa"/>
+  <computer id_computer="22" id_type_computer="1" inv_number="11" buh_name="aa" domain_name="aa"/>
+  <computer id_computer="23" id_type_computer="1" inv_number="1111" buh_name="aaaa" domain_name="aaaa"/>
+  <computer id_computer="24" id_type_computer="1" inv_number="22" buh_name="aa" domain_name="aa"/>
+  <computer id_computer="25" id_type_computer="1" inv_number="444" buh_name="sss" domain_name="sss"/>
+  <computer id_computer="26" id_type_computer="1" inv_number="444" buh_name="aa" domain_name="ss"/>
+  <computer id_computer="27" id_type_computer="1" inv_number="444" buh_name="aa" domain_name="ss"/>
+  <computer id_computer="28" id_type_computer="1" inv_number="5" buh_name="5" domain_name="5"/>
+  <computer id_computer="29" id_type_computer="1" buh_name="" domain_name=""/>
+  <computer id_computer="30" id_type_computer="1" buh_name="" domain_name=""/>
+  <computer id_computer="31" id_type_computer="1" inv_number="455" buh_name="444" domain_name="111"/>
+  <hdd id_hdd="1" id_computer="1" id_type_hdd="1"/>
+  <hdd id_hdd="2" id_computer="2" id_type_hdd="2"/>
+  <hdd id_hdd="3" id_computer="3" id_type_hdd="3"/>
+  <hdd id_hdd="4" id_computer="4" id_type_hdd="4"/>
+  <hdd id_hdd="5" id_computer="5" id_type_hdd="5"/>
+  <hdd id_hdd="6" id_computer="6" id_type_hdd="6"/>
+  <hdd id_hdd="7" id_computer="7" id_type_hdd="7"/>
+  <hdd id_hdd="8" id_computer="8" id_type_hdd="8"/>
+  <hdd id_hdd="9" id_computer="9" id_type_hdd="1"/>
+  <hdd id_hdd="10" id_computer="10" id_type_hdd="2"/>
+  <monitor id_monitor="12" inv_number="1069251" id_producer="1" model="171s" size="17"/>
+  <monitor id_monitor="13" inv_number="20007668" id_producer="13" model="va703b" size="17"/>
+  <monitor id_monitor="15" inv_number="10424085" id_producer="1" model="171s" size="17"/>
+  <monitor id_monitor="16" inv_number="1044454" id_producer="1" model="171s" size="17"/>
+  <monitor id_monitor="17" inv_number="1061020209" id_producer="14" model="200" size="20"/>
+  <monitor id_monitor="19" inv_number="1042146" id_producer="1" model="171b" size="17"/>
+  <monitor id_monitor="20" inv_number="1123822" id_producer="1" model="hz" size="17"/>
+  <monitor id_monitor="21" inv_number="4545435" id_producer="12" model="hz" size="19"/>
+  <monitor id_monitor="22" inv_number="576767" id_producer="8" model="hz" size="19"/>
+  <monitor id_monitor="23" inv_number="8979789" id_producer="14" model="hz" size="19"/>
+  <mother id_mother="1" id_type_mother="1" id_computer="1"/>
+  <mother id_mother="2" id_type_mother="2" id_computer="2"/>
+  <mother id_mother="3" id_type_mother="3" id_computer="3"/>
+  <mother id_mother="4" id_type_mother="4" id_computer="4"/>
+  <mother id_mother="5" id_type_mother="5" id_computer="5"/>
+  <mother id_mother="6" id_type_mother="6" id_computer="6"/>
+  <mother id_mother="7" id_type_mother="7" id_computer="7"/>
+  <mother id_mother="8" id_type_mother="8" id_computer="8"/>
+  <mother id_mother="9" id_type_mother="9" id_computer="9"/>
+  <mother id_mother="10" id_type_mother="10" id_computer="10"/>
+  <mother id_mother="11" id_type_mother="5" id_computer="31"/>
+  <mother id_mother="12" id_type_mother="11" id_computer="24"/>
+  <mother id_mother="13" id_computer="20"/>
+  <mother id_mother="14" id_type_mother="11"/>
+  <os id_os="1" name="Windows XP"/>
+  <os id_os="2" name="Windows 7"/>
+  <os id_os="3" name="Windows 2000"/>
+  <printer id_printer="1" inv_number="1063941" model="Xerox C118" cartridge="hz"/>
+  <printer id_printer="2" inv_number="1123928" model="Samsung ML1615" cartridge="hz"/>
+  <printer id_printer="3" inv_number="106031035" model="HP LJ 1220" cartridge="7115A"/>
+  <printer id_printer="4" inv_number="1064801" model="HP LJ 1220" cartridge="7115A"/>
+  <printer id_printer="5" inv_number="11279" model="HP LJ 2015" cartridge="hz"/>
+  <printer id_printer="6" inv_number="106059" model="HP LJ 1100" cartridge="hz"/>
+  <printer id_printer="7" inv_number="106926131" model="HP LJ 1000" cartridge="7115A"/>
+  <printer id_printer="8" inv_number="5555" model="yyyyy" cartridge="dfef45454"/>
+  <processor id_processor="1" id_computer="1" id_type_proc="1"/>
+  <processor id_processor="2" id_computer="2" id_type_proc="2"/>
+  <processor id_processor="3" id_computer="3" id_type_proc="5"/>
+  <processor id_processor="4" id_computer="4" id_type_proc="6"/>
+  <processor id_processor="5" id_computer="5" id_type_proc="8"/>
+  <processor id_processor="6" id_computer="6" id_type_proc="10"/>
+  <processor id_processor="7" id_computer="7" id_type_proc="1"/>
+  <processor id_processor="8" id_computer="8" id_type_proc="2"/>
+  <processor id_processor="9" id_computer="9" id_type_proc="5"/>
+  <processor id_processor="10" id_computer="10" id_type_proc="10"/>
+  <processor id_processor="11" id_computer="31" id_type_proc="5"/>
+  <producer id_producer="0" shortname="default"/>
+  <producer id_producer="1" shortname="Samsung"/>
+  <producer id_producer="2" shortname="WD"/>
+  <producer id_producer="3" shortname="Seagate"/>
+  <producer id_producer="4" shortname="Hitachi"/>
+  <producer id_producer="5" shortname="Intel"/>
+  <producer id_producer="6" shortname="AMD"/>
+  <producer id_producer="7" shortname="Xerox"/>
+  <producer id_producer="8" shortname="Asus"/>
+  <producer id_producer="9" shortname="MSI"/>
+  <producer id_producer="10" shortname="Asrock"/>
+  <producer id_producer="11" shortname="Gigabyte"/>
+  <producer id_producer="12" shortname="LG"/>
+  <producer id_producer="13" shortname="Viewsonic"/>
+  <producer id_producer="14" shortname="Philips"/>
+  <ram id_ram="1" id_computer="1" id_type_ram="1"/>
+  <ram id_ram="2" id_computer="1" id_type_ram="2"/>
+  <ram id_ram="3" id_computer="2" id_type_ram="7"/>
+  <ram id_ram="4" id_computer="3" id_type_ram="4"/>
+  <ram id_ram="5" id_computer="4" id_type_ram="4"/>
+  <ram id_ram="6" id_computer="4" id_type_ram="4"/>
+  <ram id_ram="7" id_computer="5" id_type_ram="7"/>
+  <ram id_ram="8" id_computer="6" id_type_ram="3"/>
+  <ram id_ram="9" id_computer="6" id_type_ram="3"/>
+  <ram id_ram="10" id_computer="7" id_type_ram="7"/>
+  <ram id_ram="11" id_computer="8" id_type_ram="3"/>
+  <ram id_ram="12" id_computer="8" id_type_ram="3"/>
+  <ram id_ram="13" id_computer="8" id_type_ram="4"/>
+  <ram id_ram="14" id_computer="9" id_type_ram="7"/>
+  <ram id_ram="15" id_computer="10" id_type_ram="7"/>
+  <type_computer id_type_computer="1" description="ПК"/>
+  <type_computer id_type_computer="2" description="Ноутбук"/>
+  <type_hdd id_type_hdd="1" id_producer="1" capacity="802"/>
+  <type_hdd id_type_hdd="2" id_producer="2" capacity="40"/>
+  <type_hdd id_type_hdd="3" id_producer="3" capacity="80"/>
+  <type_hdd id_type_hdd="4" id_producer="4" capacity="80"/>
+  <type_hdd id_type_hdd="5" id_producer="1" capacity="80"/>
+  <type_hdd id_type_hdd="6" id_producer="1" capacity="40"/>
+  <type_hdd id_type_hdd="7" id_producer="4" capacity="40"/>
+  <type_hdd id_type_hdd="8" id_producer="3" capacity="40"/>
+  <type_hdd id_type_hdd="9" id_producer="1" capacity="500"/>
+  <type_mother id_type_mother="1" id_producer="8" model="Tusl-2c" socket="370"/>
+  <type_mother id_type_mother="2" id_producer="8" model="Cusl-2c" socket="370"/>
+  <type_mother id_type_mother="3" id_producer="0" model="notebook-mother" socket="370"/>
+  <type_mother id_type_mother="4" id_producer="8" model="" socket="370"/>
+  <type_mother id_type_mother="5" id_producer="9" model="tirtirt" socket="775"/>
+  <type_mother id_type_mother="6" id_producer="10" model="" socket="775"/>
+  <type_mother id_type_mother="7" id_producer="11" model="" socket="775"/>
+  <type_mother id_type_mother="8" id_producer="10" model="" socket="775"/>
+  <type_mother id_type_mother="9" id_producer="9" model="" socket="775"/>
+  <type_mother id_type_mother="10" id_producer="11" model="" socket="775"/>
+  <type_mother id_type_mother="11" id_producer="8" model="" socket="775"/>
+  <type_proc id_type_proc="1" id_producer="5" model="Celeron D 1600" socket="775"/>
+  <type_proc id_type_proc="2" id_producer="5" model="Pentium 3 1000" socket="370"/>
+  <type_proc id_type_proc="5" id_producer="5" model="Celeron D 2600" socket="775"/>
+  <type_proc id_type_proc="6" id_producer="5" model="Pentium dual core 1800" socket="775"/>
+  <type_proc id_type_proc="8" id_producer="5" model="Celeron D " socket="775"/>
+  <type_proc id_type_proc="9" id_producer="5" model="Celeron D 2666" socket="775"/>
+  <type_proc id_type_proc="10" id_producer="5" model="Celeron 1800" socket="775"/>
+  <type_ram id_type_ram="1" id_type_ram_spec="1" capacity="512"/>
+  <type_ram id_type_ram="2" id_type_ram_spec="1" capacity="256"/>
+  <type_ram id_type_ram="3" id_type_ram_spec="3" capacity="256"/>
+  <type_ram id_type_ram="4" id_type_ram_spec="3" capacity="512"/>
+  <type_ram id_type_ram="7" id_type_ram_spec="3" capacity="1024"/>
+  <type_ram_spec id_type_ram_spec="1" description="sd-ram "/>
+  <type_ram_spec id_type_ram_spec="2" description="ddr1"/>
+  <type_ram_spec id_type_ram_spec="3" description="ddr2"/>
+  <ups id_ups="1" inv_number="1126631" model="Mustek PowerMust 800"/>
+  <ups id_ups="2" inv_number="1124396" model="APC Back-UPS 500"/>
+  <ups id_ups="3" inv_number="1122499" model="APC Back UPS ES 525"/>
+  <ups id_ups="4" inv_number="1124765" model="PCM"/>
+  <ups id_ups="5" inv_number="1122499" model="APC Back-UPS ES 525"/>
+  <ups id_ups="6" inv_number="1060411" model="PCM"/>
+  <ups id_ups="7" inv_number="334345" model="gfgfgfg"/>
+  <user id_user="6" position="МТС- майстер резервуарного парку" name="Цюпик Марян Васильович" login="ttmv" mail="errer"/>
+  <user id_user="7" position="МТС-мастер" name="Дашко Юрій Орестович" login="tdyo" mail="errder"/>
+  <user id_user="8" position="Хім. лаб.-лабораторія" name=" Токаленко Людмила Олексіївна" login="thla" mail="ererer"/>
+  <user id_user="9" position="Хім.Лаб. - начальник хім.лаб." name="Токаленко Людмила Олексіївна" login="ttla" mail="erere"/>
+  <user id_user="10" position="ЕХЗ-начальник" name="Токаленко Анатолій Григорович" login="ttag" mail="erer"/>
+  <user id_user="11" position="КВП-начальник" name="Горішний Ярослав Богданович" login="tgib" mail="eerer"/>
+  <user id_user="12" position="КВП-майстер" name="Франчук Микола Іванович" login="tfmi" mail="ererer"/>
+  <user id_user="13" position="КВП-інженер" name="Яковенко Сергій Павлович" login="tysp" mail="ererer"/>
+  <user id_user="14" position="КВП-заст.нач. сл.метрології" name="Кононович Володимир Володимирович" login="tkwv" mail="erere"/>
+  <user id_user="15" position="Адміністрація - інженер гідротехнік" name="Штемпелюк Олександр Федорович" login="tsof" mail="ererer"/>
+  <workplace id_workplace="1" id_computer="1" id_monitor="12" id_user="6" id_printer="1" id_ups="1" id_os="1"/>
+  <workplace id_workplace="2" id_computer="2" id_monitor="13" id_user="7" id_printer="2" id_ups="2" id_os="1"/>
+  <workplace id_workplace="4" id_computer="4" id_monitor="15" id_user="9" id_printer="4" id_ups="4" id_os="1"/>
+  <workplace id_workplace="5" id_computer="5" id_monitor="16" id_user="10" id_printer="5" id_ups="5" id_os="1"/>
+  <workplace id_workplace="6" id_computer="6" id_monitor="17" id_user="11" id_printer="6" id_os="2"/>
+  <workplace id_workplace="8" id_computer="8" id_monitor="19" id_user="13" id_os="3"/>
+  <workplace id_workplace="9" id_computer="9" id_monitor="20" id_user="14" id_os="3"/>
+  <workplace id_workplace="10" id_computer="10" id_monitor="21" id_user="15" id_os="1"/>
+</dataset>
