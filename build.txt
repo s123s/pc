@@ -1,0 +1,2 @@
+mvn clean install && mvn tomcat:redeploy -P env-test -Dmaven.test.skip=true
+
