@@ -136,9 +136,27 @@
 	<bean id="workplaceDao" class="pc.dao.hibernate.WorkplaceDaoHibernate">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="mainService" class="pc.service.MainService">
-	</bean>
-
+ 	<bean id="mainService" class="pc.service.MainService">
+		<property name="typeHddDao" ref="typeHddDao" />
+		<property name="typeRamDao" ref="typeRamDao" />
+		<property name="typeRamSpecDao" ref="typeRamSpecDao" />
+		<property name="producerDao" ref="producerDao" />
+		<property name="typeProcDao" ref="typeProcDao" />
+		<property name="typeMotherDao" ref="typeMotherDao" />
+		<property name="osDao" ref="osDao" />
+		<property name="upsDao" ref="upsDao" />
+		<property name="printerDao" ref="printerDao" />
+		<property name="monitorDao" ref="monitorDao" />
+		<property name="userDao" ref="userDao" />
+		<property name="hddDao" ref="hddDao" />
+		<property name="ramDao" ref="ramDao" />
+		<property name="processorDao" ref="processorDao" />
+		<property name="motherDao" ref="motherDao" />
+		<property name="computerDao" ref="computerDao" />
+		<property name="typeComputerDao" ref="typeComputerDao" />
+		<property name="workplaceDao" ref="workplaceDao" />
+	</bean> 
+	
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />

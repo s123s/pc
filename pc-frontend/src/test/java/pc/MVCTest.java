@@ -23,24 +23,20 @@ import org.springframework.web.context.WebApplicationContext;
 
 import pc.service.MainService;
 
-/*@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-		"file:src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml",
-		"file:src/test/resources/spring/xxxx-test-root-context.xml",
-		"file:src/main/webapp/WEB-INF/spring/application-security.xml" })
-@WebAppConfiguration("file:src/main/webapp/WEB-INF/web.xml")*/
+		"classpath:test-mvc-dispatcher-servlet.xml",
+		"classpath:spring/test-root-context.xml",
+		"classpath:spring/test-application-security.xml" 
+		})
+
+@WebAppConfiguration("classpath:test-web.xml")
 public class MVCTest {
-/*
+
 	private MockMvc mockMvc;
-
-	@Autowired
-	MainService mainService;
-
-
-    @Autowired
-    private MainService mainService;
- 
 	
+    @Autowired private MainService mainService;
+ 	
 	@Autowired
 	private WebApplicationContext webApplicationContext;
 
@@ -49,7 +45,7 @@ public class MVCTest {
 		// We have to reset our mock between tests because the mock objects
 		// are managed by the Spring container. If we would not reset them,
 		// stubbing and verified behavior would "leak" from one test to another.
-		mainService = Mockito.mock(MainService.class);
+		//mainService = Mockito.mock(MainService.class);
 
 		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext)
 				.build();
@@ -57,25 +53,23 @@ public class MVCTest {
 
 	@Test
 	public void aaa() throws Exception {
-		mockMvc.perform(get("/computer", 1L)).andExpect(status().isNotFound())
-		.andExpect(view().name("error/404"))
-		.andExpect(forwardedUrl("/WEB-INF/jsp/error/404.jsp"));
-		
-		mockMvc.perform(get("/computer", 1L)).andExpect(status().isOk())
+		mockMvc.perform(get("/computer")).andExpect(status().isOk())
 		.andExpect(view().name("computer"));
 
-		Возвращается ВСЕГДА errorPage при ошибке
+//		Возвращается ВСЕГДА errorPage при ошибке
 		mockMvc.perform(get("/NoPageSASADS", 1L)).andExpect(status().isOk())
 		.andExpect(forwardedUrl("default"));
 
-		mockMvc.perform(get("/todo1/{id}", 1L)).andExpect(status().isNotFound())
+		//Есть Mock-объект(mainService в (frontend)/test-root-context.xml) 
+		verify(mainService, atLeast(1)).getComputerDao();
+		
+		
+/*		mockMvc.perform(get("/todo1/{id}", 1L)).andExpect(status().isNotFound())
 				.andExpect(view().name("error/404"))
 				.andExpect(forwardedUrl("/WEB-INF/jsp/error/404.jsp"));
-
-		verify(mainService, atLeast(1)).getComputerDao();
-//		verifyZeroInteractions(mainService);
+		verifyZeroInteractions(mainService);*/
 	}
 
-*/
+
 	
 }

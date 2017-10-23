@@ -3,9 +3,11 @@ package pc.controller;
 import java.util.Random;
 import java.util.Date;
 
+import javax.annotation.Resource;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,8 +44,9 @@ import pc.service.OperationStatus;
 public class OperationController {
 
 
-	@Autowired(required = true)
-	//@Qualifier(value = "mainService")	
+	//@Autowired(required = true)
+	//@Qualifier(value = "mainService")
+	@Resource(name="mainService")
 	private MainService mainService;
 
 	public void setMainService(MainService mainService) {
