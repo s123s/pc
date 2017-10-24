@@ -14,17 +14,23 @@ import java.util.Properties;
 import javax.sql.DataSource;
 
 import org.dbunit.DatabaseUnitException;
+import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.database.QueryDataSet;
 import org.dbunit.dataset.IDataSet;
+import org.dbunit.dataset.xml.FlatDtdDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSet;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.hibernate.engine.spi.SessionFactoryImplementor;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 
 public class FlatXmlDateGenerate {
+	private static final String DB_TABLES_DATA_FULL_FILE_DTD = "../.db/tables_data_full.dtd";
+	private static final String DB_TABLES_DATA_FULL_FILE_XML = "../.db/tables_data_full.xml";
+	/*private static final String TABLES_DATA_FILE_XML = "../.db/tables_data.xml";
 	private static final String JDBC_PASSWORD = "jdbc.password";
-	private static final String JDBC_USERNAME = "jdbc.username";
+	private static final String JDBC_USERNAME = "jdbc.username";*/
 	private static final String JDBC_PROPERTIES_FILE = "jdbc.properties";
 
 	public static void main(String[] args) throws ClassNotFoundException,
@@ -40,21 +46,30 @@ public class FlatXmlDateGenerate {
 			ex.printStackTrace();
 		}
 
-		// загружаем драйвер для работы с mysql
-		Class.forName("com.mysql.jdbc.Driver");
+/*		// загружаем драйвер для работы с mysql
+		Class.forName("com.mysql.jdbc.Driver");*/
 
 		// получаем подключение к серверу СУБД
-		/*ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("context.xml");
-		DataSource ds = (DataSource)ctx.getBean("myDatasourceBean");
-		Connection conn = DataSourceUtils.getConnection(ds);*/				
-		
-		Connection conn = 
+		FileSystemXmlApplicationContext ctx = new  FileSystemXmlApplicationContext("src/main/webapp/WEB-INF/spring/root-context.xml");
+		DataSource ds = (DataSource)ctx.getBean("dataSource");
+		Connection conn = DataSourceUtils.getConnection(ds);
+		/*Connection conn = 
 		//		 ctx represents a spring context
 				DriverManager.getConnection(
 				"jdbc:mysql://localhost/pc?useUnicode=true&characterSet=UTF-8",
 				prop.getProperty(JDBC_USERNAME),
-				prop.getProperty(JDBC_PASSWORD));
-		IDatabaseConnection iConnection = new DatabaseConnection(conn);
+				prop.getProperty(JDBC_PASSWORD));*/
+				
+		
+		SessionFactoryImplementor sessionFactory = (SessionFactoryImplementor)ctx.getBean("sessionFactory");
+		String schema = (String) sessionFactory.getProperties().get("hibernate.default_schema");
+		
+		//Фиксим баг у DBUnit: 1. Показываем DBUnit схему. 2. Указываем, что регистр не нужно учитывать 
+		IDatabaseConnection iConnection = new DatabaseConnection(conn, schema);
+		DatabaseConfig config = iConnection.getConfig();
+		config.setFeature(DatabaseConfig.FEATURE_CASE_SENSITIVE_TABLE_NAMES, true);
+		
+		/*IDatabaseConnection iConnection = new DatabaseConnection(conn);*/
 
 		// экспортируем часть базы данных
 		QueryDataSet partialDataSet = new QueryDataSet(iConnection);
@@ -62,10 +77,8 @@ public class FlatXmlDateGenerate {
 		// экспорт таблицы, но не всей, а только определенных записей
 		// partialDataSet.addTable("user", "SELECT * FROM user");
 
-		// экспорт всей таблицы
+/*		// экспорт всей таблицы
 		partialDataSet.addTable("add_sockets");
-
-		partialDataSet.addTable("autor");
 		partialDataSet.addTable("computer");
 		partialDataSet.addTable("hdd");
 		partialDataSet.addTable("monitor");
@@ -87,11 +100,14 @@ public class FlatXmlDateGenerate {
 
 		// сохраняем изменения в файл
 		FlatXmlDataSet.write(partialDataSet, new FileOutputStream(
-				"../.db/all_tables-dataset.xml"));
-
+				TABLES_DATA_FILE_XML));
+*/
+        // write DTD file
+        FlatDtdDataSet.write(iConnection.createDataSet(), new FileOutputStream(DB_TABLES_DATA_FULL_FILE_DTD));
+		
 		// экспорт всей базы данных полностью
-		/*IDataSet fullDataSet = iConnection.createDataSet();
-		FlatXmlDataSet.write(fullDataSet, new FileOutputStream("tables.xml"));*/
+		IDataSet fullDataSet = iConnection.createDataSet();
+		FlatXmlDataSet.write(fullDataSet, new FileOutputStream(DB_TABLES_DATA_FULL_FILE_XML));
 
 	}
 }

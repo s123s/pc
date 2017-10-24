@@ -9,17 +9,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Primary;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+
+import com.github.springtestdbunit.annotation.DatabaseSetup;
 
 import pc.service.MainService;
 
@@ -33,12 +31,12 @@ import pc.service.MainService;
 @WebAppConfiguration("classpath:test-web.xml")
 public class MVCTest {
 
+	private static final String DB_TABLES_DATA_FULL_FILE_XML = "../.db/tables_data_full.xml";
+	
 	private MockMvc mockMvc;
 	
-    @Autowired private MainService mainService;
- 	
-	@Autowired
-	private WebApplicationContext webApplicationContext;
+    @Autowired private MainService mainService; 	
+	@Autowired private WebApplicationContext webApplicationContext;
 
 	@Before
 	public void setUp() {
@@ -70,6 +68,11 @@ public class MVCTest {
 		verifyZeroInteractions(mainService);*/
 	}
 
-
+	/*@Test
+	@DatabaseSetup(DB_TABLES_DATA_FULL_FILE_XML)
+	public void testDatabase() {
+		
+	}
+*/
 	
 }
