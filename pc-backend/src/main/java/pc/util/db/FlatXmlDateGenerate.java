@@ -44,12 +44,12 @@ public class FlatXmlDateGenerate {
 		Class.forName("com.mysql.jdbc.Driver");
 
 		// получаем подключение к серверу СУБД
-/*		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("context.xml");
+		/*ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("context.xml");
 		DataSource ds = (DataSource)ctx.getBean("myDatasourceBean");
-		Connection conn = DataSourceUtils.getConnection(ds);		*/		
+		Connection conn = DataSourceUtils.getConnection(ds);*/				
 		
 		Connection conn = 
-//				 ctx represents a spring context
+		//		 ctx represents a spring context
 				DriverManager.getConnection(
 				"jdbc:mysql://localhost/pc?useUnicode=true&characterSet=UTF-8",
 				prop.getProperty(JDBC_USERNAME),
