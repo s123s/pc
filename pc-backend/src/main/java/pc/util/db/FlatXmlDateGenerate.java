@@ -44,16 +44,16 @@ public class FlatXmlDateGenerate {
 		Class.forName("com.mysql.jdbc.Driver");
 
 		// получаем подключение к серверу СУБД
-		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("context.xml");
+/*		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("context.xml");
 		DataSource ds = (DataSource)ctx.getBean("myDatasourceBean");
-		Connection conn = DataSourceUtils.getConnection(ds);				
+		Connection conn = DataSourceUtils.getConnection(ds);		*/		
 		
-		/*Connection conn = 
-				 ctx represents a spring context
+		Connection conn = 
+//				 ctx represents a spring context
 				DriverManager.getConnection(
 				"jdbc:mysql://localhost/pc?useUnicode=true&characterSet=UTF-8",
 				prop.getProperty(JDBC_USERNAME),
-				prop.getProperty(JDBC_PASSWORD));*/
+				prop.getProperty(JDBC_PASSWORD));
 		IDatabaseConnection iConnection = new DatabaseConnection(conn);
 
 		// экспортируем часть базы данных
@@ -87,11 +87,11 @@ public class FlatXmlDateGenerate {
 
 		// сохраняем изменения в файл
 		FlatXmlDataSet.write(partialDataSet, new FileOutputStream(
-				"all_tables-dataset.xml"));
+				".db/all_tables-dataset.xml"));
 
 		// экспорт всей базы данных полностью
-		IDataSet fullDataSet = iConnection.createDataSet();
-		FlatXmlDataSet.write(fullDataSet, new FileOutputStream("tables.xml"));
+		/*IDataSet fullDataSet = iConnection.createDataSet();
+		FlatXmlDataSet.write(fullDataSet, new FileOutputStream("tables.xml"));*/
 
 	}
 }
