@@ -4,3 +4,4 @@
 .classpath
 .externalToolBuilders
 /bin/
+/.db/

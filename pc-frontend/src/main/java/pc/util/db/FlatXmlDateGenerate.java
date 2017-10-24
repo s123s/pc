@@ -87,7 +87,7 @@ public class FlatXmlDateGenerate {
 
 		// сохраняем изменения в файл
 		FlatXmlDataSet.write(partialDataSet, new FileOutputStream(
-				".db/all_tables-dataset.xml"));
+				"../.db/all_tables-dataset.xml"));
 
 		// экспорт всей базы данных полностью
 		/*IDataSet fullDataSet = iConnection.createDataSet();
