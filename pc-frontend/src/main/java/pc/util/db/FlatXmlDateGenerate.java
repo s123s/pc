@@ -26,8 +26,8 @@ import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 
 public class FlatXmlDateGenerate {
-	private static final String DB_TABLES_DATA_FULL_FILE_DTD = "../.db/tables_data_full.dtd";
-	private static final String DB_TABLES_DATA_FULL_FILE_XML = "../.db/tables_data_full.xml";
+	private static final String DB_TEST_DB_DTD = "src/test/resources/data/test.db.dtd";
+	private static final String DB_TEST_DB_XML = "src/test/resources/data/test.db.xml";
 	/*private static final String TABLES_DATA_FILE_XML = "../.db/tables_data.xml";
 	private static final String JDBC_PASSWORD = "jdbc.password";
 	private static final String JDBC_USERNAME = "jdbc.username";*/
@@ -103,11 +103,11 @@ public class FlatXmlDateGenerate {
 				TABLES_DATA_FILE_XML));
 */
         // write DTD file
-        FlatDtdDataSet.write(iConnection.createDataSet(), new FileOutputStream(DB_TABLES_DATA_FULL_FILE_DTD));
+        FlatDtdDataSet.write(iConnection.createDataSet(), new FileOutputStream(DB_TEST_DB_DTD));
 		
 		// экспорт всей базы данных полностью
 		IDataSet fullDataSet = iConnection.createDataSet();
-		FlatXmlDataSet.write(fullDataSet, new FileOutputStream(DB_TABLES_DATA_FULL_FILE_XML));
+		FlatXmlDataSet.write(fullDataSet, new FileOutputStream(DB_TEST_DB_XML));
 
 	}
 }

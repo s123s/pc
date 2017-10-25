@@ -6,10 +6,19 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import java.io.InputStream;
+
+import javax.sql.DataSource;
+
+import org.dbunit.dataset.IDataSet;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
+import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -31,18 +40,26 @@ import pc.service.MainService;
 @WebAppConfiguration("classpath:test-web.xml")
 public class MVCTest {
 
-	private static final String DB_TABLES_DATA_FULL_FILE_XML = "../.db/tables_data_full.xml";
+	private static final String DB_TEST_DB_SCHEME_SCRIPT = "data/test.db.scheme.with_data.script";
+	//private static final String DB_TEST_DB_XML = "data/test.db.xml";
+	//private static final String DB_TEST_DB_DTD = "data/test.db.dtd";
 	
 	private MockMvc mockMvc;
 	
     @Autowired private MainService mainService; 	
 	@Autowired private WebApplicationContext webApplicationContext;
+	@Autowired private DataSource dataSource;
 
 	@Before
 	public void setUp() {
-		// We have to reset our mock between tests because the mock objects
-		// are managed by the Spring container. If we would not reset them,
-		// stubbing and verified behavior would "leak" from one test to another.
+		
+		  // read dataSet from dataSetURI
+		ResourceDatabasePopulator tables = new ResourceDatabasePopulator();
+		  tables.addScript(new ClassPathResource(DB_TEST_DB_SCHEME_SCRIPT));
+		  //tables.addScript(new ClassPathResource(DB_TEST_DB_XML));
+
+		  DatabasePopulatorUtils.execute(tables, dataSource);
+		  
 		//mainService = Mockito.mock(MainService.class);
 
 		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext)

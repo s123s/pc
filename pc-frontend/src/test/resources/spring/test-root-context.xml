@@ -2,11 +2,13 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 		http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context-3.0.xsd
         http://www.springframework.org/schema/tx
-		http://www.springframework.org/schema/tx/spring-tx.xsd ">
+		http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean
@@ -21,7 +23,7 @@
 
 
 	<!-- Getting Database properties -->
-	<context:property-placeholder location="classpath:jdbc.properties" />
+	<context:property-placeholder location="classpath:jdbc_test.properties" />
 
 	<!-- Database Information -->
 	<!-- dbcp <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" 
@@ -37,13 +39,19 @@
 		<property name="jdbcUrl" value="${jdbc.url}" />
 		<property name="user" value="${jdbc.username}" />
 		<property name="password" value="${jdbc.password}" />
-
 		<!-- these are C3P0 properties -->
 		<property name="acquireIncrement" value="5" />
 		<property name="minPoolSize" value="2" />
 		<property name="maxPoolSize" value="5" />
-		<!-- <property name="maxIdleTime" value="300" /> -->
+		<property name="maxIdleTime" value="300" />
 	</bean>
+	<!-- <jdbc:embedded-database id="dataSource" type="HSQL"> скрипт с DDL <jdbc:script 
+		location="classpath:data/test.db.scheme.script" /> </jdbc:embedded-database> -->
+
+	<!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" 
+		> <property name="driverClassName" value="org.h2.Driver"/> <property name="url" 
+		value="jdbc:h2:mem:pc;MODE=MySQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE" 
+		/> </bean> -->
 
 	<!-- Hibernate SessionFactory Bean definition -->
 	<bean id="sessionFactory"
@@ -144,13 +152,11 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
-<!-- 	<bean id="mainService" class="org.mockito.Mockito"
-		factory-method="mock">
-		<constructor-arg
-			value="pc.service.MainService" />
-	</bean> -->
+	<!-- <bean id="mainService" class="org.mockito.Mockito" factory-method="mock"> 
+		<constructor-arg value="pc.service.MainService" /> </bean> -->
 
-	<bean id="mainService" name="mainService" class="org.mockito.Mockito" factory-method="spy">
+	<bean id="mainService" name="mainService" class="org.mockito.Mockito"
+		factory-method="spy">
 		<constructor-arg>
 			<bean class="pc.service.MainService">
 				<property name="typeHddDao" ref="typeHddDao" />
@@ -173,29 +179,21 @@
 				<property name="workplaceDao" ref="workplaceDao" />
 			</bean>
 		</constructor-arg>
-</bean>
+	</bean>
 
 
-<!-- 	<bean id="mainService1" class="pc.service.MainService">
-		<property name="typeHddDao" ref="typeHddDao" />
-		<property name="typeRamDao" ref="typeRamDao" />
-		<property name="typeRamSpecDao" ref="typeRamSpecDao" />
-		<property name="producerDao" ref="producerDao" />
-		<property name="typeProcDao" ref="typeProcDao" />
-		<property name="typeMotherDao" ref="typeMotherDao" />
-		<property name="osDao" ref="osDao" />
-		<property name="upsDao" ref="upsDao" />
-		<property name="printerDao" ref="printerDao" />
-		<property name="monitorDao" ref="monitorDao" />
-		<property name="userDao" ref="userDao" />
-		<property name="hddDao" ref="hddDao" />
-		<property name="ramDao" ref="ramDao" />
-		<property name="processorDao" ref="processorDao" />
-		<property name="motherDao" ref="motherDao" />
-		<property name="computerDao" ref="computerDao" />
-		<property name="typeComputerDao" ref="typeComputerDao" />
-		<property name="workplaceDao" ref="workplaceDao" />
-	</bean> -->
+	<!-- <bean id="mainService1" class="pc.service.MainService"> <property name="typeHddDao" 
+		ref="typeHddDao" /> <property name="typeRamDao" ref="typeRamDao" /> <property 
+		name="typeRamSpecDao" ref="typeRamSpecDao" /> <property name="producerDao" 
+		ref="producerDao" /> <property name="typeProcDao" ref="typeProcDao" /> <property 
+		name="typeMotherDao" ref="typeMotherDao" /> <property name="osDao" ref="osDao" 
+		/> <property name="upsDao" ref="upsDao" /> <property name="printerDao" ref="printerDao" 
+		/> <property name="monitorDao" ref="monitorDao" /> <property name="userDao" 
+		ref="userDao" /> <property name="hddDao" ref="hddDao" /> <property name="ramDao" 
+		ref="ramDao" /> <property name="processorDao" ref="processorDao" /> <property 
+		name="motherDao" ref="motherDao" /> <property name="computerDao" ref="computerDao" 
+		/> <property name="typeComputerDao" ref="typeComputerDao" /> <property name="workplaceDao" 
+		ref="workplaceDao" /> </bean> -->
 
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
