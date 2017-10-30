@@ -31,11 +31,11 @@ import pc.service.MainService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-"classpath:test-mvc-dispatcher-servlet.xml",
-"classpath:spring/test-root-context.xml",
-"classpath:spring/test-application-security.xml"
-})
-//@ComponentScan(basePackages = { "pc.controller", "pc.security.controller", "pc.dao.hibernate", "pc.service" } )
+		"classpath:test-mvc-dispatcher-servlet.xml",
+		"classpath:spring/test-root-context.xml",
+		"classpath:spring/test-application-security.xml" })
+// @ComponentScan(basePackages = { "pc.controller", "pc.security.controller",
+// "pc.dao.hibernate", "pc.service" } )
 @WebAppConfiguration("classpath:test-web.xml")
 public class MVCTest {
 
@@ -64,39 +64,112 @@ public class MVCTest {
 				.build();
 	}
 
-/*	@Test
-	public void aaa() throws Exception {
-		mockMvc.perform(get("/computer")).andExpect(status().isOk())
-				.andExpect(view().name("computer"));
+	/*
+	 * @Test public void aaa() throws Exception {
+	 * mockMvc.perform(get("/computer")).andExpect(status().isOk())
+	 * .andExpect(view().name("computer"));
+	 * 
+	 * // Возвращается ВСЕГДА errorPage при ошибке
+	 * mockMvc.perform(get("/NoPageSASADS", 1L)).andExpect(status().isOk())
+	 * .andExpect(forwardedUrl("default"));
+	 * 
+	 * // Есть Mock-объект(mainService в (frontend)/test-root-context.xml)
+	 * verify(mainService, atLeast(1)).getComputerDao();
+	 * 
+	 * 
+	 * // mockMvc.perform(get("/todo1/{id}",
+	 * //1L)).andExpect(status().isNotFound())
+	 * //.andExpect(view().name("error/404"))
+	 * //.andExpect(forwardedUrl("/WEB-INF/jsp/error/404.jsp"));
+	 * //verifyZeroInteractions(mainService);
+	 * 
+	 * }
+	 */
 
-		// Возвращается ВСЕГДА errorPage при ошибке
-		mockMvc.perform(get("/NoPageSASADS", 1L)).andExpect(status().isOk())
-				.andExpect(forwardedUrl("default"));
-
-		// Есть Mock-объект(mainService в (frontend)/test-root-context.xml)
-		verify(mainService, atLeast(1)).getComputerDao();
-
-		
-		 // mockMvc.perform(get("/todo1/{id}",
-		  //1L)).andExpect(status().isNotFound())
-		  //.andExpect(view().name("error/404"))
-		  //.andExpect(forwardedUrl("/WEB-INF/jsp/error/404.jsp"));
-		  //verifyZeroInteractions(mainService);
-		 
-	}*/
-
-	/*@Test
+	@Test
 	public void listHdd() throws Exception {
 		mockMvc.perform(get("/hdd")).andExpect(status().isOk())
 				.andExpect(view().name("hdd"));
-	}*/
-	
+	}
+
+	@Test
+	public void listMonitor() throws Exception {
+		mockMvc.perform(get("/monitor")).andExpect(status().isOk())
+				.andExpect(view().name("monitor"));
+	}
+
+	@Test
+	public void listMother() throws Exception {
+		mockMvc.perform(get("/mother")).andExpect(status().isOk())
+				.andExpect(view().name("mother"));
+	}
+
+	@Test
+	public void listOs() throws Exception {
+		mockMvc.perform(get("/os")).andExpect(status().isOk())
+				.andExpect(view().name("os"));
+	}
+
+	@Test
+	public void listPrinter() throws Exception {
+		mockMvc.perform(get("/printer")).andExpect(status().isOk())
+				.andExpect(view().name("printer"));
+	}
+
+	@Test
+	public void listProcessor() throws Exception {
+		mockMvc.perform(get("/processor")).andExpect(status().isOk())
+				.andExpect(view().name("processor"));
+	}
+
+	@Test
+	public void listRam() throws Exception {
+		mockMvc.perform(get("/ram")).andExpect(status().isOk())
+				.andExpect(view().name("ram"));
+	}
+
+	@Test
+	public void listTypeHdd() throws Exception {
+		mockMvc.perform(get("/type_hdd")).andExpect(status().isOk())
+				.andExpect(view().name("type_hdd"));
+	}
+
+	@Test
+	public void listTypeMother() throws Exception {
+		mockMvc.perform(get("/type_mother")).andExpect(status().isOk())
+				.andExpect(view().name("type_mother"));
+	}
+
+	@Test
+	public void listTypeProc() throws Exception {
+		mockMvc.perform(get("/type_proc")).andExpect(status().isOk())
+				.andExpect(view().name("type_proc"));
+	}
+
+	@Test
+	public void listTypeRam() throws Exception {
+		mockMvc.perform(get("/type_ram")).andExpect(status().isOk())
+				.andExpect(view().name("type_ram"));
+	}
+
+	@Test
+	public void listUps() throws Exception {
+		mockMvc.perform(get("/ups")).andExpect(status().isOk())
+				.andExpect(view().name("ups"));
+	}
+
+	@Test
+	public void listUser() throws Exception {
+		mockMvc.perform(get("/user")).andExpect(status().isOk())
+				.andExpect(view().name("user"));
+	}
+
 	@Test
 	public void listComputer() throws Exception {
 		mockMvc.perform(get("/computer")).andExpect(status().isOk())
 				.andExpect(view().name("computer"));
 	}
-	
+
 	/*
 	 * @Test
 	 * 
