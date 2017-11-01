@@ -170,7 +170,7 @@
 	</bean>
 
 
-	<!-- <bean id="mainService1" class="pc.service.MainService"> <property name="typeHddDao" 
+	<!-- <bean id="mainService" class="pc.service.MainService"> <property name="typeHddDao" 
 		ref="typeHddDao" /> <property name="typeRamDao" ref="typeRamDao" /> <property 
 		name="typeRamSpecDao" ref="typeRamSpecDao" /> <property name="producerDao" 
 		ref="producerDao" /> <property name="typeProcDao" ref="typeProcDao" /> <property 

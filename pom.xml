@@ -9,6 +9,9 @@
 	<!-- <url>http://maven.apache.org</url> -->
 
 	<properties>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
 		<java.version>1.8</java.version>
 		<javadoc.version>3.0.0-M1</javadoc.version>
 
@@ -347,7 +350,7 @@
 				<configuration>
 					<!-- Sets the VM argument line used when unit tests are run. -->
 					<argLine>${surefireArgLine}</argLine>
-					
+
 					<skipTests>false</skipTests>
 					<excludes>
 						<exclude>**/*IntegrationTest.java</exclude>

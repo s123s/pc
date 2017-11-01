@@ -41,7 +41,7 @@
 	<servlet>
 		<servlet-name>mvc-dispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<!-- For SERVLET context -->
+		For SERVLET context
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>test-mvc-dispatcher-servlet.xml</param-value>
