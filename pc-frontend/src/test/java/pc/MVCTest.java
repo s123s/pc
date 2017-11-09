@@ -6,6 +6,7 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import java.awt.print.Printable;
 import java.io.InputStream;
 
 import javax.sql.DataSource;
@@ -24,6 +25,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -39,7 +42,7 @@ import pc.service.MainService;
 @WebAppConfiguration("classpath:test-web.xml")
 public class MVCTest {
 
-	private static final String DB_TEST_DB_SCHEME_SCRIPT = "data/test.db.scheme.with_data.script";
+//	private static final String DB_TEST_DB_SCHEME_SCRIPT = "data/test.db.scheme.with_data.script";
 	// private static final String DB_TEST_DB_XML = "data/test.db.xml";
 	// private static final String DB_TEST_DB_DTD = "data/test.db.dtd";
 
@@ -54,12 +57,12 @@ public class MVCTest {
 
 	@Before
 	public void setUp() {
-		// read dataSet from dataSetURI
+/*		// read dataSet from dataSetURI
 		ResourceDatabasePopulator tables = new ResourceDatabasePopulator();
 		tables.addScript(new ClassPathResource(DB_TEST_DB_SCHEME_SCRIPT));
 
 		DatabasePopulatorUtils.execute(tables, dataSource);
-
+*/
 		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext)
 				.build();
 	}
@@ -100,8 +103,11 @@ public class MVCTest {
 
 	@Test
 	public void listMother() throws Exception {
+		/*mockMvc.perform(get("/mother")).andExpect(status().isOk())
+				.andExpect(view().name("mother"));*/
+
 		mockMvc.perform(get("/mother")).andExpect(status().isOk())
-				.andExpect(view().name("mother"));
+		.andExpect(view().name("mother")).andDo(MockMvcResultHandlers.print(System.out)).andReturn();
 	}
 
 	@Test
@@ -167,7 +173,9 @@ public class MVCTest {
 	@Test
 	public void listComputer() throws Exception {
 		mockMvc.perform(get("/computer")).andExpect(status().isOk())
-				.andExpect(view().name("computer"));
+		.andExpect(view().name("computer")).andDo(MockMvcResultHandlers.print(System.out)).andReturn();
+		//mockMvc.perform(get("/computer")).andExpect(status().isOk())
+				//.andExpect(view().name("computer"));
 	}
 
 	/*

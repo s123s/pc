@@ -21,7 +21,10 @@ public class TypeRamDaoHibernate extends TypeRamDao {
 		Session session = getSessionFactory().getCurrentSession();
 		return session
 				.createQuery(
-						"from TypeRam tab left outer join fetch tab.typeRamSpec order by tab.idTypeRam")
+						"from TypeRam tab "
+								+ "left outer join fetch tab.typeRamSpec "
+								+ "left outer join fetch tab.typeRamSpec "
+						+ "order by tab.idTypeRam")
 				.list();
 	}
 

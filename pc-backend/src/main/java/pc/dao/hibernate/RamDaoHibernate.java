@@ -20,7 +20,9 @@ public class RamDaoHibernate extends RamDao {
 	public List<Ram> readAll() {
 
 		Session session = getSessionFactory().getCurrentSession();
-		return session.createQuery("from Ram order by idRam").list();
+		return session.createQuery("from Ram tab "
+				+ " left outer join fetch tab.computer "
+				+ "order by tab.idRam").list();
 	}
 	
 /*	@Override

@@ -20,7 +20,9 @@ public class ProcessorDaoHibernate extends ProcessorDao {
 	public List<Processor> readAll() {
 
 		Session session = getSessionFactory().getCurrentSession();
-		return session.createQuery("from Processor order by idProcessor")
+		return session.createQuery("from Processor tab "
+				+ " left outer join fetch tab.computer "
+				+ "order by tab.idProcessor")
 				.list();
 	}
 
