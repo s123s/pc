@@ -15,10 +15,8 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-<!-- 		/WEB-INF/spring/root-context.xml
-		/WEB-INF/spring/application-security.xml -->
-		/spring/test-root-context.xml
-		/spring/test-application-security.xml
+		spring/test-root-context.xml
+		spring/test-application-security.xml
 		</param-value>
 	</context-param>
 
@@ -46,7 +44,7 @@
 		<!-- For SERVLET context -->
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/mvc-dispatcher-servlet.xml</param-value>
+			<param-value>test-mvc-dispatcher-servlet.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>

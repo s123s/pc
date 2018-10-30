@@ -21,7 +21,9 @@ public class MotherDaoHibernate extends MotherDao {
 
 		Session session = getSessionFactory().getCurrentSession();
 		return session.createQuery("from Mother tab "
-				+ "left outer join fetch tab.typeMother order by tab.idMother").list();
+				+ "left outer join fetch tab.typeMother "
+				+ "left outer join fetch tab.computer "
+				+ "order by tab.idMother").list();
 	}
 
 	@Override

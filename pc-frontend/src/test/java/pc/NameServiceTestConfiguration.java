@@ -9,12 +9,12 @@ import org.springframework.context.annotation.Profile;
 import pc.service.MainService;
 
 	
-@Profile("test")
-@Configuration
+//@Profile("test")
+//@Configuration
 public class NameServiceTestConfiguration {
-    @Bean
+/*    @Bean
     @Primary
     public MainService nameService() {
         return Mockito.mock(MainService.class);
-    }
+    }*/
 }

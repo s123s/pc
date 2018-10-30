@@ -31,13 +31,8 @@
 	<context:component-scan base-package="pc.dao.hibernate" />
 	<context:component-scan base-package="pc.service" />
 
-	<!-- Getting Database properties --><!-- 
-	<context:property-placeholder location="classpath:jdbc.properties" /> -->
-
 	<!-- <tx:annotation-driven transaction-manager="transactionManager" /> -->
 	<mvc:annotation-driven />
 	<mvc:default-servlet-handler />
-	<mvc:annotation-driven /> 
-	
 
 </beans>

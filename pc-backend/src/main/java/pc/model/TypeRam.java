@@ -1,5 +1,6 @@
 package pc.model;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -12,6 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import pc.jackson.View;
 
@@ -35,8 +39,13 @@ public class TypeRam {
 	private Integer capacity;
 
 	/** Нужно для проверки, есть ли ссылающиеся записи */
-	@OneToMany(mappedBy = "typeRam", fetch = FetchType.LAZY)
-	private Set<Ram> rams;
+//	@OneToMany(mappedBy = "typeRam", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "typeRam", fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
+	private List<Ram> rams;
+//	private Set<Ram> rams;
+	
+
 
 	public String toString() {
 		return "{" + getIdTypeRam() + ", "
@@ -68,11 +77,11 @@ public class TypeRam {
 		this.capacity = capacity;
 	}
 
-	public Set<Ram> getRams() {
+	public List<Ram> getRams() {
 		return rams;
 	}
 
-	public void setRams(Set<Ram> rams) {
+	public void setRams(List<Ram> rams) {
 		this.rams = rams;
 	}
 
